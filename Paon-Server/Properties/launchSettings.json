@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "Paon-Server": {
+      "commandName": "Project",
+      "applicationUrl": "http://0.0.0.0:5032",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
