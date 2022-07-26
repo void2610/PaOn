@@ -78,19 +78,8 @@ crashlytics-build.properties
 # Custom ignore #
 # ============= #
 # OpenPose plugins
-/Paon-Client/Assets/OpenPose/Plugins/
-/Paon-Client/Assets/OpenPose/Plugins.meta
+/Paon-Client/Assets/OpenPose/
 # MagicOnion
 /Paon-Client/Assets/Plugins/
-/Paon-Client/Assets/StreamingAssets/
 # Caffe models
-/Paon-Client/Assets/StreamingAssets/models/pose/body_25/pose_iter_584000.caffemodel
-/Paon-Client/Assets/StreamingAssets/models/pose/body_25/pose_iter_584000.caffemodel.meta
-/Paon-Client/Assets/StreamingAssets/models/pose/coco/pose_iter_440000.caffemodel
-/Paon-Client/Assets/StreamingAssets/models/pose/coco/pose_iter_440000.caffemodel.meta
-/Paon-Client/Assets/StreamingAssets/models/pose/mpi/pose_iter_160000.caffemodel
-/Paon-Client/Assets/StreamingAssets/models/pose/mpi/pose_iter_160000.caffemodel.meta
-/Paon-Client/Assets/StreamingAssets/models/face/pose_iter_116000.caffemodel
-/Paon-Client/Assets/StreamingAssets/models/face/pose_iter_116000.caffemodel.meta
-/Paon-Client/Assets/StreamingAssets/models/hand/pose_iter_102000.caffemodel
-/Paon-Client/Assets/StreamingAssets/models/hand/pose_iter_102000.caffemodel.meta
+/Paon-Client/Assets/StreamingAssets/
