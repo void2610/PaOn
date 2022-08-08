@@ -55,7 +55,6 @@ ExportedObj/
 *.pidb.meta
 *.pdb.meta
 *.mdb.meta
-*.meta
 *.log
 *.asset
 
