@@ -1,5 +1,4 @@
-#if !USE_GRPC_NET_CLIENT_ONLY
-using Grpc.Core;
+﻿using Grpc.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,4 +17,3 @@ namespace MagicOnion
         }
     }
 }
-#endif

@@ -103,7 +103,7 @@ namespace MagicOnion.Client
                 await firstMoveNextTask.ConfigureAwait(false);
 
                 // NOTE: C-core: If the execution reaches here, Connect method returns without any error (StatusCode = OK). but MessageVersion isn't provided from the server.
-                throw new RpcException(new Status(StatusCode.Internal, $"The request started successfully (StatusCode = OK), but the StreamingHub client has failed to negotiate with the server."));
+                throw new RpcException(new Status(StatusCode.Internal, $"The message version of StreamingHub is not provided from the server."));
             }
 
             this.subscription = StartSubscribe(syncContext, firstMoveNextTask);
@@ -162,15 +162,12 @@ namespace MagicOnion.Client
             {
                 try
                 {
-#if !UNITY_WEBGL
                     // set syncContext before await
-                    // NOTE: If restore SynchronizationContext in WebGL environment, a continuation will not be executed inline and will be stuck.
                     if (syncContext != null && SynchronizationContext.Current == null)
                     {
                         SynchronizationContext.SetSynchronizationContext(syncContext);
                     }
-#endif
-                    await DisposeAsyncCore(false).ConfigureAwait(false);
+                    await DisposeAsyncCore(false);
                 }
                 finally
                 {
@@ -271,7 +268,7 @@ namespace MagicOnion.Client
             }
 
             var v = BuildMessage();
-            using (await asyncLock.LockAsync().ConfigureAwait(false))
+            using (await asyncLock.LockAsync())
             {
                 await connection.RawStreamingCall.RequestStream.WriteAsync(v).ConfigureAwait(false);
             }
@@ -313,7 +310,7 @@ namespace MagicOnion.Client
                 await connection.RawStreamingCall.RequestStream.WriteAsync(v).ConfigureAwait(false);
             }
 
-            return await tcs.Task.ConfigureAwait(false); // wait until server return response(or error). if connection was closed, throws cancellation from DisposeAsyncCore.
+            return await tcs.Task; // wait until server return response(or error). if connection was closed, throws cancellation from DisposeAsyncCore.
         }
 
         void ThrowIfDisposed()
@@ -343,7 +340,7 @@ namespace MagicOnion.Client
 
             try
             {
-                await connection.RequestStream.CompleteAsync().ConfigureAwait(false);
+                await connection.RequestStream.CompleteAsync();
             }
             catch { } // ignore error?
             finally
@@ -356,7 +353,7 @@ namespace MagicOnion.Client
                     {
                         if (subscription != null)
                         {
-                            await subscription.ConfigureAwait(false);
+                            await subscription;
                         }
                     }
 
