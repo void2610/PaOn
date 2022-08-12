@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Paon.NInput;
 using UnityEngine;
 
-//hand‚ÌqƒIƒuƒWƒFƒNƒg‚ÌHandTrigger‚ÉƒAƒ^ƒbƒ`‚·‚é
+//handï¿½Ìqï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½HandTriggerï¿½ÉƒAï¿½^ï¿½bï¿½`ï¿½ï¿½ï¿½ï¿½
 namespace Paon.NPlayer
 {
     public class RightHoldObjectScript : MonoBehaviour
@@ -51,11 +51,10 @@ namespace Paon.NPlayer
 
             if (oh.Holding)
             {
-
-                oh.NowHoldObject.transform.position = this.transform.position;
-                oh.NowHoldObject.transform.eulerAngles = new Vector3(DefoRotation.x, Hand.transform.eulerAngles.y - DefoRotation.y, DefoRotation.z);
-                oh.NowHoldObject.GetComponent<Rigidbody>().constraints =
-                RigidbodyConstraints.FreezeRotation;
+                    oh.NowHoldObject.transform.position = this.transform.position;
+                    oh.NowHoldObject.transform.eulerAngles = new Vector3(DefoRotation.x, Hand.transform.eulerAngles.y - DefoRotation.y, DefoRotation.z);
+                    oh.NowHoldObject.GetComponent<Rigidbody>().constraints =
+                    RigidbodyConstraints.FreezeRotation;
 
             }
             if (NearObject != null)
@@ -71,7 +70,7 @@ namespace Paon.NPlayer
             }
         }
 
-        //ÚG‚µ‚½ƒIƒuƒWƒFƒNƒg‚ªˆø”other‚Æ‚µ‚Ä“n‚³‚ê‚é
+        //ï¿½ÚGï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½otherï¿½Æ‚ï¿½ï¿½Ä“nï¿½ï¿½ï¿½ï¿½ï¿½
         void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("HoldableTag"))
