@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3494721701170626017
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3494721701170626031}
+  - component: {fileID: 3494721701170626016}
+  m_Layer: 0
+  m_Name: PoseEstimator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3494721701170626031
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3494721701170626017}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3494721701170626016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3494721701170626017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f602565785daaa448cc7e99302f9a49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  webcamDims: {x: 1280, y: 720}
+  webcamFPS: 60
+  useWebcam: 1
+  videoScreen: {fileID: 0}
+  posenetShader: {fileID: 7200000, guid: 979d9606662c8e141bda4c02aed10a20, type: 3}
+  modelType: 1
+  useGPU: 1
+  imageDims: {x: 256, y: 320}
+  mobileNetModelAsset: {fileID: 5022602860645237092, guid: a36a65fea3d8bd64fba1711d6ac95b2b, type: 3}
+  resnetModelAsset: {fileID: 5022602860645237092, guid: 5018f1c235dafc049a67b035f7ecb179, type: 3}
+  workerType: 32768
+  estimationType: 1
+  maxPoses: 20
+  scoreThreshold: 0.25
+  nmsRadius: 100
+  pointScale: 10
+  lineWidth: 5
+  minConfidence: 70

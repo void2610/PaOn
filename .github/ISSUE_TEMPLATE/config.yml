@@ -1,0 +1,6 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Add new ToDo
+    about: made by config.yml
+    # edit {username} and {repo} for your environment
+    url: https://github.com/void2610/PaOn/issues/new?template=custom.md&projects=void2610%2FToDo%2F1&labels=ToDo
