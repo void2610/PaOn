@@ -340,4 +340,9 @@ public class PoseEstimate : MonoBehaviour
         // Release the resources allocated for the inference engine
         engine.worker.Dispose();
     }
+
+    public Utils.Keypoint[] GetKeypoints()
+    {
+        return poses[0];
+    }
 }
