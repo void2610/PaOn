@@ -235,8 +235,7 @@ public class PoseSkeleton
         // Iterate through the key points
         for (int k = 0; k < keypoints.Length; k++)
         {
-            UnityEngine.Debug.Log("KeyPoint: " + keypoints[k].score);
-
+            // UnityEngine.Debug.Log("KeyPoint: " + keypoints[k].score);
             // Check if the current confidence value meets the confidence threshold
             if (keypoints[k].score >= minConfidence / 100f)
             {
