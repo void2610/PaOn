@@ -33,7 +33,14 @@ namespace Paon.NInput
         /// <returns>手の座標</returns>
         public Vector2 GetPosition()
         {
-            return hand[0].coords;
+            try
+            {
+                return hand[0].coords;
+            }
+            catch (System.NullReferenceException e)
+            {
+                return new Vector2(0, 0);
+            }
         }
 
         ///<summary>
@@ -98,8 +105,7 @@ namespace Paon.NInput
             {
                 //Vector2 delta = CalculateDelta(previous[0].coords, hand[0].coords);
                 float fd =
-                 (float)
-                 Vector2.Distance(hand[4].coords, hand[12].coords);
+                    (float) Vector2.Distance(hand[4].coords, hand[12].coords);
                 if (fd < 40)
                 {
                     hold = 1;

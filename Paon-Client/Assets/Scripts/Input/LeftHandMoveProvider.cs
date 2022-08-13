@@ -15,14 +15,13 @@ namespace Paon.NInput
 
         private GetKeypoints.Keypoint[] hand;
 
-
         string key = "";
 
         int hold = 0;
 
         private float CulculateDistance(Vector2 start, Vector2 end)
         {
-            return (float)Vector2.Distance(start, end);
+            return (float) Vector2.Distance(start, end);
         }
 
         private Vector2 CalculateDelta(Vector2 pre, Vector2 now)
@@ -47,9 +46,15 @@ namespace Paon.NInput
         /// <returns>手の座標</returns>
         public Vector2 GetPosition()
         {
-            return hand[0].coords;
+            try
+            {
+                return hand[0].coords;
+            }
+            catch (System.NullReferenceException e)
+            {
+                return new Vector2(0, 0);
+            }
         }
-
 
         public int CheckHold()
         {
@@ -102,12 +107,11 @@ namespace Paon.NInput
             {
                 //Debug.Log(hand[0].coords.x);
                 //Vector2 delta = CalculateDelta(previous[0].coords, hand[0].coords);
-
                 float fd =
-                  (float)
-                  Vector2.Distance(hand[4].coords, hand[12].coords);
+                    (float) Vector2.Distance(hand[4].coords, hand[12].coords);
                 float thumScore = hand[4].s;
                 float MidScore = hand[12].s;
+
                 //Debug.Log("thum: " + thumScore);
                 //Debug.Log("Mid: " + MidScore);
                 if (fd < 40)
