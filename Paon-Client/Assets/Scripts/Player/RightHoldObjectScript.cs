@@ -14,27 +14,41 @@ namespace Paon.NPlayer
 
         public GameObject HandInputProvider;
 
+        public GameObject Player;
+
         public RightHandMoveProvider rmip = null;
+
+        public RightHandMove rhm = null;
 
         Vector3 DefoRotation;
 
         float dis = 999;
 
+        bool tmp = false;
+
+        Vector2 handBase;
+        Vector3 bodyBase;
+
         ObjectHolder oh = new ObjectHolder();
 
+        Vector2 coords;
         void Start()
         {
             rmip = HandInputProvider.GetComponent<RightHandMoveProvider>();
+            rhm = Hand.GetComponent<RightHandMove>();
         }
 
         void Update()
         {
+            coords = inputProvider.GetPosition();
             if (rmip.CheckHold() == 1)
             {
                 Hand.transform.localScale = new Vector3(0.3f, 0.15f, 0.1f);
                 if (NearObject != null && oh.NowHoldObject == null)
                 {
                     DefoRotation = NearObject.transform.eulerAngles;
+                    handBase = coords;
+                    bodyBase =
                     oh.HoldObject(NearObject);
                 }
             }
@@ -51,11 +65,21 @@ namespace Paon.NPlayer
 
             if (oh.Holding)
             {
+                if(oh.NowHoldObject.tag == "BorderringHoldTag"){
+                    rhm.canMove = false;
+                    //腕を下げるとプレイヤーが上がるようにする
+                    Hand.transform.position = new Vector3(Hand.transform.position.x, baseY, Hand.transform.position.z);
+                }
+                else if(oh.NowHoldObject.tag == "BorderringHoldTag"){
+                    rhm.canMove = true;
                     oh.NowHoldObject.transform.position = this.transform.position;
                     oh.NowHoldObject.transform.eulerAngles = new Vector3(DefoRotation.x, Hand.transform.eulerAngles.y - DefoRotation.y, DefoRotation.z);
                     oh.NowHoldObject.GetComponent<Rigidbody>().constraints =
                     RigidbodyConstraints.FreezeRotation;
-
+                }
+            }
+            else{
+                rhm.canMove = true;
             }
             if (NearObject != null)
             {
@@ -73,7 +97,7 @@ namespace Paon.NPlayer
         //�ڐG�����I�u�W�F�N�g������other�Ƃ��ēn�����
         void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("HoldableTag"))
+            if (other.CompareTag("HoldableTag") || other.CompareTag("BorderingHoldTag"))
             {
                 NearObject = other.gameObject;
             }

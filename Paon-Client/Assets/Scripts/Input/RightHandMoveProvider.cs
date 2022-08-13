@@ -101,7 +101,6 @@ namespace Paon.NInput
                 {
                     hold = 0;
                 }
-                Debug.Log("RightKey: " + hold);
             }
         }
     }

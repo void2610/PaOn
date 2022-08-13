@@ -22,6 +22,8 @@ namespace Paon.NPlayer
 
         ObjectHolder oh = new ObjectHolder();
 
+
+
         void Start()
         {
             rmip = HandInputProvider.GetComponent<RightHandMoveProvider>();
@@ -34,7 +36,6 @@ namespace Paon.NPlayer
                 Hand.transform.localScale = new Vector3(0.3f, 0.15f, 0.1f);
                 if (NearObject != null && oh.NowHoldObject == null)
                 {
-                    DefoRotation = NearObject.transform.eulerAngles;
                     oh.HoldObject(NearObject);
                 }
             }
@@ -48,10 +49,15 @@ namespace Paon.NPlayer
                 oh.UnHold();
             }
 
-
+            if(oh.Holding && !tmp){
+                baseY = Hand.transform.position.y;
+            }
             if (oh.Holding)
             {
-                //腕を下げるとプレイヤーが上がる
+                //腕を下げるとプレイヤーが上がるようにする
+                Hand.transform.position = new Vector3(Hand.transform.position.x, baseY, Hand.transform.position.z);
+
+
             }
             if (NearObject != null)
             {
@@ -64,6 +70,7 @@ namespace Paon.NPlayer
             {
                 NearObject = null;
             }
+            tmp = oh.Holding;
         }
 
         //�ڐG�����I�u�W�F�N�g������other�Ƃ��ēn�����
