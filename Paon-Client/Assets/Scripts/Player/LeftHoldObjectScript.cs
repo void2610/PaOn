@@ -18,7 +18,7 @@ namespace Paon.NPlayer
 
         public LeftHandMoveProvider lmip = null;
 
-        public RightHandMove lhm = null;
+        public LeftHandMove lhm = null;
 
         Vector3 DefoRotation;
 
