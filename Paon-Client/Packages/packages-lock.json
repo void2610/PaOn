@@ -172,6 +172,31 @@
       },
       "url": "https://packages.unity.com"
     },
+    "jp.keijiro.mediapipe.blazepalm": {
+      "version": "1.0.2",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.barracuda": "1.4.0-preview"
+      },
+      "url": "https://registry.npmjs.com"
+    },
+    "jp.keijiro.mediapipe.handlandmark": {
+      "version": "1.0.1",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.barracuda": "1.4.0-preview"
+      },
+      "url": "https://registry.npmjs.com"
+    },
+    "jp.keijiro.test-assets": {
+      "version": "1.0.1",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://registry.npmjs.com"
+    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,
