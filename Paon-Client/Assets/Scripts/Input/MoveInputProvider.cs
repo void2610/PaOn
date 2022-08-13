@@ -18,15 +18,25 @@ namespace Paon.NInput
         string key = "";
 
         int crouch = 0;
+
         float def1;
+
         float def2;
+
         float predef1;
+
         float predef2;
+
         float Rleg;
+
         float Lleg;
 
         public int th = 30;
 
+        ///<summary>
+        ///入力されているキーを返すメソッド
+        ///</summary>
+        /// <returns>入力されているキー</returns>
         public string GetInput()
         {
             return key;
@@ -36,6 +46,7 @@ namespace Paon.NInput
         {
             float dx = pre.x - now.x;
             float dy = pre.y - now.y;
+
             //Debug.Log(dx);
             return new Vector2(dx, dy);
         }
@@ -77,10 +88,11 @@ namespace Paon.NInput
 
         void LateUpdate()
         {
+            /*
             pose = gk.pose;
             if (pose != null && previous[8] != null)
             {
-                //�O�g
+                //�O�g
                 def1 = pose[11].coords.y - pose[0].coords.y;
                 def2 = pose[14].coords.y - pose[0].coords.y;
 
@@ -90,7 +102,7 @@ namespace Paon.NInput
                 }
 
 
-                //��]
+                //��]
                 Rleg = Mathf.Abs(pose[11].coords.x - pose[8].coords.x);
                 Lleg = Mathf.Abs(pose[20].coords.x - pose[8].coords.x);
                 //Debug.Log(Rleg);
@@ -103,7 +115,7 @@ namespace Paon.NInput
                     key = "left";
                 }
 
-                //���Ⴊ��
+                //���Ⴊ��
                 float Backlength =
                     (float)
                     Vector2.Distance(pose[8].coords, pose[11].coords);
@@ -118,8 +130,7 @@ namespace Paon.NInput
 
                 predef1 = def1;
                 predef2 = def2;
-            }
-
+            }*/
         }
     }
 }

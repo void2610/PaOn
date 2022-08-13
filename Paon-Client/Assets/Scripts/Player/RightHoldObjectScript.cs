@@ -10,31 +10,34 @@ namespace Paon.NPlayer
     {
         public GameObject NearObject;
 
-        public GameObject Hand;
+        GameObject Hand;
 
-        public GameObject HandInputProvider;
+        GameObject HandInputProvider;
 
-        public GameObject Player;
+        GameObject Player;
 
-        public RightHandMoveProvider rmip = null;
+        RightHandInputProvider rmip = null;
 
-        public RightHandMove rhm = null;
+        RightHandMove rhm = null;
 
         Vector3 DefoRotation;
 
         float dis = 999;
 
-        bool tmp = false;
-
         Vector2 handBase;
+
         Vector3 bodyBase;
 
         ObjectHolder oh = new ObjectHolder();
 
         Vector2 coords;
+
         void Start()
         {
-            rmip = HandInputProvider.GetComponent<RightHandMoveProvider>();
+            HandInputProvider = GameObject.Find("RightHandInputProvider");
+            Player = GameObject.Find("PlayerBody");
+            Hand = GameObject.Find("RightHand");
+            rmip = HandInputProvider.GetComponent<RightHandInputProvider>();
             rhm = Hand.GetComponent<RightHandMove>();
         }
 
@@ -49,7 +52,7 @@ namespace Paon.NPlayer
                     DefoRotation = NearObject.transform.eulerAngles;
                     handBase = coords;
                     bodyBase = Player.transform.position;
-                    oh.HoldObject(NearObject);
+                    oh.HoldObject (NearObject);
                 }
             }
             else
@@ -57,28 +60,40 @@ namespace Paon.NPlayer
                 Hand.transform.localScale = new Vector3(0.6f, 0.3f, 0.1f);
                 if (oh.NowHoldObject != null)
                 {
-                    oh.NowHoldObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                    oh.NowHoldObject.GetComponent<Rigidbody>().constraints =
+                        RigidbodyConstraints.None;
                 }
                 oh.UnHold();
             }
 
-
             if (oh.Holding)
             {
-                if(oh.NowHoldObject.tag == "BorderringHoldTag"){
+                if (oh.NowHoldObject.tag == "BorderringHoldTag")
+                {
                     rhm.canMove = false;
+
                     //腕を下げるとプレイヤーが上がるようにする
-                    Player.transform.position = new Vector3((handBase.x - Hand.transform.position.x) + bodyBase.x, (handBase.y - Hand.transform.position.y) + bodyBase.y);
+                    Player.transform.position =
+                        new Vector3((handBase.x - Hand.transform.position.x) +
+                            bodyBase.x,
+                            (handBase.y - Hand.transform.position.y) +
+                            bodyBase.y);
                 }
-                else if(oh.NowHoldObject.tag == "BorderringHoldTag"){
+                else if (oh.NowHoldObject.tag == "BorderringHoldTag")
+                {
                     rhm.canMove = true;
-                    oh.NowHoldObject.transform.position = this.transform.position;
-                    oh.NowHoldObject.transform.eulerAngles = new Vector3(DefoRotation.x, Hand.transform.eulerAngles.y - DefoRotation.y, DefoRotation.z);
+                    oh.NowHoldObject.transform.position =
+                        this.transform.position;
+                    oh.NowHoldObject.transform.eulerAngles =
+                        new Vector3(DefoRotation.x,
+                            Hand.transform.eulerAngles.y - DefoRotation.y,
+                            DefoRotation.z);
                     oh.NowHoldObject.GetComponent<Rigidbody>().constraints =
-                    RigidbodyConstraints.FreezeRotation;
+                        RigidbodyConstraints.FreezeRotation;
                 }
             }
-            else{
+            else
+            {
                 rhm.canMove = true;
             }
             if (NearObject != null)
@@ -97,7 +112,7 @@ namespace Paon.NPlayer
         //�ڐG�����I�u�W�F�N�g������other�Ƃ��ēn�����
         void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("HoldableTag") || other.CompareTag("BorderingHoldTag"))
+            if (other.CompareTag("HoldableTag") || other.CompareTag("HOLDTag"))
             {
                 NearObject = other.gameObject;
             }

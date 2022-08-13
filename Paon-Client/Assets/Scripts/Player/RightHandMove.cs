@@ -1,26 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using Paon.NInput;
+using UnityEngine;
+
 public class RightHandMove : MonoBehaviour
 {
     GameObject hand;
-    public GameObject handProvider;
-    RightHandMoveProvider inputProvider;
+
+    GameObject handProvider;
+
+    RightHandInputProvider inputProvider;
+
     GameObject player;
+
     public bool canMove = true;
+
+    Vector2 coords;
+
     void Start()
     {
         hand = this.gameObject;
-        inputProvider = handProvider.GetComponent<RightHandMoveProvider>();
-
+        inputProvider =
+            GameObject
+                .Find("RightHandInputProvider")
+                .GetComponent<RightHandInputProvider>();
     }
+
     void Update()
     {
-        Vector2 coords = inputProvider.GetPosition();
-        //Debug.Log(coords);
-        if(canMove){
-            hand.transform.localPosition = new Vector3((coords.x - 480) * -0.01f, (coords.y - 300) * -0.01f, hand.transform.localPosition.z);
+        coords = inputProvider.GetPosition();
+        if (canMove)
+        {
+            hand.transform.localPosition =
+                new Vector3((coords.x - 480) * -0.01f,
+                    (coords.y - 300) * -0.01f,
+                    hand.transform.localPosition.z);
             if (inputProvider.GetInput() == "up")
             {
                 hand.transform.Translate(Vector3.up * 0.01f);
@@ -37,7 +51,6 @@ public class RightHandMove : MonoBehaviour
             {
                 hand.transform.Translate(Vector3.right * 0.01f);
             }
-            //Debug.Log(inputProvider.GetInput());
         }
     }
 }

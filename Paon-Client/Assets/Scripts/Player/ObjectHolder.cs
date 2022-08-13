@@ -21,7 +21,9 @@ namespace Paon.NPlayer
         return NowHoldObject;
       }
     }
-
+    ///<summary>
+    ///掴んでいるオブジェクトを解除するメソッド
+    ///</summary>
     public void UnHold()
     {
       Holding = false;
