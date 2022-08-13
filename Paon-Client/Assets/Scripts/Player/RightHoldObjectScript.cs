@@ -14,7 +14,7 @@ namespace Paon.NPlayer
 
         public GameObject HandInputProvider;
 
-        public GameObject p;
+        public GameObject Player;
 
         public RightHandMoveProvider rmip = null;
 
@@ -48,7 +48,7 @@ namespace Paon.NPlayer
                 {
                     DefoRotation = NearObject.transform.eulerAngles;
                     handBase = coords;
-                    bodyBase = p.transform.position;
+                    bodyBase = Player.transform.position;
                     oh.HoldObject(NearObject);
                 }
             }
@@ -68,7 +68,7 @@ namespace Paon.NPlayer
                 if(oh.NowHoldObject.tag == "BorderringHoldTag"){
                     rhm.canMove = false;
                     //腕を下げるとプレイヤーが上がるようにする
-                    //Hand.transform.position = new Vector3(Hand.transform.position.x, baseY, Hand.transform.position.z);
+                    Player.transform.position = new Vector3((handBase.x - Hand.transform.position.x) + bodyBase.x, (handBase.y - Hand.transform.position.y) + bodyBase.y);
                 }
                 else if(oh.NowHoldObject.tag == "BorderringHoldTag"){
                     rhm.canMove = true;
