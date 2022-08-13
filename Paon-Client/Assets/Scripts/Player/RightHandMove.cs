@@ -7,9 +7,9 @@ public class RightHandMove : MonoBehaviour
 {
     GameObject hand;
 
-    public GameObject handProvider;
+    GameObject handProvider;
 
-    RightHandMoveProvider inputProvider;
+    RightHandInputProvider inputProvider;
 
     GameObject player;
 
@@ -20,7 +20,10 @@ public class RightHandMove : MonoBehaviour
     void Start()
     {
         hand = this.gameObject;
-        inputProvider = handProvider.GetComponent<RightHandMoveProvider>();
+        inputProvider =
+            GameObject
+                .Find("RightHandInputProvider")
+                .GetComponent<RightHandInputProvider>();
     }
 
     void Update()

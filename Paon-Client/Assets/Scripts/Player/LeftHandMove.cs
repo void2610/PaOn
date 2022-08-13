@@ -7,9 +7,9 @@ public class LeftHandMove : MonoBehaviour
 {
     GameObject hand;
 
-    public GameObject handProvider;
+    GameObject handProvider;
 
-    LeftHandMoveProvider inputProvider;
+    LeftHandInputProvider inputProvider;
 
     GameObject player;
 
@@ -20,7 +20,10 @@ public class LeftHandMove : MonoBehaviour
     void Start()
     {
         hand = this.gameObject;
-        inputProvider = handProvider.GetComponent<LeftHandMoveProvider>();
+        inputProvider =
+            GameObject
+                .Find("LeftHandInputProvider")
+                .GetComponent<LeftHandInputProvider>();
     }
 
     void Update()

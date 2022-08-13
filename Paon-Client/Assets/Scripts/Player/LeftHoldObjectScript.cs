@@ -10,15 +10,15 @@ namespace Paon.NPlayer
     {
         public GameObject NearObject;
 
-        public GameObject Hand;
+        GameObject Hand;
 
-        public GameObject HandInputProvider;
+        GameObject HandInputProvider;
 
-        public GameObject Player;
+        GameObject Player;
 
-        public LeftHandMoveProvider lmip = null;
+        LeftHandInputProvider lmip = null;
 
-        public LeftHandMove lhm = null;
+        LeftHandMove lhm = null;
 
         Vector3 DefoRotation;
 
@@ -34,7 +34,10 @@ namespace Paon.NPlayer
 
         void Start()
         {
-            lmip = HandInputProvider.GetComponent<LeftHandMoveProvider>();
+            HandInputProvider = GameObject.Find("LeftHandInputProvider");
+            Player = GameObject.Find("PlayerBody");
+            Hand = GameObject.Find("LeftHand");
+            lmip = HandInputProvider.GetComponent<LeftHandInputProvider>();
             lhm = Hand.GetComponent<LeftHandMove>();
         }
 
