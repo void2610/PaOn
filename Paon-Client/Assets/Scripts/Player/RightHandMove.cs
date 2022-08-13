@@ -18,7 +18,6 @@ public class RightHandMove : MonoBehaviour
     void Update()
     {
         Vector2 coords = inputProvider.GetPosition();
-        //Debug.Log(coords);
         if(canMove){
             hand.transform.localPosition = new Vector3((coords.x - 480) * -0.01f, (coords.y - 300) * -0.01f, hand.transform.localPosition.z);
             if (inputProvider.GetInput() == "up")
@@ -37,7 +36,6 @@ public class RightHandMove : MonoBehaviour
             {
                 hand.transform.Translate(Vector3.right * 0.01f);
             }
-            //Debug.Log(inputProvider.GetInput());
         }
     }
 }

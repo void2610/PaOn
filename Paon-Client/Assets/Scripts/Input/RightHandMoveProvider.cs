@@ -27,12 +27,19 @@ namespace Paon.NInput
             return key;
         }
 
+        ///<summary>
+        ///推定された手の座標を返すメソッド
+        ///</summary>
+        /// <returns>手の座標</returns>
         public Vector2 GetPosition()
         {
             return hand[0].coords;
         }
 
-
+        ///<summary>
+        ///手が閉じているか確認するメソッド
+        ///</summary>
+        /// <returns>閉じていたら1</returns>
         public int CheckHold()
         {
             return hold;

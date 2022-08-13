@@ -15,10 +15,7 @@ namespace Paon.NInput
 
         private GetKeypoints.Keypoint[] hand;
 
-        ///<summary>
-        ///入力されているキーを返すメソッド
-        ///</summary>
-        /// <returns>入力されているキー</returns>
+
         string key = "";
 
         int hold = 0;
@@ -35,14 +32,24 @@ namespace Paon.NInput
             return new Vector2(dx, dy);
         }
 
+        ///<summary>
+        ///入力されているキーを返すメソッド
+        ///</summary>
+        /// <returns>入力されているキー</returns>
         public string GetInput()
         {
             return key;
         }
+
+        ///<summary>
+        ///推定された手の座標を返すメソッド
+        ///</summary>
+        /// <returns>手の座標</returns>
         public Vector2 GetPosition()
         {
             return hand[0].coords;
         }
+
 
         public int CheckHold()
         {

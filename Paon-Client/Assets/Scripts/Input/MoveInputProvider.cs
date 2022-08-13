@@ -26,7 +26,10 @@ namespace Paon.NInput
         float Lleg;
 
         public int th = 30;
-
+        ///<summary>
+        ///入力されているキーを返すメソッド
+        ///</summary>
+        /// <returns>入力されているキー</returns>
         public string GetInput()
         {
             return key;
@@ -80,7 +83,7 @@ namespace Paon.NInput
             pose = gk.pose;
             if (pose != null && previous[8] != null)
             {
-                //�O�g
+                //�O�g
                 def1 = pose[11].coords.y - pose[0].coords.y;
                 def2 = pose[14].coords.y - pose[0].coords.y;
 
@@ -90,7 +93,7 @@ namespace Paon.NInput
                 }
 
 
-                //��]
+                //��]
                 Rleg = Mathf.Abs(pose[11].coords.x - pose[8].coords.x);
                 Lleg = Mathf.Abs(pose[20].coords.x - pose[8].coords.x);
                 //Debug.Log(Rleg);
@@ -103,7 +106,7 @@ namespace Paon.NInput
                     key = "left";
                 }
 
-                //���Ⴊ��
+                //���Ⴊ��
                 float Backlength =
                     (float)
                     Vector2.Distance(pose[8].coords, pose[11].coords);
