@@ -24,8 +24,6 @@ namespace Paon.NPlayer
 
         float dis = 999;
 
-        bool tmp = false;
-
         Vector2 handBase;
 
         Vector3 bodyBase;
