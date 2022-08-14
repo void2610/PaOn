@@ -5,6 +5,8 @@ using UnityEngine;
 public class provider : MonoBehaviour
 {
     [SerializeField]
+    private GameObject Estimatior;
+
     private PoseEstimate _PoseEstimate;
 
     private Utils.Keypoint[] pose;
@@ -12,6 +14,7 @@ public class provider : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _PoseEstimate = Estimatior.GetComponent<PoseEstimate>();
     }
 
     // Update is called once per frame

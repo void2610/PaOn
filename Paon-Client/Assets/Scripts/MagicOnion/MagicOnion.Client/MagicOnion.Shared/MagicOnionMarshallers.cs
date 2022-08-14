@@ -39,9 +39,9 @@ namespace MagicOnion
                 var t = parameters[0].ParameterType;
                 return t;
             }
-            else if (parameters.Length >= 16)
+            else if (parameters.Length > 20)
             {
-                throw new InvalidOperationException($"The method '{parameters[0].Member.DeclaringType.FullName}.{parameters[0].Member.Name}' must have less than 16 parameters. (Length: {parameters.Length})");
+                throw new InvalidOperationException($"Parameter length must be <= 20, length:{parameters.Length}");
             }
             else
             {
@@ -62,9 +62,9 @@ namespace MagicOnion
             {
                 return parameters[0].ParameterType;
             }
-            else if (parameters.Length >= 16)
+            else if (parameters.Length > 20)
             {
-                throw new InvalidOperationException($"The method '{parameters[0].Member.DeclaringType.FullName}.{parameters[0].Member.Name}' must have less than 16 parameters. (Length: {parameters.Length})");
+                throw new InvalidOperationException($"Parameter length must be <= 20, path:{path} length:{parameters.Length}");
             }
             else
             {
