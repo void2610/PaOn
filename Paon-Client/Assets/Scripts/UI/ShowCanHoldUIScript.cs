@@ -32,6 +32,7 @@ namespace Paon.NUI
             {
                 Red.SetActive(true);
                 Red.transform.position = rno.transform.position;
+                Red.transform.eulerAngles = rno.transform.eulerAngles;
             }
             else
             {
@@ -41,6 +42,7 @@ namespace Paon.NUI
             {
                 Blue.SetActive(true);
                 Blue.transform.position = lno.transform.position;
+                Blue.transform.eulerAngles = lno.transform.eulerAngles;
             }
             else
             {

@@ -109,11 +109,11 @@ namespace Paon.NInput
                     (float) Vector2.Distance(hand[4].coords, hand[12].coords);
                 if (fd < 40)
                 {
-                    hold = 1;
+                    //hold = 1;
                 }
                 else
                 {
-                    hold = 0;
+                    //hold = 0;
                 }
             }
         }
