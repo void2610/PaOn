@@ -109,7 +109,7 @@ public class PoseEstimate : MonoBehaviour
 
     private void InitCamera()
     {
-        GameObject mainCamera = GameObject.Find("PoseCamera");
+        GameObject mainCamera = GameObject.Find("Main Camera");
 
         mainCamera.transform.position =
             new Vector3(webcamDims.x / 2, webcamDims.y / 2, -10f);
@@ -314,7 +314,7 @@ public class PoseEstimate : MonoBehaviour
         // Update the pose skeletons
         for (int i = 0; i < skeletons.Length; i++)
         {
-            // UnityEngine.Debug.Log(poses.Length);
+            UnityEngine.Debug.Log(poses.Length);
             if (i <= poses.Length - 1)
             {
                 skeletons[i].ToggleSkeleton(true);
