@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using MediaPipe.HandPose;
 // using OpenPose;
 // using OpenPose.Example;
 using UnityEngine;
@@ -12,11 +13,16 @@ namespace Paon.NInput
         // private OPDatum datum;
         // public OpenPoseUserScript op;
         [SerializeField]
-        private GameObject Estimatior;
+        private GameObject PoseEstimatior;
+
+        [SerializeField]
+        private GameObject HandEstimatior;
 
         private PoseEstimate _PoseEstimate;
 
         private Utils.Keypoint[] poseKeypoints;
+
+        private HandVisualizer _handVisualizer;
 
         public enum KeyPointType : byte
         {
@@ -41,9 +47,9 @@ namespace Paon.NInput
 
         public Keypoint[] pose = new Keypoint[25];
 
-        public Keypoint[] right = new Keypoint[17];
+        public Keypoint[] right = new Keypoint[21];
 
-        public Keypoint[] left = new Keypoint[17];
+        public Keypoint[] left = new Keypoint[21];
 
         // public void LoadDatum(int length, KeyPointType type)
         // {
@@ -85,7 +91,8 @@ namespace Paon.NInput
         void Start()
         {
             // op = GameObject.Find("OpenPose").GetComponent<OpenPoseUserScript>();
-            _PoseEstimate = Estimatior.GetComponent<PoseEstimate>();
+            _PoseEstimate = PoseEstimatior.GetComponent<PoseEstimate>();
+            _handVisualizer = HandEstimatior.GetComponent<HandVisualizer>();
         }
 
         void LateUpdate()
@@ -104,6 +111,13 @@ namespace Paon.NInput
 
                 // Debug.Log("pose[" + cnt + "]: " + pose[cnt].coords);
                 cnt++;
+            }
+
+            for (int i = 0; i < left.Length; i++)
+            {
+                left[i].coords =
+                    new Vector2(_handVisualizer.KeyPoint[i].x,
+                        _handVisualizer.KeyPoint[i].y);
             }
         }
     }

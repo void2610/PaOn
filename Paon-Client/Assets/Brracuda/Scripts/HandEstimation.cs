@@ -9,6 +9,12 @@ public class HandEstimation : MonoBehaviour
 
     public ComputeShader _compute;
 
+    [Range(0, 1.0f)]
+    public float scoreThreshold = 0.25f;
+
+    [Range(0, 100)]
+    public int minConfidence = 70;
+
     public WorkerFactory.Type _workerType = WorkerFactory.Type.Auto;
 
     private struct Engine
