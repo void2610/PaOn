@@ -611,11 +611,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/mattaharuman/wkspaces/PaOn_Test_4/Paon-Shared/Paon-Shared.csproj",
+      "projectUniqueName": "/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Shared/Paon-Shared.csproj",
       "projectName": "Paon-Shared",
-      "projectPath": "/Users/mattaharuman/wkspaces/PaOn_Test_4/Paon-Shared/Paon-Shared.csproj",
+      "projectPath": "/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Shared/Paon-Shared.csproj",
       "packagesPath": "/Users/mattaharuman/.nuget/packages/",
-      "outputPath": "/Users/mattaharuman/wkspaces/PaOn_Test_4/Paon-Shared/obj/",
+      "outputPath": "/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Shared/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/mattaharuman/.nuget/NuGet/NuGet.Config"

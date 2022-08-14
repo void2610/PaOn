@@ -927,11 +927,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/mattaharuman/wkspaces/PaOn_Test_4/Paon-Server/Paon-Server.csproj",
+      "projectUniqueName": "/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Server/Paon-Server.csproj",
       "projectName": "Paon-Server",
-      "projectPath": "/Users/mattaharuman/wkspaces/PaOn_Test_4/Paon-Server/Paon-Server.csproj",
+      "projectPath": "/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Server/Paon-Server.csproj",
       "packagesPath": "/Users/mattaharuman/.nuget/packages/",
-      "outputPath": "/Users/mattaharuman/wkspaces/PaOn_Test_4/Paon-Server/obj/",
+      "outputPath": "/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Server/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/mattaharuman/.nuget/NuGet/NuGet.Config"
@@ -946,8 +946,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "/Users/mattaharuman/wkspaces/PaOn_Test_4/Paon-Shared/Paon-Shared.csproj": {
-              "projectPath": "/Users/mattaharuman/wkspaces/PaOn_Test_4/Paon-Shared/Paon-Shared.csproj"
+            "/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Shared/Paon-Shared.csproj": {
+              "projectPath": "/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Shared/Paon-Shared.csproj"
             }
           }
         }
