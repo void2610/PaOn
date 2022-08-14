@@ -6,6 +6,7 @@ TagManager:
   tags:
   - HoldableTag
   - HOLDTag
+  - CanvasTag
   layers:
   - Default
   - TransparentFX
