@@ -1,0 +1,10 @@
+/Users/mattaharuman/wkspaces/PaOn_Test_4/Paon-Shared/bin/Debug/netstandard2.1/Paon-Shared.deps.json
+/Users/mattaharuman/wkspaces/PaOn_Test_4/Paon-Shared/bin/Debug/netstandard2.1/Paon-Shared.dll
+/Users/mattaharuman/wkspaces/PaOn_Test_4/Paon-Shared/bin/Debug/netstandard2.1/Paon-Shared.pdb
+/Users/mattaharuman/wkspaces/PaOn_Test_4/Paon-Shared/obj/Debug/netstandard2.1/Paon-Shared.csproj.AssemblyReference.cache
+/Users/mattaharuman/wkspaces/PaOn_Test_4/Paon-Shared/obj/Debug/netstandard2.1/Paon-Shared.GeneratedMSBuildEditorConfig.editorconfig
+/Users/mattaharuman/wkspaces/PaOn_Test_4/Paon-Shared/obj/Debug/netstandard2.1/Paon-Shared.AssemblyInfoInputs.cache
+/Users/mattaharuman/wkspaces/PaOn_Test_4/Paon-Shared/obj/Debug/netstandard2.1/Paon-Shared.AssemblyInfo.cs
+/Users/mattaharuman/wkspaces/PaOn_Test_4/Paon-Shared/obj/Debug/netstandard2.1/Paon-Shared.csproj.CoreCompileInputs.cache
+/Users/mattaharuman/wkspaces/PaOn_Test_4/Paon-Shared/obj/Debug/netstandard2.1/Paon-Shared.dll
+/Users/mattaharuman/wkspaces/PaOn_Test_4/Paon-Shared/obj/Debug/netstandard2.1/Paon-Shared.pdb
