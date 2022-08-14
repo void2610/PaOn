@@ -4549,7 +4549,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8806d53e5c8c7714b9d9b73f11ed213b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Estimatior: {fileID: 305224532}
+  PoseEstimatior: {fileID: 305224532}
+  HandEstimatior: {fileID: 8320089659544797754}
 --- !u!54 &8314665998417267310
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5710,6 +5711,12 @@ PrefabInstance:
       objectReference: {fileID: 3477847688238239644}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a5e8525840f14d41bb5e3e859aab6b7, type: 3}
+--- !u!1 &8320089659544797754 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8320089659389248907, guid: 2a5e8525840f14d41bb5e3e859aab6b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 8320089659544797753}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8434688113954935361
 Transform:
   m_ObjectHideFlags: 0
