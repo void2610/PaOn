@@ -33,14 +33,15 @@ namespace Paon.NInput
 
         public class Keypoint
         {
-            public Vector2 coords;
+            public Vector3 coords;
 
             public float s;
 
-            public Keypoint(float x, float y, float s)
+            public Keypoint(float x, float y, float z, float s)
             {
                 this.coords.x = x;
                 this.coords.y = y;
+                this.coords.z = z;
                 this.s = s;
             }
         }
@@ -107,17 +108,18 @@ namespace Paon.NInput
             foreach (Utils.Keypoint key in poseKeypoints)
             {
                 pose[cnt] =
-                    new Keypoint(key.position.x, key.position.y, key.score);
+                    new Keypoint(key.position.x, key.position.y, 0, key.score);
 
                 // Debug.Log("pose[" + cnt + "]: " + pose[cnt].coords);
                 cnt++;
             }
 
+            Vector3[] pos = _handVisualizer.GetKey();
+            Debug.Log(pos[20]);
+
             for (int i = 0; i < left.Length; i++)
             {
-                left[i].coords =
-                    new Vector2(_handVisualizer.KeyPoint[i].x,
-                        _handVisualizer.KeyPoint[i].y);
+                left[i] = new Keypoint(pos[i].x, pos[i].y, pos[i].z, 0);
             }
         }
     }

@@ -82,11 +82,6 @@ namespace MediaPipe.HandPose
             _cropUI.texture = _webcam.Texture;
 
             // Debug.Log(HandLandmarkDetector.Score);
-            for (int i = 0; i < HandPipeline.KeyPointCount; i++)
-            {
-                KeyPoint[i] = _pipeline.GetKeyPoint(i);
-                Debug.Log(i + ": " + KeyPoint[i]);
-            }
         }
 
         void OnRenderObject()
@@ -98,6 +93,18 @@ namespace MediaPipe.HandPose
             // Skeleton lines
             _material.keys.SetPass(1);
             Graphics.DrawProceduralNow(MeshTopology.Lines, 2, 4 * 5 + 1);
+        }
+
+        public Vector3[] GetKey()
+        {
+            var pos = new Vector3[HandPipeline.KeyPointCount];
+            for (int i = 0; i < HandPipeline.KeyPointCount; i++)
+            {
+                pos[i] = _pipeline.GetKeyPoint(i);
+
+                Debug.Log(i + ": " + pos[i]);
+            }
+            return pos;
         }
 
 
