@@ -47,12 +47,19 @@ namespace Paon.NPlayer
             if (rmip.CheckHold() == 1)
             {
                 Hand.transform.localScale = new Vector3(0.3f, 0.15f, 0.1f);
+
                 if (NearObject != null && oh.NowHoldObject == null)
                 {
                     DefoRotation = NearObject.transform.eulerAngles;
                     handBase = coords;
                     bodyBase = Player.transform.position;
+
                     oh.HoldObject (NearObject);
+
+                    oh.NowHoldObject.GetComponent<Rigidbody>().constraints =
+                        RigidbodyConstraints.FreezeRotation;
+                    oh.NowHoldObject.GetComponent<Rigidbody>().useGravity =
+                        false;
                 }
             }
             else
@@ -62,13 +69,15 @@ namespace Paon.NPlayer
                 {
                     oh.NowHoldObject.GetComponent<Rigidbody>().constraints =
                         RigidbodyConstraints.None;
+                    oh.NowHoldObject.GetComponent<Rigidbody>().useGravity =
+                        true;
                 }
                 oh.UnHold();
             }
 
             if (oh.Holding)
             {
-                if (oh.NowHoldObject.tag == "BorderringHoldTag")
+                if (oh.NowHoldObject.tag == "BorderingHOLDTag")
                 {
                     rhm.canMove = false;
 
@@ -79,7 +88,7 @@ namespace Paon.NPlayer
                             (handBase.y - Hand.transform.position.y) +
                             bodyBase.y);
                 }
-                else if (oh.NowHoldObject.tag == "BorderringHoldTag")
+                else if (oh.NowHoldObject.tag == "HoldableTag")
                 {
                     rhm.canMove = true;
                     oh.NowHoldObject.transform.position =
@@ -112,7 +121,10 @@ namespace Paon.NPlayer
         //�ڐG�����I�u�W�F�N�g������other�Ƃ��ēn�����
         void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("HoldableTag") || other.CompareTag("HOLDTag"))
+            if (
+                other.CompareTag("HoldableTag") ||
+                other.CompareTag("BorderingHOLDTag")
+            )
             {
                 NearObject = other.gameObject;
             }

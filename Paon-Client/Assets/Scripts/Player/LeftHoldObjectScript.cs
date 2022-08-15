@@ -52,7 +52,13 @@ namespace Paon.NPlayer
                     DefoRotation = NearObject.transform.eulerAngles;
                     handBase = coords;
                     bodyBase = Player.transform.position;
+
                     oh.HoldObject (NearObject);
+
+                    oh.NowHoldObject.GetComponent<Rigidbody>().constraints =
+                        RigidbodyConstraints.FreezeRotation;
+                    oh.NowHoldObject.GetComponent<Rigidbody>().useGravity =
+                        false;
                 }
             }
             else
@@ -62,13 +68,15 @@ namespace Paon.NPlayer
                 {
                     oh.NowHoldObject.GetComponent<Rigidbody>().constraints =
                         RigidbodyConstraints.None;
+                    oh.NowHoldObject.GetComponent<Rigidbody>().useGravity =
+                        true;
                 }
                 oh.UnHold();
             }
 
             if (oh.Holding)
             {
-                if (oh.NowHoldObject.tag == "BorderringHoldTag")
+                if (oh.NowHoldObject.tag == "BorderingHOLDTag")
                 {
                     lhm.canMove = false;
 
@@ -79,7 +87,7 @@ namespace Paon.NPlayer
                             (handBase.y - Hand.transform.position.y) +
                             bodyBase.y);
                 }
-                else if (oh.NowHoldObject.tag == "BorderringHoldTag")
+                else if (oh.NowHoldObject.tag == "HoldableTag")
                 {
                     lhm.canMove = true;
                     oh.NowHoldObject.transform.position =
@@ -88,8 +96,6 @@ namespace Paon.NPlayer
                         new Vector3(DefoRotation.x,
                             Hand.transform.eulerAngles.y - DefoRotation.y,
                             DefoRotation.z);
-                    oh.NowHoldObject.GetComponent<Rigidbody>().constraints =
-                        RigidbodyConstraints.FreezeRotation;
                 }
             }
             else
@@ -112,7 +118,10 @@ namespace Paon.NPlayer
         //接触したオブジェクトが引数otherとして渡される
         void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("HoldableTag") || other.CompareTag("HOLDTag"))
+            if (
+                other.CompareTag("HoldableTag") ||
+                other.CompareTag("BorderingHOLDTag")
+            )
             {
                 NearObject = other.gameObject;
             }

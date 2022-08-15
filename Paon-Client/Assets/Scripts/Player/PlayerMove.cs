@@ -1,22 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using Paon.NInput;
+using UnityEngine;
+
 public class PlayerMove : MonoBehaviour
 {
     MoveInputProvider inputProvider;
+
     public GameObject player;
+
     public GameObject es;
+
     void Start()
     {
         inputProvider = es.GetComponent<MoveInputProvider>();
         player = this.gameObject;
     }
+
     void Update()
     {
         if (inputProvider.GetInput() == "space")
         {
-            player.GetComponent<Rigidbody>().AddForce(Vector3.up * 0.25f, ForceMode.Impulse);
+            player
+                .GetComponent<Rigidbody>()
+                .AddForce(Vector3.up * 0.25f, ForceMode.Impulse);
         }
         else if (inputProvider.GetInput() == "up")
         {
@@ -28,11 +35,11 @@ public class PlayerMove : MonoBehaviour
         }
         else if (inputProvider.GetInput() == "left")
         {
-            player.transform.Rotate(0, -0.15f, 0);
+            player.transform.Rotate(0, -0.3f, 0);
         }
         else if (inputProvider.GetInput() == "right")
         {
-            player.transform.Rotate(0, 0.15f, 0);
+            player.transform.Rotate(0, 0.3f, 0);
         }
         //Debug.Log(inputProvider.GetInput());
     }

@@ -39,9 +39,16 @@ namespace Paon.NUI
             lno = lht.GetComponent<LeftHoldObjectScript>().NearObject;
             if (rno != null)
             {
-                Red.SetActive(true);
-                Red.transform.position = rno.transform.position;
-                Red.transform.eulerAngles = Player.transform.eulerAngles;
+                if (rno.GetComponent<Rigidbody>().useGravity == true)
+                {
+                    Red.SetActive(true);
+                    Red.transform.position = rno.transform.position;
+                    Red.transform.eulerAngles = Player.transform.eulerAngles;
+                }
+                else
+                {
+                    Red.SetActive(false);
+                }
             }
             else
             {
@@ -49,9 +56,16 @@ namespace Paon.NUI
             }
             if (lno != null)
             {
-                Blue.SetActive(true);
-                Blue.transform.position = lno.transform.position;
-                Blue.transform.eulerAngles = Player.transform.eulerAngles;
+                if (lno.GetComponent<Rigidbody>().useGravity == true)
+                {
+                    Blue.SetActive(true);
+                    Blue.transform.position = lno.transform.position;
+                    Blue.transform.eulerAngles = Player.transform.eulerAngles;
+                }
+                else
+                {
+                    Blue.SetActive(false);
+                }
             }
             else
             {
