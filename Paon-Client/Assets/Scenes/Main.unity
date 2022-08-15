@@ -1562,6 +1562,16 @@ PrefabInstance:
       propertyPath: m_TagString
       value: BorderingHOLDTag
       objectReference: {fileID: 0}
+    - target: {fileID: 1986918822737456989, guid: 6d80612eaa63980419c2d003ac3b02e1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1986918822737456989, guid: 6d80612eaa63980419c2d003ac3b02e1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.35
+      objectReference: {fileID: 0}
     - target: {fileID: 1986918822737456990, guid: 6d80612eaa63980419c2d003ac3b02e1,
         type: 3}
       propertyPath: m_TagString
@@ -1690,7 +1700,7 @@ PrefabInstance:
     - target: {fileID: 5183523261037772695, guid: 6d80612eaa63980419c2d003ac3b02e1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.006592
+      value: -19.43
       objectReference: {fileID: 0}
     - target: {fileID: 5183523261037772695, guid: 6d80612eaa63980419c2d003ac3b02e1,
         type: 3}
@@ -3663,7 +3673,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2060489781}
   - component: {fileID: 2060489780}
-  - component: {fileID: 2060489779}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -3671,14 +3680,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &2060489779
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2060489778}
-  m_Enabled: 1
 --- !u!20 &2060489780
 Camera:
   m_ObjectHideFlags: 0
@@ -5391,7 +5392,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NearObject: {fileID: 0}
-  NOW: {fileID: 0}
 --- !u!1 &8314665998584930208
 GameObject:
   m_ObjectHideFlags: 0
@@ -5721,6 +5721,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 8314665998899548901}
   es: {fileID: 8314665999515358897}
+  canMove: 1
 --- !u!4 &8314665998899548900
 Transform:
   m_ObjectHideFlags: 0

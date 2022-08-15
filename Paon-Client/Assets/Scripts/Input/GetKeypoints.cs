@@ -116,8 +116,8 @@ namespace Paon.NInput
             }
 
             Vector3[] pos = _handVisualizer.GetKey();
-            Debug.Log(pos[20]);
 
+            //Debug.Log(pos[20]);
             for (int i = 0; i < left.Length; i++)
             {
                 left[i] = new Keypoint(pos[i].x, pos[i].y, pos[i].z, 0);

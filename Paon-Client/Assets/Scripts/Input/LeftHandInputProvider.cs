@@ -123,7 +123,7 @@ namespace Paon.NInput
                 {
                     //hold = 0;
                 }
-                Debug.Log("LeftKey: " + key);
+                //Debug.Log("LeftKey: " + key);
             }
         }
     }

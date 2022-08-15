@@ -102,7 +102,7 @@ namespace MediaPipe.HandPose
             {
                 pos[i] = _pipeline.GetKeyPoint(i);
 
-                Debug.Log(i + ": " + pos[i]);
+                //Debug.Log(i + ": " + pos[i]);
             }
             return pos;
         }
