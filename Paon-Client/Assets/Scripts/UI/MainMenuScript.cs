@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Paon.NUI
 {
@@ -43,6 +45,19 @@ namespace Paon.NUI
             SceneManager.LoadScene("Main");
         }
 
+        public void ClickBrightnessButton()
+        {
+            RenderSettings.ambientIntensity = 0.5f;
+            DynamicGI.UpdateEnvironment();
+            Debug.Log("aaa");
+        }
+
+        public void ChangeBrightness()
+        {
+            Debug.Log("現在値：" + BrightnessSlider.value);
+            RenderSettings.ambientIntensity = BrightnessSlider.value;
+        }
+
         GameObject S;
 
         GameObject Option;
@@ -55,13 +70,15 @@ namespace Paon.NUI
 
         GameObject Back;
 
-        GameObject Option1;
-
         GameObject Option2;
 
         GameObject Server1;
 
         GameObject Server2;
+
+        GameObject Brightness;
+
+        Slider BrightnessSlider;
 
         void Start()
         {
@@ -71,10 +88,15 @@ namespace Paon.NUI
             SizenAsobi = GameObject.Find("SizenAsobi");
             Bordering = GameObject.Find("Bordering");
             Back = GameObject.Find("Back");
-            Option1 = GameObject.Find("Option1");
+            Brightness = GameObject.Find("Brightness");
             Option2 = GameObject.Find("Option2");
             Server1 = GameObject.Find("Server1");
             Server2 = GameObject.Find("Server2");
+            Brightness = GameObject.Find("Brightness");
+            BrightnessSlider = Brightness.GetComponent<Slider>();
+            BrightnessSlider.maxValue = 8.0f;
+            BrightnessSlider.minValue = 0.0f;
+            BrightnessSlider.value = 1.0f;
         }
 
         void Update()
@@ -88,7 +110,7 @@ namespace Paon.NUI
                 SizenAsobi.SetActive(false);
                 Bordering.SetActive(false);
 
-                Option1.SetActive(false);
+                Brightness.SetActive(false);
                 Option2.SetActive(false);
 
                 Server1.SetActive(false);
@@ -105,7 +127,7 @@ namespace Paon.NUI
                 SizenAsobi.SetActive(true);
                 Bordering.SetActive(true);
 
-                Option1.SetActive(false);
+                Brightness.SetActive(false);
                 Option2.SetActive(false);
 
                 Server1.SetActive(false);
@@ -122,7 +144,7 @@ namespace Paon.NUI
                 SizenAsobi.SetActive(false);
                 Bordering.SetActive(false);
 
-                Option1.SetActive(false);
+                Brightness.SetActive(false);
                 Option2.SetActive(false);
 
                 Server1.SetActive(true);
@@ -139,7 +161,7 @@ namespace Paon.NUI
                 SizenAsobi.SetActive(false);
                 Bordering.SetActive(false);
 
-                Option1.SetActive(true);
+                Brightness.SetActive(true);
                 Option2.SetActive(true);
 
                 Server1.SetActive(false);
