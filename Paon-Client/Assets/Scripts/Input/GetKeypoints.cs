@@ -10,6 +10,7 @@ namespace Paon.NInput
 {
     public class GetKeypoints : MonoBehaviour
     {
+        //aaa
         // private OPDatum datum;
         // public OpenPoseUserScript op;
         [SerializeField]
