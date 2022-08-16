@@ -7,7 +7,7 @@ namespace MediaPipe.HandPose
             fileName = "HandPose",
             menuName = "ScriptableObjects/HandPose Resource")
     ]
-    public class HandPoseResource : ScriptableObjects
+    public class HandPoseResource : ScriptableObject
     {
         public MediaPipe.BlazePalm.ResourceSet blazePalmResource;
 

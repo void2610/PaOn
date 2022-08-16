@@ -92,7 +92,7 @@ namespace Paon.NInput
         void Start()
         {
             // op = GameObject.Find("OpenPose").GetComponent<OpenPoseUserScript>();
-            _PoseEstimate = PoseEstimatior.GetComponent<PoseEstimate>();
+            _PoseEstimate = _PoseEstimate.GetComponent<PoseEstimate>();
             _handVisualizer = HandEstimatior.GetComponent<HandVisualizer>();
         }
 

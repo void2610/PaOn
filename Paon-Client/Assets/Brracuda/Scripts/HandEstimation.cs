@@ -46,7 +46,7 @@ namespace MediaPipe.HandPose
 
             palmDetector = new PalmDetector(resource.blazePalmResource);
             handLandmarkDetector =
-                new HandLandmarkDetector(resource.landLabelResource);
+                new HandLandmarkDetector(resource.handLandmarkResource);
 
             leftHandVertexBuffer =
                 new ComputeBuffer(handVertexCount + 1, sizeof(float) * 4);
@@ -57,7 +57,7 @@ namespace MediaPipe.HandPose
                 new RenderTexture(imageWidth,
                     imageWidth,
                     0,
-                    TextureFormat.ARGB32);
+                    RenderTextureFormat.ARGB32);
             _render.enableRandomWrite = true;
             _render.Create();
 
