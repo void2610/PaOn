@@ -7,20 +7,27 @@ namespace Paon.NUI
 {
     public class ShowCanHoldUIScript : MonoBehaviour
     {
-        public GameObject Red;
+        GameObject Red;
 
-        public GameObject Blue;
+        GameObject Blue;
 
-        public GameObject rht;
+        GameObject rht;
 
-        public GameObject lht;
+        GameObject lht;
 
         GameObject rno;
 
         GameObject lno;
 
+        GameObject Player;
+
         void Start()
         {
+            Red = GameObject.Find("RedCircle");
+            Blue = GameObject.Find("BlueCircle");
+            rht = GameObject.Find("RightHandTrigger");
+            lht = GameObject.Find("LeftHandTrigger");
+            Player = GameObject.Find("PlayerBody");
         }
 
         // Update is called once per frame
@@ -28,11 +35,16 @@ namespace Paon.NUI
         {
             rno = rht.GetComponent<RightHoldObjectScript>().NearObject;
             lno = lht.GetComponent<LeftHoldObjectScript>().NearObject;
+            Red.transform.eulerAngles = Player.transform.eulerAngles;
+            Blue.transform.eulerAngles = Player.transform.eulerAngles;
+
+            /*Blue.transform.eulerAngles = new Vector3(Player.transform.eulerAngles.x,
+                    -Player.transform.eulerAngles.y,
+                    Player.transform.eulerAngles.z);*/
             if (rno != null)
             {
                 Red.SetActive(true);
                 Red.transform.position = rno.transform.position;
-                Red.transform.eulerAngles = rno.transform.eulerAngles;
             }
             else
             {
@@ -42,7 +54,6 @@ namespace Paon.NUI
             {
                 Blue.SetActive(true);
                 Blue.transform.position = lno.transform.position;
-                Blue.transform.eulerAngles = lno.transform.eulerAngles;
             }
             else
             {

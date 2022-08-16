@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "dgSpecHash": "V8/DYlsJJIy5cKfUN7V1GBhHfLEg08nFeL5Ze5Xh2l88aVL1nQ2h7LEOs4LtTDWBO4reBTc0fL97wBGMCRTa+w==",
+  "success": true,
+  "projectFilePath": "/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Shared/Paon-Shared.csproj",
+  "expectedPackageFiles": [
+    "/Users/mattaharuman/.nuget/packages/grpc.core.api/2.35.0/grpc.core.api.2.35.0.nupkg.sha512",
+    "/Users/mattaharuman/.nuget/packages/magiconion.abstractions/4.5.1/magiconion.abstractions.4.5.1.nupkg.sha512",
+    "/Users/mattaharuman/.nuget/packages/messagepack/2.4.35/messagepack.2.4.35.nupkg.sha512",
+    "/Users/mattaharuman/.nuget/packages/messagepack.annotations/2.4.35/messagepack.annotations.2.4.35.nupkg.sha512",
+    "/Users/mattaharuman/.nuget/packages/messagepack.unityshims/2.4.35/messagepack.unityshims.2.4.35.nupkg.sha512",
+    "/Users/mattaharuman/.nuget/packages/microsoft.bcl.asyncinterfaces/6.0.0/microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
+    "/Users/mattaharuman/.nuget/packages/microsoft.net.stringtools/1.0.0/microsoft.net.stringtools.1.0.0.nupkg.sha512",
+    "/Users/mattaharuman/.nuget/packages/system.buffers/4.5.1/system.buffers.4.5.1.nupkg.sha512",
+    "/Users/mattaharuman/.nuget/packages/system.collections.immutable/1.7.1/system.collections.immutable.1.7.1.nupkg.sha512",
+    "/Users/mattaharuman/.nuget/packages/system.memory/4.5.4/system.memory.4.5.4.nupkg.sha512",
+    "/Users/mattaharuman/.nuget/packages/system.numerics.vectors/4.4.0/system.numerics.vectors.4.4.0.nupkg.sha512",
+    "/Users/mattaharuman/.nuget/packages/system.reflection.emit/4.7.0/system.reflection.emit.4.7.0.nupkg.sha512",
+    "/Users/mattaharuman/.nuget/packages/system.reflection.emit.lightweight/4.7.0/system.reflection.emit.lightweight.4.7.0.nupkg.sha512",
+    "/Users/mattaharuman/.nuget/packages/system.runtime.compilerservices.unsafe/5.0.0/system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512",
+    "/Users/mattaharuman/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512"
+  ],
+  "logs": []
+}
