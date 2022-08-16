@@ -3,39 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Estimate
+public class Visualizer : MonoBehaviour
 {
-    public sealed class Visualizer : MonoBehaviour
+    [SerializeField]
+    WebCamInput _webcam;
+
+    [SerializeField]
+    RawImage _previewImage = null;
+
+    Material _material = null;
+
+    [SerializeField]
+    Shader _shader = null;
+
+    // Start is called before the first frame update
+    void Start()
     {
-        [SerializeField]
-        WebCamInput _webcam = null;
+        _material = new Material(_shader);
+    }
 
-        [SerializeField]
-        RawImage _previewImage = null;
+    void OnDestroy()
+    {
+        Destroy (_material);
+    }
 
-        Material _material = null;
+    void LateUpdate()
+    {
+    }
 
-        [SerializeField]
-        Shader _shader = null;
-
-        // Start is called before the first frame update
-        void Start()
-        {
-            _material = new Material(_shader);
-        }
-
-        void OnDestroy()
-        {
-            Destroy (_material);
-        }
-
-        void LateUpdate()
-        {
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        }
+    // Update is called once per frame
+    void Update()
+    {
     }
 }

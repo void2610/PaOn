@@ -1,66 +1,103 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using MediaPipe.BlazePalm;
+using MediaPipe.HandLandmark;
 using Unity.Barracuda;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class HandEstimation : MonoBehaviour
+namespace MediaPipe.HandPose
 {
-    public NNModel _model;
-
-    public ComputeShader _compute;
-
-    [Range(0, 1.0f)]
-    public float scoreThreshold = 0.25f;
-
-    [Range(0, 100)]
-    public int minConfidence = 70;
-
-    public WorkerFactory.Type _workerType = WorkerFactory.Type.Auto;
-
-    private struct Engine
+    public class HandEstimation : MonoBehaviour
     {
-        public WorkerFactory.Type workerType;
+        public int handVertexCount => HandLandmarkDetector.VertexCount;
 
-        public IWorker worker;
+        public ComputeBuffer leftHandVertexBuffer;
 
-        public Engine(WorkerFactory.Type workerType, Model model)
+        public ComputeBuffer rightHandVertexBuffer;
+
+        const int imageWidth = 128;
+
+        const int handCropImageSize = HandLandmarkDetector.ImageSize;
+
+        ComputeShader commonCS;
+
+        ComputeShader handCS;
+
+        PalmDetector palmDetector;
+
+        HandLandmarkDetector handLandmarkDetector;
+
+        RenderTexture _render;
+
+        ComputeBuffer handsRegionFromPalm;
+
+        ComputeBuffer handCropBuffer;
+
+        ComputeBuffer deltaLeftHandVertexBuffer;
+
+        ComputeBuffer deltaRightHandVertexBuffer;
+
+        public HandEstimation(HandPoseResource resource)
         {
-            this.workerType = workerType;
-            worker = WorkerFactory.CreateWorker(workerType, model);
+            commonCS = resource.commonCS;
+            handCS = resource.handCS;
+
+            palmDetector = new PalmDetector(resource.blazePalmResource);
+            handLandmarkDetector =
+                new HandLandmarkDetector(resource.landLabelResource);
+
+            leftHandVertexBuffer =
+                new ComputeBuffer(handVertexCount + 1, sizeof(float) * 4);
+            rightHandVertexBuffer =
+                new ComputeBuffer(handVertexCount + 1, sizeof(float) * 4);
+
+            _render =
+                new RenderTexture(imageWidth,
+                    imageWidth,
+                    0,
+                    TextureFormat.ARGB32);
+            _render.enableRandomWrite = true;
+            _render.Create();
+
+            handsRegionFromPalm = new ComputeBuffer(2, sizeof(float) * 24);
+            handCropBuffer =
+                new ComputeBuffer(handCropImageSize * handCropImageSize * 3,
+                    sizeof(float));
+            deltaLeftHandVertexBuffer =
+                new ComputeBuffer(handVertexCount, sizeof(float) * 4);
+            deltaRightHandVertexBuffer =
+                new ComputeBuffer(handVertexCount, sizeof(float) * 4);
         }
-    }
 
-    private Engine engine;
+        public void Dispose()
+        {
+            palmDetector.Dispose();
+            handLandmarkDetector.Dispose();
 
-    private string heatmapLayer;
+            leftHandVertexBuffer.Dispose();
+            rightHandVertexBuffer.Dispose();
 
-    private string offsetsLayer;
+            _render.Release();
 
-    private string predictionLayer = "predictLayer";
+            handsRegionFromPalm.Dispose();
 
-    private void InitEstimation()
-    {
-        Model runtimeModel;
+            handCropBuffer.Dispose();
+            deltaLeftHandVertexBuffer.Dispose();
+            deltaRightHandVertexBuffer.Dispose();
+        }
 
-        runtimeModel = ModelLoader.Load(_model);
+        public void ProcessImage(Texture input, float threshold = 0.7f)
+        {
+            var scale =
+                new Vector2(Mathf.Max((float) input.height / input.width, 1),
+                    Mathf.Max(1, (float) input.width / input.height));
+        }
 
-        heatmapLayer = runtimeModel.outputs[0];
-        offsetsLayer = runtimeModel.outputs[1];
-
-        ModelBuilder modelBuilder = new ModelBuilder(runtimeModel);
-
-        modelBuilder.Sigmoid (predictionLayer, heatmapLayer);
-
-        engine = new Engine(_workerType, modelBuilder.model);
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        // Update is called once per frame
+        void Update()
+        {
+        }
     }
 }
