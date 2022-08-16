@@ -32,6 +32,8 @@ namespace Paon.NPlayer
 
         Vector2 coords;
 
+        string tmp = "none";
+
         void Start()
         {
             HandInputProvider = GameObject.Find("RightHandInputProvider");
@@ -49,51 +51,121 @@ namespace Paon.NPlayer
                 Hand.transform.localScale = new Vector3(0.3f, 0.15f, 0.1f);
                 if (NearObject != null && oh.NowHoldObject == null)
                 {
-                    DefoRotation = NearObject.transform.eulerAngles;
-                    handBase = coords;
-                    bodyBase = Player.transform.position;
                     oh.HoldObject (NearObject);
+                    if (oh.NowHoldObject.tag == "HoldableTag")
+                    {
+                        DefoRotation = NearObject.transform.eulerAngles;
+                        oh.NowHoldObject.GetComponent<Rigidbody>().constraints =
+                            RigidbodyConstraints.FreezeRotation;
+                        oh.NowHoldObject.GetComponent<Rigidbody>().useGravity =
+                            false;
+                    }
+                    else if (oh.NowHoldObject.tag == "BorderingHOLDTag")
+                    {
+                        Player.GetComponent<Rigidbody>().useGravity = false;
+                        handBase = Hand.transform.position;
+                        bodyBase = Player.transform.position;
+                        Debug.Log (bodyBase);
+                    }
                 }
             }
             else
             {
                 Hand.transform.localScale = new Vector3(0.6f, 0.3f, 0.1f);
-                if (oh.NowHoldObject != null)
+                if (
+                    oh.NowHoldObject != null &&
+                    oh.NowHoldObject.tag == "HoldableTag"
+                )
                 {
                     oh.NowHoldObject.GetComponent<Rigidbody>().constraints =
                         RigidbodyConstraints.None;
+                    oh.NowHoldObject.GetComponent<Rigidbody>().useGravity =
+                        true;
+                }
+                else if (
+                    oh.NowHoldObject != null &&
+                    oh.NowHoldObject.tag == "BorderingHOLDTag"
+                )
+                {
+                    Player.GetComponent<Rigidbody>().useGravity = true;
+                    Hand.transform.localPosition = new Vector3(1f, 0, 2.4f);
                 }
                 oh.UnHold();
             }
 
             if (oh.Holding)
             {
-                if (oh.NowHoldObject.tag == "BorderringHoldTag")
+                if (oh.NowHoldObject.tag == "BorderingHOLDTag")
                 {
+                    Player.GetComponent<PlayerMove>().canMove = false;
                     rhm.canMove = false;
+                    Hand.transform.position = handBase;
 
                     //腕を下げるとプレイヤーが上がるようにする
-                    Player.transform.position =
-                        new Vector3((handBase.x - Hand.transform.position.x) +
-                            bodyBase.x,
-                            (handBase.y - Hand.transform.position.y) +
-                            bodyBase.y);
+                    // Player.transform.position =
+                    //     new Vector3((handBase.x - Hand.transform.position.x) +
+                    //         bodyBase.x,
+                    //         (handBase.y - Hand.transform.position.y) +
+                    //         bodyBase.y,
+                    //         bodyBase.z);
+                    if (
+                        Mathf
+                            .Abs(Vector3
+                                .Distance(Player.transform.position,
+                                bodyBase)) <
+                        0.6f
+                    )
+                    {
+                        if (rmip.GetInput() == "up")
+                        {
+                            Player.transform.Translate(Vector3.up * 0.03f);
+                        }
+                        else if (rmip.GetInput() == "down")
+                        {
+                            Player.transform.Translate(Vector3.down * 0.03f);
+                        }
+                        else if (rmip.GetInput() == "left")
+                        {
+                            Player.transform.Translate(Vector3.left * 0.03f);
+                        }
+                        else if (rmip.GetInput() == "right")
+                        {
+                            Player.transform.Translate(Vector3.right * 0.03f);
+                        }
+                    }
+                    else
+                    {
+                        if (tmp == "up")
+                        {
+                            Player.transform.Translate(Vector3.up * -0.03f);
+                        }
+                        else if (tmp == "down")
+                        {
+                            Player.transform.Translate(Vector3.down * -0.03f);
+                        }
+                        else if (tmp == "left")
+                        {
+                            Player.transform.Translate(Vector3.left * -0.03f);
+                        }
+                        else if (tmp == "right")
+                        {
+                            Player.transform.Translate(Vector3.right * -0.03f);
+                        }
+                    }
                 }
-                else if (oh.NowHoldObject.tag == "BorderringHoldTag")
+                else if (oh.NowHoldObject.tag == "HoldableTag")
                 {
-                    rhm.canMove = true;
                     oh.NowHoldObject.transform.position =
                         this.transform.position;
                     oh.NowHoldObject.transform.eulerAngles =
                         new Vector3(DefoRotation.x,
                             Hand.transform.eulerAngles.y - DefoRotation.y,
                             DefoRotation.z);
-                    oh.NowHoldObject.GetComponent<Rigidbody>().constraints =
-                        RigidbodyConstraints.FreezeRotation;
                 }
             }
             else
             {
+                Player.GetComponent<PlayerMove>().canMove = true;
                 rhm.canMove = true;
             }
             if (NearObject != null)
@@ -107,12 +179,27 @@ namespace Paon.NPlayer
             {
                 NearObject = null;
             }
+            tmp = rmip.GetInput();
+
+            if (
+                GameObject
+                    .Find("LeftHandTrigger")
+                    .GetComponent<LeftHoldObjectScript>()
+                    .oh
+                    .Holding
+            )
+            {
+                Player.GetComponent<PlayerMove>().canMove = false;
+            }
         }
 
         //�ڐG�����I�u�W�F�N�g������other�Ƃ��ēn�����
         void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("HoldableTag") || other.CompareTag("HOLDTag"))
+            if (
+                other.CompareTag("HoldableTag") ||
+                other.CompareTag("BorderingHOLDTag")
+            )
             {
                 NearObject = other.gameObject;
             }

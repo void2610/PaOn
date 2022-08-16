@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using Paon.NInput;
+using UnityEngine;
 using Grpc.Core;
 using MagicOnion.Client;
 using Paon.NNetWork.Shared.Services;
@@ -79,6 +79,5 @@ namespace Paon.NPlayer
                 await _channel.ShutdownAsync();
             }
         }
-
     }
 }

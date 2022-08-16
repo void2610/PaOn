@@ -24,7 +24,9 @@ namespace Paon.NUI
         void Start()
         {
             Red = GameObject.Find("RedCircle");
+            Red.GetComponent<RectTransform>().SetAsLastSibling();
             Blue = GameObject.Find("BlueCircle");
+            Blue.GetComponent<RectTransform>().SetAsLastSibling();
             rht = GameObject.Find("RightHandTrigger");
             lht = GameObject.Find("LeftHandTrigger");
             Player = GameObject.Find("PlayerBody");
@@ -43,8 +45,20 @@ namespace Paon.NUI
                     Player.transform.eulerAngles.z);*/
             if (rno != null)
             {
-                Red.SetActive(true);
-                Red.transform.position = rno.transform.position;
+                if (rno.GetComponent<Rigidbody>() != null)
+                {
+                    if (rno.GetComponent<Rigidbody>().useGravity == true)
+                    {
+                        Red.SetActive(true);
+                        Red.transform.position = rno.transform.position;
+                        Red.transform.eulerAngles =
+                            Player.transform.eulerAngles;
+                    }
+                    else
+                    {
+                        Red.SetActive(false);
+                    }
+                }
             }
             else
             {
@@ -52,8 +66,20 @@ namespace Paon.NUI
             }
             if (lno != null)
             {
-                Blue.SetActive(true);
-                Blue.transform.position = lno.transform.position;
+                if (lno.GetComponent<Rigidbody>() != null)
+                {
+                    if (lno.GetComponent<Rigidbody>().useGravity == true)
+                    {
+                        Blue.SetActive(true);
+                        Blue.transform.position = lno.transform.position;
+                        Blue.transform.eulerAngles =
+                            Player.transform.eulerAngles;
+                    }
+                    else
+                    {
+                        Blue.SetActive(false);
+                    }
+                }
             }
             else
             {

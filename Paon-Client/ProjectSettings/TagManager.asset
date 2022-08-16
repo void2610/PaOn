@@ -5,8 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - HoldableTag
-  - HOLDTag
   - CanvasTag
+  - BorderingHOLDTag
   layers:
   - Default
   - TransparentFX
