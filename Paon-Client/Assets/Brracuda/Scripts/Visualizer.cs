@@ -8,7 +8,7 @@ namespace Estimate
     public sealed class Visualizer : MonoBehaviour
     {
         [SerializeField]
-        WebcamInput _webcam = null;
+        WebCamInput _webcam = null;
 
         [SerializeField]
         RawImage _previewImage = null;

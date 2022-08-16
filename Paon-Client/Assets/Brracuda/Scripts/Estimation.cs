@@ -12,7 +12,7 @@ namespace Estimate
         NNModel _model = null;
 
         [SerializeField]
-        WebcamInput _webcam = null;
+        WebCamInput _webcam = null;
 
         [Space]
         [SerializeField]
