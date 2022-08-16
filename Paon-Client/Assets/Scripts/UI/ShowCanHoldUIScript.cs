@@ -37,6 +37,12 @@ namespace Paon.NUI
         {
             rno = rht.GetComponent<RightHoldObjectScript>().NearObject;
             lno = lht.GetComponent<LeftHoldObjectScript>().NearObject;
+            Red.transform.eulerAngles = Player.transform.eulerAngles;
+            Blue.transform.eulerAngles = Player.transform.eulerAngles;
+
+            /*Blue.transform.eulerAngles = new Vector3(Player.transform.eulerAngles.x,
+                    -Player.transform.eulerAngles.y,
+                    Player.transform.eulerAngles.z);*/
             if (rno != null)
             {
                 if (rno.GetComponent<Rigidbody>() != null)
