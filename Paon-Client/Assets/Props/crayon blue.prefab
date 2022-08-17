@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 8673664482329722712}
   - component: {fileID: 8673664482329722713}
   - component: {fileID: 8673664482329722694}
-  - component: {fileID: 8673664482329722695}
+  - component: {fileID: 1524497455869621611}
   m_Layer: 0
   m_Name: CrayonTrigger
   m_TagString: Untagged
@@ -211,7 +211,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8673664482329722695
+--- !u!114 &1524497455869621611
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -220,7 +220,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8673664482329722693}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b4a8eedeeb00bf4ea7bf88cad7c3182, type: 3}
+  m_Script: {fileID: 11500000, guid: 80d7c6c280f73154c9c03bf3be16c800, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   LineObjectPrefab: {fileID: 4448996543070958040, guid: f0fdda2494d1a2740bd8604bdc486b03,
