@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using Paon.NInput;
-using UnityEngine;
 using Grpc.Core;
 using MagicOnion.Client;
-using Paon.NNetWork.Shared.Services;
 using Paon;
+using Paon.NInput;
+using Paon.NNetWork.Shared.Services;
 using Paon.NNetwork.Shared.MessagePackObjects;
+using UnityEngine;
 
 namespace Paon.NPlayer
 {
@@ -25,31 +25,33 @@ namespace Paon.NPlayer
         Vector2 coords;
 
         private GamingHubClient _hub;
+
         private Channel _channel;
+
         private IMyFirstService _service;
 
         void Awake()
         {
-            _channel = new Channel("192.168.11.2", 5032, ChannelCredentials.Insecure);
+            _channel =
+                new Channel("192.168.11.2", 5032, ChannelCredentials.Insecure);
             _service = MagicOnionClient.Create<IMyFirstService>(_channel);
         }
 
         async void Start()
         {
-            var x = Random.Range(0, 1000);
-            var y = Random.Range(0, 1000);
-            var result = await _service.SumAsync(x, y);
-            Debug.Log($"Result: {result}");
-
+            //var x = Random.Range(0, 1000);
+            //var y = Random.Range(0, 1000);
+            //var result = await _service.SumAsync(x, y);
+            //Debug.Log($"Result: {result}");
             hand = this.gameObject;
             inputProvider =
                 GameObject
                     .Find("LeftHandInputProvider")
                     .GetComponent<LeftHandInputProvider>();
             player = this.gameObject;
-            var id = Random.Range(0, 10000);
-            _hub = new GamingHubClient();
-            await _hub.ConnectAsync(_channel, "Room", $"Player-{id}");
+            //var id = Random.Range(0, 10000);
+            //_hub = new GamingHubClient();
+            //await _hub.ConnectAsync(_channel, "Room", $"Player-{id}");
         }
 
         async void Update()
@@ -64,22 +66,22 @@ namespace Paon.NPlayer
                 if (inputProvider.GetInput() == "up")
                 {
                     hand.transform.Translate(Vector3.up * 0.01f);
-                    await _hub.MoveAsync(player.transform.position, new Vector3());
+                    //await _hub.MoveAsync(player.transform.position, new Vector3());
                 }
                 else if (inputProvider.GetInput() == "down")
                 {
                     hand.transform.Translate(Vector3.down * 0.01f);
-                    await _hub.MoveAsync(player.transform.position, new Vector3());
+                    //await _hub.MoveAsync(player.transform.position, new Vector3());
                 }
                 else if (inputProvider.GetInput() == "left")
                 {
                     hand.transform.Translate(Vector3.left * 0.01f);
-                    await _hub.MoveAsync(player.transform.position, new Vector3());
+                    //await _hub.MoveAsync(player.transform.position, new Vector3());
                 }
                 else if (inputProvider.GetInput() == "right")
                 {
                     hand.transform.Translate(Vector3.right * 0.01f);
-                    await _hub.MoveAsync(player.transform.position, new Vector3());
+                    //await _hub.MoveAsync(player.transform.position, new Vector3());
                 }
             }
         }
