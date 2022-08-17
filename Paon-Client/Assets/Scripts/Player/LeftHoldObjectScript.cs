@@ -154,6 +154,8 @@ namespace Paon.NPlayer
                 }
                 else if (oh.NowHoldObject.tag == "HoldableTag")
                 {
+                    oh.NowHoldObject.GetComponent<Rigidbody>().constraints =
+                        RigidbodyConstraints.None;
                     oh.NowHoldObject.transform.position =
                         this.transform.position;
                     oh.NowHoldObject.transform.eulerAngles =
