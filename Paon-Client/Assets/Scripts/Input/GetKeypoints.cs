@@ -16,6 +16,8 @@ namespace Paon.NInput
         [SerializeField]
         private GameObject HandEstimatior;
 
+        private GameObject PoseEstimator;
+
         private PoseEstimate _PoseEstimate;
 
         private Utils.Keypoint[] poseKeypoints;
@@ -92,7 +94,7 @@ namespace Paon.NInput
         void Start()
         {
             // op = GameObject.Find("OpenPose").GetComponent<OpenPoseUserScript>();
-            _PoseEstimate = _PoseEstimate.GetComponent<PoseEstimate>();
+            _PoseEstimate = PoseEstimator.GetComponent<PoseEstimate>();
             _handVisualizer = HandEstimatior.GetComponent<HandVisualizer>();
         }
 
