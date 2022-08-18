@@ -132,7 +132,7 @@ namespace MediaPipe.HandPose
                 handCS.SetInt("_handRegionIndex", i);
 
                 handCS.SetInt("_handCropSize", handCropImageSize);
-                handCS.SetTexture(2, "_handCropInput", inputTexture);
+                handCS.SetTexture(2, "_handCropInput", input);
                 handCS.SetBuffer(2, "_handCropRegion", handsRegionFromPalm);
                 handCS.SetBuffer(2, "_handCropOutput", handCropBuffer);
                 handCS
@@ -143,7 +143,7 @@ namespace MediaPipe.HandPose
 
                 handLandmarkDetector.ProcessImage (handCropBuffer);
 
-                var ScoreCache = new Vector4[1];
+                var scoreCache = new Vector4[1];
                 handLandmarkDetector.OutputBuffer.GetData(scoreCache, 0, 0, 1);
                 float score = scoreCache[0].x;
                 float handedness = scoreCache[0].y;
