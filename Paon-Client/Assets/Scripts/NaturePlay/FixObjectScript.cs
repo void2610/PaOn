@@ -6,6 +6,8 @@ namespace Paon.NatuePlay
 {
     public class FixObjectScript : MonoBehaviour
     {
+        CanvasData canvasData;
+
         void Start()
         {
         }
@@ -22,6 +24,8 @@ namespace Paon.NatuePlay
                 other.gameObject.GetComponent<Rigidbody>().constraints =
                     RigidbodyConstraints.FreezeAll;
                 other.gameObject.GetComponent<Rigidbody>().useGravity = false;
+                other.gameObject.transform.parent =
+                    GameObject.Find("FixedObjects").transform;
                 Debug.Log("fixed");
             }
         }
