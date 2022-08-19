@@ -13,7 +13,7 @@ public class WebCamInput : MonoBehaviour
 
     RenderTexture input;
 
-    public Texture inputTexture
+    public Texture inputImageTexture
     {
         get
         {
@@ -54,6 +54,6 @@ public class WebCamInput : MonoBehaviour
     void OnDestroy()
     {
         if (_webcam != null) Destroy(_webcam);
-        if (input != null) Destroy(_input);
+        if (input != null) Destroy(input);
     }
 }
