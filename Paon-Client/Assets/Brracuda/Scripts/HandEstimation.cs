@@ -1,11 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using MediaPipe.BlazePalm;
 using MediaPipe.HandLandmark;
 using Unity.Barracuda;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace MediaPipe.HandPose
 {
@@ -167,11 +163,6 @@ namespace MediaPipe.HandPose
                         : deltaLeftHandVertexBuffer);
                 handCS.Dispatch(3, 1, 1, 1);
             }
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
         }
     }
 }
