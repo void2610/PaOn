@@ -13,7 +13,7 @@ public class WebCamInput : MonoBehaviour
 
     RenderTexture input;
 
-    public Texture inputTexture
+    public Texture inputImageTexture
     {
         get
         {
