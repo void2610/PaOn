@@ -59,10 +59,10 @@ namespace Paon.NPlayer
             coords = inputProvider.GetPosition();
             if (canMove)
             {
-                hand.transform.localPosition =
-                    new Vector3((coords.x - 520) * -0.01f,
-                        (coords.y - 300) * -0.01f,
-                        hand.transform.localPosition.z);
+                // hand.transform.localPosition =
+                //     new Vector3((coords.x - 520) * -0.01f,
+                //         (coords.y - 300) * -0.01f,
+                //         hand.transform.localPosition.z);
                 if (inputProvider.GetInput() == "up")
                 {
                     hand.transform.Translate(Vector3.up * 0.01f);

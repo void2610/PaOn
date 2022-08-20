@@ -117,11 +117,11 @@ namespace Paon.NInput
                 //Debug.Log("Mid: " + MidScore);
                 if (fd < 40)
                 {
-                    hold = 1;
+                    //hold = 1;
                 }
                 else
                 {
-                    hold = 0;
+                    //hold = 0;
                 }
                 //Debug.Log("LeftKey: " + key);
             }
