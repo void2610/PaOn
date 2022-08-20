@@ -85,3 +85,5 @@ crashlytics-build.properties
 /Paon-Client/Assets/Plugins/
 # Caffe models
 /Paon-Client/Assets/StreamingAssets/
+# NaturePlaySaveDate
+#/Paon-Client/Assets/NaturePlay/

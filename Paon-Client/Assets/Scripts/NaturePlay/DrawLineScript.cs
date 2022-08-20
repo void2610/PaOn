@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Paon.NatuePlay
+namespace Paon.NNatuePlay
 {
     public class DrawLineScript : MonoBehaviour
     {

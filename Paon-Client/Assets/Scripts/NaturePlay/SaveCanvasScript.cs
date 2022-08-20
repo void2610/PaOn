@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Paon.NaturePlay
+namespace Paon.NNaturePlay
 {
     public class SaveCanvasScript : MonoBehaviour
     {

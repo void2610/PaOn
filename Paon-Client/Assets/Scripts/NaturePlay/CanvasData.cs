@@ -5,7 +5,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
-namespace Paon.NaturePlay
+namespace Paon.NNaturePlay
 {
     [Serializable]
     public class CanvasData
@@ -117,7 +117,10 @@ namespace Paon.NaturePlay
 
             Debug.Log (jsonString);
             string path =
-                Application.dataPath + "/NaturePlay/" + name + ".json";
+                Application.dataPath +
+                "/Resources/NaturePlay/" +
+                name +
+                ".json";
             StreamWriter writer = new StreamWriter(path, false); //初めに指定したデータの保存先を開く
             writer.WriteLine (jsonString); //JSONデータを書き込み
             writer.Flush(); //バッファをクリアする

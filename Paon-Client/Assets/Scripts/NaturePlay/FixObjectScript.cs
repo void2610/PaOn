@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Paon.NaturePlay
+namespace Paon.NNaturePlay
 {
     public class FixObjectScript : MonoBehaviour
     {
@@ -61,8 +61,7 @@ namespace Paon.NaturePlay
                             dt.Minute.ToString() +
                             dt.Second.ToString();
                         canvasData.Save("Canvas_" + name);
-
-                        //canvasData = new CanvasData();
+                        canvasData = new CanvasData();
                         saving = false;
                         Debug.Log("save successfull");
                     }
