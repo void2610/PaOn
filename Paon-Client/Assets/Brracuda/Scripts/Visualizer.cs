@@ -20,40 +20,57 @@ public class Visualizer : MonoBehaviour
     float handScoreThreshold = 0.5f;
 
     [SerializeField]
-    Resource resource = null;
+    HandPoseResource resource = null;
 
-    HandPose _handPose;
+    HandEstimation _handPose;
 
     Material _material;
 
     // Start is called before the first frame update
     void Start()
     {
-        _handPose = new HandPose(resource);
+        _handPose = new HandEstimation(resource);
         _material = new Material(_shader);
-    }
-
-    void OnDestroy()
-    {
-        Destroy (_material);
     }
 
     void LateUpdate()
     {
-        _image.texture = _webcam.inputTexture;
+        _image.texture = _webcam.inputImageTexture;
         _handPose.ProcessImage(_webcam.inputImageTexture);
     }
 
-void HandRender(bool isRight){
-	var w = _image.rectTransform..rect.width;
-	var h = _image.rectTransform..rect.height;
-	_material.SetVector("_uiScale", new Vector2(w, h));
-	_material.SetVector("_pointColor", isRight ? Color.cyan : Color.yellow);
-	_material.SetFloat("_handScoreThreshold", handScoreThreshold);
-}
+    void OnRenderObject()
+    {
+        HandRender(false);
+        HandRender(true);
+    }
+
+    void HandRender(bool isRight)
+    {
+        var w = _image.rectTransform.rect.width;
+        var h = _image.rectTransform.rect.height;
+        _material.SetVector("_uiScale", new Vector2(w, h));
+        _material.SetVector("_pointColor", isRight ? Color.cyan : Color.yellow);
+        _material.SetFloat("_handScoreThreshold", handScoreThreshold);
+
+        _material
+            .SetBuffer("_vertices",
+            isRight
+                ? _handPose.rightHandVertexBuffer
+                : _handPose.leftHandVertexBuffer);
+
+        _material.SetPass(0);
+        Graphics
+            .DrawProceduralNow(MeshTopology.Triangles,
+            96,
+            _handPose.handVertexCount);
+
+        _material.SetPass(1);
+        Graphics.DrawProceduralNow(MeshTopology.Triangles, 2, 4 * 5 + 1);
+    }
 
     void OnDestroy()
     {
-        HandPose.Dispose();
+        _handPose.Dispose();
     }
 }
