@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Paon.NatuePlay
+namespace Paon.NaturePlay
 {
     public class FixObjectScript : MonoBehaviour
     {
-        CanvasData canvasData;
+        public CanvasData canvasData;
+
+        public bool saving = false;
 
         void Start()
         {
@@ -28,6 +30,19 @@ namespace Paon.NatuePlay
                     GameObject.Find("FixedObjects").transform;
                 Debug.Log("fixed");
             }
+        }
+
+        void OnTriggerStay(Collider other)
+        {
+            if (saving)
+                if (
+                    other.CompareTag("HoldableTag") ||
+                    other.CompareTag("LineObjectTag")
+                )
+                {
+                    canvasData.AddObject(other.gameObject);
+                }
+            //全部セーブし終わったらsavingをfalseにする
         }
     }
 }
