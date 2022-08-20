@@ -336,7 +336,7 @@ GameObject:
   - component: {fileID: 6225671171283113720}
   - component: {fileID: 6225671171283113723}
   m_Layer: 0
-  m_Name: bucket
+  m_Name: Bucket
   m_TagString: HoldableTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

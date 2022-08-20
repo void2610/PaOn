@@ -22,7 +22,6 @@ namespace Paon.NNaturePlay
             //Canvasが複数あってもいいように将来的にインスペクタ上で設定できるようにする
         }
 
-        // Update is called once per frame
         void Update()
         {
         }
