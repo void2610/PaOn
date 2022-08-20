@@ -23,7 +23,7 @@ namespace Paon.NNaturePlay
         {
             for (int i = 0; i < 100; i++)
             {
-                if (canvasData.objects[i] != null)
+                if (canvasData.objects[i].name != "")
                 {
                     Instantiate(Resources
                         .Load<GameObject>("Props/" +
@@ -41,6 +41,7 @@ namespace Paon.NNaturePlay
                                 .x,
                             canvasData.objects[i].localRotation.y,
                             canvasData.objects[i].localRotation.z)));
+                    Debug.Log("loaded " + canvasData.objects[i].name);
                 }
             }
         }
