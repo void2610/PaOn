@@ -66,13 +66,13 @@ namespace Paon.NPlayer
             }
             else if (inputProvider.GetInput() == "left")
             {
-                player.transform.Rotate(0, -0.4f, 0);
+                player.transform.Rotate(0, -0.8f, 0);
                 //await _hub
                 //    .MoveAsync(new Vector3(), player.transform.eulerAngles);
             }
             else if (inputProvider.GetInput() == "right")
             {
-                player.transform.Rotate(0, 0.4f, 0);
+                player.transform.Rotate(0, 0.8f, 0);
                 //await _hub
                 //    .MoveAsync(new Vector3(), player.transform.eulerAngles);
             }

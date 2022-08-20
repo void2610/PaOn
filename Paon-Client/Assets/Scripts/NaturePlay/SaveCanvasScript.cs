@@ -8,21 +8,23 @@ namespace Paon.NaturePlay
     {
         bool startSave = false;
 
+        public int cooldown = 5;
+
         GameObject Trigger;
 
-        float startTime;
+        float startTime = 0.0f;
+
+        float endTime = 0.0f;
 
         void Start()
         {
             Trigger = GameObject.Find("CanvasTrigger");
+            //Canvasが複数あってもいいように将来的にインスペクタ上で設定できるようにする
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (startSave)
-            {
-            }
         }
 
         void OnTriggerStay(Collider other)
@@ -33,9 +35,14 @@ namespace Paon.NaturePlay
                     startTime = Time.time;
                 else
                 {
-                    if (Time.time - startTime > 3.0f)
+                    if (
+                        Time.time - startTime > 3.0f &&
+                        Time.time - endTime > cooldown
+                    )
                     {
+                        Debug.Log("SaveStart");
                         Trigger.GetComponent<FixObjectScript>().saving = true;
+                        endTime = Time.time;
                     }
                 }
             }

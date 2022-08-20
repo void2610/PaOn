@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,8 @@ namespace Paon.NaturePlay
 {
     public class FixObjectScript : MonoBehaviour
     {
-        public CanvasData canvasData;
+        [SerializeField]
+        public CanvasData canvasData = new CanvasData();
 
         public bool saving = false;
 
@@ -18,31 +20,59 @@ namespace Paon.NaturePlay
         {
         }
 
-        //接触したオブジェクトが引数otherとして渡される
-        void OnTriggerEnter(Collider other)
+        void OnTriggerStay(Collider other)
         {
             if (other.CompareTag("HoldableTag"))
             {
                 other.gameObject.GetComponent<Rigidbody>().constraints =
                     RigidbodyConstraints.FreezeAll;
                 other.gameObject.GetComponent<Rigidbody>().useGravity = false;
-                other.gameObject.transform.parent =
-                    GameObject.Find("FixedObjects").transform;
-                Debug.Log("fixed");
             }
-        }
 
-        void OnTriggerStay(Collider other)
-        {
             if (saving)
-                if (
-                    other.CompareTag("HoldableTag") ||
-                    other.CompareTag("LineObjectTag")
-                )
+            {
+                if (other.gameObject.name != "PlayerBody")
                 {
-                    canvasData.AddObject(other.gameObject);
+                    if (
+                        other.CompareTag("HoldableTag") ||
+                        other.CompareTag("LineObjectTag")
+                    )
+                    {
+                        Debug.Log("try to save " + other.gameObject.name);
+                        canvasData
+                            .AddObject(other.gameObject,
+                            new Vector3(this.gameObject.transform.position.x -
+                                other.gameObject.transform.position.x,
+                                this.gameObject.transform.position.y -
+                                other.gameObject.transform.position.y,
+                                this.gameObject.transform.position.z -
+                                other.gameObject.transform.position.z));
+                        GameObject.Destroy(other.gameObject);
+                    }
+                    else
+                    {
+                        DateTime dt = DateTime.Now;
+
+                        string name =
+                            dt.Year.ToString() +
+                            dt.Month.ToString() +
+                            dt.Day.ToString() +
+                            dt.Hour.ToString() +
+                            dt.Minute.ToString() +
+                            dt.Second.ToString();
+                        canvasData.Save("Canvas_" + name);
+
+                        //canvasData = new CanvasData();
+                        saving = false;
+                        Debug.Log("save successfull");
+                    }
                 }
-            //全部セーブし終わったらsavingをfalseにする
+                else
+                {
+                    Debug.Log("cant save Player");
+                    saving = false;
+                }
+            }
         }
     }
 }
