@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace MediaPipe.HandPose
 {
-    public class HandEstimation : MonoBehaviour
+    public class HandEstimation : System.IDisposable
     {
         public int handVertexCount => HandLandmarkDetector.VertexCount;
 

@@ -1,3 +1,4 @@
+using Unity.Barracuda;
 using UnityEngine;
 
 namespace MediaPipe.HandPose

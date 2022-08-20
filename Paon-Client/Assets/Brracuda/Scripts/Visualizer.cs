@@ -8,6 +8,9 @@ using UnityEngine.UI;
 public class Visualizer : MonoBehaviour
 {
     [SerializeField]
+    Camera camera;
+
+    [SerializeField]
     WebCamInput _webcam;
 
     [SerializeField]
