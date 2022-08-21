@@ -48,8 +48,8 @@ namespace Paon.NNaturePlay
 
         void Start()
         {
-            cd = loadCanvasData("Canvas_202282134512");
-            SetObject (cd);
+            //cd = loadCanvasData("Canvas_202282134512");
+            //SetObject (cd);
         }
 
         void Update()

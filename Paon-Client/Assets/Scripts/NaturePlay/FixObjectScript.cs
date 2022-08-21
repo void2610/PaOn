@@ -12,12 +12,18 @@ namespace Paon.NNaturePlay
 
         public bool saving = false;
 
-        void Start()
+        public void SaveLine(LineRenderer lr, string name, int num)
         {
-        }
-
-        void Update()
-        {
+            LineData ld = new LineData();
+            Vector3[] positions = new Vector3[lr.positionCount];
+            lr.GetPositions (positions);
+            for (int i = 0; i < positions.Length; i++)
+            {
+                positions[i] =
+                    this.gameObject.transform.position - positions[i];
+            }
+            ld.AddLine (positions);
+            ld.Save("Line" + num + "_" + name);
         }
 
         void OnTriggerStay(Collider other)
@@ -52,7 +58,6 @@ namespace Paon.NNaturePlay
                     else
                     {
                         DateTime dt = DateTime.Now;
-
                         string name =
                             dt.Year.ToString() +
                             dt.Month.ToString() +
@@ -60,6 +65,21 @@ namespace Paon.NNaturePlay
                             dt.Hour.ToString() +
                             dt.Minute.ToString() +
                             dt.Second.ToString();
+
+                        //線を保存
+                        GameObject[] lines =
+                            GameObject.FindGameObjectsWithTag("LineObjectTag");
+                        int num = 0;
+                        foreach (GameObject line in lines)
+                        {
+                            SaveLine(line.GetComponent<LineRenderer>(),
+                            name,
+                            num);
+                            Debug.Log("try to save " + line.name);
+                            num++;
+                        }
+
+                        //オブジェクトを保存
                         canvasData.Save("Canvas_" + name);
                         canvasData = new CanvasData();
                         saving = false;
