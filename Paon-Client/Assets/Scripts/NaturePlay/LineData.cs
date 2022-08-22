@@ -11,9 +11,23 @@ namespace Paon.NNaturePlay
     {
         public Vector3[] lines = new Vector3[500];
 
+        public string color = "BlackLine";
+
         public void AddLine(Vector3[] positions)
         {
             lines = positions;
+        }
+
+        public void SetColor(string name)
+        {
+            if (name.Contains("Black"))
+            {
+                color = "BlackLine";
+            }
+            else if (name.Contains("Blue"))
+            {
+                color = "BlueLine";
+            }
         }
 
         public void Save(string name)

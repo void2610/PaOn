@@ -12,9 +12,15 @@ namespace Paon.NNaturePlay
 
         public bool saving = false;
 
-        public void SaveLine(LineRenderer lr, string name, int num)
+        public void SaveLine(
+            LineRenderer lr,
+            string name,
+            int num,
+            string lineName
+        )
         {
             LineData ld = new LineData();
+            ld.SetColor (lineName);
             Vector3[] positions = new Vector3[lr.positionCount];
             lr.GetPositions (positions);
             for (int i = 0; i < positions.Length; i++)
@@ -74,7 +80,8 @@ namespace Paon.NNaturePlay
                         {
                             SaveLine(line.GetComponent<LineRenderer>(),
                             name,
-                            num);
+                            num,
+                            line.name);
                             Debug.Log("try to save " + line.name);
                             num++;
                         }
