@@ -16,7 +16,6 @@ namespace Paon.NInput
         [SerializeField]
         private GameObject HandEstimatior;
 
-        [SerializeField]
         private GameObject PoseEstimator;
 
         private PoseEstimate _PoseEstimate;

@@ -23,7 +23,7 @@ namespace Paon.NNetwork
 
         void Awake()
         {
-            _channel = new Channel("192.168.10.21", 5032, ChannelCredentials.Insecure);
+            _channel = new Channel("106.165,109.38", 5032, ChannelCredentials.Insecure);
             _service = MagicOnionClient.Create<IMyFirstService>(_channel);
         }
 

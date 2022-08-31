@@ -7,9 +7,6 @@ TagManager:
   - HoldableTag
   - CanvasTag
   - BorderingHOLDTag
-  - HOLDTag
-  - HandTag
-  - LineObjectTag
   layers:
   - Default
   - TransparentFX

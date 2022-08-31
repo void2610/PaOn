@@ -32,8 +32,12 @@ namespace Paon.NPlayer
 
         void Awake()
         {
+<<<<<<< Updated upstream
             _channel =
                 new Channel("192.168.11.2", 5032, ChannelCredentials.Insecure);
+=======
+            _channel = new Channel("106.165.109.38", 5032, ChannelCredentials.Insecure);
+>>>>>>> Stashed changes
             _service = MagicOnionClient.Create<IMyFirstService>(_channel);
         }
 
@@ -59,10 +63,10 @@ namespace Paon.NPlayer
             coords = inputProvider.GetPosition();
             if (canMove)
             {
-                // hand.transform.localPosition =
-                //     new Vector3((coords.x - 520) * -0.01f,
-                //         (coords.y - 300) * -0.01f,
-                //         hand.transform.localPosition.z);
+                hand.transform.localPosition =
+                    new Vector3((coords.x - 520) * -0.01f,
+                        (coords.y - 300) * -0.01f,
+                        hand.transform.localPosition.z);
                 if (inputProvider.GetInput() == "up")
                 {
                     hand.transform.Translate(Vector3.up * 0.01f);

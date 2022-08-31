@@ -1,0 +1,10 @@
+/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Shared/bin/Release/netstandard2.1/Paon-Shared.deps.json
+/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Shared/bin/Release/netstandard2.1/Paon-Shared.dll
+/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Shared/bin/Release/netstandard2.1/Paon-Shared.pdb
+/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Shared/obj/Release/netstandard2.1/Paon-Shared.csproj.AssemblyReference.cache
+/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Shared/obj/Release/netstandard2.1/Paon-Shared.GeneratedMSBuildEditorConfig.editorconfig
+/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Shared/obj/Release/netstandard2.1/Paon-Shared.AssemblyInfoInputs.cache
+/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Shared/obj/Release/netstandard2.1/Paon-Shared.AssemblyInfo.cs
+/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Shared/obj/Release/netstandard2.1/Paon-Shared.csproj.CoreCompileInputs.cache
+/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Shared/obj/Release/netstandard2.1/Paon-Shared.dll
+/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Shared/obj/Release/netstandard2.1/Paon-Shared.pdb

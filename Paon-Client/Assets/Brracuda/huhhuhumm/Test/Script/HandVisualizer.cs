@@ -41,7 +41,8 @@ namespace MediaPipe.HandPose
 #endregion
 
 
-        // public Vector3[] KeyPoint;
+        public Vector3[] KeyPoint;
+
 
 #region MonoBehaviour implementation
 

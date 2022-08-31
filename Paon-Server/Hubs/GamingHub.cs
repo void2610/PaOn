@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using MagicOnion.Server.Hubs;
 using Paon.NNetwork.Shared.Hubs;
@@ -37,6 +38,7 @@ namespace Paon.NNetwork.Hubs
         {
             _self.Position = position;
             _self.Rotation = rotation;
+            Console.WriteLine($"Received:{_self.Position.x}");
             Broadcast(_room).OnMove(_self);
         }
 

@@ -13,14 +13,6 @@ public class WebCamInput : MonoBehaviour
 
     RenderTexture input;
 
-    public Texture inputImageTexture
-    {
-        get
-        {
-            return input;
-        }
-    }
-
     void Start()
     {
         _webcam =
@@ -49,11 +41,5 @@ public class WebCamInput : MonoBehaviour
         var offset = new Vector2((1 - gap) / 2, mirrored ? 1 : 0);
 
         Graphics.Blit (_webcam, input, scale, offset);
-    }
-
-    void OnDestroy()
-    {
-        if (_webcam != null) Destroy(_webcam);
-        if (input != null) Destroy(input);
     }
 }

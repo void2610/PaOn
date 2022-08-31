@@ -1,0 +1,16 @@
+/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Shared/bin/Release/netstandard2.1/linux-x64/publish/Paon-Shared.dll
+/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Shared/bin/Release/netstandard2.1/linux-x64/publish/Paon-Shared.deps.json
+/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Shared/bin/Release/netstandard2.1/linux-x64/publish/Paon-Shared.pdb
+/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Shared/bin/Release/netstandard2.1/linux-x64/publish/Grpc.Core.Api.dll
+/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Shared/bin/Release/netstandard2.1/linux-x64/publish/MagicOnion.Abstractions.dll
+/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Shared/bin/Release/netstandard2.1/linux-x64/publish/MessagePack.dll
+/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Shared/bin/Release/netstandard2.1/linux-x64/publish/MessagePack.Annotations.dll
+/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Shared/bin/Release/netstandard2.1/linux-x64/publish/MessagePack.UnityShims.dll
+/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Shared/bin/Release/netstandard2.1/linux-x64/publish/Microsoft.Bcl.AsyncInterfaces.dll
+/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Shared/bin/Release/netstandard2.1/linux-x64/publish/Microsoft.NET.StringTools.dll
+/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Shared/bin/Release/netstandard2.1/linux-x64/publish/System.Buffers.dll
+/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Shared/bin/Release/netstandard2.1/linux-x64/publish/System.Collections.Immutable.dll
+/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Shared/bin/Release/netstandard2.1/linux-x64/publish/System.Memory.dll
+/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Shared/bin/Release/netstandard2.1/linux-x64/publish/System.Numerics.Vectors.dll
+/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Shared/bin/Release/netstandard2.1/linux-x64/publish/System.Runtime.CompilerServices.Unsafe.dll
+/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Shared/bin/Release/netstandard2.1/linux-x64/publish/System.Threading.Tasks.Extensions.dll

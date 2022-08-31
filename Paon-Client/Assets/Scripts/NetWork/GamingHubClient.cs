@@ -56,10 +56,10 @@ namespace Paon
         {
             Debug.Log("Join Player:" + player.Name);
 
-            var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            cube.name = player.Name;
-            cube.transform.SetPositionAndRotation(player.Position,Quaternion.Euler(player.Rotation.x,player.Rotation.y,player.Rotation.z));
-            _players[player.Name] = cube;
+            //var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            //cube.name = player.Name;
+            //cube.transform.SetPositionAndRotation(player.Position,Quaternion.Euler(player.Rotation.x,player.Rotation.y,player.Rotation.z));
+            //_players[player.Name] = cube;
         }
 
         void IGamingHubReceiver.OnLeave(Player player)
@@ -77,10 +77,10 @@ namespace Paon
         {
             Debug.Log("Move Player:" + player.Name);
 
-            if (_players.TryGetValue(player.Name, out var cube))
-            {
-                cube.transform.SetPositionAndRotation(player.Position, Quaternion.Euler(player.Rotation.x, player.Rotation.y, player.Rotation.z));
-            }
+            //if (_players.TryGetValue(player.Name, out var cube))
+            //{
+            //    cube.transform.SetPositionAndRotation(player.Position, Quaternion.Euler(player.Rotation.x, player.Rotation.y, player.Rotation.z));
+            //}
         }
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Paon.NNatuePlay
+namespace Paon.NatuePlay
 {
     public class DrawLineScript : MonoBehaviour
     {
@@ -14,8 +14,6 @@ namespace Paon.NNatuePlay
         //現在描画中のLineObject;
         private GameObject CurrentLineObject = null;
 
-        private Vector3 tmp = Vector3.zero;
-
         public bool drawing = false;
 
         void Start()
@@ -25,45 +23,46 @@ namespace Paon.NNatuePlay
         // Update is called once per frame
         void Update()
         {
-            Vector3 pointer = this.gameObject.transform.position;
-
-            if (drawing && Time.frameCount % 3 == 0)
+            var pointer = this.gameObject.transform;
+            if (pointer == null)
             {
-                if (Mathf.Abs(Vector3.Distance(tmp, pointer)) > 0.0f)
+                Debug.Log("pointer not defiend");
+                return;
+            }
+
+            if (drawing)
+            {
+                Debug.Log("drawing");
+                if (CurrentLineObject == null)
                 {
-                    Debug.Log("drawing");
-                    if (CurrentLineObject == null)
-                    {
-                        //PrefabからLineObjectを生成
-                        CurrentLineObject =
-                            Instantiate(LineObjectPrefab,
-                            new Vector3(0, 0, 0),
-                            Quaternion.identity);
-                    }
-
-                    //ゲームオブジェクトからLineRendererコンポーネントを取得
-                    LineRenderer render =
-                        CurrentLineObject.GetComponent<LineRenderer>();
-
-                    //LineRendererからPositionsのサイズを取得
-                    int NextPositionIndex = render.positionCount;
-
-                    //LineRendererのPositionsのサイズを増やす
-                    render.positionCount = NextPositionIndex + 1;
-
-                    //LineRendererのPositionsに現在のコントローラーの位置情報を追加
-                    render.SetPosition (NextPositionIndex, pointer);
+                    //PrefabからLineObjectを生成
+                    CurrentLineObject =
+                        Instantiate(LineObjectPrefab,
+                        new Vector3(0, 0, 0),
+                        Quaternion.identity);
                 }
-                else if (!drawing)
+
+                //ゲームオブジェクトからLineRendererコンポーネントを取得
+                LineRenderer render =
+                    CurrentLineObject.GetComponent<LineRenderer>();
+
+                //LineRendererからPositionsのサイズを取得
+                int NextPositionIndex = render.positionCount;
+
+                //LineRendererのPositionsのサイズを増やす
+                render.positionCount = NextPositionIndex + 1;
+
+                //LineRendererのPositionsに現在のコントローラーの位置情報を追加
+                render.SetPosition(NextPositionIndex, pointer.position);
+            }
+            else if (!drawing)
+            {
+                if (CurrentLineObject != null)
                 {
-                    if (CurrentLineObject != null)
-                    {
-                        //現在描画中の線があったらnullにして次の線を描けるようにする。
-                        CurrentLineObject = null;
-                    }
+                    //現在描画中の線があったらnullにして次の線を描けるようにする。
+                    CurrentLineObject = null;
                 }
             }
-            tmp = pointer;
         }
 
         void OnTriggerStay(Collider other)
