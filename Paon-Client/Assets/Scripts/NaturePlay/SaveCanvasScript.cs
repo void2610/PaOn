@@ -10,6 +10,8 @@ namespace Paon.NNaturePlay
 
         public int cooldown = 5;
 
+        public GameObject cameraPrefab;
+
         GameObject Trigger;
 
         float startTime = 0.0f;
@@ -40,7 +42,16 @@ namespace Paon.NNaturePlay
                     )
                     {
                         Debug.Log("SaveStart");
-                        Trigger.GetComponent<FixObjectScript>().saving = true;
+                        Instantiate(cameraPrefab,
+                        new Vector3(Trigger.transform.position.x,
+                            Trigger.transform.position.y,
+                            Trigger.transform.position.z),
+                        new Quaternion(Trigger.transform.rotation.x,
+                            Trigger.transform.rotation.y + 180,
+                            Trigger.transform.rotation.z,
+                            Trigger.transform.rotation.w));
+
+                        //Trigger.GetComponent<FixObjectScript>().saving = true;
                         endTime = Time.time;
                     }
                 }
