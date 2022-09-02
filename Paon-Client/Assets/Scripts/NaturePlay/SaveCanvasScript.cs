@@ -12,7 +12,7 @@ namespace Paon.NNaturePlay
 
         public GameObject cameraPrefab;
 
-        GameObject Trigger;
+        public GameObject Canvas;
 
         float startTime = 0.0f;
 
@@ -20,8 +20,6 @@ namespace Paon.NNaturePlay
 
         void Start()
         {
-            Trigger = GameObject.Find("CanvasTrigger");
-            //Canvasが複数あってもいいように将来的にインスペクタ上で設定できるようにする
         }
 
         void Update()
@@ -37,22 +35,32 @@ namespace Paon.NNaturePlay
                 else
                 {
                     if (
-                        Time.time - startTime > 3.0f &&
+                        Time.time - startTime > 0.6f &&
                         Time.time - endTime > cooldown
                     )
                     {
-                        Debug.Log("SaveStart");
                         Vector3 rot =
-                            new Vector3(Trigger.transform.rotation.x,
-                                Trigger.transform.rotation.y - 90,
-                                Trigger.transform.rotation.z);
+                            new Vector3(Canvas.transform.eulerAngles.x,
+                                Canvas.transform.eulerAngles.y - 90,
+                                Canvas.transform.eulerAngles.z);
                         Instantiate(cameraPrefab,
-                        new Vector3(Trigger.transform.position.x + 2,
-                            Trigger.transform.position.y,
-                            Trigger.transform.position.z),
+                        new Vector3(Canvas.transform.position.x +
+                            (
+                            1.3f *
+                            Mathf
+                                .Cos(Canvas.transform.eulerAngles.y *
+                                Mathf.Deg2Rad)
+                            ),
+                            Canvas.transform.position.y,
+                            Canvas.transform.position.z +
+                            (
+                            -1.3f *
+                            Mathf
+                                .Sin(Canvas.transform.eulerAngles.y *
+                                Mathf.Deg2Rad)
+                            )),
                         Quaternion.Euler(rot));
 
-                        //Trigger.GetComponent<FixObjectScript>().saving = true;
                         endTime = Time.time;
                     }
                 }

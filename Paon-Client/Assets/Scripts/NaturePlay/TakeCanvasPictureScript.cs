@@ -33,16 +33,9 @@ namespace Paon.NNaturePlay
         {
             var d_width = camera.targetTexture.width;
             var d_height = camera.targetTexture.height;
-            Debug.Log("d_width:" + d_width + " d_height:" + d_height);
 
             Texture2D tex =
                 new Texture2D(width, height, TextureFormat.ARGB32, false);
-
-            // if (camera.targetTexture != null)
-            // {
-            //     camera.targetTexture.Release();
-            // }
-            // camera.targetTexture = new RenderTexture(width, height, 24);
             yield return new WaitForEndOfFrame();
 
             RenderTexture.active = camera.targetTexture;
@@ -73,8 +66,6 @@ namespace Paon.NNaturePlay
             File.WriteAllBytes (savePath, bytes);
             captured = true;
 
-            //Destroy (tex);
-            //if (camera.targetTexture != null) camera.targetTexture.Release();
             yield break;
         }
 
@@ -89,7 +80,7 @@ namespace Paon.NNaturePlay
         {
             if (captured)
             {
-                //GameObject.Destroy(this.gameObject);
+                GameObject.Destroy(this.gameObject);
             }
             else
             {
