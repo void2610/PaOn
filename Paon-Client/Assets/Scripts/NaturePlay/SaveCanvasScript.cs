@@ -42,14 +42,15 @@ namespace Paon.NNaturePlay
                     )
                     {
                         Debug.Log("SaveStart");
+                        Vector3 rot =
+                            new Vector3(Trigger.transform.rotation.x,
+                                Trigger.transform.rotation.y - 90,
+                                Trigger.transform.rotation.z);
                         Instantiate(cameraPrefab,
-                        new Vector3(Trigger.transform.position.x,
+                        new Vector3(Trigger.transform.position.x + 2,
                             Trigger.transform.position.y,
                             Trigger.transform.position.z),
-                        new Quaternion(Trigger.transform.rotation.x,
-                            Trigger.transform.rotation.y + 180,
-                            Trigger.transform.rotation.z,
-                            Trigger.transform.rotation.w));
+                        Quaternion.Euler(rot));
 
                         //Trigger.GetComponent<FixObjectScript>().saving = true;
                         endTime = Time.time;

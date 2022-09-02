@@ -65,8 +65,8 @@ namespace Paon.NNaturePlay
                 dt.Minute.ToString() +
                 dt.Second.ToString();
             string savePath =
-                Application.streamingAssetsPath +
-                CAPUTURED_PICTURE_SAVE_DIRECTORY +
+                Application.dataPath +
+                "/Resources/NaturePlay/" +
                 "Canvas_" +
                 name +
                 ".png";
@@ -89,7 +89,7 @@ namespace Paon.NNaturePlay
         {
             if (captured)
             {
-                GameObject.Destroy(this.gameObject);
+                //GameObject.Destroy(this.gameObject);
             }
             else
             {

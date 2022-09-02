@@ -8659,7 +8659,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2060489781}
   - component: {fileID: 2060489780}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8733,7 +8733,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2106948045}
   - component: {fileID: 2106948046}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: UICamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10077,7 +10077,7 @@ GameObject:
   - component: {fileID: 8314665997792685261}
   - component: {fileID: 8314665997792685258}
   - component: {fileID: 8314665997792685263}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LeftHandTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10274,7 +10274,7 @@ GameObject:
   - component: {fileID: 8314665998341374042}
   - component: {fileID: 8314665998341374043}
   - component: {fileID: 8314665998341374047}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LeftHand
   m_TagString: HandTag
   m_Icon: {fileID: 0}
@@ -10510,7 +10510,7 @@ GameObject:
   - component: {fileID: 8314665998576495070}
   - component: {fileID: 8314665998576495071}
   - component: {fileID: 8314665998576495072}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RightHandTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10595,7 +10595,7 @@ GameObject:
   - component: {fileID: 8314665998584930213}
   - component: {fileID: 8314665998584930210}
   - component: {fileID: 8314665998584930211}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -10695,7 +10695,7 @@ GameObject:
   - component: {fileID: 8314665998691071891}
   - component: {fileID: 8314665998691071888}
   - component: {fileID: 8314665998691071892}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RightHand
   m_TagString: HandTag
   m_Icon: {fileID: 0}
@@ -10922,7 +10922,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8314665998899548901}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -63.380005, y: -429.87988, z: -2195.04}
+  m_LocalPosition: {x: -64.606, y: -429.87988, z: -2193.293}
   m_LocalScale: {x: 0.5, y: 1, z: 0.5}
   m_Children:
   - {fileID: 8314665998584930213}
@@ -10945,7 +10945,7 @@ GameObject:
   - component: {fileID: 8314665998899548903}
   - component: {fileID: 8314665998899548824}
   - component: {fileID: 8314665998899548827}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlayerBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
