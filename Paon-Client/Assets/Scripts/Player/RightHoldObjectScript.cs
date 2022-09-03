@@ -17,9 +17,11 @@ namespace Paon.NPlayer
 
         GameObject Player;
 
-        RightHandInputProvider rmip = null;
+        public RightHandInputProvider rmip = null;
 
         RightHandMove rhm = null;
+
+        LeftHoldObjectScript lhos = null;
 
         Vector3 DefoRotation;
 
@@ -42,6 +44,10 @@ namespace Paon.NPlayer
             Hand = GameObject.Find("RightHand");
             rmip = HandInputProvider.GetComponent<RightHandInputProvider>();
             rhm = Hand.GetComponent<RightHandMove>();
+            lhos =
+                GameObject
+                    .Find("LeftHandTrigger")
+                    .GetComponent<LeftHoldObjectScript>();
         }
 
         void Update()
@@ -81,6 +87,7 @@ namespace Paon.NPlayer
                 Hand.transform.localScale = new Vector3(0.6f, 0.3f, 0.1f);
                 if (oh.NowHoldObject != null)
                 {
+                    //物を離したときの処理
                     if (
                         oh.NowHoldObject.tag == "HoldableTag" ||
                         oh.NowHoldObject.tag == "CrayonTag"
@@ -91,12 +98,13 @@ namespace Paon.NPlayer
                         oh.NowHoldObject.GetComponent<Rigidbody>().useGravity =
                             true;
                     }
-                }
-                else if (oh.NowHoldObject != null)
-                {
-                    if (oh.NowHoldObject.tag == "BorderingHOLDTag")
+                    else if (oh.NowHoldObject.tag == "BorderingHOLDTag")
                     {
-                        Player.GetComponent<Rigidbody>().useGravity = true;
+                        //もう片方が掴んでいなかったら固定解除
+                        if (lhos.lmip.CheckHold() == 0)
+                        {
+                            Player.GetComponent<Rigidbody>().useGravity = true;
+                        }
                         Hand.transform.localPosition = new Vector3(1f, 0, 2.4f);
                     }
                 }
@@ -110,14 +118,6 @@ namespace Paon.NPlayer
                     Player.GetComponent<PlayerMove>().canMove = false;
                     rhm.canMove = false;
                     Hand.transform.position = handBase;
-
-                    //腕を下げるとプレイヤーが上がるようにする
-                    // Player.transform.position =
-                    //     new Vector3((handBase.x - Hand.transform.position.x) +
-                    //         bodyBase.x,
-                    //         (handBase.y - Hand.transform.position.y) +
-                    //         bodyBase.y,
-                    //         bodyBase.z);
                     if (
                         Mathf
                             .Abs(Vector3

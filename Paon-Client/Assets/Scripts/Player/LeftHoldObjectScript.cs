@@ -17,9 +17,11 @@ namespace Paon.NPlayer
 
         GameObject Player;
 
-        LeftHandInputProvider lmip = null;
+        public LeftHandInputProvider lmip = null;
 
         LeftHandMove lhm = null;
+
+        RightHoldObjectScript rhos = null;
 
         Vector3 DefoRotation;
 
@@ -42,6 +44,10 @@ namespace Paon.NPlayer
             Hand = GameObject.Find("LeftHand");
             lmip = HandInputProvider.GetComponent<LeftHandInputProvider>();
             lhm = Hand.GetComponent<LeftHandMove>();
+            rhos =
+                GameObject
+                    .Find("RightHandTrigger")
+                    .GetComponent<RightHoldObjectScript>();
         }
 
         void Update()
@@ -81,6 +87,7 @@ namespace Paon.NPlayer
                 Hand.transform.localScale = new Vector3(0.6f, 0.3f, 0.1f);
                 if (oh.NowHoldObject != null)
                 {
+                    //物を離したときの処理
                     if (
                         oh.NowHoldObject.tag == "HoldableTag" ||
                         oh.NowHoldObject.tag == "CrayonTag"
@@ -91,13 +98,15 @@ namespace Paon.NPlayer
                         oh.NowHoldObject.GetComponent<Rigidbody>().useGravity =
                             true;
                     }
-                }
-                else if (oh.NowHoldObject != null)
-                {
-                    if (oh.NowHoldObject.tag == "BorderingHOLDTag")
+                    else if (oh.NowHoldObject.tag == "BorderingHOLDTag")
                     {
-                        Player.GetComponent<Rigidbody>().useGravity = true;
-                        Hand.transform.localPosition = new Vector3(1f, 0, 2.4f);
+                        //もう片方が掴んでいなかったら固定解除
+                        if (rhos.rmip.CheckHold() == 0)
+                        {
+                            Player.GetComponent<Rigidbody>().useGravity = true;
+                        }
+                        Hand.transform.localPosition =
+                            new Vector3(-1f, 0, 2.4f);
                     }
                 }
                 oh.UnHold();
@@ -107,17 +116,12 @@ namespace Paon.NPlayer
             {
                 if (oh.NowHoldObject.tag == "BorderingHOLDTag")
                 {
+                    //手動かなくする
                     Player.GetComponent<PlayerMove>().canMove = false;
                     lhm.canMove = false;
-                    Hand.transform.position = handBase;
 
-                    //腕を下げるとプレイヤーが上がるようにする
-                    // Player.transform.position =
-                    //     new Vector3((handBase.x - Hand.transform.position.x) +
-                    //         bodyBase.x,
-                    //         (handBase.y - Hand.transform.position.y) +
-                    //         bodyBase.y,
-                    //         bodyBase.z);
+                    //手の位置を固定
+                    Hand.transform.position = handBase;
                     if (
                         Mathf
                             .Abs(Vector3
