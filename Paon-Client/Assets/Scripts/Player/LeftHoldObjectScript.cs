@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Paon.NInput;
 using UnityEngine;
+using UnityFx.Outline;
 
 //handの子オブジェクトのHandTriggerにアタッチする
 namespace Paon.NPlayer
@@ -178,6 +179,15 @@ namespace Paon.NPlayer
             }
             if (dis > 0.5)
             {
+                if (NearObject != null)
+                {
+                    if (NearObject.GetComponent<OutlineBehaviour>())
+                    {
+                        NearObject
+                            .GetComponent<OutlineBehaviour>()
+                            .OutlineWidth = 1;
+                    }
+                }
                 NearObject = null;
             }
             tmp = lmip.GetInput();
@@ -191,7 +201,26 @@ namespace Paon.NPlayer
                 other.CompareTag("BorderingHOLDTag")
             )
             {
+                if (NearObject != other.gameObject)
+                {
+                    if (NearObject != null)
+                    {
+                        if (NearObject.GetComponent<OutlineBehaviour>())
+                        {
+                            NearObject
+                                .GetComponent<OutlineBehaviour>()
+                                .OutlineWidth = 1;
+                        }
+                    }
+                }
                 NearObject = other.gameObject;
+                if (NearObject.GetComponent<OutlineBehaviour>())
+                {
+                    NearObject.GetComponent<OutlineBehaviour>().OutlineWidth =
+                        4;
+                    NearObject.GetComponent<OutlineBehaviour>().OutlineColor =
+                        Color.blue;
+                }
             }
         }
     }
