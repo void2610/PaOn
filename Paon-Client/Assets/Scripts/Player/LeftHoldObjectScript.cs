@@ -67,28 +67,38 @@ namespace Paon.NPlayer
                         handBase = Hand.transform.position;
                         bodyBase = Player.transform.position;
                     }
+                    else if (oh.NowHoldObject.tag == "CrayonTag")
+                    {
+                        oh.NowHoldObject.GetComponent<Rigidbody>().constraints =
+                            RigidbodyConstraints.FreezeRotation;
+                        oh.NowHoldObject.GetComponent<Rigidbody>().useGravity =
+                            false;
+                    }
                 }
             }
             else
             {
                 Hand.transform.localScale = new Vector3(0.6f, 0.3f, 0.1f);
-                if (
-                    oh.NowHoldObject != null &&
-                    oh.NowHoldObject.tag == "HoldableTag"
-                )
+                if (oh.NowHoldObject != null)
                 {
-                    oh.NowHoldObject.GetComponent<Rigidbody>().constraints =
-                        RigidbodyConstraints.None;
-                    oh.NowHoldObject.GetComponent<Rigidbody>().useGravity =
-                        true;
+                    if (
+                        oh.NowHoldObject.tag == "HoldableTag" ||
+                        oh.NowHoldObject.tag == "CrayonTag"
+                    )
+                    {
+                        oh.NowHoldObject.GetComponent<Rigidbody>().constraints =
+                            RigidbodyConstraints.None;
+                        oh.NowHoldObject.GetComponent<Rigidbody>().useGravity =
+                            true;
+                    }
                 }
-                else if (
-                    oh.NowHoldObject != null &&
-                    oh.NowHoldObject.tag == "BorderingHOLDTag"
-                )
+                else if (oh.NowHoldObject != null)
                 {
-                    Player.GetComponent<Rigidbody>().useGravity = true;
-                    Hand.transform.localPosition = new Vector3(-1f, 0, 2.4f);
+                    if (oh.NowHoldObject.tag == "BorderingHOLDTag")
+                    {
+                        Player.GetComponent<Rigidbody>().useGravity = true;
+                        Hand.transform.localPosition = new Vector3(1f, 0, 2.4f);
+                    }
                 }
                 oh.UnHold();
             }
@@ -164,6 +174,11 @@ namespace Paon.NPlayer
                             Hand.transform.eulerAngles.y - DefoRotation.y,
                             DefoRotation.z);
                 }
+                else if (oh.NowHoldObject.tag == "CrayonTag")
+                {
+                    oh.NowHoldObject.transform.position =
+                        this.transform.position;
+                }
             }
             else
             {
@@ -191,6 +206,17 @@ namespace Paon.NPlayer
                 NearObject = null;
             }
             tmp = lmip.GetInput();
+
+            if (
+                GameObject
+                    .Find("LeftHandTrigger")
+                    .GetComponent<LeftHoldObjectScript>()
+                    .oh
+                    .Holding
+            )
+            {
+                Player.GetComponent<PlayerMove>().canMove = false;
+            }
         }
 
         //接触したオブジェクトが引数otherとして渡される
@@ -198,7 +224,8 @@ namespace Paon.NPlayer
         {
             if (
                 other.CompareTag("HoldableTag") ||
-                other.CompareTag("BorderingHOLDTag")
+                other.CompareTag("BorderingHOLDTag") ||
+                other.CompareTag("CrayonTag")
             )
             {
                 if (NearObject != other.gameObject)

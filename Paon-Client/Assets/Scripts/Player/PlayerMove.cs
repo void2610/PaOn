@@ -26,24 +26,23 @@ namespace Paon.NPlayer
 
         public bool canMove = true;
 
-        void Awake()
-        {
-            _channel =
-                new Channel("106.165.109.38", 5032, ChannelCredentials.Insecure);
-            _service = MagicOnionClient.Create<IMyFirstService>(_channel);
-        }
-
+        // void Awake()
+        // {
+        //     _channel =
+        //         new Channel("106.165.109.38", 5032, ChannelCredentials.Insecure);
+        //     _service = MagicOnionClient.Create<IMyFirstService>(_channel);
+        // }
         async void Start()
         {
-            var x = Random.Range(0, 1000);
-            var y = Random.Range(0, 1000);
-            var result = await _service.SumAsync(x, y);
-            Debug.Log($"Result: {result}");
+            //var x = Random.Range(0, 1000);
+            //var y = Random.Range(0, 1000);
+            //var result = await _service.SumAsync(x, y);
+            //Debug.Log($"Result: {result}");
             inputProvider = es.GetComponent<MoveInputProvider>();
             player = this.gameObject;
-            var id = Random.Range(0, 10000);
-            _hub = new GamingHubClient();
-            await _hub.ConnectAsync(_channel, "Room", $"Player-{id}");
+            //var id = Random.Range(0, 10000);
+            //_hub = new GamingHubClient();
+            //await _hub.ConnectAsync(_channel, "Room", $"Player-{id}");
         }
 
         async void Update()
@@ -57,26 +56,25 @@ namespace Paon.NPlayer
             else if (inputProvider.GetInput() == "up")
             {
                 player.transform.Translate(Vector3.forward * 0.1f);
-                await _hub.MoveAsync(player.transform.position, new Vector3());
+                //await _hub.MoveAsync(player.transform.position, new Vector3());
             }
             else if (inputProvider.GetInput() == "down")
             {
                 player.transform.Translate(Vector3.back * 0.03f);
-                await _hub.MoveAsync(player.transform.position, new Vector3());
+                //await _hub.MoveAsync(player.transform.position, new Vector3());
             }
             else if (inputProvider.GetInput() == "left")
             {
                 player.transform.Rotate(0, -0.8f, 0);
-                await _hub
-                    .MoveAsync(new Vector3(), player.transform.eulerAngles);
+                //await _hub
+                //    .MoveAsync(new Vector3(), player.transform.eulerAngles);
             }
             else if (inputProvider.GetInput() == "right")
             {
                 player.transform.Rotate(0, 0.8f, 0);
-                await _hub
-                    .MoveAsync(new Vector3(), player.transform.eulerAngles);
+                // await _hub
+                //     .MoveAsync(new Vector3(), player.transform.eulerAngles);
             }
-            Debug.Log(inputProvider.GetInput());
         }
 
         async void OnDestroy()
