@@ -55,7 +55,6 @@ namespace Paon.NPlayer
             coords = lmip.GetPosition();
             if (lmip.CheckHold() == 1)
             {
-                Hand.transform.localScale = new Vector3(0.3f, 0.15f, 0.1f);
                 if (NearObject != null && oh.NowHoldObject == null)
                 {
                     oh.HoldObject (NearObject);
@@ -84,7 +83,6 @@ namespace Paon.NPlayer
             }
             else
             {
-                Hand.transform.localScale = new Vector3(0.6f, 0.3f, 0.1f);
                 if (oh.NowHoldObject != null)
                 {
                     //物を離したときの処理
