@@ -27,7 +27,7 @@ namespace Paon.NPlayer
 
         float dis = 999;
 
-        Vector2 handBase;
+        Vector3 handBase;
 
         Vector3 bodyBase;
 
@@ -55,6 +55,7 @@ namespace Paon.NPlayer
             coords = lmip.GetPosition();
             if (lmip.CheckHold() == 1)
             {
+                //新しく物をつかんだときの処理
                 if (NearObject != null && oh.NowHoldObject == null)
                 {
                     oh.HoldObject (NearObject);

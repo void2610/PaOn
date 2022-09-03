@@ -27,7 +27,7 @@ namespace Paon.NPlayer
 
         float dis = 999;
 
-        Vector2 handBase;
+        Vector3 handBase;
 
         Vector3 bodyBase;
 
