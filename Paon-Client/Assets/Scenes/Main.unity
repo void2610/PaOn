@@ -2453,8 +2453,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.045892466, y: 0.037339695, z: 0.004013945}
-  m_Center: {x: -0.009482713, y: -0.003953591, z: 0.000057006917}
+  m_Size: {x: 0.045892466, y: 0.038656052, z: 0.004013945}
+  m_Center: {x: -0.0094827125, y: -0.024124198, z: 0.000057006022}
 --- !u!114 &882751127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6196,14 +6196,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132148828507074}
-  m_LocalRotation: {x: 0, y: -0, z: 0.7071068, w: -0.7071068}
-  m_LocalPosition: {x: 2, y: 0, z: 3.4}
+  m_LocalRotation: {x: 0.7071068, y: -0.7071068, z: 0, w: 0}
+  m_LocalPosition: {x: 1, y: 0, z: 3.4}
   m_LocalScale: {x: 10.886384, y: 21.772764, z: 21.77276}
   m_Children:
   - {fileID: 8314665998576495068}
   m_Father: {fileID: 8314665998899548900}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 270}
 --- !u!4 &543450653118553415
 Transform:
   m_ObjectHideFlags: 0
@@ -6428,7 +6428,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8657442495611329697, guid: a96fb94354b0c0f418a6be0ae3134aed, type: 3}
+  - {fileID: 2086559777365399121, guid: a96fb94354b0c0f418a6be0ae3134aed, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6469,7 +6469,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8122850955595500952, guid: 9bb9821e530e50a418702d45e22b8da7, type: 3}
+  - {fileID: 5874639415424179301, guid: 9bb9821e530e50a418702d45e22b8da7, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7528,7 +7528,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8314665998576495069}
   m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: -0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0.011941888}
+  m_LocalPosition: {x: -0.0132, y: -0.0264, z: 0.0119}
   m_LocalScale: {x: 0.045928955, y: 0.045928933, z: 0.027557377}
   m_Children: []
   m_Father: {fileID: 543450652817281400}
@@ -7622,7 +7622,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OpenHand: {fileID: -5495902117074765545, guid: a96fb94354b0c0f418a6be0ae3134aed,
     type: 3}
-  CloseHand: {fileID: 4493585093827132993, guid: ec15dd3ca6c26c1499f7b957eb19770e,
+  CloseHand: {fileID: -5495902117074765545, guid: ec15dd3ca6c26c1499f7b957eb19770e,
     type: 3}
   NearObject: {fileID: 0}
   rmip: {fileID: 0}
