@@ -9,6 +9,10 @@ namespace Paon.NPlayer
 {
     public class LeftHoldObjectScript : MonoBehaviour
     {
+        public Mesh OpenHand;
+
+        public Mesh CloseHand;
+
         public GameObject NearObject;
 
         GameObject Hand;
@@ -55,6 +59,8 @@ namespace Paon.NPlayer
             coords = lmip.GetPosition();
             if (lmip.CheckHold() == 1)
             {
+                Hand.GetComponent<MeshFilter>().mesh = CloseHand;
+
                 //新しく物をつかんだときの処理
                 if (NearObject != null && oh.NowHoldObject == null)
                 {
@@ -84,6 +90,7 @@ namespace Paon.NPlayer
             }
             else
             {
+                Hand.GetComponent<MeshFilter>().mesh = OpenHand;
                 if (oh.NowHoldObject != null)
                 {
                     //物を離したときの処理
