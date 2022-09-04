@@ -105,7 +105,7 @@ namespace Paon.NPlayer
                             Player.GetComponent<Rigidbody>().useGravity = true;
                         }
                         Hand.transform.localPosition =
-                            new Vector3(-1f, 0, 2.4f);
+                            new Vector3(-2f, 0, 3.4f);
                     }
                 }
                 oh.UnHold();

@@ -65,22 +65,22 @@ namespace Paon.NPlayer
                 //         hand.transform.localPosition.z);
                 if (inputProvider.GetInput() == "up")
                 {
-                    hand.transform.Translate(Vector3.up * 0.01f);
+                    hand.transform.Translate(Vector3.left * 0.01f);
                     //await _hub.MoveAsync(player.transform.position, new Vector3());
                 }
                 else if (inputProvider.GetInput() == "down")
                 {
-                    hand.transform.Translate(Vector3.down * 0.01f);
+                    hand.transform.Translate(Vector3.right * 0.01f);
                     //await _hub.MoveAsync(player.transform.position, new Vector3());
                 }
                 else if (inputProvider.GetInput() == "left")
                 {
-                    hand.transform.Translate(Vector3.left * 0.01f);
+                    hand.transform.Translate(Vector3.down * 0.01f);
                     //await _hub.MoveAsync(player.transform.position, new Vector3());
                 }
                 else if (inputProvider.GetInput() == "right")
                 {
-                    hand.transform.Translate(Vector3.right * 0.01f);
+                    hand.transform.Translate(Vector3.up * 0.01f);
                     //await _hub.MoveAsync(player.transform.position, new Vector3());
                 }
             }
