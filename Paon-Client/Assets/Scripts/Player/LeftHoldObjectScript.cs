@@ -128,6 +128,8 @@ namespace Paon.NPlayer
 
                     //手の位置を固定
                     Hand.transform.position = handBase;
+
+                    //この条件式、実際に手で操作できるようになったらいらない
                     if (
                         Mathf
                             .Abs(Vector3
@@ -136,6 +138,7 @@ namespace Paon.NPlayer
                         0.6f
                     )
                     {
+                        //手を動かして体移動
                         if (lmip.GetInput() == "up")
                         {
                             Player.transform.Translate(Vector3.up * 0.03f);

@@ -11,20 +11,42 @@ public class PlayerCameraScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(this.gameObject.transform.eulerAngles);
-        if (this.gameObject.transform.position.y > 0.75f)
+        float y = this.gameObject.transform.position.y;
+        Vector3 rot;
+        if (y > 0.5f && y < 1.5f)
         {
-            this.gameObject.transform.eulerAngles =
-                new Vector3(-30,
+            //登り始め
+            rot =
+                new Vector3(-30 * (y - 0.5f),
+                    this.gameObject.transform.eulerAngles.y,
+                    this.gameObject.transform.eulerAngles.z);
+        }
+        else if (y > 1.5f && y < 4)
+        {
+            rot =
+                new Vector3(-45,
+                    this.gameObject.transform.eulerAngles.y,
+                    this.gameObject.transform.eulerAngles.z);
+        }
+        else if (y > 4 && y < 5)
+        {
+            rot =
+                new Vector3(10 * (y - 4),
+                    this.gameObject.transform.eulerAngles.y,
+                    this.gameObject.transform.eulerAngles.z);
+        }
+        else if (y > 5)
+        {
+            rot =
+                new Vector3(50,
                     this.gameObject.transform.eulerAngles.y,
                     this.gameObject.transform.eulerAngles.z);
         }
         else
         {
-            this.gameObject.transform.eulerAngles =
-                new Vector3(0,
-                    this.gameObject.transform.eulerAngles.y,
-                    this.gameObject.transform.eulerAngles.z);
+            rot = new Vector3(0, y, this.gameObject.transform.eulerAngles.z);
         }
+
+        this.gameObject.transform.eulerAngles = rot;
     }
 }
