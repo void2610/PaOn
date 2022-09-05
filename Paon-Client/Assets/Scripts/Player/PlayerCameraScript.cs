@@ -44,7 +44,10 @@ public class PlayerCameraScript : MonoBehaviour
         }
         else
         {
-            rot = new Vector3(0, y, this.gameObject.transform.eulerAngles.z);
+            rot =
+                new Vector3(0,
+                    this.gameObject.transform.eulerAngles.y,
+                    this.gameObject.transform.eulerAngles.z);
         }
 
         this.gameObject.transform.eulerAngles = rot;
