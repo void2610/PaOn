@@ -39,6 +39,7 @@ namespace Paon.NNaturePlay
                         Time.time - endTime > cooldown
                     )
                     {
+                        Debug.Log("Save");
                         Vector3 rot =
                             new Vector3(Canvas.transform.eulerAngles.x,
                                 Canvas.transform.eulerAngles.y - 90,
