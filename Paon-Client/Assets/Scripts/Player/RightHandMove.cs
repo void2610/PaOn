@@ -75,12 +75,12 @@ namespace Paon.NPlayer
                 }
                 else if (inputProvider.GetInput() == "left")
                 {
-                    hand.transform.Translate(Vector3.down * 0.01f);
+                    hand.transform.Translate(Vector3.up * 0.01f);
                     //await _hub.MoveAsync(player.transform.position, new Vector3());
                 }
                 else if (inputProvider.GetInput() == "right")
                 {
-                    hand.transform.Translate(Vector3.up * 0.01f);
+                    hand.transform.Translate(Vector3.down * 0.01f);
                     //await _hub.MoveAsync(player.transform.position, new Vector3());
                 }
             }

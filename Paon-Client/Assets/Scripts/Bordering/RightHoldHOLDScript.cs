@@ -7,7 +7,7 @@ using UnityFx.Outline;
 
 namespace Paon.NBordering
 {
-    public class LeftHoldHOLDScript : MonoBehaviour
+    public class RightHoldHOLDScript : MonoBehaviour
     {
         public GameObject NearObject;
 
@@ -15,15 +15,15 @@ namespace Paon.NBordering
 
         GameObject Player;
 
-        public LeftHandInputProvider lmip = null;
+        public RightHandInputProvider lmip = null;
 
-        RightHoldObjectScript rhos = null;
+        LeftHoldObjectScript lhos = null;
 
         Vector3 bodyBase;
 
         public ObjectHolder oh = new ObjectHolder();
 
-        LeftHandMove lhm = null;
+        RightHandMove rhm = null;
 
         string tmp = "none";
 
@@ -32,16 +32,16 @@ namespace Paon.NBordering
         void Start()
         {
             Player = GameObject.Find("PlayerBody");
-            Hand = GameObject.Find("LeftHand");
+            Hand = GameObject.Find("RightHand");
             lmip =
                 GameObject
-                    .Find("LeftHandInputProvider")
-                    .GetComponent<LeftHandInputProvider>();
-            lhm = Hand.GetComponent<LeftHandMove>();
-            rhos =
+                    .Find("RightHandInputProvider")
+                    .GetComponent<RightHandInputProvider>();
+            rhm = Hand.GetComponent<RightHandMove>();
+            lhos =
                 GameObject
-                    .Find("RightHandTrigger")
-                    .GetComponent<RightHoldObjectScript>();
+                    .Find("LeftHandTrigger")
+                    .GetComponent<LeftHoldObjectScript>();
         }
 
         // Update is called once per frame
@@ -69,7 +69,7 @@ namespace Paon.NBordering
                     if (oh.NowHoldObject.tag == "BorderingHOLDTag")
                     {
                         //もう片方が掴んでいなかったら固定解除
-                        if (rhos.rmip.CheckHold() == 0)
+                        if (lhos.lmip.CheckHold() == 0)
                         {
                             Player.GetComponent<Rigidbody>().useGravity = true;
                         }
@@ -87,7 +87,7 @@ namespace Paon.NBordering
             {
                 //手動かなくする
                 Player.GetComponent<PlayerMove>().canMove = false;
-                lhm.canMove = false;
+                rhm.canMove = false;
                 Hand.transform.position = oh.NowHoldObject.transform.position;
 
                 //この条件式、実際に手で操作できるようになったらいらない
@@ -141,7 +141,7 @@ namespace Paon.NBordering
             {
                 //掴んで無かったら手動かなくしない
                 Player.GetComponent<PlayerMove>().canMove = true;
-                lhm.canMove = true;
+                rhm.canMove = true;
             }
 
             //近くの物との距離を計算
@@ -178,7 +178,7 @@ namespace Paon.NBordering
                     NearObject.GetComponent<OutlineBehaviour>().OutlineWidth =
                         4;
                     NearObject.GetComponent<OutlineBehaviour>().OutlineColor =
-                        Color.blue;
+                        Color.red;
                 }
             }
         }
