@@ -105,11 +105,6 @@ namespace Paon.NPlayer
                         this.transform.position;
                 }
             }
-            else
-            {
-                Player.GetComponent<PlayerMove>().canMove = true;
-                rhm.canMove = true;
-            }
             if (NearObject != null)
             {
                 dis =

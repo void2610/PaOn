@@ -47,33 +47,36 @@ namespace Paon.NPlayer
 
         async void Update()
         {
-            if (inputProvider.GetInput() == "space")
+            if (canMove)
             {
-                player
-                    .GetComponent<Rigidbody>()
-                    .AddForce(Vector3.up * 0.25f, ForceMode.Impulse);
-            }
-            else if (inputProvider.GetInput() == "up")
-            {
-                player.transform.Translate(Vector3.forward * 0.1f);
-                //await _hub.MoveAsync(player.transform.position, new Vector3());
-            }
-            else if (inputProvider.GetInput() == "down")
-            {
-                player.transform.Translate(Vector3.back * 0.03f);
-                //await _hub.MoveAsync(player.transform.position, new Vector3());
-            }
-            else if (inputProvider.GetInput() == "left")
-            {
-                player.transform.Rotate(0, -0.8f, 0);
-                //await _hub
-                //    .MoveAsync(new Vector3(), player.transform.eulerAngles);
-            }
-            else if (inputProvider.GetInput() == "right")
-            {
-                player.transform.Rotate(0, 0.8f, 0);
-                // await _hub
-                //     .MoveAsync(new Vector3(), player.transform.eulerAngles);
+                if (inputProvider.GetInput() == "space")
+                {
+                    player
+                        .GetComponent<Rigidbody>()
+                        .AddForce(Vector3.up * 0.25f, ForceMode.Impulse);
+                }
+                else if (inputProvider.GetInput() == "up")
+                {
+                    player.transform.Translate(Vector3.forward * 0.1f);
+                    //await _hub.MoveAsync(player.transform.position, new Vector3());
+                }
+                else if (inputProvider.GetInput() == "down")
+                {
+                    player.transform.Translate(Vector3.back * 0.03f);
+                    //await _hub.MoveAsync(player.transform.position, new Vector3());
+                }
+                else if (inputProvider.GetInput() == "left")
+                {
+                    player.transform.Rotate(0, -0.8f, 0);
+                    //await _hub
+                    //    .MoveAsync(new Vector3(), player.transform.eulerAngles);
+                }
+                else if (inputProvider.GetInput() == "right")
+                {
+                    player.transform.Rotate(0, 0.8f, 0);
+                    // await _hub
+                    //     .MoveAsync(new Vector3(), player.transform.eulerAngles);
+                }
             }
         }
 
