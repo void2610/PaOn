@@ -11,13 +11,17 @@ namespace Paon.NUI
 
         public bool counting = false;
 
-        void CountStart()
+        public bool display = false;
+
+        float cooldown = Mathf.Infinity;
+
+        public void CountStart()
         {
             time = 0.0f;
             counting = true;
         }
 
-        void CountStop()
+        public void CountStop()
         {
             counting = false;
         }
@@ -32,8 +36,18 @@ namespace Paon.NUI
             if (counting)
             {
                 time += Time.deltaTime;
+                cooldown = Time.time;
             }
-            if (time > 0)
+            if (Time.time - cooldown < 30.0f && Time.time - cooldown >= 0.0f)
+            {
+                display = true;
+            }
+            else
+            {
+                display = false;
+            }
+
+            if (display)
             {
                 this.gameObject.GetComponent<Text>().text = time.ToString("F2");
             }

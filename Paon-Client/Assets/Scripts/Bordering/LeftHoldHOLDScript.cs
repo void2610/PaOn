@@ -11,19 +11,21 @@ namespace Paon.NBordering
     {
         public GameObject NearObject;
 
+        public ObjectHolder oh = new ObjectHolder();
+
+        LeftHandInputProvider lmip = null;
+
         GameObject Hand;
 
         GameObject Player;
-
-        public LeftHandInputProvider lmip = null;
 
         RightHoldObjectScript rhos = null;
 
         Vector3 bodyBase;
 
-        public ObjectHolder oh = new ObjectHolder();
-
         LeftHandMove lhm = null;
+
+        BorderingTimerScript bts = null;
 
         string tmp = "none";
 
@@ -42,6 +44,10 @@ namespace Paon.NBordering
                 GameObject
                     .Find("RightHandTrigger")
                     .GetComponent<RightHoldObjectScript>();
+            bts =
+                GameObject
+                    .Find("BorderingManager")
+                    .GetComponent<BorderingTimerScript>();
         }
 
         // Update is called once per frame
@@ -56,6 +62,7 @@ namespace Paon.NBordering
                     oh.HoldObject (NearObject);
                     if (oh.NowHoldObject.tag == "BorderingHOLDTag")
                     {
+                        bts.StartTimer();
                         Player.GetComponent<Rigidbody>().useGravity = false;
                         bodyBase = Player.transform.position;
                     }
