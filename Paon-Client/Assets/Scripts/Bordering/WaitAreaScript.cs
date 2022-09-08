@@ -27,7 +27,6 @@ namespace Paon.NBordering
         // Update is called once per frame
         void Update()
         {
-            TeleportPlayer();
         }
 
         void OnTriggerStay(Collider other)

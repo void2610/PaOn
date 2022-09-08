@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Paon.NPlayer;
 using UnityEngine;
 
 namespace Paon.NBordering
@@ -24,7 +25,23 @@ namespace Paon.NBordering
         {
             if (NowPeople < MaxPeople)
             {
-                WaitAreas[0].GetComponent<WaitAreaScript>().TeleportPlayer();
+                if (
+                    WaitAreas[0].GetComponent<WaitAreaScript>().ReadyPlayer !=
+                    null
+                )
+                {
+                    WaitAreas[0]
+                        .GetComponent<WaitAreaScript>()
+                        .ReadyPlayer
+                        .GetComponent<PlayerMove>()
+                        ._Player
+                        .playingBordering = true;
+
+                    WaitAreas[0]
+                        .GetComponent<WaitAreaScript>()
+                        .TeleportPlayer();
+                    NowPeople++;
+                }
             }
             if (WaitAreas[1].GetComponent<WaitAreaScript>().ReadyPlayer != null)
             {

@@ -3,41 +3,44 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TimerScript : MonoBehaviour
+namespace Paon.NUI
 {
-    float time = 0.0f;
-
-    public bool counting = false;
-
-    void CountStart()
+    public class TimerScript : MonoBehaviour
     {
-        time = 0.0f;
-        counting = true;
-    }
+        float time = 0.0f;
 
-    void CountStop()
-    {
-        counting = false;
-    }
+        public bool counting = false;
 
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (counting)
+        void CountStart()
         {
-            time += Time.deltaTime;
+            time = 0.0f;
+            counting = true;
         }
-        if (time > 0)
+
+        void CountStop()
         {
-            this.gameObject.GetComponent<Text>().text = time.ToString("F2");
+            counting = false;
         }
-        else
+
+        void Start()
         {
-            this.gameObject.GetComponent<Text>().text = "";
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            if (counting)
+            {
+                time += Time.deltaTime;
+            }
+            if (time > 0)
+            {
+                this.gameObject.GetComponent<Text>().text = time.ToString("F2");
+            }
+            else
+            {
+                this.gameObject.GetComponent<Text>().text = "";
+            }
         }
     }
 }

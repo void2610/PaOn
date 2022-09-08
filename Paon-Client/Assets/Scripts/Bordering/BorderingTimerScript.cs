@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using Paon.NUI;
 using UnityEngine;
 
-public class BorderingTimerScript : MonoBehaviour
+namespace Paon.NBordering
 {
-    // Start is called before the first frame update
-    void Start()
+    public class BorderingTimerScript : MonoBehaviour
     {
-        
-    }
+        TimerScript Timer;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        void Start()
+        {
+            Timer = GameObject.Find("Timer").GetComponent<TimerScript>();
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+        }
     }
 }

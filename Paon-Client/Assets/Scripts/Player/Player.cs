@@ -4,8 +4,22 @@ using UnityEngine;
 
 namespace Paon.NPlayer
 {
-  //こんなかにサーバー側と同じplayerクラス書いといて　-->ハルマン
-  public class Player
-  {
-  }
+    public class Player
+    {
+        public int id;
+
+        public string name;
+
+        public float timer;
+
+        public bool playingBordering;
+
+        public Player(string n)
+        {
+            id = 0;
+            name = n;
+            timer = 0.0f;
+            playingBordering = false;
+        }
+    }
 }

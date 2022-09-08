@@ -26,6 +26,10 @@ namespace Paon.NPlayer
 
         public bool canMove = true;
 
+        public Player _Player = new Player("TestPlayer");
+
+        public bool p;
+
         // void Awake()
         // {
         //     _channel =
@@ -47,6 +51,7 @@ namespace Paon.NPlayer
 
         async void Update()
         {
+            p = _Player.playingBordering;
             if (canMove)
             {
                 if (inputProvider.GetInput() == "space")

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Paon.NPlayer;
 using UnityEngine;
 
 namespace Paon.NBordering
@@ -22,6 +23,11 @@ namespace Paon.NBordering
         {
             if (other.CompareTag("Player"))
             {
+                other
+                    .gameObject
+                    .GetComponent<PlayerMove>()
+                    ._Player
+                    .playingBordering = false;
                 other.gameObject.transform.position =
                     NextPosition.transform.position;
             }
