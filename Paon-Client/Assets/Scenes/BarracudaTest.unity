@@ -123,6 +123,73 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &30565850
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 30565853}
+  - component: {fileID: 30565852}
+  - component: {fileID: 30565851}
+  m_Layer: 0
+  m_Name: Visuallizer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &30565851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30565850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f33bd1785758424982395ff1854cf9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  webCamName: 
+  webCamResolution: {x: 1920, y: 1080}
+--- !u!114 &30565852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30565850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b97484b7a5d5b45b89d671176baf66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 5826156977636904249}
+  webCamInput: {fileID: 30565851}
+  image: {fileID: 1459388743}
+  poseShader: {fileID: 4800000, guid: abdd03aee6e27814d94ebd22c1ea23e0, type: 3}
+  humanExistThreshold: 0.5
+  handShader: {fileID: 4800000, guid: d5a9b73d8bc27a546bf451b1f892f8bc, type: 3}
+  handScoreThreshold: 0.5
+  holisticResource: {fileID: 11400000, guid: 1b59502ed00788f4f85d7d4d86ed7d35, type: 2}
+  holisticInferenceType: 2
+--- !u!4 &30565853
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30565850}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &564516384
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,70 +272,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &884167901
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 884167904}
-  - component: {fileID: 884167902}
-  - component: {fileID: 884167903}
-  m_Layer: 0
-  m_Name: visu
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &884167902
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 884167901}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f33bd1785758424982395ff1854cf9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  device: 
-  webcamResolution: {x: 1920, y: 1080}
---- !u!114 &884167903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 884167901}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c63e5c61e52fa7943a33d6f9d6371555, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camera: {fileID: 5826156977636904249}
-  _webcam: {fileID: 884167902}
-  _image: {fileID: 1459388743}
-  _shader: {fileID: 4800000, guid: 7f890d9bc8bb3e6429be860a5d37849a, type: 3}
-  handScoreThreshold: 0.5
-  resource: {fileID: 11400000, guid: 1cc1994120b730042ac2b3cd6ed1f8aa, type: 2}
---- !u!4 &884167904
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 884167901}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1038930222
 GameObject:
@@ -506,7 +509,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2696194598298940927}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 41a6896ae714b8545b87adb3a6a6ca62, type: 3}
+  m_VideoClip: {fileID: 0}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -762,16 +765,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 8090612475495870911}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28bf838a448350441b761fe1053a9795, type: 3}
+  m_Script: {fileID: 11500000, guid: 7146d6c674637614b9e96193b2264668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   webcamDims: {x: 1280, y: 720}
   webcamFps: 60
   videoScreen: {fileID: 2696194598298940926}
-  posenetShader: {fileID: 7200000, guid: 3e29845916d688145a452bafe34fd127, type: 3}
+  posenetShader: {fileID: 7200000, guid: 1abeaaab70029d949a209f271799d223, type: 3}
   useGPU: 0
   imageDims: {x: 256, y: 256}
-  _model: {fileID: 5022602860645237092, guid: fa0f53990c303eb4ca3a1e54a9d8de80, type: 3}
+  _model: {fileID: 5022602860645237092, guid: f970554d2a275f846801079267b90e94, type: 3}
   _workerType: 32768
   scoreThreshold: 0.25
   nmsRadius: 100

@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using MediaPipe.HandPose;
-// using OpenPose;
-// using OpenPose.Example;
+using MediaPipe.Holistic;
 using UnityEngine;
 
 namespace Paon.NInput
@@ -25,7 +23,7 @@ namespace Paon.NInput
 
         // private OPDatum datum;
         // public OpenPoseUserScript op;
-        private HandVisualizer _handVisualizer;
+        private Visualizer _handVisuallizer;
 
         public enum KeyPointType : byte
         {
@@ -96,7 +94,7 @@ namespace Paon.NInput
         {
             // op = GameObject.Find("OpenPose").GetComponent<OpenPoseUserScript>();
             _PoseEstimate = PoseEstimator.GetComponent<PoseEstimate>();
-            _handVisualizer = HandEstimatior.GetComponent<HandVisualizer>();
+            _handVisuallizer = HandEstimatior.GetComponent<Visualizer>();
         }
 
         void LateUpdate()
@@ -117,7 +115,8 @@ namespace Paon.NInput
                 cnt++;
             }
 
-            Vector3[] pos = _handVisualizer.GetKey();
+            // Vector3[] pos = _handVisualizer.GetKey();
+            Vector3[] pos = new Vector3[21];
 
             //Debug.Log(pos[20]);
             for (int i = 0; i < left.Length; i++)
