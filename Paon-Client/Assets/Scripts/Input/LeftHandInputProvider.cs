@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using OpenPose;
 using UnityEngine;
 
 namespace Paon.NInput
@@ -14,6 +13,8 @@ namespace Paon.NInput
         private GetKeypoints.Keypoint[] previous;
 
         private GetKeypoints.Keypoint[] hand;
+
+        private GetKeypoints.Keypoint wrist;
 
         string key = "";
 
@@ -70,6 +71,7 @@ namespace Paon.NInput
         void Update()
         {
             previous = gk.left;
+            wrist = gk.leftWrist;
             if (Input.GetKey(KeyCode.W))
             {
                 key = "up";

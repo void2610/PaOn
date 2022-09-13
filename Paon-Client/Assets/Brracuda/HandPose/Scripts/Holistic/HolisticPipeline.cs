@@ -206,9 +206,9 @@ namespace MediaPipe.Holistic
 
             var position = new Vector4[poseVertexCount];
             poseLandmarkWorldBuffer.GetData (position);
-            UnityEngine.Debug.Log("left: " + position[15]);
-            UnityEngine.Debug.Log("right: " + position[16]);
 
+            // UnityEngine.Debug.Log("left: " + position[15]);
+            // UnityEngine.Debug.Log("right: " + position[16]);
             // Inference hands landmark.
             if (
                 inferenceType == HolisticInferenceType.full ||

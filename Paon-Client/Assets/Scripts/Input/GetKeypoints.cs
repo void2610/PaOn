@@ -53,6 +53,10 @@ namespace Paon.NInput
 
         public Keypoint[] left = new Keypoint[21];
 
+        public Keypoint leftWrist = new Keypoint(0, 0, 0, 0);
+
+        public Keypoint rightWrist = new Keypoint(0, 0, 0, 0);
+
         // public void LoadDatum(int length, KeyPointType type)
         // {
         //     int index = 0;
@@ -111,9 +115,13 @@ namespace Paon.NInput
                 pose[cnt] =
                     new Keypoint(key.position.x, key.position.y, 0, key.score);
 
-                // Debug.Log("pose[" + cnt + "]: " + pose[cnt].coords);
+                Debug.Log("pose[" + cnt + "]: " + pose[cnt].coords);
                 cnt++;
             }
+
+            leftWrist = pose[9];
+
+            rightWrist = pose[10];
 
             // Vector3[] pos = _handVisualizer.GetKey();
             Vector3[] pos = new Vector3[21];
