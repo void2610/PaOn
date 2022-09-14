@@ -23,7 +23,7 @@ namespace Paon.NUI
 
         GameObject Back;
 
-        GameObject Option2;
+        GameObject Color;
 
         GameObject Server1;
 
@@ -36,6 +36,9 @@ namespace Paon.NUI
         GameObject Player;
 
         InputField Input;
+
+        [SerializeField]
+        Material Skin;
 
         public void ClickStartButton()
         {
@@ -84,6 +87,17 @@ namespace Paon.NUI
             PlayerPrefs.Save();
         }
 
+        public void ChangeColor()
+        {
+            float red = Random.value;
+            float green = Random.value;
+            float blue = Random.value;
+            Skin.color = new Color(red, green, blue, 1.0f);
+            PlayerPrefs.SetFloat("Color_Red", red);
+            PlayerPrefs.SetFloat("Color_Green", green);
+            PlayerPrefs.SetFloat("Color_Blue", blue);
+        }
+
         void Start()
         {
             S = GameObject.Find("Start");
@@ -96,7 +110,7 @@ namespace Paon.NUI
             NamePlate = GameObject.Find("NamePlate");
             Input = Name.GetComponent<InputField>();
             Input.text = PlayerPrefs.GetString("Name", "なまえをにゅうりょく");
-            Option2 = GameObject.Find("Option2");
+            Color = GameObject.Find("Color");
             Server1 = GameObject.Find("Server1");
             Server2 = GameObject.Find("Server2");
             Player = GameObject.Find("PlayerBody");
@@ -116,7 +130,7 @@ namespace Paon.NUI
                 Name.SetActive(false);
                 NamePlate.SetActive(false);
                 Player.SetActive(false);
-                Option2.SetActive(false);
+                Color.SetActive(false);
 
                 Server1.SetActive(false);
                 Server2.SetActive(false);
@@ -135,7 +149,7 @@ namespace Paon.NUI
                 Name.SetActive(false);
                 NamePlate.SetActive(false);
                 Player.SetActive(false);
-                Option2.SetActive(false);
+                Color.SetActive(false);
 
                 Server1.SetActive(false);
                 Server2.SetActive(false);
@@ -154,7 +168,7 @@ namespace Paon.NUI
                 Name.SetActive(false);
                 NamePlate.SetActive(false);
                 Player.SetActive(false);
-                Option2.SetActive(false);
+                Color.SetActive(false);
 
                 Server1.SetActive(true);
                 Server2.SetActive(true);
@@ -175,7 +189,7 @@ namespace Paon.NUI
                 NamePlate.GetComponent<Text>().text =
                     PlayerPrefs.GetString("Name", "なまえをにゅうりょく");
                 Player.SetActive(true);
-                Option2.SetActive(true);
+                Color.SetActive(true);
 
                 Server1.SetActive(false);
                 Server2.SetActive(false);
