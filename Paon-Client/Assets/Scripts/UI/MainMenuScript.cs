@@ -9,7 +9,7 @@ namespace Paon.NUI
 {
     public class MainMenuScript : MonoBehaviour
     {
-        int status = 0; //0:main menu, 1:stage menu, 2:server menu, 3:option menu
+        int status = 0; //0:main menu, 1:stage menu, 2:server menu, 3:option menu 4:toukei
 
         GameObject S;
 
@@ -33,7 +33,13 @@ namespace Paon.NUI
 
         GameObject NamePlate;
 
+        GameObject Toukei;
+
         GameObject Player;
+
+        GameObject Statistics;
+
+        GameObject Reset;
 
         InputField Input;
 
@@ -58,7 +64,7 @@ namespace Paon.NUI
 
         public void ClickBackButton()
         {
-            if (status == 3)
+            if (status == 3 || status == 4)
                 status = 0;
             else
                 status -= 1;
@@ -74,11 +80,9 @@ namespace Paon.NUI
             SceneManager.LoadScene("Main");
         }
 
-        public void ClickBrightnessButton()
+        public void ClickToukeiButton()
         {
-            RenderSettings.ambientIntensity = 0.5f;
-            DynamicGI.UpdateEnvironment();
-            Debug.Log("aaa");
+            status = 4;
         }
 
         public void ApplyName()
@@ -98,6 +102,12 @@ namespace Paon.NUI
             PlayerPrefs.SetFloat("Color_Blue", blue);
         }
 
+        public void ResetStatistics()
+        {
+            PlayerPrefs.SetInt("GiveItem", 0);
+            PlayerPrefs.SetInt("GiveTurn", 0);
+        }
+
         void Start()
         {
             S = GameObject.Find("Start");
@@ -114,6 +124,9 @@ namespace Paon.NUI
             Server1 = GameObject.Find("Server1");
             Server2 = GameObject.Find("Server2");
             Player = GameObject.Find("PlayerBody");
+            Toukei = GameObject.Find("Toukei");
+            Statistics = GameObject.Find("Statistics");
+            Reset = GameObject.Find("Reset");
         }
 
         void Update()
@@ -135,6 +148,10 @@ namespace Paon.NUI
                 Server1.SetActive(false);
                 Server2.SetActive(false);
 
+                Toukei.SetActive(true);
+                Statistics.SetActive(false);
+                Reset.SetActive(false);
+
                 Back.SetActive(false);
             }
             else if (status == 1)
@@ -154,6 +171,10 @@ namespace Paon.NUI
                 Server1.SetActive(false);
                 Server2.SetActive(false);
 
+                Toukei.SetActive(false);
+                Statistics.SetActive(false);
+                Reset.SetActive(false);
+
                 Back.SetActive(true);
             }
             else if (status == 2)
@@ -172,6 +193,10 @@ namespace Paon.NUI
 
                 Server1.SetActive(true);
                 Server2.SetActive(true);
+
+                Toukei.SetActive(false);
+                Statistics.SetActive(false);
+                Reset.SetActive(false);
 
                 Back.SetActive(true);
             }
@@ -194,7 +219,43 @@ namespace Paon.NUI
                 Server1.SetActive(false);
                 Server2.SetActive(false);
 
+                Toukei.SetActive(false);
+                Statistics.SetActive(false);
+                Reset.SetActive(false);
+
                 Back.SetActive(true);
+            }
+            else if (status == 4)
+            {
+                S.SetActive(false);
+                Option.SetActive(false);
+                Quit.SetActive(false);
+
+                SizenAsobi.SetActive(false);
+                Bordering.SetActive(false);
+
+                Name.SetActive(false);
+                NamePlate.SetActive(false);
+                Player.SetActive(false);
+                Color.SetActive(false);
+                Statistics.SetActive(true);
+
+                Server1.SetActive(false);
+                Server2.SetActive(false);
+
+                Statistics.SetActive(true);
+                Reset.SetActive(true);
+
+                Back.SetActive(true);
+                string a =
+                    "他の子どもに道具を譲った回数: " +
+                    PlayerPrefs.GetInt("GiveItem", 0) +
+                    "回";
+                string b =
+                    "他の子どもに順番を譲った回数: " +
+                    PlayerPrefs.GetInt("GiveTurn", 0) +
+                    "回";
+                Statistics.GetComponent<Text>().text = a + "\n" + b + "\n";
             }
         }
     }
