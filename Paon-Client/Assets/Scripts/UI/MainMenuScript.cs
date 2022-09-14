@@ -11,6 +11,32 @@ namespace Paon.NUI
     {
         int status = 0; //0:main menu, 1:stage menu, 2:server menu, 3:option menu
 
+        GameObject S;
+
+        GameObject Option;
+
+        GameObject Quit;
+
+        GameObject SizenAsobi;
+
+        GameObject Bordering;
+
+        GameObject Back;
+
+        GameObject Option2;
+
+        GameObject Server1;
+
+        GameObject Server2;
+
+        GameObject Name;
+
+        GameObject NamePlate;
+
+        GameObject Player;
+
+        InputField Input;
+
         public void ClickStartButton()
         {
             status = 1;
@@ -52,33 +78,11 @@ namespace Paon.NUI
             Debug.Log("aaa");
         }
 
-        public void ChangeBrightness()
+        public void ApplyName()
         {
-            Debug.Log("現在値：" + BrightnessSlider.value);
-            RenderSettings.ambientIntensity = BrightnessSlider.value;
+            PlayerPrefs.SetString("Name", Input.text);
+            PlayerPrefs.Save();
         }
-
-        GameObject S;
-
-        GameObject Option;
-
-        GameObject Quit;
-
-        GameObject SizenAsobi;
-
-        GameObject Bordering;
-
-        GameObject Back;
-
-        GameObject Option2;
-
-        GameObject Server1;
-
-        GameObject Server2;
-
-        GameObject Brightness;
-
-        Slider BrightnessSlider;
 
         void Start()
         {
@@ -88,15 +92,14 @@ namespace Paon.NUI
             SizenAsobi = GameObject.Find("SizenAsobi");
             Bordering = GameObject.Find("Bordering");
             Back = GameObject.Find("Back");
-            Brightness = GameObject.Find("Brightness");
+            Name = GameObject.Find("Name");
+            NamePlate = GameObject.Find("NamePlate");
+            Input = Name.GetComponent<InputField>();
+            Input.text = PlayerPrefs.GetString("Name", "なまえをにゅうりょく");
             Option2 = GameObject.Find("Option2");
             Server1 = GameObject.Find("Server1");
             Server2 = GameObject.Find("Server2");
-            Brightness = GameObject.Find("Brightness");
-            BrightnessSlider = Brightness.GetComponent<Slider>();
-            BrightnessSlider.maxValue = 8.0f;
-            BrightnessSlider.minValue = 0.0f;
-            BrightnessSlider.value = 1.0f;
+            Player = GameObject.Find("PlayerBody");
         }
 
         void Update()
@@ -110,7 +113,9 @@ namespace Paon.NUI
                 SizenAsobi.SetActive(false);
                 Bordering.SetActive(false);
 
-                Brightness.SetActive(false);
+                Name.SetActive(false);
+                NamePlate.SetActive(false);
+                Player.SetActive(false);
                 Option2.SetActive(false);
 
                 Server1.SetActive(false);
@@ -127,7 +132,9 @@ namespace Paon.NUI
                 SizenAsobi.SetActive(true);
                 Bordering.SetActive(true);
 
-                Brightness.SetActive(false);
+                Name.SetActive(false);
+                NamePlate.SetActive(false);
+                Player.SetActive(false);
                 Option2.SetActive(false);
 
                 Server1.SetActive(false);
@@ -144,7 +151,9 @@ namespace Paon.NUI
                 SizenAsobi.SetActive(false);
                 Bordering.SetActive(false);
 
-                Brightness.SetActive(false);
+                Name.SetActive(false);
+                NamePlate.SetActive(false);
+                Player.SetActive(false);
                 Option2.SetActive(false);
 
                 Server1.SetActive(true);
@@ -161,7 +170,11 @@ namespace Paon.NUI
                 SizenAsobi.SetActive(false);
                 Bordering.SetActive(false);
 
-                Brightness.SetActive(true);
+                Name.SetActive(true);
+                NamePlate.SetActive(true);
+                NamePlate.GetComponent<Text>().text =
+                    PlayerPrefs.GetString("Name", "なまえをにゅうりょく");
+                Player.SetActive(true);
                 Option2.SetActive(true);
 
                 Server1.SetActive(false);
