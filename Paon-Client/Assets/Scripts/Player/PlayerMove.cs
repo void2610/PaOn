@@ -26,7 +26,7 @@ namespace Paon.NPlayer
 
         public bool canMove = true;
 
-        public Player _Player = new Player("TestPlayer");
+        public Player _Player = new Player();
 
         public bool p;
 
@@ -44,7 +44,7 @@ namespace Paon.NPlayer
             //Debug.Log($"Result: {result}");
             inputProvider = es.GetComponent<MoveInputProvider>();
             player = this.gameObject;
-            _Player.name = PlayerPrefs.GetString("Name", "NoneName");
+            _Player.name = PlayerPrefs.GetString("Name", "NoName");
             //var id = Random.Range(0, 10000);
             //_hub = new GamingHubClient();
             //await _hub.ConnectAsync(_channel, "Room", $"Player-{id}");

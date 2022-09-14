@@ -4,15 +4,12 @@ using UnityEngine;
 
 namespace Paon.NBordering
 {
-    public class BorderingGoalScript : MonoBehaviour
+    public class BorderingStartScript : MonoBehaviour
     {
-        GameObject bm;
-
-        public bool goaling = false;
+        public bool starting = false;
 
         void Start()
         {
-            bm = GameObject.Find("BorderingManager");
         }
 
         // Update is called once per frame
@@ -24,18 +21,17 @@ namespace Paon.NBordering
         {
             if (other.CompareTag("Player"))
             {
-                bm.GetComponent<BorderingTimerScript>().Timer.CountStop();
-                goaling = true;
+                starting = true;
             }
             else
             {
-                goaling = true;
+                starting = true;
             }
         }
 
         void OnTriggerExit(Collider other)
         {
-            goaling = false;
+            starting = false;
         }
     }
 }

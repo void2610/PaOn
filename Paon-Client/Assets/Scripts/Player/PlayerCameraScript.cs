@@ -1,55 +1,104 @@
 using System.Collections;
 using System.Collections.Generic;
+using Paon.NBordering;
 using UnityEngine;
 
-public class PlayerCameraScript : MonoBehaviour
+namespace Paon.NPlayer
 {
-    void Start()
+    public class PlayerCameraScript : MonoBehaviour
     {
-    }
+        BorderingGoalScript goal;
 
-    // Update is called once per frame
-    void Update()
-    {
-        float y = this.gameObject.transform.position.y;
-        Vector3 rot;
-        if (y > 0.5f && y < 1.5f)
+        BorderingStartScript start;
+
+        public int stat = 0;
+
+        bool tmp = false;
+
+        void Start()
         {
-            //登り始め
-            rot =
-                new Vector3(-30 * (y - 0.5f),
-                    this.gameObject.transform.eulerAngles.y,
-                    this.gameObject.transform.eulerAngles.z);
-        }
-        else if (y > 1.5f && y < 4)
-        {
-            rot =
-                new Vector3(-45,
-                    this.gameObject.transform.eulerAngles.y,
-                    this.gameObject.transform.eulerAngles.z);
-        }
-        else if (y > 4 && y < 5)
-        {
-            rot =
-                new Vector3(10 * (y - 4),
-                    this.gameObject.transform.eulerAngles.y,
-                    this.gameObject.transform.eulerAngles.z);
-        }
-        else if (y > 5)
-        {
-            rot =
-                new Vector3(50,
-                    this.gameObject.transform.eulerAngles.y,
-                    this.gameObject.transform.eulerAngles.z);
-        }
-        else
-        {
-            rot =
-                new Vector3(0,
-                    this.gameObject.transform.eulerAngles.y,
-                    this.gameObject.transform.eulerAngles.z);
+            goal =
+                GameObject
+                    .Find("BorderingGoal")
+                    .GetComponent<BorderingGoalScript>();
+            start =
+                GameObject
+                    .Find("BorderingStart")
+                    .GetComponent<BorderingStartScript>();
         }
 
-        this.gameObject.transform.eulerAngles = rot;
+        // Update is called once per frame
+        void Update()
+        {
+            if (!tmp && goal.goaling)
+            {
+                stat = 1;
+            }
+            if (stat == 1 && start.starting)
+            {
+                stat = 2;
+            }
+            float y = this.gameObject.transform.position.y;
+            Vector3 rot;
+            if (stat == 1)
+            {
+                rot =
+                    new Vector3(25,
+                        this.gameObject.transform.eulerAngles.y,
+                        this.gameObject.transform.eulerAngles.z);
+            }
+            else if (stat == 2 && y < 0.5f)
+            {
+                rot =
+                    new Vector3(0,
+                        this.gameObject.transform.eulerAngles.y,
+                        this.gameObject.transform.eulerAngles.z);
+            }
+            else if (y > 0.5f && stat == 0)
+            {
+                if (y < 1.5f)
+                {
+                    rot =
+                        new Vector3(-15 * y,
+                            this.gameObject.transform.eulerAngles.y,
+                            this.gameObject.transform.eulerAngles.z);
+                }
+                else
+                {
+                    rot =
+                        new Vector3(-22.5f,
+                            this.gameObject.transform.eulerAngles.y,
+                            this.gameObject.transform.eulerAngles.z);
+                }
+            }
+            else if (y > 0.5f && stat == 2)
+            {
+                Debug.Log("stat2");
+                if (y < 1.5f)
+                {
+                    rot =
+                        new Vector3(-15 * y,
+                            this.gameObject.transform.eulerAngles.y,
+                            this.gameObject.transform.eulerAngles.z);
+                }
+                else
+                {
+                    rot =
+                        new Vector3(-22.5f,
+                            this.gameObject.transform.eulerAngles.y,
+                            this.gameObject.transform.eulerAngles.z);
+                }
+            }
+            else
+            {
+                rot =
+                    new Vector3(0,
+                        this.gameObject.transform.eulerAngles.y,
+                        this.gameObject.transform.eulerAngles.z);
+            }
+
+            this.gameObject.transform.eulerAngles = rot;
+            tmp = goal.goaling;
+        }
     }
 }

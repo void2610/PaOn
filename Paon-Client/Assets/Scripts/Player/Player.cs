@@ -14,10 +14,10 @@ namespace Paon.NPlayer
 
         public bool playingBordering;
 
-        public Player(string n)
+        public Player()
         {
             id = 0;
-            name = n;
+            name = "NoName";
             timer = 0.0f;
             playingBordering = false;
         }
