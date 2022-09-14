@@ -8,16 +8,39 @@ namespace Paon.NBordering
     {
         GameObject bm;
 
+        GameObject Player;
+
         public bool goaling = false;
+
+        bool tmp = false;
+
+        float sTime = -10.0f;
 
         void Start()
         {
             bm = GameObject.Find("BorderingManager");
+            Player = GameObject.Find("PlayerBody");
         }
 
         // Update is called once per frame
         void Update()
         {
+            if (!tmp && goaling)
+            {
+                sTime = Time.time;
+            }
+            if (Time.time - sTime <= 1.5f)
+            {
+                if (Time.time - sTime == 1.5f)
+                {
+                    sTime = -10.0f;
+                }
+                else
+                {
+                    Player.transform.Translate(0, 0.1f, 0.1f);
+                }
+            }
+            tmp = goaling;
         }
 
         void OnTriggerEnter(Collider other)
