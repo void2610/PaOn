@@ -2104,7 +2104,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 123510023}
         m_TargetAssemblyTypeName: Paon.NUI.MainMenuScript, Assembly-CSharp
-        m_MethodName: ClickBackButton
+        m_MethodName: ResetStatistics
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
