@@ -88,24 +88,22 @@ namespace Paon.NInput
 
         void LateUpdate()
         {
-            /*
             pose = gk.pose;
-            if (pose != null && previous[8] != null)
+            if (pose != null && previous[16].score > 0.7f && previous[15].score > 0.7f)
             {
-                //�O�g
-                def1 = pose[11].coords.y - pose[0].coords.y;
-                def2 = pose[14].coords.y - pose[0].coords.y;
+                //right
+                def1 = pose[16].coords.y - pose[0].coords.y;
+                //left
+                def2 = pose[15].coords.y - pose[0].coords.y;
 
                 if (Mathf.Abs(def1 - predef1) > th || Mathf.Abs(def2 - predef2) > th)
                 {
                     key = "up";
                 }
 
-
-                //��]
-                Rleg = Mathf.Abs(pose[11].coords.x - pose[8].coords.x);
-                Lleg = Mathf.Abs(pose[20].coords.x - pose[8].coords.x);
-                //Debug.Log(Rleg);
+                Rleg = Mathf.Abs(pose[16].coords.x - pose[12].coords.x);
+                Lleg = Mathf.Abs(pose[15].coords.x - pose[11].coords.x);
+                Debug.Log(Rleg);
                 if (Rleg > 150)
                 {
                     key = "right";
@@ -114,14 +112,14 @@ namespace Paon.NInput
                 {
                     key = "left";
                 }
+                Vector2 healCenter = Vector2.Lerp(pose[15].coords, pose[16].coords, 0.5f);
+                Vector2 hipCenter = Vector2.Lerp(pose[11].coords, pose[12].coords, 0.5f);
 
-                //���Ⴊ��
-                float Backlength =
-                    (float)
-                    Vector2.Distance(pose[8].coords, pose[11].coords);
-                if (Backlength < 100)
+                float legLength = Vector2.Distance(healCenter, hipCenter);
+                if (legLength < 100)
                 {
                     crouch = 1;
+                    Debug.Log("crouched: " + crouch);
                 }
                 else
                 {
@@ -130,7 +128,7 @@ namespace Paon.NInput
 
                 predef1 = def1;
                 predef2 = def2;
-            }*/
+            }
         }
     }
 }

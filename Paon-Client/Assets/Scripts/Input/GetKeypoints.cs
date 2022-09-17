@@ -93,7 +93,8 @@ namespace Paon.NInput
                        0);
             }
 
-            // Debug.Log(left[0].coords);
+            Debug.Log("l0: " + left[0].coords);
+            Debug.Log("l12: " + left[12].coords);
 
             for (int i = 0; i < right.Length; i++)
             {
