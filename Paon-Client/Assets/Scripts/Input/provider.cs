@@ -7,20 +7,20 @@ public class provider : MonoBehaviour
     [SerializeField]
     private GameObject Estimatior;
 
-    private PoseEstimate _PoseEstimate;
+    private PoseEstimator _PoseEstimator;
 
     private Utils.Keypoint[] pose;
 
     // Start is called before the first frame update
     void Start()
     {
-        _PoseEstimate = Estimatior.GetComponent<PoseEstimate>();
+        _PoseEstimator = Estimatior.GetComponent<PoseEstimator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        pose = _PoseEstimate.GetKeypoints();
+        pose = _PoseEstimator.GetKeypoints();
         foreach (Utils.Keypoint key in pose)
         {
             Debug.Log(key.position);

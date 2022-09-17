@@ -10,7 +10,7 @@ namespace Paon.NInput
 
         private GetKeypoints gk;
 
-        private GetKeypoints.Keypoint[] previous;
+        private GetKeypoints.Keypoint previous;
 
         private GetKeypoints.Keypoint[] hand;
 
@@ -22,7 +22,7 @@ namespace Paon.NInput
 
         private float CulculateDistance(Vector2 start, Vector2 end)
         {
-            return (float) Vector2.Distance(start, end);
+            return (float)Vector2.Distance(start, end);
         }
 
         private Vector2 CalculateDelta(Vector2 pre, Vector2 now)
@@ -49,9 +49,21 @@ namespace Paon.NInput
         {
             try
             {
-                return hand[0].coords;
+                return wrist.coords;
             }
-            catch (System.NullReferenceException e)
+            catch (System.NullReferenceException)
+            {
+                return new Vector2(0, 0);
+            }
+        }
+
+        public Vector2 GetDelta()
+        {
+            try
+            {
+                return CalculateDelta(previous.coords, wrist.coords);
+            }
+            catch (System.NullReferenceException)
             {
                 return new Vector2(0, 0);
             }
@@ -70,8 +82,8 @@ namespace Paon.NInput
 
         void Update()
         {
-            previous = gk.left;
-            wrist = gk.leftWrist;
+            if (gk.leftWrist.score > 0.7f)
+                previous = gk.leftWrist;
             if (Input.GetKey(KeyCode.W))
             {
                 key = "up";
@@ -105,28 +117,8 @@ namespace Paon.NInput
 
         void LateUpdate()
         {
-            hand = gk.left;
-            if (hand != null && previous[0] != null)
-            {
-                //Debug.Log(hand[0].coords.x);
-                //Vector2 delta = CalculateDelta(previous[0].coords, hand[0].coords);
-                float fd =
-                    (float) Vector2.Distance(hand[4].coords, hand[12].coords);
-                float thumScore = hand[4].s;
-                float MidScore = hand[12].s;
-
-                //Debug.Log("thum: " + thumScore);
-                //Debug.Log("Mid: " + MidScore);
-                if (fd < 40)
-                {
-                    //hold = 1;
-                }
-                else
-                {
-                    //hold = 0;
-                }
-                //Debug.Log("LeftKey: " + key);
-            }
+            if (gk.leftWrist.score > 0.7f)
+                wrist = gk.leftWrist;
         }
     }
 }

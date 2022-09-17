@@ -2,16 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Mediapipe.BlazePose;
 using MediaPipe.BlazePalm;
 using MediaPipe.HandLandmark;
-using Mediapipe.BlazePose;
 using UnityEngine;
 
 namespace MediaPipe.Holistic
 {
     public class HolisticPipeline : System.IDisposable
     {
-#region public variables
+        #region public variables
         // Count of pose landmarks vertices.
         public int poseVertexCount => blazePoseDetecter.vertexCount;
 
@@ -66,19 +66,19 @@ namespace MediaPipe.Holistic
         public ComputeBuffer leftHandVertexBuffer;
 
         public ComputeBuffer rightHandVertexBuffer;
-#endregion
+        #endregion
 
 
 
-#region constant number
+        #region constant number
         const int letterboxWidth = 128;
 
         const int handCropImageSize = HandLandmarkDetector.ImageSize;
-#endregion
+        #endregion
 
 
 
-#region private variables
+        #region private variables
         ComputeShader commonCs;
 
         ComputeShader handCs;
@@ -103,11 +103,11 @@ namespace MediaPipe.Holistic
         ComputeBuffer deltaLeftHandVertexBuffer;
 
         ComputeBuffer deltaRightHandVertexBuffer;
-#endregion
+        #endregion
 
 
 
-#region public methods
+        #region public methods
         public HolisticPipeline(
             HolisticResource resource,
             BlazePoseModel blazePoseModel = BlazePoseModel.full
@@ -189,11 +189,11 @@ namespace MediaPipe.Holistic
             // Letterboxing scale factor
             var scale =
                 new Vector2(Mathf
-                        .Max((float) inputTexture.height / inputTexture.width,
+                        .Max((float)inputTexture.height / inputTexture.width,
                         1),
                     Mathf
                         .Max(1,
-                        (float) inputTexture.width / inputTexture.height));
+                        (float)inputTexture.width / inputTexture.height));
 
             // Image scaling and padding
             // Output image is letter-box image.
@@ -205,7 +205,7 @@ namespace MediaPipe.Holistic
             commonCs.Dispatch(0, letterboxWidth / 8, letterboxWidth / 8, 1);
 
             var position = new Vector4[poseVertexCount];
-            poseLandmarkWorldBuffer.GetData (position);
+            poseLandmarkWorldBuffer.GetData(position);
 
             // UnityEngine.Debug.Log("left: " + position[15]);
             // UnityEngine.Debug.Log("right: " + position[16]);
@@ -215,11 +215,11 @@ namespace MediaPipe.Holistic
                 inferenceType == HolisticInferenceType.pose_and_hand
             ) HandProcess(inputTexture, letterBoxTexture, scale);
         }
-#endregion
+        #endregion
 
 
 
-#region private methods
+        #region private methods
         void HandProcess(
             Texture inputTexture,
             Texture letterBoxTexture,
@@ -227,12 +227,12 @@ namespace MediaPipe.Holistic
         )
         {
             // Inference palm detection.
-            palmDetector.ProcessImage (letterBoxTexture);
+            palmDetector.ProcessImage(letterBoxTexture);
 
             int[] countReadCache = new int[1];
             palmDetector.CountBuffer.GetData(countReadCache, 0, 0, 1);
             var handDetectionCount = countReadCache[0];
-            handDetectionCount = (int) Mathf.Min(handDetectionCount, 2);
+            handDetectionCount = (int)Mathf.Min(handDetectionCount, 2);
 
             bool isNeedLeftFallback = (handDetectionCount == 0);
             bool isNeedRightFallback = (handDetectionCount == 0);
@@ -269,10 +269,10 @@ namespace MediaPipe.Holistic
                     1);
 
                 // Inference hand landmark.
-                handLandmarkDetector.ProcessImage (handCropBuffer);
+                handLandmarkDetector.ProcessImage(handCropBuffer);
 
-                var result = new Vector4[handVertexCount + 1];
-                leftHandVertexBuffer.GetData (result);
+                // var result = new Vector4[handVertexCount + 1];
+                // leftHandVertexBuffer.GetData(result);
 
                 // for (int j = 0; j < handVertexCount; j++)
                 // {
@@ -282,7 +282,7 @@ namespace MediaPipe.Holistic
                 handLandmarkDetector.OutputBuffer.GetData(scoreCache, 0, 0, 1);
                 float score = scoreCache[0].x;
 
-                UnityEngine.Debug.Log("Score: " + score);
+                // UnityEngine.Debug.Log("Score: " + score);
                 float handedness = scoreCache[0].y;
 
                 // UnityEngine.Debug.Log("handedness: " + scoreCache[0].y);
@@ -350,7 +350,7 @@ namespace MediaPipe.Holistic
             handCs.Dispatch(2, handCropImageSize / 8, handCropImageSize / 8, 1);
 
             // Hand landmark detection
-            handLandmarkDetector.ProcessImage (handCropBuffer);
+            handLandmarkDetector.ProcessImage(handCropBuffer);
 
             // Key point postprocess
             handCs.SetFloat("_handPostDt", Time.deltaTime);
@@ -374,6 +374,6 @@ namespace MediaPipe.Holistic
                     : deltaLeftHandVertexBuffer);
             handCs.Dispatch(3, 1, 1, 1);
         }
-#endregion
+        #endregion
     }
 }

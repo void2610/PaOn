@@ -4,8 +4,8 @@ using Grpc.Core;
 using MagicOnion.Client;
 using Paon;
 using Paon.NInput;
-using Paon.NNetWork.Shared.Services;
 using Paon.NNetwork.Shared.MessagePackObjects;
+using Paon.NNetWork.Shared.Services;
 using UnityEngine;
 
 namespace Paon.NPlayer
@@ -23,6 +23,7 @@ namespace Paon.NPlayer
         public bool canMove = true;
 
         Vector2 coords;
+        Vector2 delta;
 
         private GamingHubClient _hub;
 
@@ -53,9 +54,10 @@ namespace Paon.NPlayer
             //await _hub.ConnectAsync(_channel, "Room", $"Player-{id}");
         }
 
-        async void Update()
+        async void LateUpdate()
         {
             coords = inputProvider.GetPosition();
+            delta = inputProvider.GetDelta();
             if (canMove)
             {
                 // hand.transform.localPosition =
@@ -86,6 +88,8 @@ namespace Paon.NPlayer
                     //await _hub
                     //   .MoveAsync(player.transform.position, new Vector3());
                 }
+
+                hand.transform.localPosition += new Vector3(-delta.x / 100, -delta.y / 100, 0f);
             }
         }
 

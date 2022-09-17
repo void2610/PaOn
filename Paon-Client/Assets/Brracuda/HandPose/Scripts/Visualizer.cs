@@ -180,4 +180,28 @@ public class Visualizer : MonoBehaviour
         // Must call Dispose method when no longer in use.
         holisticPipeline.Dispose();
     }
+
+    public Vector3[] GetLeftVert()
+    {
+        var result = new Vector4[holisticPipeline.handVertexCount + 1];
+        holisticPipeline.leftHandVertexBuffer.GetData(result);
+        var res = new Vector3[holisticPipeline.handVertexCount + 1];
+        for (int i = 0; i < result.Length; i++)
+        {
+            res[i] = result[i];
+        }
+        return res;
+    }
+
+    public Vector3[] GetRightVert()
+    {
+        var result = new Vector4[holisticPipeline.handVertexCount + 1];
+        holisticPipeline.rightHandVertexBuffer.GetData(result);
+        var res = new Vector3[holisticPipeline.handVertexCount + 1];
+        for (int i = 0; i < result.Length; i++)
+        {
+            res[i] = result[i];
+        }
+        return res;
+    }
 }

@@ -10,7 +10,8 @@ namespace Paon.NInput
 
         private GetKeypoints gk;
 
-        private GetKeypoints.Keypoint[] previous;
+        private GetKeypoints.Keypoint previous;
+        private GetKeypoints.Keypoint wrist;
 
         private GetKeypoints.Keypoint[] hand;
 
@@ -37,7 +38,19 @@ namespace Paon.NInput
             {
                 return hand[0].coords;
             }
-            catch (System.NullReferenceException e)
+            catch (System.NullReferenceException)
+            {
+                return new Vector2(0, 0);
+            }
+        }
+
+        public Vector2 GetDelta()
+        {
+            try
+            {
+                return CalculateDelta(previous.coords, wrist.coords);
+            }
+            catch (System.NullReferenceException)
             {
                 return new Vector2(0, 0);
             }
@@ -67,7 +80,8 @@ namespace Paon.NInput
 
         void Update()
         {
-            previous = gk.right;
+            if (gk.rightWrist.score > 0.7f)
+                previous = gk.rightWrist;
             if (Input.GetKey(KeyCode.I))
             {
                 key = "up";
@@ -101,21 +115,23 @@ namespace Paon.NInput
 
         void LateUpdate()
         {
-            hand = gk.right;
-            if (hand != null && previous[0] != null)
-            {
-                //Vector2 delta = CalculateDelta(previous[0].coords, hand[0].coords);
-                float fd =
-                    (float) Vector2.Distance(hand[4].coords, hand[12].coords);
-                if (fd < 40)
-                {
-                    hold = 1;
-                }
-                else
-                {
-                    hold = 0;
-                }
-            }
+            if (gk.rightWrist.score > 0.7f)
+                wrist = gk.rightWrist;
+            // hand = gk.right;
+            // if (hand != null && previous[0] != null)
+            // {
+            //     //Vector2 delta = CalculateDelta(previous[0].coords, hand[0].coords);
+            //     float fd =
+            //         (float)Vector2.Distance(hand[4].coords, hand[12].coords);
+            //     if (fd < 40)
+            //     {
+            //         hold = 1;
+            //     }
+            //     else
+            //     {
+            //         hold = 0;
+            //     }
+            // }
         }
     }
 }

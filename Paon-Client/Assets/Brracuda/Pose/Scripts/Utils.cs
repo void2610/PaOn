@@ -103,9 +103,9 @@ public class Utils
             tensor.Length / 3,
             (int i) =>
             {
-                tensor[i * 3 + 0] = (float) tensor[i * 3 + 0] * 255f - 123.15f;
-                tensor[i * 3 + 1] = (float) tensor[i * 3 + 1] * 255f - 115.90f;
-                tensor[i * 3 + 2] = (float) tensor[i * 3 + 2] * 255f - 103.06f;
+                tensor[i * 3 + 0] = (float)tensor[i * 3 + 0] * 255f - 123.15f;
+                tensor[i * 3 + 1] = (float)tensor[i * 3 + 1] * 255f - 115.90f;
+                tensor[i * 3 + 2] = (float)tensor[i * 3 + 2] * 255f - 103.06f;
             });
     }
 
@@ -137,8 +137,8 @@ public class Utils
     {
         // The accompanying offset vector for the current coords
         Vector2 offsetVector =
-            GetOffsetVector((int) part.position.y,
-            (int) part.position.x,
+            GetOffsetVector((int)part.position.y,
+            (int)part.position.x,
             part.id,
             offsets);
 
@@ -156,7 +156,6 @@ public class Utils
     public static Keypoint[]
     DecodeSinglePose(Tensor heatmaps, Tensor offsets, int stride)
     {
-        Debug.Log("dim: " + heatmaps.dimensions);
         Keypoint[] keypoints = new Keypoint[heatmaps.channels];
 
         // Iterate through heatmaps
@@ -207,7 +206,7 @@ public class Utils
         // Downscale the point coordinates to the heatmap dimensions
         return new Vector2Int((int)
             Mathf.Clamp(Mathf.Round(point.x / stride), 0, width - 1),
-            (int) Mathf.Clamp(Mathf.Round(point.y / stride), 0, height - 1));
+            (int)Mathf.Clamp(Mathf.Round(point.y / stride), 0, height - 1));
     }
 
     /// <summary>
@@ -526,7 +525,7 @@ public class Utils
         List<Keypoint[]> poses = new List<Keypoint[]>();
 
         //
-        float squaredNmsRadius = (float) nmsRadius * nmsRadius;
+        float squaredNmsRadius = (float)nmsRadius * nmsRadius;
 
         // Get a list of indicies with the highest values within the provided radius.
         List<Keypoint> list =
@@ -568,7 +567,7 @@ public class Utils
                 displacementBwd);
 
             // The current list of keypoints
-            poses.Add (keypoints);
+            poses.Add(keypoints);
         }
 
         return poses.ToArray();

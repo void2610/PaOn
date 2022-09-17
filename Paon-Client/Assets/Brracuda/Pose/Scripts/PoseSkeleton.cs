@@ -12,102 +12,69 @@ public class PoseSkeleton
     private GameObject[] lines;
 
     // The names of the body parts that will be detected by the PoseNet model
-    private static string[]
-        partNames =
-            new string[] {
-                "nose",
-                "leftEye",
-                "rightEye",
-                "leftEar",
-                "rightEar",
-                "leftShoulder",
-                "rightShoulder",
-                "leftElbow",
-                "rightElbow",
-                "leftWrist",
-                "rightWrist",
-                "leftHip",
-                "rightHip",
-                "leftKnee",
-                "rightKnee",
-                "leftAnkle",
-                "rightAnkle"
-            };
+    private static string[] partNames = new string[]{
+        "nose", "leftEye", "rightEye", "leftEar", "rightEar", "leftShoulder",
+        "rightShoulder", "leftElbow", "rightElbow", "leftWrist", "rightWrist",
+        "leftHip", "rightHip", "leftKnee", "rightKnee", "leftAnkle", "rightAnkle"
+    };
 
     private static int NUM_KEYPOINTS = partNames.Length;
 
     // The pairs of key points that should be connected on a body
-    private Tuple<int, int>[]
-        jointPairs =
-            new Tuple<int, int>[] {
-                // Nose to Left Eye
-                Tuple.Create(0, 1),
-                // Nose to Right Eye
-                Tuple.Create(0, 2),
-                // Left Eye to Left Ear
-                Tuple.Create(1, 3),
-                // Right Eye to Right Ear
-                Tuple.Create(2, 4),
-                // Left Shoulder to Right Shoulder
-                Tuple.Create(5, 6),
-                // Left Shoulder to Left Hip
-                Tuple.Create(5, 11),
-                // Right Shoulder to Right Hip
-                Tuple.Create(6, 12),
-                // Left Shoulder to Right Hip
-                Tuple.Create(5, 12),
-                // Rigth Shoulder to Left Hip
-                Tuple.Create(6, 11),
-                // Left Hip to Right Hip
-                Tuple.Create(11, 12),
-                // Left Shoulder to Left Elbow
-                Tuple.Create(5, 7),
-                // Left Elbow to Left Wrist
-                Tuple.Create(7, 9),
-                // Right Shoulder to Right Elbow
-                Tuple.Create(6, 8),
-                // Right Elbow to Right Wrist
-                Tuple.Create(8, 10),
-                // Left Hip to Left Knee
-                Tuple.Create(11, 13),
-                // Left Knee to Left Ankle
-                Tuple.Create(13, 15),
-                // Right Hip to Right Knee
-                Tuple.Create(12, 14),
-                // Right Knee to Right Ankle
-                Tuple.Create(14, 16)
-            };
+    private Tuple<int, int>[] jointPairs = new Tuple<int, int>[]{
+        // Nose to Left Eye
+        Tuple.Create(0, 1),
+        // Nose to Right Eye
+        Tuple.Create(0, 2),
+        // Left Eye to Left Ear
+        Tuple.Create(1, 3),
+        // Right Eye to Right Ear
+        Tuple.Create(2, 4),
+        // Left Shoulder to Right Shoulder
+        Tuple.Create(5, 6),
+        // Left Shoulder to Left Hip
+        Tuple.Create(5, 11),
+        // Right Shoulder to Right Hip
+        Tuple.Create(6, 12),
+        // Left Shoulder to Right Hip
+        Tuple.Create(5, 12),
+        // Rigth Shoulder to Left Hip
+        Tuple.Create(6, 11),
+        // Left Hip to Right Hip
+        Tuple.Create(11, 12),
+        // Left Shoulder to Left Elbow
+        Tuple.Create(5, 7),
+        // Left Elbow to Left Wrist
+        Tuple.Create(7, 9),
+        // Right Shoulder to Right Elbow
+        Tuple.Create(6, 8),
+        // Right Elbow to Right Wrist
+        Tuple.Create(8, 10),
+        // Left Hip to Left Knee
+        Tuple.Create(11, 13),
+        // Left Knee to Left Ankle
+        Tuple.Create(13, 15),
+        // Right Hip to Right Knee
+        Tuple.Create(12, 14),
+        // Right Knee to Right Ankle
+        Tuple.Create(14, 16)
+    };
 
     // Colors for the skeleton lines
-    private Color[]
-        colors =
-            new Color[] {
-                // Head
-                Color.magenta,
-                Color.magenta,
-                Color.magenta,
-                Color.magenta,
-                // Torso
-                Color.red,
-                Color.red,
-                Color.red,
-                Color.red,
-                Color.red,
-                Color.red,
-                // Arms
-                Color.green,
-                Color.green,
-                Color.green,
-                Color.green,
-                // Legs
-                Color.blue,
-                Color.blue,
-                Color.blue,
-                Color.blue
-            };
+    private Color[] colors = new Color[] {
+        // Head
+        Color.magenta, Color.magenta, Color.magenta, Color.magenta,
+        // Torso
+        Color.red, Color.red, Color.red, Color.red, Color.red, Color.red,
+        // Arms
+        Color.green, Color.green, Color.green, Color.green,
+        // Legs
+        Color.blue, Color.blue, Color.blue, Color.blue
+    };
 
     // The width for the skeleton lines
     private float lineWidth;
+
 
     public PoseSkeleton(float pointScale = 10f, float lineWidth = 5f)
     {
@@ -118,13 +85,10 @@ public class PoseSkeleton
 
         for (int i = 0; i < NUM_KEYPOINTS; i++)
         {
-            this.keypoints[i] =
-                GameObject.CreatePrimitive(PrimitiveType.Sphere).transform;
+            this.keypoints[i] = GameObject.CreatePrimitive(PrimitiveType.Sphere).transform;
             this.keypoints[i].position = new Vector3(0, 0, 0);
-            this.keypoints[i].localScale =
-                new Vector3(pointScale, pointScale, 0);
-            this.keypoints[i].gameObject.GetComponent<MeshRenderer>().material =
-                keypointMat;
+            this.keypoints[i].localScale = new Vector3(pointScale, pointScale, 0);
+            this.keypoints[i].gameObject.GetComponent<MeshRenderer>().material = keypointMat;
             this.keypoints[i].gameObject.name = partNames[i];
         }
 
@@ -132,7 +96,6 @@ public class PoseSkeleton
 
         // The number of joint pairs
         int numPairs = jointPairs.Length;
-
         // Initialize the lines array
         lines = new GameObject[numPairs];
 
@@ -159,6 +122,7 @@ public class PoseSkeleton
     /// </summary>
     public void Cleanup()
     {
+
         for (int i = 0; i < jointPairs.Length; i++)
         {
             GameObject.Destroy(lines[i]);
@@ -166,6 +130,7 @@ public class PoseSkeleton
             GameObject.Destroy(keypoints[jointPairs[i].Item2].gameObject);
         }
     }
+
 
     /// <summary>
     /// Create a line between the key point specified by the start and end point indices
@@ -181,17 +146,13 @@ public class PoseSkeleton
         int endIndex = jointPairs[pairIndex].Item2;
 
         // Create new line GameObject
-        string name =
-            $"{keypoints[startIndex].name}_to_{keypoints[endIndex].name}";
+        string name = $"{keypoints[startIndex].name}_to_{keypoints[endIndex].name}";
         lines[pairIndex] = new GameObject(name);
 
         // Add LineRenderer component
-        LineRenderer lineRenderer =
-            lines[pairIndex].AddComponent<LineRenderer>();
-
+        LineRenderer lineRenderer = lines[pairIndex].AddComponent<LineRenderer>();
         // Make LineRenderer Shader Unlit
         lineRenderer.material = new Material(Shader.Find("Unlit/Color"));
-
         // Set the material color
         lineRenderer.material.color = color;
 
@@ -200,7 +161,6 @@ public class PoseSkeleton
 
         // Set the width from the start point
         lineRenderer.startWidth = width;
-
         // Set the width from the end point
         lineRenderer.endWidth = width;
     }
@@ -224,18 +184,12 @@ public class PoseSkeleton
     /// <param name="sourceTexture"></param>
     /// <param name="mirrorImage"></param>
     /// <param name="minConfidence"></param>
-    public void UpdateKeyPointPositions(
-        Utils.Keypoint[] keypoints,
-        float sourceScale,
-        RenderTexture sourceTexture,
-        bool mirrorImage,
-        float minConfidence
-    )
+    public void UpdateKeyPointPositions(Utils.Keypoint[] keypoints,
+        float sourceScale, RenderTexture sourceTexture, bool mirrorImage, float minConfidence)
     {
         // Iterate through the key points
         for (int k = 0; k < keypoints.Length; k++)
         {
-            // UnityEngine.Debug.Log("KeyPoint: " + keypoints[k].score);
             // Check if the current confidence value meets the confidence threshold
             if (keypoints[k].score >= minConfidence / 100f)
             {
@@ -273,25 +227,19 @@ public class PoseSkeleton
         {
             // Set the GameObject for the starting key point
             Transform startingKeyPoint = keypoints[jointPairs[i].Item1];
-
             // Set the GameObject for the ending key point
             Transform endingKeyPoint = keypoints[jointPairs[i].Item2];
 
             // Check if both the starting and ending key points are active
-            if (
-                startingKeyPoint.GetComponent<MeshRenderer>().enabled &&
-                endingKeyPoint.GetComponent<MeshRenderer>().enabled
-            )
+            if (startingKeyPoint.GetComponent<MeshRenderer>().enabled &&
+                endingKeyPoint.GetComponent<MeshRenderer>().enabled)
             {
                 // Activate the line
                 lines[i].SetActive(true);
 
-                LineRenderer lineRenderer =
-                    lines[i].GetComponent<LineRenderer>();
-
+                LineRenderer lineRenderer = lines[i].GetComponent<LineRenderer>();
                 // Update the starting position
                 lineRenderer.SetPosition(0, startingKeyPoint.position);
-
                 // Update the ending position
                 lineRenderer.SetPosition(1, endingKeyPoint.position);
             }
