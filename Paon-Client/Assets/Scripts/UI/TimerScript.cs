@@ -53,12 +53,18 @@ namespace Paon.NUI
             if (display)
             {
                 this.gameObject.GetComponent<Text>().text = time.ToString("F2");
-                GoalText.GetComponent<Text>().text = "ゴール！";
+                if (GoalText != null)
+                {
+                    GoalText.GetComponent<Text>().text = "ゴール！";
+                }
             }
             else
             {
                 this.gameObject.GetComponent<Text>().text = "";
-                GoalText.GetComponent<Text>().text = "";
+                if (GoalText != null)
+                {
+                    GoalText.GetComponent<Text>().text = "";
+                }
             }
         }
     }

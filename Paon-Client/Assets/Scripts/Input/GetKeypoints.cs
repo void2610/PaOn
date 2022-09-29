@@ -57,9 +57,12 @@ namespace Paon.NInput
 
         public Keypoint rightWrist = new Keypoint(0, 0, 0, 0);
 
+        public float holdThreshold = 0.2f;
+        public int leftIsClosed = 0;
+        public int rightIsClosed = 0;
+
         void Start()
         {
-            // op = GameObject.Find("OpenPose").GetComponent<OpenPoseUserScript>();
             _PoseEstimator = PoseEstimator.GetComponent<PoseEstimator>();
             _handVisualizer = HandEstimatior.GetComponent<Visualizer>();
         }
@@ -84,26 +87,40 @@ namespace Paon.NInput
             Vector3[] leftTemp = _handVisualizer.GetLeftVert();
             Vector3[] rightTemp = _handVisualizer.GetRightVert();
 
-            for (int i = 0; i < left.Length; i++)
-            {
-                left[i] =
-                   new Keypoint(leftTemp[i].x,
-                       leftTemp[i].y,
-                       leftTemp[i].z,
-                       0);
-            }
+            // for (int i = 0; i < left.Length; i++)
+            // {
+            //     left[i] =
+            //        new Keypoint(leftTemp[i].x,
+            //            leftTemp[i].y,
+            //            leftTemp[i].z,
+            //            0);
+            // }
 
-            Debug.Log("l0: " + left[0].coords);
-            Debug.Log("l12: " + left[12].coords);
+            // Debug.Log("l0: " + left[0].coords);
+            // Debug.Log("l12: " + left[12].coords);
 
-            for (int i = 0; i < right.Length; i++)
-            {
-                right[i] =
-                    new Keypoint(rightTemp[i].x,
-                        rightTemp[i].y,
-                        rightTemp[i].z,
-                        0);
-            }
+            // for (int i = 0; i < right.Length; i++)
+            // {
+            //     right[i] =
+            //         new Keypoint(rightTemp[i].x,
+            //             rightTemp[i].y,
+            //             rightTemp[i].z,
+            //             0);
+            // }
+
+            leftIsClosed = CloseOrOpen(leftTemp);
+            rightIsClosed = CloseOrOpen(rightTemp);
+            // Debug.Log("Left: " + leftIsClosed);
+            // Debug.Log("Right: " + rightIsClosed);
+        }
+
+        private int CloseOrOpen(Vector3[] finger)
+        {
+            float distance = Vector3.Distance(finger[0], finger[12]);
+            // Debug.Log("Distance: " + distance);
+            if (distance < holdThreshold)
+                return 1;
+            else return 0;
         }
     }
 }
