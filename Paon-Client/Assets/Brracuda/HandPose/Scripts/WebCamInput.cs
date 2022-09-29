@@ -40,7 +40,7 @@ public class WebCamInput : MonoBehaviour
     void Update()
     {
         if (!webCamTexture.didUpdateThisFrame) return;
-        if (Input.GetKey("Space")) { SetCamera(index); }
+        if (Input.GetKey("space")) { SetCamera(index); }
 
         var aspect1 = (float)webCamTexture.width / webCamTexture.height;
         var aspect2 = (float)inputRT.width / inputRT.height;
