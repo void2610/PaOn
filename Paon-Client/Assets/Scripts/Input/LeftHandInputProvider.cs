@@ -20,9 +20,9 @@ namespace Paon.NInput
         private Vector3 finger;
         string key = "";
 
-        public int hold = 0;
+        int hold = 0;
 
-        private float CulculateDistance(Vector2 start, Vector2 end)
+        private float CalculateDistance(Vector2 start, Vector2 end)
         {
             return (float)Vector2.Distance(start, end);
         }

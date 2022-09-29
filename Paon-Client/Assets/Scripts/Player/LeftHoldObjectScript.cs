@@ -47,7 +47,7 @@ namespace Paon.NPlayer
         void Update()
         {
             coords = lmip.GetPosition();
-            if (lmip.hold == 1)
+            if (lmip.CheckHold() == 1)
             {
                 Hand.GetComponent<MeshFilter>().mesh = CloseHand;
 

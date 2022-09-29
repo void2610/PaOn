@@ -103,7 +103,7 @@ namespace Paon.NInput
 
                 Rleg = Mathf.Abs(pose[16].coords.x - pose[12].coords.x);
                 Lleg = Mathf.Abs(pose[15].coords.x - pose[11].coords.x);
-                Debug.Log(Rleg);
+                // Debug.Log(Rleg);
                 if (Rleg > 150)
                 {
                     key = "right";
