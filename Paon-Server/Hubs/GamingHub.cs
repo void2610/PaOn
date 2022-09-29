@@ -29,7 +29,7 @@ namespace Paon.NNetwork.Hubs
         public async Task<Player[]> JoinAsync(string roomName, string userName, Vector3 _body, Vector3 _right, Vector3 _left, Quaternion rotation)
         {
             self = new Player() { ID = Count++, Name = userName, BodyPosition = _body, RightPosition = _right, LeftPosition = _left, Rotation = rotation };
-
+Console.WriteLine(Count);
             // ルームにユーザが入室する
             (room, storage) = await Group.AddAsync(roomName, self);
 

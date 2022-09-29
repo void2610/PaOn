@@ -4,12 +4,14 @@ using Paon.NNetWork.Shared.Services;
 using UnityEngine;
 using Paon.NNetwork.Shared.MessagePackObjects;
 using System.Threading.Tasks;
+using System;
 
 
 namespace Paon.NNetwork
 {
     public class GameClient : MonoBehaviour
     {
+        public static GameObject Doll;
         GameObject body, right, left;
         // プレイヤーの Transform (今回はメインカメラの Transform を指定)
         [SerializeField]
@@ -26,7 +28,7 @@ namespace Paon.NNetwork
         string m_RoomName;
 
         // StreamingHub クライアントで使用する gRPC チャネルを生成
-        private Channel channel = new Channel("10.10.52.51", 5032, ChannelCredentials.Insecure);
+        private Channel channel = new Channel("192.168.10.23", 5032, ChannelCredentials.Insecure);
 
         // StreamingHub サーバと通信を行うためのクライアント生成
         private GamingHubClient client = new GamingHubClient();
@@ -38,6 +40,11 @@ namespace Paon.NNetwork
             left = GameObject.Find("LeftHand");
             // ゲーム起動時に設定した部屋名のルームに設定したユーザ名で入室する。
             await this.client.ConnectAsync(this.channel, this.m_RoomName, this.m_UserName);
+        }
+
+        public static GameObject MakeDolls(Player player)
+        {
+            return Instantiate(Doll, player.BodyPosition, player.Rotation);
         }
 
         // Update is called once per frame
