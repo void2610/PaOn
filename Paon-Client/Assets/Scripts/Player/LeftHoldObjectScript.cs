@@ -47,14 +47,14 @@ namespace Paon.NPlayer
         void Update()
         {
             coords = lmip.GetPosition();
-            if (lmip.CheckHold() == 1)
+            if (lmip.hold == 1)
             {
                 Hand.GetComponent<MeshFilter>().mesh = CloseHand;
 
                 //新しく物をつかんだときの処理
                 if (NearObject != null && oh.NowHoldObject == null)
                 {
-                    oh.HoldObject (NearObject);
+                    oh.HoldObject(NearObject);
                     if (oh.NowHoldObject.tag == "HoldableTag")
                     {
                         DefoRotation = NearObject.transform.eulerAngles;

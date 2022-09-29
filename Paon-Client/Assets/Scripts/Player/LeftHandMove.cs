@@ -54,10 +54,11 @@ namespace Paon.NPlayer
             //await _hub.ConnectAsync(_channel, "Room", $"Player-{id}");
         }
 
-        async void LateUpdate()
+        async void FixedUpdate()
         {
             coords = inputProvider.GetPosition();
             delta = inputProvider.GetDelta();
+            Debug.Log(delta);
             if (canMove)
             {
                 // hand.transform.localPosition =

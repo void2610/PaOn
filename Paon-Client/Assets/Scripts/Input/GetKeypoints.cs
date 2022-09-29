@@ -67,7 +67,7 @@ namespace Paon.NInput
             _handVisualizer = HandEstimatior.GetComponent<Visualizer>();
         }
 
-        void LateUpdate()
+        void Update()
         {
             poseKeypoints = _PoseEstimator.GetKeypoints();
             int cnt = 0;
