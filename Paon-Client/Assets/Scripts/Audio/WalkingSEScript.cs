@@ -2,25 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WalkingSEScript : MonoBehaviour
+namespace Paon.NAudio
 {
-    void Update()
+    public class WalkingSEScript : MonoBehaviour
     {
-        Vector3 v = this.GetComponent<Rigidbody>().velocity;
-        v.y = 0;
-        if (v.magnitude > 0.1f)
+        Vector3 latestPos;
+
+        Vector3 speed;
+
+        GameObject Player;
+
+        void Start()
         {
-            if (this.GetComponent<AudioSource>())
-            {
-                GetComponent<AudioSource>().Play();
-            }
+            Player = GameObject.Find("PlayerBody");
         }
-        else
+
+        void Update()
         {
-            if (this.GetComponent<AudioSource>())
+            speed =
+                ((Player.transform.position - latestPos) / Time.deltaTime)
+                    .magnitude;
+            Debug.Log (speed);
+            if (v.magnitude > 0.1f)
             {
-                GetComponent<AudioSource>().Stop();
+                this.GetComponent<AudioSource>().Play();
             }
+            else
+            {
+                this.GetComponent<AudioSource>().Stop();
+            }
+            latestPos = Player.transform.position;
         }
     }
 }

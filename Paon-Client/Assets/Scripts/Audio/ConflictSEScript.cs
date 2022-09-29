@@ -21,7 +21,6 @@ namespace Paon.NAudio
 
         void OnCollisionEnter(Collision collision)
         {
-            Debug.Log("Hit");
             if (this.GetComponent<Rigidbody>().velocity.magnitude > 0.1f)
             {
                 if (this.GetComponent<AudioSource>())
