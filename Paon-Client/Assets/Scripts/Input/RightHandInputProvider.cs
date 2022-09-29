@@ -115,8 +115,8 @@ namespace Paon.NInput
 
         void LateUpdate()
         {
-            if (gk.rightWrist.score > 0.7f)
-                wrist = gk.rightWrist;
+            // if (gk.rightWrist.score > 0.7f)
+            //     wrist = gk.rightWrist;
             // hand = gk.right;
             // if (hand != null && previous[0] != null)
             // {
@@ -132,6 +132,8 @@ namespace Paon.NInput
             //         hold = 0;
             //     }
             // }
+            hold = gk.rightIsClosed;
+            Debug.Log("right: " + hold);
         }
     }
 }

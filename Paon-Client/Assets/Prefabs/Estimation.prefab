@@ -288,8 +288,8 @@ MonoBehaviour:
   useWebcam: 1
   videoScreen: {fileID: 6723999742636368362}
   posenetShader: {fileID: 7200000, guid: 1abeaaab70029d949a209f271799d223, type: 3}
-  modelType: 0
-  useGPU: 0
+  modelType: 1
+  useGPU: 1
   imageDims: {x: 256, y: 256}
   mobileNetModelAsset: {fileID: 5022602860645237092, guid: cfe763dc0deee7f40b2319a9ad486cb5,
     type: 3}
@@ -366,7 +366,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 65
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 4
@@ -601,7 +601,7 @@ MonoBehaviour:
   humanExistThreshold: 0.5
   handShader: {fileID: 4800000, guid: d5a9b73d8bc27a546bf451b1f892f8bc, type: 3}
   handScoreThreshold: 0.5
-  holisticResource: {fileID: 11400000, guid: 10188e50911624e4bbe87a86f7b3f1ac, type: 2}
+  holisticResource: {fileID: 11400000, guid: 1b59502ed00788f4f85d7d4d86ed7d35, type: 2}
   holisticInferenceType: 2
 --- !u!114 &8823757632181810757
 MonoBehaviour:

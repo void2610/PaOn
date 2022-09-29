@@ -17,7 +17,7 @@ namespace Paon.NInput
         private GetKeypoints.Keypoint[] hand;
 
         private GetKeypoints.Keypoint wrist;
-
+        private Vector3 finger;
         string key = "";
 
         int hold = 0;
@@ -87,8 +87,6 @@ namespace Paon.NInput
             if (gk.leftWrist.score > 0.7f)
                 previous = gk.leftWrist;
 
-
-
             if (Input.GetKey(KeyCode.W))
             {
                 key = "up";
@@ -122,19 +120,21 @@ namespace Paon.NInput
 
         void LateUpdate()
         {
-            if (gk.leftWrist.score > 0.7f)
-                wrist = gk.leftWrist;
+            // if (gk.leftWrist.score > 0.7f)
+            //     wrist = gk.leftWrist;
 
-            hand = gk.left;
-            Debug.Log(hand.Length);
-            // if (hand[0].coords != null && hand[12].coords != null)
-            // {
-            //     float distance = Vector3.Distance(hand[0].coords, hand[12].coords);
-            //     if (distance < holdThreshold)
-            //     {
-            //         hold = 1;
-            //     }
-            // }
+            // hand = gk.left;
+            // Debug.Log(hand.Length);
+            // // if (hand[0].coords != null && hand[12].coords != null)
+            // // {
+            // //     float distance = Vector3.Distance(hand[0].coords, hand[12].coords);
+            // //     if (distance < holdThreshold)
+            // //     {
+            // //         hold = 1;
+            // //     }
+            // // }
+            hold = gk.leftIsClosed;
+            Debug.Log("left: " + hold);
         }
     }
 }
