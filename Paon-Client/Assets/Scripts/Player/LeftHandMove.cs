@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Grpc.Core;
 using MagicOnion.Client;
-using Paon;
+using Paon.NNetwork;
 using Paon.NInput;
 using Paon.NNetwork.Shared.MessagePackObjects;
 using Paon.NNetWork.Shared.Services;
