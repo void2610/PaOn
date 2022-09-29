@@ -71,7 +71,7 @@ namespace Paon
             // ユーザの GameObject (アバター)を Player 情報を元に生成して
             // this.players に player.Name をキーにして保持する
             // 部屋に入室しているユーザの数だけワールド上にキューブを出現する
-            Doll[player.ID] = GameObject.
+            // Doll[player.ID] = GameObject.
             var doll = GameObject.CreatePrimitive(PrimitiveType.Cube);
             doll.name = player.Name;
             doll.transform.SetPositionAndRotation(player.BodyPosition, player.Rotation);
