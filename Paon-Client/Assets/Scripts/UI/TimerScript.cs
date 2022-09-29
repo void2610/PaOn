@@ -15,6 +15,8 @@ namespace Paon.NUI
 
         float cooldown = Mathf.Infinity;
 
+        GameObject GoalText;
+
         public void CountStart()
         {
             time = 0.0f;
@@ -28,6 +30,7 @@ namespace Paon.NUI
 
         void Start()
         {
+            GoalText = GameObject.Find("GoalText");
         }
 
         // Update is called once per frame
@@ -50,10 +53,12 @@ namespace Paon.NUI
             if (display)
             {
                 this.gameObject.GetComponent<Text>().text = time.ToString("F2");
+                GoalText.GetComponent<Text>().text = "ゴール！";
             }
             else
             {
                 this.gameObject.GetComponent<Text>().text = "";
+                GoalText.GetComponent<Text>().text = "";
             }
         }
     }
