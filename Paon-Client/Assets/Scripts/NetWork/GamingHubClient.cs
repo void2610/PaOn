@@ -11,22 +11,34 @@ namespace Paon
     public class GamingHubClient : IGamingHubReceiver
     {
         public GameObject[] Doll = new GameObject[8];
+
         // 部屋に参加しているユーザ全員の GameObject (アバター)を保持する
-        Dictionary<string, GameObject> players = new Dictionary<string, GameObject>();
+        Dictionary<string, GameObject>
+            players = new Dictionary<string, GameObject>();
 
         // サーバ側の関数を実行するための変数
         IGamingHub client;
 
         // 指定したルームに入室するための関数
         // StreamingHubClient で使用する gRPC チャネル及び、参加したい部屋名、使用するユーザ名を引数に指定する
-        public async Task<GameObject> ConnectAsync(Channel grpcChannel, string roomName, string playerName)
+        public async Task<GameObject>
+        ConnectAsync(Channel grpcChannel, string roomName, string playerName)
         {
             // サーバ側の関数を実行するための StreamingHubClient を生成する
-            client = StreamingHubClient.Connect<IGamingHub, IGamingHubReceiver>(grpcChannel, this);
+            client =
+                StreamingHubClient
+                    .Connect<IGamingHub, IGamingHubReceiver>(grpcChannel, this);
 
             // JoinAsync 関数を実行して部屋に入室すると同時に、
             // 既に入室済みのユーザ全員の情報を配列で取得する
-            var roomPlayers = await client.JoinAsync(roomName, playerName, Vector3.zero, Vector3.zero, Vector3.zero, Quaternion.identity);
+            var roomPlayers =
+                await client
+                    .JoinAsync(roomName,
+                    playerName,
+                    Vector3.zero,
+                    Vector3.zero,
+                    Vector3.zero,
+                    Quaternion.identity);
 
             // 自ユーザ以外を OnJoin 関数に渡して、
             // this.players に部屋の他ユーザ全員の情報をセットする
@@ -52,7 +64,13 @@ namespace Paon
 
         // 自ユーザの位置(Vector3) と回転(Quaternion) を更新すると同時に
         // 部屋の他ユーザ全員にブロードキャスト送信する
-        public Task MoveAsync(Vector3 _body, Vector3 _right, Vector3 _left, Quaternion rotation)
+        public Task
+        MoveAsync(
+            Vector3 _body,
+            Vector3 _right,
+            Vector3 _left,
+            Quaternion rotation
+        )
         {
             return client.MoveAsync(_body, _right, _left, rotation);
         }
@@ -71,12 +89,18 @@ namespace Paon
             // ユーザの GameObject (アバター)を Player 情報を元に生成して
             // this.players に player.Name をキーにして保持する
             // 部屋に入室しているユーザの数だけワールド上にキューブを出現する
-            // Doll[player.ID] = GameObject.
+            //Doll[player.ID] = GameObject.
             var doll = GameObject.CreatePrimitive(PrimitiveType.Cube);
             doll.name = player.Name;
-            doll.transform.SetPositionAndRotation(player.BodyPosition, player.Rotation);
-            doll.transform.SetPositionAndRotation(player.BodyPosition, player.Rotation);
-            doll.transform.SetPositionAndRotation(player.BodyPosition, player.Rotation);
+            doll
+                .transform
+                .SetPositionAndRotation(player.BodyPosition, player.Rotation);
+            doll
+                .transform
+                .SetPositionAndRotation(player.BodyPosition, player.Rotation);
+            doll
+                .transform
+                .SetPositionAndRotation(player.BodyPosition, player.Rotation);
             players[player.Name] = doll;
         }
 
@@ -87,7 +111,7 @@ namespace Paon
             // ワールド上から該当する GameObject (アバター)のキューブが消滅する
             if (players.TryGetValue(player.Name, out var doll))
             {
-                GameObject.Destroy(doll);
+                GameObject.Destroy (doll);
             }
         }
 
@@ -98,8 +122,10 @@ namespace Paon
             // ワールド上の該当する GameObject (アバター)の位置(Vector3)と回転(Quaternion) の値を最新のものに更新する
             if (players.TryGetValue(player.Name, out var doll))
             {
-                doll.transform.SetPositionAndRotation(player.BodyPosition, player.Rotation);
-
+                doll
+                    .transform
+                    .SetPositionAndRotation(player.BodyPosition,
+                    player.Rotation);
             }
         }
     }
