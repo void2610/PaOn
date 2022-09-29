@@ -11,7 +11,8 @@ namespace Paon.NNetwork
 {
     public class GameClient : MonoBehaviour
     {
-        public static GameObject Doll;
+        [SerializeField]
+        static GameObject Doll;
         GameObject body, right, left;
         // プレイヤーの Transform (今回はメインカメラの Transform を指定)
         [SerializeField]
