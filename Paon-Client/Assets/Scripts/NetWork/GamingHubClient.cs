@@ -10,7 +10,7 @@ namespace Paon
 {
     public class GamingHubClient : IGamingHubReceiver
     {
-        public GameObject[8] Doll;
+        public GameObject[] Doll = new GameObject[8];
         // 部屋に参加しているユーザ全員の GameObject (アバター)を保持する
         Dictionary<string, GameObject> players = new Dictionary<string, GameObject>();
 
@@ -71,7 +71,7 @@ namespace Paon
             // ユーザの GameObject (アバター)を Player 情報を元に生成して
             // this.players に player.Name をキーにして保持する
             // 部屋に入室しているユーザの数だけワールド上にキューブを出現する
-
+            Doll[player.ID] = GameObject.
             var doll = GameObject.CreatePrimitive(PrimitiveType.Cube);
             doll.name = player.Name;
             doll.transform.SetPositionAndRotation(player.BodyPosition, player.Rotation);
