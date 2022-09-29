@@ -4,47 +4,65 @@ using MagicOnion.Server.Hubs;
 using Paon.NNetwork.Shared.Hubs;
 using Paon.NNetwork.Shared.MessagePackObjects;
 using UnityEngine;
+using System;
+using System.Collections.Generic;
+
+
 
 namespace Paon.NNetwork.Hubs
 {
     public class GamingHub : StreamingHubBase<IGamingHub, IGamingHubReceiver>, IGamingHub
     {
-        // this class is instantiated per connected so fields are cache area of connection.
-        IGroup _room;
-        Player _self;
-        IInMemoryStorage<Player> _storage;
+        int Count = 0;
+        // IGroup を使用することで同一のグループに所属している他ユーザ全員に対して
+        // 一斉にブロードキャスト送信を行うことが出来る (オンラインゲームで言うルームの概念)
+        IGroup room;
 
-        public async Task<Player[]> JoinAsync(string roomName, string userName, Vector3 position, Vector3 rotation)
+        // ルーム内での自分の情報 (IGamingHub.cs で定義した Player の情報)
+        Player self;
+
+        // ルームに入室しているユーザ全員（自分も含む）の情報を保持して扱うための変数
+        IInMemoryStorage<Player> storage;
+
+        // 指定したルームに入室するための関数
+        // 入室するルーム名及び、ユーザ自身の情報(ユーザ名,位置(Vector3),回転(Quaternion)) を引数に取る
+        public async Task<Player[]> JoinAsync(string roomName, string userName, Vector3 _body, Vector3 _right, Vector3 _left, Quaternion rotation)
         {
-            _self = new Player(userName);
+            self = new Player() { ID = Count++, Name = userName, BodyPosition = _body, RightPosition = _right, LeftPosition = _left, Rotation = rotation };
 
-            // Group can bundle many connections and it has inmemory-storage so add any type per group. 
-            (_room, _storage) = await Group.AddAsync(roomName, _self);
+            // ルームにユーザが入室する
+            (room, storage) = await Group.AddAsync(roomName, self);
 
-            // Typed Server->Client broadcast.
-            BroadcastExceptSelf(_room).OnJoin(_self);
+            // ルームに入室している他ユーザ全員に
+            // 入室したユーザの情報をブロードキャスト送信する
+            Broadcast(room).OnJoin(self);
 
-            return _storage.AllValues.ToArray();
+            // ルームに入室している他ユーザ全員の情報を配列で取得する
+            return storage.AllValues.ToArray();
         }
 
+        // ユーザがルームから退出する
         public async Task LeaveAsync()
         {
-            Broadcast(_room).OnLeave(_self);
-            await _room.RemoveAsync(Context);
+            await room.RemoveAsync(this.Context);
+
+            // ルームに入室している他ユーザ全員に
+            // ルームから退出したことをユーザの情報と共にブロードキャスト送信する
+            Broadcast(room).OnLeave(self);
         }
 
-        public async Task MoveAsync(Vector3 position, Vector3 rotation)
+        // ユーザがルームの中で動く
+        public async Task MoveAsync(Vector3 _body, Vector3 _right, Vector3 _left, Quaternion rotation)
         {
-            _self.Position = position;
-            _self.Rotation = rotation;
-            Broadcast(_room).OnMove(_self);
-        }
+            // 動いたユーザの位置(xyz) と回転(quaternion) を設定する
+            self.BodyPosition = _body;
+            self.RightPosition = _right;
+            self.LeftPosition = _left;
+            self.Rotation = rotation;
 
-        // You can hook OnConnecting/OnDisconnected by override.
-        protected override async ValueTask OnDisconnected()
-        {
-            // on disconnecting, if automatically removed this connection from group.
-            await CompletedTask;
+            // 動いたユーザの最新の位置(Vector3)と回転(Quaternion) を
+            // ルームに入室している他ユーザ全員にユーザの最新情報 (Player) をブロードキャスト送信する
+            Broadcast(room).OnMove(self);
         }
     }
 }

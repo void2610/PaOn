@@ -5,21 +5,21 @@ using UnityEngine;
 
 namespace Paon.NNetwork.Shared.Hubs
 {
+    /// <summary>
+    /// クライアント -> サーバ
+    /// </summary>
     public interface IGamingHubReceiver
     {
-        // return type shuold be `void` or `Task`, parameters are free.
         void OnJoin(Player player);
         void OnLeave(Player player);
         void OnMove(Player player);
     }
 
-    // Client -> Server definition
-    // implements `IStreamingHub<TSelf, TReceiver>`  and share this type between server and client.
+    // クライアントがサーバ側で gRPC 実行可能な関数を定義する
     public interface IGamingHub : IStreamingHub<IGamingHub, IGamingHubReceiver>
     {
-        // return type shuold be `Task` or `Task<T>`, parameters are free.
-        Task<Player[]> JoinAsync(string roomName, string userName, Vector3 position, Vector3 rotation);
+        Task<Player[]> JoinAsync(string roomName, string userName, Vector3 _body, Vector3 _right, Vector3 _left, Quaternion rotation);
         Task LeaveAsync();
-        Task MoveAsync(Vector3 position, Vector3 rotation);
+        Task MoveAsync(Vector3 _body, Vector3 _right, Vector3 _left, Quaternion rotation);
     }
 }

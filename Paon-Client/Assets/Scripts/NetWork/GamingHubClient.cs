@@ -10,76 +10,96 @@ namespace Paon
 {
     public class GamingHubClient : IGamingHubReceiver
     {
-        Dictionary<string, GameObject> _players = new Dictionary<string, GameObject>();
-        IGamingHub _client;
+        public GameObject[8] Doll;
+        // 部屋に参加しているユーザ全員の GameObject (アバター)を保持する
+        Dictionary<string, GameObject> players = new Dictionary<string, GameObject>();
 
+        // サーバ側の関数を実行するための変数
+        IGamingHub client;
+
+        // 指定したルームに入室するための関数
+        // StreamingHubClient で使用する gRPC チャネル及び、参加したい部屋名、使用するユーザ名を引数に指定する
         public async Task<GameObject> ConnectAsync(Channel grpcChannel, string roomName, string playerName)
         {
-            _client = StreamingHubClient.Connect<IGamingHub, IGamingHubReceiver>(grpcChannel, this);
+            // サーバ側の関数を実行するための StreamingHubClient を生成する
+            client = StreamingHubClient.Connect<IGamingHub, IGamingHubReceiver>(grpcChannel, this);
 
-            var roomPlayers = await _client.JoinAsync(roomName, playerName, Vector3.zero, Vector3.zero);
+            // JoinAsync 関数を実行して部屋に入室すると同時に、
+            // 既に入室済みのユーザ全員の情報を配列で取得する
+            var roomPlayers = await client.JoinAsync(roomName, playerName, Vector3.zero, Vector3.zero, Vector3.zero, Quaternion.identity);
+
+            // 自ユーザ以外を OnJoin 関数に渡して、
+            // this.players に部屋の他ユーザ全員の情報をセットする
+            // 自ユーザの情報は await で JoinAsync を実行した段階で、
+            // OnJoin がコールバックで呼ばれているためセット済みの状態となっている
             foreach (var player in roomPlayers)
             {
-                (this as IGamingHubReceiver).OnJoin(player);
+                if (player.Name != playerName)
+                {
+                    (this as IGamingHubReceiver).OnJoin(player);
+                }
             }
 
-            return _players[playerName];
+            // 自ユーザの情報を返却する
+            return players[playerName];
         }
 
-        // methods send to server.
-
+        // 部屋から退出し、部屋の他ユーザ全員に退出したことをブロードキャスト送信する
         public Task LeaveAsync()
         {
-            return _client.LeaveAsync();
+            return client.LeaveAsync();
         }
 
-        public Task MoveAsync(Vector3 position, Vector3 rotation)
+        // 自ユーザの位置(Vector3) と回転(Quaternion) を更新すると同時に
+        // 部屋の他ユーザ全員にブロードキャスト送信する
+        public Task MoveAsync(Vector3 _body, Vector3 _right, Vector3 _left, Quaternion rotation)
         {
-            return _client.MoveAsync(position, rotation);
+            return client.MoveAsync(_body, _right, _left, rotation);
         }
 
-        // dispose client-connection before channel.ShutDownAsync is important!
+        // StreamingHubClient の解放処理
+        // gRPC のチャネルを破棄する前に実行する必要がある
         public Task DisposeAsync()
         {
-            return _client.DisposeAsync();
+            return client.DisposeAsync();
         }
 
-        // You can watch connection state, use this for retry etc.
-        public Task WaitForDisconnect()
-        {
-            return _client.WaitForDisconnect();
-        }
-
-        // Receivers of message from server.
-
+        // 部屋に新しいユーザが入室したときに呼び出される関数
+        // または ConnectAsync 関数を実行したときに呼び出される関数
         void IGamingHubReceiver.OnJoin(Player player)
         {
-            Debug.Log("Join Player:" + player.Name);
+            // ユーザの GameObject (アバター)を Player 情報を元に生成して
+            // this.players に player.Name をキーにして保持する
+            // 部屋に入室しているユーザの数だけワールド上にキューブを出現する
 
-            var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            cube.name = player.Name;
-            cube.transform.SetPositionAndRotation(player.Position,Quaternion.Euler(player.Rotation.x,player.Rotation.y,player.Rotation.z));
-            _players[player.Name] = cube;
+            var doll = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            doll.name = player.Name;
+            doll.transform.SetPositionAndRotation(player.BodyPosition, player.Rotation);
+            doll.transform.SetPositionAndRotation(player.BodyPosition, player.Rotation);
+            doll.transform.SetPositionAndRotation(player.BodyPosition, player.Rotation);
+            players[player.Name] = doll;
         }
 
+        // 他ユーザが部屋から退出した際に呼び出される関数
         void IGamingHubReceiver.OnLeave(Player player)
         {
-            Debug.Log("Leave Player:" + player.Name);
-
-            if (_players.TryGetValue(player.Name, out var cube))
+            // this.players に保持していた GameObject (アバター)を破棄する
+            // ワールド上から該当する GameObject (アバター)のキューブが消滅する
+            if (players.TryGetValue(player.Name, out var doll))
             {
-                GameObject.Destroy(cube);
-                _players.Remove(player.Name);
+                GameObject.Destroy(doll);
             }
         }
 
+        // 部屋の中でいずれかのユーザが動いたときに呼び出される関数
         void IGamingHubReceiver.OnMove(Player player)
         {
-            Debug.Log("Move Player:" + player.Name);
-
-            if (_players.TryGetValue(player.Name, out var cube))
+            // 引数の player の Name を元に this.players 内から GameObject を取得する
+            // ワールド上の該当する GameObject (アバター)の位置(Vector3)と回転(Quaternion) の値を最新のものに更新する
+            if (players.TryGetValue(player.Name, out var doll))
             {
-                cube.transform.SetPositionAndRotation(player.Position, Quaternion.Euler(player.Rotation.x, player.Rotation.y, player.Rotation.z));
+                doll.transform.SetPositionAndRotation(player.BodyPosition, player.Rotation);
+
             }
         }
     }

@@ -6,15 +6,11 @@ namespace Paon.NNetwork.Shared.MessagePackObjects
     [MessagePackObject]
     public class Player
     {
-        [Key(0)] public string Name { get; set; }
-        [Key(1)] public Vector3 Position { get; set; }
-        [Key(2)] public Vector3 Rotation { get; set; }
-        [Key(3)] public int ID { get; set; }
-        public Player(string Name)
-        {
-            this.Name = Name;
-            Position = new Vector3(0, 0, 0);
-            ID = -1;
-        }
+        [Key(0)] public int ID { get; set; }
+        [Key(1)] public string Name { get; set; }
+        [Key(2)] public Vector3 BodyPosition { get; set; }
+        [Key(3)] public Vector3 RightPosition { get; set; }
+        [Key(4)] public Vector3 LeftPosition { get; set; }
+        [Key(5)] public Quaternion Rotation { get; set; }
     }
 }
