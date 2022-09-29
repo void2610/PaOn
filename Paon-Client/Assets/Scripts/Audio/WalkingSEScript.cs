@@ -12,6 +12,10 @@ namespace Paon.NAudio
 
         GameObject Player;
 
+        bool e = false;
+
+        bool tmp = false;
+
         void Start()
         {
             Player = GameObject.Find("PlayerBody");
@@ -22,16 +26,24 @@ namespace Paon.NAudio
             speed =
                 ((Player.transform.position - latestPos) / Time.deltaTime)
                     .magnitude;
-            Debug.Log (speed);
             if (speed > 0.1f)
+            {
+                e = true;
+            }
+            else
+            {
+                e = false;
+            }
+            if (e && !tmp)
             {
                 this.GetComponent<AudioSource>().Play();
             }
-            else
+            if (!e && tmp)
             {
                 this.GetComponent<AudioSource>().Stop();
             }
             latestPos = Player.transform.position;
+            tmp = e;
         }
     }
 }
