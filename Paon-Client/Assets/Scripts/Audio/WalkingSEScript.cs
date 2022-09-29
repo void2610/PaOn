@@ -8,7 +8,7 @@ namespace Paon.NAudio
     {
         Vector3 latestPos;
 
-        Vector3 speed;
+        float speed;
 
         GameObject Player;
 
@@ -23,7 +23,7 @@ namespace Paon.NAudio
                 ((Player.transform.position - latestPos) / Time.deltaTime)
                     .magnitude;
             Debug.Log (speed);
-            if (v.magnitude > 0.1f)
+            if (speed > 0.1f)
             {
                 this.GetComponent<AudioSource>().Play();
             }
