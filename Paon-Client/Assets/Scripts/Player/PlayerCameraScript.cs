@@ -17,22 +17,31 @@ namespace Paon.NPlayer
 
         void Start()
         {
-            goal =
-                GameObject
-                    .Find("BorderingGoal")
-                    .GetComponent<BorderingGoalScript>();
-            start =
-                GameObject
-                    .Find("BorderingStart")
-                    .GetComponent<BorderingStartScript>();
+            if (GameObject.Find("BorderingGoal") != null)
+            {
+                goal =
+                    GameObject
+                        .Find("BorderingGoal")
+                        .GetComponent<BorderingGoalScript>();
+            }
+            if (GameObject.Find("BorderingStart") != null)
+            {
+                start =
+                    GameObject
+                        .Find("BorderingStart")
+                        .GetComponent<BorderingStartScript>();
+            }
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (!tmp && goal.goaling)
+            if (goal != null)
             {
-                stat = 1;
+                if (!tmp && goal.goaling)
+                {
+                    stat = 1;
+                }
             }
             if (stat == 1 && start.starting)
             {
@@ -98,7 +107,10 @@ namespace Paon.NPlayer
             }
 
             this.gameObject.transform.eulerAngles = rot;
-            tmp = goal.goaling;
+            if (goal != null)
+            {
+                tmp = goal.goaling;
+            }
         }
     }
 }
