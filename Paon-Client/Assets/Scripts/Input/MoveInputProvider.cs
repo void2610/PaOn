@@ -73,15 +73,7 @@ namespace Paon.NInput
 				yield return new WaitForSeconds(0.5f);
 				if (pose != null && previous[16].score > 0.7f && previous[15].score > 0.7f)
 				{
-					float current = Mathf.Abs(pose[16].coords.y - pose[15].coords.y);
-
-					float delta = Mathf.Abs(prevFoward - current);
-					Debug.Log("delta: " + delta);
-					if (delta > forwardThreshold) key = "up";
-					else key = "none";
-
-					prevFoward = current;
-
+					
 					Vector2 healCenter = Vector2.Lerp(pose[15].coords, pose[16].coords, 0.5f);
 					Vector2 hipCenter = Vector2.Lerp(pose[11].coords, pose[12].coords, 0.5f);
 
@@ -135,6 +127,15 @@ namespace Paon.NInput
 
 					predef1 = def1;
 					predef2 = def2;
+
+					float current = Mathf.Abs(pose[16].coords.y - pose[15].coords.y);
+
+					float delta = Mathf.Abs(prevFoward - current);
+					Debug.Log("delta: " + delta);
+					if (delta > forwardThreshold) key = "up";
+
+					prevFoward = current;
+
 				}
 			}
 		}

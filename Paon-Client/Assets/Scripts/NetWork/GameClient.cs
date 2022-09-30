@@ -50,7 +50,7 @@ namespace Paon.NNetwork
 
         public static int SendFaceID(int FaceID)
         {
-            GameClient.client.FaceAsync(FaceID);
+            // GameClient.client.FaceAsync(FaceID);
             return 0;
         }
 
