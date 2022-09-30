@@ -104,6 +104,10 @@ namespace Paon.NInput
 				{
 					key = "up";
 				}
+				else
+				{
+					key = "none";
+				}
 				//ankle to hip
 				// Rleg = Mathf.Abs(pose[16].coords.x - pose[12].coords.x);
 				// Lleg = Mathf.Abs(pose[15].coords.x - pose[11].coords.x);
@@ -117,6 +121,10 @@ namespace Paon.NInput
 				else if (Lleg > 0.06)
 				{
 					key = "left";
+				}
+				else
+				{
+					key = "none";
 				}
 
 				Vector2 healCenter = Vector2.Lerp(pose[15].coords, pose[16].coords, 0.5f);
