@@ -16,6 +16,8 @@ namespace Paon.NBordering
 
         float sTime = -10.0f;
 
+        public AudioClip SE;
+
         void Start()
         {
             bm = GameObject.Find("BorderingManager");
@@ -28,6 +30,7 @@ namespace Paon.NBordering
             if (!tmp && goaling)
             {
                 sTime = Time.time;
+                this.GetComponent<AudioSource>().PlayOneShot(SE);
             }
             if (Time.time - sTime <= 1.5f)
             {

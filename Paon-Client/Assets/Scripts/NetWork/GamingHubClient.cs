@@ -88,21 +88,24 @@ namespace Paon.NNetwork
             // ユーザの GameObject (アバター)を Player 情報を元に生成して
             // this.players に player.Name をキーにして保持する
             // 部屋に入室しているユーザの数だけワールド上にキューブを出現する
+            if (player.Name != PlayerPrefs.GetString("Name", "NULLTYAN"))
+            {
+                GameObject doll = GameClient.MakeDolls(player);
+                GameObject _body = doll.transform.GetChild(0).gameObject;
+                GameObject _left = doll.transform.GetChild(1).gameObject;
+                GameObject _right = doll.transform.GetChild(2).gameObject;
+                doll.name = player.Name;
+                _body.name = player.Name + "Body";
+                _right.name = player.Name + "Right";
+                _left.name = player.Name + "Left";
 
-            GameObject doll = GameClient.MakeDolls(player);
-            GameObject _body = doll.transform.GetChild(0).gameObject;
-            GameObject _left = doll.transform.GetChild(1).gameObject;
-            GameObject _right = doll.transform.GetChild(2).gameObject;
-            doll.name = player.Name;
-            _body.name = player.Name + "Body";
-            _right.name = player.Name + "Right";
-            _left.name = player.Name + "Left";
+                //Dolls[player.ID % 8].name = player.Name;
+                doll.transform.SetPositionAndRotation(player.BodyPosition, player.Rotation);
+                doll.transform.SetPositionAndRotation(player.RightPosition, player.Rotation);
+                doll.transform.SetPositionAndRotation(player.LeftPosition, player.Rotation);
+                players[player.Name] = doll;
+            }
 
-            //Dolls[player.ID % 8].name = player.Name;
-            doll.transform.SetPositionAndRotation(player.BodyPosition, player.Rotation);
-            doll.transform.SetPositionAndRotation(player.RightPosition, player.Rotation);
-            doll.transform.SetPositionAndRotation(player.LeftPosition, player.Rotation);
-            players[player.Name] = doll;
             Debug.Log("login:" + player.Name);
         }
 
@@ -125,6 +128,7 @@ namespace Paon.NNetwork
             // ワールド上の該当する GameObject (アバター)の位置(Vector3)と回転(Quaternion) の値を最新のものに更新する
             if (players.TryGetValue(player.Name, out var doll))
             {
+                player.Rotation = player.Rotation * Quaternion.Euler(0f, 90f, 0f);
                 doll.transform.GetChild(0).SetPositionAndRotation(player.BodyPosition, player.Rotation);
                 doll.transform.GetChild(1).SetPositionAndRotation(player.LeftPosition, player.Rotation);
                 doll.transform.GetChild(2).SetPositionAndRotation(player.RightPosition, player.Rotation);
