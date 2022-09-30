@@ -35,9 +35,9 @@ namespace Paon.NInput
 
 		float Lleg;
 
-		float prevFoward = 20f;
+		float prevFoward;
 
-		public float forwardThreshold;
+		public float forwardThreshold = 15f;
 
 		public float th = 1.0f;
 
@@ -76,7 +76,7 @@ namespace Paon.NInput
 					float current = Mathf.Abs(pose[16].coords.y - pose[15].coords.y);
 
 					float delta = Mathf.Abs(prevFoward - current);
-					Debug.Log(delta);
+					Debug.Log("delta: " + delta);
 					if (delta > forwardThreshold) key = "up";
 					else key = "none";
 
