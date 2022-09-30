@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SelectEmojiScript : MonoBehaviour
 {
@@ -66,12 +67,17 @@ public class SelectEmojiScript : MonoBehaviour
             e5.color = new Color32(255, 255, 255, 0);
             Commorose.transform.position = this.gameObject.transform.position;
         }
-        Now.GetComponent<SpriteRenderer>().sprite =
-            Resources.Load<Sprite>("Emoji" + select);
+        if (Resources.Load<Sprite>("Picture/Emoji" + select) != null)
+        {
+            Now.GetComponent<Image>().sprite =
+                Resources.Load<Sprite>("Picture/Emoji" + select);
+        }
+        Debug.Log (select);
     }
 
     void OnTriggerStay(Collider other)
     {
+        Debug.Log(other.name);
         if (Input.GetKey(KeyCode.Z))
         {
             if (other.gameObject.name == "Emoji1")
