@@ -5,66 +5,57 @@ using UnityEngine;
 
 namespace Paon.NInput
 {
-	public class MoveInputProvider : MonoBehaviour
-	{
-		public GameObject GK;
+    public class MoveInputProvider : MonoBehaviour
+    {
+        public GameObject GK;
 
-		private GetKeypoints gk;
+        private GetKeypoints gk;
 
-		private GetKeypoints.Keypoint[] previous;
+        private GetKeypoints.Keypoint[] previous;
 
-		private GetKeypoints.Keypoint[] pose;
+        private GetKeypoints.Keypoint[] pose;
 
-		public Visualizer _visualizer;
+        public Visualizer _visualizer;
 
-		Vector3[] vertices;
+        Vector3[] vertices;
 
-		string key = "";
+        string key = "";
 
-		int crouch = 0;
+        int crouch = 0;
 
-		float def1;
+        float def1;
 
-		float def2;
+        float def2;
 
-		float predef1;
+        float predef1;
 
-		float predef2;
+        float predef2;
 
-		float Rleg;
+        float Rleg;
 
-		float Lleg;
+        float Lleg;
 
-		float prevFoward;
+        float prevFoward;
 
-		public float forwardThreshold = 15f;
+        public float forwardThreshold = 15f;
 
-		public float th = 1.0f;
+        public float th = 1.0f;
 
-		///<summary>
-		///入力されているキーを返すメソッド
-		///</summary>
-		/// <returns>入力されているキー</returns>
-		public string GetInput()
-		{
-			return key;
-		}
+        ///<summary>
+        ///入力されているキーを返すメソッド
+        ///</summary>
+        /// <returns>入力されているキー</returns>
+        public string GetInput()
+        {
+            return key;
+        }
 
-		private Vector2 CalculateDelta(Vector2 pre, Vector2 now)
-		{
-			float dx = pre.x - now.x;
-			float dy = pre.y - now.y;
-
-			//Debug.Log(dx);
-			return new Vector2(dx, dy);
-		}
-
-		Vector2 CalculateDelta(Vector3 pre, Vector3 current)
-		{
-			float dx = pre.x - current.x;
-			float dy = pre.y - current.y;
-			return new Vector2(dx, dy);
-		}
+        Vector2 CalculateDelta(Vector3 pre, Vector3 current)
+        {
+            float dx = pre.x - current.x;
+            float dy = pre.y - current.y;
+            return new Vector2(dx, dy);
+        }
 
 		IEnumerator JudgeMove()
 		{
@@ -77,74 +68,62 @@ namespace Paon.NInput
 					Vector2 healCenter = Vector2.Lerp(pose[15].coords, pose[16].coords, 0.5f);
 					Vector2 hipCenter = Vector2.Lerp(pose[11].coords, pose[12].coords, 0.5f);
 
-					float legLength = Vector2.Distance(healCenter, hipCenter);
-					if (legLength < 50)
-					{
-						crouch = 1;
-						Debug.Log("crouched: " + crouch);
-					}
-					else
-					{
-						crouch = 0;
-					}
+                    //left
+                    def2 = pose[15].coords.y - pose[0].coords.y;
 
-					//right ankle to nose
-					def1 = pose[16].coords.y - pose[0].coords.y;
-					//left
-					def2 = pose[15].coords.y - pose[0].coords.y;
+                    // Debug.Log("delta1: " + Math.Abs(def1 - predef1));
+                    // Debug.Log("delta2: " + Math.Abs(def2 - predef2));
+                    if (
+                        Mathf.Abs(def1 - predef1) > th ||
+                        Mathf.Abs(def2 - predef2) > th
+                    )
+                    {
+                        key = "up";
+                    }
+                    else
+                    {
+                        key = "none";
+                    }
 
-					// Debug.Log("delta1: " + Math.Abs(def1 - predef1));
-					// Debug.Log("delta2: " + Math.Abs(def2 - predef2));
+                    //ankle to hip
+                    // Rleg = Mathf.Abs(pose[16].coords.x - pose[12].coords.x);
+                    // Lleg = Mathf.Abs(pose[15].coords.x - pose[11].coords.x);
+                    Rleg = Mathf.Abs(vertices[30].x - vertices[32].x);
+                    Lleg = Mathf.Abs(vertices[29].x - vertices[31].x);
 
-					if (Mathf.Abs(def1 - predef1) > th || Mathf.Abs(def2 - predef2) > th)
-					{
-						key = "up";
-					}
-					else
-					{
-						key = "none";
-					}
-					//ankle to hip
-					// Rleg = Mathf.Abs(pose[16].coords.x - pose[12].coords.x);
-					// Lleg = Mathf.Abs(pose[15].coords.x - pose[11].coords.x);
-					Rleg = Mathf.Abs(vertices[30].x - vertices[32].x);
-					Lleg = Mathf.Abs(vertices[29].x - vertices[31].x);
-					// Debug.Log(Rleg);
-					if (Rleg > 0.07)
-					{
-						key = "right";
-					}
-					else if (Lleg > 0.07)
-					{
-						key = "left";
-					}
-					else
-					{
-						key = "none";
-					}
+                    // Debug.Log(Rleg);
+                    if (Rleg > 0.07)
+                    {
+                        key = "right";
+                    }
+                    else if (Lleg > 0.07)
+                    {
+                        key = "left";
+                    }
+                    else
+                    {
+                        key = "none";
+                    }
 
+                    predef1 = def1;
+                    predef2 = def2;
 
+					 float current =
+                        Mathf.Abs(pose[16].coords.y - pose[15].coords.y);
 
-					predef1 = def1;
-					predef2 = def2;
+                    float delta = Mathf.Abs(prevFoward - current);
+                    Debug.Log("delta: " + delta);
+                    if (delta > forwardThreshold)
+                        key = "up";
+                }
+            }
+        }
 
-					float current = Mathf.Abs(pose[16].coords.y - pose[15].coords.y);
-
-					float delta = Mathf.Abs(prevFoward - current);
-					Debug.Log("delta: " + delta);
-					if (delta > forwardThreshold) key = "up";
-
-					prevFoward = current;
-
-				}
-			}
-		}
-
-		void Start()
-		{
-			gk = GK.GetComponent<GetKeypoints>();
-			StartCoroutine(nameof(JudgeMove));
-		}
+        void Start()
+        {
+            gk = GK.GetComponent<GetKeypoints>();
+            StartCoroutine(nameof(JudgeMove));
+        }
 
 		void Update()
 		{
@@ -230,12 +209,7 @@ namespace Paon.NInput
 			// 	{
 			// 		key = "none";
 			// 	}
-
-
-
-			// 	predef1 = def1;
-			// 	predef2 = def2;
-			// }
+		
 		}
 	}
 }
