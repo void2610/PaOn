@@ -13,7 +13,7 @@ namespace Paon.NNetwork
     {
         [SerializeField]
         static GameObject Doll;
-        GameObject body, right, left;
+        GameObject body, right, left, face;
         // プレイヤーの Transform (今回はメインカメラの Transform を指定)
         [SerializeField]
         Transform m_PlayerTransform;
@@ -37,11 +37,13 @@ namespace Paon.NNetwork
         async Task Start()
         {
             m_UserName = PlayerPrefs.GetString("Name", "NULLTYAN");
+            m_RoomName = PlayerPrefs.GetString("Room", "MAIGO");
 
             Doll = (GameObject)Resources.Load("Doll");
             body = GameObject.Find("PlayerBody");
             right = GameObject.Find("RightHand");
             left = GameObject.Find("LeftHand");
+            face = GameObject.Find("Emoji");
             // ゲーム起動時に設定した部屋名のルームに設定したユーザ名で入室する。
             await this.client.ConnectAsync(this.channel, this.m_RoomName, this.m_UserName);
         }

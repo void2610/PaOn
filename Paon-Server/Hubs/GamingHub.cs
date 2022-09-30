@@ -13,7 +13,7 @@ namespace Paon.NNetwork.Hubs
 {
     public class GamingHub : StreamingHubBase<IGamingHub, IGamingHubReceiver>, IGamingHub
     {
-        int Count = 0;
+        public int Count = 0;
         // IGroup を使用することで同一のグループに所属している他ユーザ全員に対して
         // 一斉にブロードキャスト送信を行うことが出来る (オンラインゲームで言うルームの概念)
         IGroup room;
