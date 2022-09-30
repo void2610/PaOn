@@ -103,6 +103,7 @@ namespace Paon.NNetwork
             doll.transform.SetPositionAndRotation(player.RightPosition, player.Rotation);
             doll.transform.SetPositionAndRotation(player.LeftPosition, player.Rotation);
             players[player.Name] = doll;
+            Debug.Log("login:" + player.Name);
         }
 
         // 他ユーザが部屋から退出した際に呼び出される関数
