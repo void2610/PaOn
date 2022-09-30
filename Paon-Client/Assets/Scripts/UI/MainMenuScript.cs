@@ -108,6 +108,12 @@ namespace Paon.NUI
             PlayerPrefs.SetInt("GiveTurn", 0);
         }
 
+        public void ValueChange(float newSliderValue)
+        {
+            // 音楽の音量をスライドバーの値に変更
+            AudioListener.volume = newSliderValue;
+        }
+
         void Start()
         {
             S = GameObject.Find("Start");

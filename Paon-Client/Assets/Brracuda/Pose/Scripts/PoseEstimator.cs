@@ -19,7 +19,7 @@ public class PoseEstimator : MonoBehaviour
     }
 
     [Tooltip("The requested webcam dimensions")]
-    public Vector2Int webcamDims = new Vector2Int(1280, 720);
+    public Vector2Int webcamDims = new Vector2Int(1980, 1080);
 
     [Tooltip("The requested webcam frame rate")]
     public int webcamFPS = 60;
@@ -103,7 +103,6 @@ public class PoseEstimator : MonoBehaviour
 
     // Stores the input data for the model
     private Tensor input;
-
 
     /// <summary>
     /// Keeps track of the current inference backend, model execution interface,
@@ -251,7 +250,7 @@ public class PoseEstimator : MonoBehaviour
         ModelBuilder modelBuilder = new ModelBuilder(m_RunTimeModel);
 
         // Add a new Sigmoid layer that takes the output of the heatmap layer
-        modelBuilder.Sigmoid(predictionLayer, heatmapLayer);
+        modelBuilder.Sigmoid (predictionLayer, heatmapLayer);
 
         // Validate if backend is supported, otherwise use fallback type.
         workerType = WorkerFactory.ValidateType(workerType);
@@ -271,7 +270,7 @@ public class PoseEstimator : MonoBehaviour
 
         // Populate the list of pose skeletons
         for (int i = 0; i < maxPoses; i++)
-            skeletons[i] = new PoseSkeleton(pointScale, lineWidth);
+        skeletons[i] = new PoseSkeleton(pointScale, lineWidth);
     }
 
     // Start is called before the first frame update
@@ -288,7 +287,6 @@ public class PoseEstimator : MonoBehaviour
 
             // Start the Camera
             // webcamTexture.Play();
-
             webcamTexture = webCamInput.GetWebcam();
 
             // Deactivate the Video Player
@@ -299,14 +297,15 @@ public class PoseEstimator : MonoBehaviour
 
             // Update the videoDims.x
             videoDims.x = webcamTexture.width;
+            Debug.Log("videoDims.x: " + videoDims.x);
         }
         else
         {
             // Update the videoDims.y
-            videoDims.y = (int)videoScreen.GetComponent<VideoPlayer>().height;
+            videoDims.y = (int) videoScreen.GetComponent<VideoPlayer>().height;
 
             // Update the videoDims.x
-            videoDims.x = (int)videoScreen.GetComponent<VideoPlayer>().width;
+            videoDims.x = (int) videoScreen.GetComponent<VideoPlayer>().width;
         }
 
         // Create a new videoTexture using the current video dimensions
@@ -324,7 +323,7 @@ public class PoseEstimator : MonoBehaviour
         InitializeCamera();
 
         // Adjust the input dimensions to maintain the source aspect ratio
-        aspectRatioScale = (float)videoTexture.width / videoTexture.height;
+        aspectRatioScale = (float) videoTexture.width / videoTexture.height;
         targetDims.x = (int)(imageDims.y * aspectRatioScale);
         imageDims.x = targetDims.x;
 
@@ -385,10 +384,10 @@ public class PoseEstimator : MonoBehaviour
             1);
 
         // Copy the result into the source RenderTexture
-        Graphics.Blit(result, image);
+        Graphics.Blit (result, image);
 
         // Release the temporary RenderTexture
-        RenderTexture.ReleaseTemporary(result);
+        RenderTexture.ReleaseTemporary (result);
     }
 
     /// <summary>
@@ -415,7 +414,7 @@ public class PoseEstimator : MonoBehaviour
             float[] tensor_array = input.data.Download(input.shape);
 
             // Apply preprocessing steps
-            preProcessFunction(tensor_array);
+            preProcessFunction (tensor_array);
 
             // Update input tensor with new color data
             input =
@@ -441,7 +440,6 @@ public class PoseEstimator : MonoBehaviour
 
         // Calculate the stride used to scale down the inputImage
         // UnityEngine.Debug.Log(heatmaps.shape[1]);
-
         int stride = (imageDims.y - 1) / (heatmaps.shape.height - 1);
         stride -= (stride % 8);
 
@@ -482,7 +480,7 @@ public class PoseEstimator : MonoBehaviour
         if (useWebcam)
         {
             webcamTexture = webCamInput.GetWebcam();
-            Graphics.Blit(webcamTexture, videoTexture);
+            Graphics.Blit (webcamTexture, videoTexture);
         }
 
         // Prevent the input dimensions from going too low for the model
@@ -492,14 +490,14 @@ public class PoseEstimator : MonoBehaviour
         // Update the input dimensions while maintaining the source aspect ratio
         if (imageDims.x != targetDims.x)
         {
-            aspectRatioScale = (float)videoTexture.height / videoTexture.width;
+            aspectRatioScale = (float) videoTexture.height / videoTexture.width;
             targetDims.y = (int)(imageDims.x * aspectRatioScale);
             imageDims.y = targetDims.y;
             targetDims.x = imageDims.x;
         }
         if (imageDims.y != targetDims.y)
         {
-            aspectRatioScale = (float)videoTexture.width / videoTexture.height;
+            aspectRatioScale = (float) videoTexture.width / videoTexture.height;
             targetDims.x = (int)(imageDims.y * aspectRatioScale);
             imageDims.x = targetDims.x;
             targetDims.y = imageDims.y;
@@ -508,7 +506,7 @@ public class PoseEstimator : MonoBehaviour
         // Update the rTex dimensions to the new input dimensions
         if (imageDims.x != rTex.width || imageDims.y != rTex.height)
         {
-            RenderTexture.ReleaseTemporary(rTex);
+            RenderTexture.ReleaseTemporary (rTex);
 
             // Assign a temporary RenderTexture with the new dimensions
             rTex =
@@ -517,10 +515,10 @@ public class PoseEstimator : MonoBehaviour
         }
 
         // Copy the src RenderTexture to the new rTex RenderTexture
-        Graphics.Blit(videoTexture, rTex);
+        Graphics.Blit (videoTexture, rTex);
 
         // Prepare the input image to be fed to the selected model
-        ProcessImage(rTex);
+        ProcessImage (rTex);
 
         // Reinitialize Barracuda with the selected model and backend
         if (engine.modelType != modelType || engine.workerType != workerType)
@@ -530,7 +528,7 @@ public class PoseEstimator : MonoBehaviour
         }
 
         // Execute neural network with the provided input
-        engine.worker.Execute(input);
+        engine.worker.Execute (input);
 
         // Release GPU resources allocated for the Tensor
         input.Dispose();
@@ -555,7 +553,7 @@ public class PoseEstimator : MonoBehaviour
 
         // The value used to scale the key point locations up to the source resolution
         float scale =
-            (float)minDimension / Mathf.Min(imageDims.x, imageDims.y);
+            (float) minDimension / Mathf.Min(imageDims.x, imageDims.y);
 
         // Update the pose skeletons
         for (int i = 0; i < skeletons.Length; i++)
