@@ -38,7 +38,7 @@ namespace Paon.NNetwork
         {
             m_UserName = PlayerPrefs.GetString("Name", "NULLTYAN");
             m_RoomName = PlayerPrefs.GetString("Room", "MAIGO");
-
+            m_RoomName = "poipoi";
             Doll = (GameObject)Resources.Load("Doll");
             body = GameObject.Find("PlayerBody");
             right = GameObject.Find("RightHand");
