@@ -43,6 +43,8 @@ namespace Paon.NUI
 
         InputField Input;
 
+        GameObject Volume;
+
         [SerializeField]
         Material Skin;
 
@@ -133,6 +135,7 @@ namespace Paon.NUI
             Toukei = GameObject.Find("Toukei");
             Statistics = GameObject.Find("Statistics");
             Reset = GameObject.Find("Reset");
+            Volume = GameObject.Find("Volume");
         }
 
         void Update()
@@ -150,6 +153,7 @@ namespace Paon.NUI
                 NamePlate.SetActive(false);
                 Player.SetActive(false);
                 Color.SetActive(false);
+                Volume.SetActive(false);
 
                 Server1.SetActive(false);
                 Server2.SetActive(false);
@@ -173,6 +177,7 @@ namespace Paon.NUI
                 NamePlate.SetActive(false);
                 Player.SetActive(false);
                 Color.SetActive(false);
+                Volume.SetActive(false);
 
                 Server1.SetActive(false);
                 Server2.SetActive(false);
@@ -196,6 +201,7 @@ namespace Paon.NUI
                 NamePlate.SetActive(false);
                 Player.SetActive(false);
                 Color.SetActive(false);
+                Volume.SetActive(false);
 
                 Server1.SetActive(true);
                 Server2.SetActive(true);
@@ -221,6 +227,7 @@ namespace Paon.NUI
                     PlayerPrefs.GetString("Name", "なまえをにゅうりょく");
                 Player.SetActive(true);
                 Color.SetActive(true);
+                Volume.SetActive(true);
 
                 Server1.SetActive(false);
                 Server2.SetActive(false);
@@ -244,7 +251,7 @@ namespace Paon.NUI
                 NamePlate.SetActive(false);
                 Player.SetActive(false);
                 Color.SetActive(false);
-                Statistics.SetActive(true);
+                Volume.SetActive(false);
 
                 Server1.SetActive(false);
                 Server2.SetActive(false);

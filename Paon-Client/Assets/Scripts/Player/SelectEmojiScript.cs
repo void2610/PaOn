@@ -77,7 +77,6 @@ public class SelectEmojiScript : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        Debug.Log(other.name);
         if (Input.GetKey(KeyCode.Z))
         {
             if (other.gameObject.name == "Emoji1")
