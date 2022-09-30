@@ -85,7 +85,7 @@ namespace Paon.NInput
 		void Start()
 		{
 			gk = GK.GetComponent<GetKeypoints>();
-			StartCoroutine(JudgeMove);
+			StartCoroutine(nameof(JudgeMove));
 		}
 
 		void Update()
