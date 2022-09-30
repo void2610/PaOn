@@ -139,10 +139,13 @@ namespace Paon.NNetwork
             }
         }
 
-        void IGamingHubReceiver.ChengeFace(Player player, int FaceID) {
+        void IGamingHubReceiver.ChengeFace(Player player, int FaceID)
+        {
+            Debug.Log("ChendeFaceには来ました。");
             if (players.TryGetValue(player.Name, out var doll))
             {
-                doll.transform.Find("monitor/emoji1").gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("picture/Emoji" + FaceID);
+                Debug.Log("TryGetValueは動いてます。");
+                doll.transform.Find(player.Name + "Body/monitor/emoji1").gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Picture/Emoji" + FaceID);
             }
         }
     }
