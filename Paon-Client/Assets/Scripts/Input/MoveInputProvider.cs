@@ -59,26 +59,26 @@ namespace Paon.NInput
 		void Update()
 		{
 			previous = gk.pose;
-			// if (Input.GetKey(KeyCode.LeftArrow))
-			// {
-			// 	key = "left";
-			// }
-			// else if (Input.GetKey(KeyCode.RightArrow))
-			// {
-			// 	key = "right";
-			// }
-			// else if (Input.GetKey(KeyCode.UpArrow))
-			// {
-			// 	key = "up";
-			// }
-			// else if (Input.GetKey(KeyCode.DownArrow))
-			// {
-			// 	key = "down";
-			// }
-			// else if (Input.GetKey(KeyCode.Space))
-			// {
-			// 	key = "space";
-			// }
+			if (Input.GetKey(KeyCode.LeftArrow))
+			{
+				key = "left";
+			}
+			else if (Input.GetKey(KeyCode.RightArrow))
+			{
+				key = "right";
+			}
+			else if (Input.GetKey(KeyCode.UpArrow))
+			{
+				key = "up";
+			}
+			else if (Input.GetKey(KeyCode.DownArrow))
+			{
+				key = "down";
+			}
+			else if (Input.GetKey(KeyCode.Space))
+			{
+				key = "space";
+			}
 			// else
 			// {
 			// 	key = "none";
