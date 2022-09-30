@@ -57,7 +57,7 @@ namespace Paon.NInput
 
 		public Keypoint rightWrist = new Keypoint(0, 0, 0, 0);
 
-		public float holdThreshold = 0.2f;
+		public float holdThreshold = 0.9f;
 		public int leftIsClosed = 0;
 		public int rightIsClosed = 0;
 
