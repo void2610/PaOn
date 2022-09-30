@@ -22,7 +22,7 @@ namespace Paon.NInput
 
         int hold = 0;
 
-        private float CulculateDistance(Vector2 start, Vector2 end)
+        private float CalculateDistance(Vector2 start, Vector2 end)
         {
             return (float)Vector2.Distance(start, end);
         }
@@ -87,6 +87,9 @@ namespace Paon.NInput
             if (gk.leftWrist.score > 0.7f)
                 previous = gk.leftWrist;
 
+            hold = gk.leftIsClosed;
+            Debug.Log("left: " + hold);
+
             if (Input.GetKey(KeyCode.W))
             {
                 key = "up";
@@ -108,20 +111,20 @@ namespace Paon.NInput
                 key = "none";
             }
 
-            if (Input.GetKey(KeyCode.Q))
-            {
-                hold = 1;
-            }
-            else
-            {
-                hold = 0;
-            }
+            // if (Input.GetKey(KeyCode.Q))
+            // {
+            //     hold = 1;
+            // }
+            // else
+            // {
+            //     hold = 0;
+            // }
         }
 
         void LateUpdate()
         {
-            // if (gk.leftWrist.score > 0.7f)
-            //     wrist = gk.leftWrist;
+            if (gk.leftWrist.score > 0.7f)
+                wrist = gk.leftWrist;
 
             // hand = gk.left;
             // Debug.Log(hand.Length);
@@ -133,8 +136,7 @@ namespace Paon.NInput
             // //         hold = 1;
             // //     }
             // // }
-            hold = gk.leftIsClosed;
-            Debug.Log("left: " + hold);
+
         }
     }
 }

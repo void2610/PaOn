@@ -103,20 +103,20 @@ namespace Paon.NInput
                 key = "none";
             }
 
-            if (Input.GetKey(KeyCode.U))
-            {
-                hold = 1;
-            }
-            else
-            {
-                hold = 0;
-            }
+            // if (Input.GetKey(KeyCode.U))
+            // {
+            //     hold = 1;
+            // }
+            // else
+            // {
+            //     hold = 0;
+            // }
         }
 
         void LateUpdate()
         {
-            // if (gk.rightWrist.score > 0.7f)
-            //     wrist = gk.rightWrist;
+            if (gk.rightWrist.score > 0.7f)
+                wrist = gk.rightWrist;
             // hand = gk.right;
             // if (hand != null && previous[0] != null)
             // {
