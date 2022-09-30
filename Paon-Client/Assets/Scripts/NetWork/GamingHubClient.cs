@@ -100,11 +100,12 @@ namespace Paon.NNetwork
                 GameObject _body = doll.transform.GetChild(0).gameObject;
                 GameObject _left = doll.transform.GetChild(1).gameObject;
                 GameObject _right = doll.transform.GetChild(2).gameObject;
+                GameObject NamePlate = doll.transform.GetChild(3).gameObject;
                 doll.name = player.Name;
                 _body.name = player.Name + "Body";
                 _right.name = player.Name + "Right";
                 _left.name = player.Name + "Left";
-
+                NamePlate.GetComponent<TextMesh>().text = PlayerPrefs.GetString("Name", "NULLCHAN");
                 doll.transform.SetPositionAndRotation(player.BodyPosition, player.Rotation);
                 _right.transform.SetPositionAndRotation(player.RightPosition, player.Rotation);
                 _left.transform.SetPositionAndRotation(player.LeftPosition, player.Rotation);
@@ -141,7 +142,7 @@ namespace Paon.NNetwork
 
         void IGamingHubReceiver.ChengeFace(Player player, int FaceID)
         {
-            Debug.Log("ChendeFaceには来ました。");
+            //Debug.Log("ChendeFaceには来ました。");
             if (players.TryGetValue(player.Name, out var doll))
             {
                 GameObject Emoji = doll.transform.GetChild(0).transform.GetChild(2).transform.GetChild(0).gameObject;
