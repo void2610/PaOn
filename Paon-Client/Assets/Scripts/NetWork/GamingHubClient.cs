@@ -144,11 +144,9 @@ namespace Paon.NNetwork
             Debug.Log("ChendeFaceには来ました。");
             if (players.TryGetValue(player.Name, out var doll))
             {
-                GameObject Body = doll.transform.GetChild(0).gameObject;
-                GameObject Monitor = Body.transform.GetChild(2).gameObject;
-                GameObject Emoji = Monitor.transform.GetChild(0).gameObject;
-                Debug.Log("TryGetValueは動いてます。");
-                Emoji.GetComponent<Image>().sprite = Resources.Load<Sprite>("Picture/emoji" + FaceID);
+                GameObject Emoji = doll.transform.GetChild(0).transform.GetChild(2).transform.GetChild(0).gameObject;
+                //Debug.Log(Emoji.GetComponent<SpriteRenderer>());
+                Emoji.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Picture/emoji" + FaceID);
             }
         }
     }
