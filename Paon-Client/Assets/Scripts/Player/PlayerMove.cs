@@ -18,10 +18,6 @@ namespace Paon.NPlayer
 
         public GameObject es;
 
-        private GamingHubClient _hub;
-
-        private Channel _channel;
-
         public bool canMove = true;
 
         public Player _Player = new Player();
