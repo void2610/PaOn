@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Paon.NNetwork;
 using UnityEngine;
 using UnityEngine.UI;
-using Paon.NNetwork;
 
 public class SelectEmojiScript : MonoBehaviour
 {
@@ -29,6 +29,8 @@ public class SelectEmojiScript : MonoBehaviour
         Commorose = GameObject.Find("Commorose");
         Now = GameObject.Find("NowEmoji");
         GC = GameObject.Find("GameClient");
+        select = 2;
+        GC.GetComponent<GameClient>().SendFaceID(select);
     }
 
     // Update is called once per frame
