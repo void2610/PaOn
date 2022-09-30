@@ -36,6 +36,7 @@ namespace Paon.NNetwork
 
         async Task Start()
         {
+            Doll = (GameObject)Resources.Load("Doll");
             body = GameObject.Find("PlayerBody");
             right = GameObject.Find("RightHand");
             left = GameObject.Find("LeftHand");
