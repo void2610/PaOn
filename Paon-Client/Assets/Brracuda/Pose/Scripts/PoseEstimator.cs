@@ -297,7 +297,6 @@ public class PoseEstimator : MonoBehaviour
 
             // Update the videoDims.x
             videoDims.x = webcamTexture.width;
-            Debug.Log("videoDims.x: " + videoDims.x);
         }
         else
         {
