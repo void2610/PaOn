@@ -37,7 +37,7 @@ namespace Paon.NInput
 
 		float prevFoward;
 
-		public int th = 30;
+		public float th = 1.0f;
 
 		///<summary>
 		///入力されているキーを返すメソッド
