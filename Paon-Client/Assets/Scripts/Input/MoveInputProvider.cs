@@ -95,30 +95,6 @@ namespace Paon.NInput
 			pose = gk.pose;
 			if (pose != null && previous[16].score > 0.7f && previous[15].score > 0.7f)
 			{
-				//right ankle to nose
-				def1 = pose[16].coords.y - pose[0].coords.y;
-				//left
-				def2 = pose[15].coords.y - pose[0].coords.y;
-
-				if (Mathf.Abs(def1 - predef1) > th || Mathf.Abs(def2 - predef2) > th)
-				{
-					key = "up";
-				}
-				//ankle to hip
-				// Rleg = Mathf.Abs(pose[16].coords.x - pose[12].coords.x);
-				// Lleg = Mathf.Abs(pose[15].coords.x - pose[11].coords.x);
-				Rleg = Mathf.Abs(vertices[30].x - vertices[32].x);
-				Lleg = Mathf.Abs(vertices[29].x - vertices[31].x);
-				Debug.Log(Rleg);
-				if (Rleg > 0.06)
-				{
-					key = "right";
-				}
-				else if (Lleg > 0.06)
-				{
-					key = "left";
-				}
-
 				Vector2 healCenter = Vector2.Lerp(pose[15].coords, pose[16].coords, 0.5f);
 				Vector2 hipCenter = Vector2.Lerp(pose[11].coords, pose[12].coords, 0.5f);
 
@@ -132,6 +108,40 @@ namespace Paon.NInput
 				{
 					crouch = 0;
 				}
+
+				//right ankle to nose
+				def1 = pose[16].coords.y - pose[0].coords.y;
+				//left
+				def2 = pose[15].coords.y - pose[0].coords.y;
+
+				if (Mathf.Abs(def1 - predef1) > th || Mathf.Abs(def2 - predef2) > th)
+				{
+					key = "up";
+				}
+				else
+				{
+					key = "none";
+				}
+				//ankle to hip
+				// Rleg = Mathf.Abs(pose[16].coords.x - pose[12].coords.x);
+				// Lleg = Mathf.Abs(pose[15].coords.x - pose[11].coords.x);
+				Rleg = Mathf.Abs(vertices[30].x - vertices[32].x);
+				Lleg = Mathf.Abs(vertices[29].x - vertices[31].x);
+				Debug.Log(Rleg);
+				if (Rleg > 0.07)
+				{
+					key = "right";
+				}
+				else if (Lleg > 0.07)
+				{
+					key = "left";
+				}
+				else
+				{
+					key = "none";
+				}
+
+
 
 				predef1 = def1;
 				predef2 = def2;

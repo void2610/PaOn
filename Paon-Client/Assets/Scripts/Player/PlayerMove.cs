@@ -31,7 +31,7 @@ namespace Paon.NPlayer
 			_Player.name = PlayerPrefs.GetString("Name", "NoName");
 		}
 
-		async void Update()
+		async void FixedUpdate()
 		{
 			p = _Player.playingBordering;
 			if (canMove)
@@ -44,7 +44,7 @@ namespace Paon.NPlayer
 				}
 				else if (inputProvider.GetInput() == "up")
 				{
-					player.transform.Translate(Vector3.forward * 0.1f);
+					player.transform.Translate(Vector3.forward * 0.05f);
 				}
 				else if (inputProvider.GetInput() == "down")
 				{
