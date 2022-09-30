@@ -67,7 +67,7 @@ namespace Paon.NInput
 			{
 				key = "right";
 			}
-			else if (Input.GetKey(KeyCode.UpArrow))
+			else if (Input.GetKey(KeyCode.UpArrow) || crouch == 1)
 			{
 				key = "up";
 			}
@@ -90,7 +90,7 @@ namespace Paon.NInput
 			pose = gk.pose;
 			if (pose != null && previous[16].score > 0.7f && previous[15].score > 0.7f)
 			{
-				//right
+				//right ankle to nose
 				def1 = pose[16].coords.y - pose[0].coords.y;
 				//left
 				def2 = pose[15].coords.y - pose[0].coords.y;
@@ -102,12 +102,12 @@ namespace Paon.NInput
 				//ankle to hip
 				Rleg = Mathf.Abs(pose[16].coords.x - pose[12].coords.x);
 				Lleg = Mathf.Abs(pose[15].coords.x - pose[11].coords.x);
-				Debug.Log(Rleg);
-				if (Rleg > 20)
+				// Debug.Log(Rleg);
+				if (Rleg > 15)
 				{
 					key = "right";
 				}
-				else if (Lleg > 20)
+				else if (Lleg > 15)
 				{
 					key = "left";
 				}
@@ -116,7 +116,7 @@ namespace Paon.NInput
 				Vector2 hipCenter = Vector2.Lerp(pose[11].coords, pose[12].coords, 0.5f);
 
 				float legLength = Vector2.Distance(healCenter, hipCenter);
-				if (legLength < 20)
+				if (legLength < 50)
 				{
 					crouch = 1;
 					Debug.Log("crouched: " + crouch);

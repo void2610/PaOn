@@ -9,7 +9,7 @@ namespace Paon.NUI
 {
     public class MainMenuScript : MonoBehaviour
     {
-        int status = 0; //0:main menu, 1:stage menu, 2:server menu, 3:option menu 4:toukei
+        int status = 0; //0:main menu, 1:stage menu, 3:option menu 4:toukei,5:nature play server menu,6: bordering server menu
 
         GameObject S;
 
@@ -25,9 +25,13 @@ namespace Paon.NUI
 
         GameObject Color;
 
-        GameObject Server1;
+        GameObject NServer1;
 
-        GameObject Server2;
+        GameObject NServer2;
+
+        GameObject BServer1;
+
+        GameObject BServer2;
 
         GameObject Name;
 
@@ -66,20 +70,20 @@ namespace Paon.NUI
 
         public void ClickBackButton()
         {
-            if (status == 3 || status == 4)
+            if (status == 3 || status == 4 || status == 5 || status == 6)
                 status = 0;
             else
                 status -= 1;
         }
 
-        public void ClickGameModeButton()
+        public void ClickNaturePlayButton()
         {
-            status = 2;
+            status = 5;
         }
 
-        public void ClickServerButton()
+        public void ClickBorderingButton()
         {
-            SceneManager.LoadScene("Main");
+            status = 6;
         }
 
         public void ClickToukeiButton()
@@ -110,10 +114,34 @@ namespace Paon.NUI
             PlayerPrefs.SetInt("GiveTurn", 0);
         }
 
-        public void ValueChange(float newSliderValue)
+        public void ValueChange()
         {
-            // 音楽の音量をスライドバーの値に変更
-            AudioListener.volume = newSliderValue;
+            PlayerPrefs.SetFloat("Volume", Volume.GetComponent<Slider>().value);
+            AudioListener.volume = Volume.GetComponent<Slider>().value;
+        }
+
+        public void JoinNature1()
+        {
+            PlayerPrefs.SetString("Room", "Nature1");
+            SceneManager.LoadScene("Main");
+        }
+
+        public void JoinNature2()
+        {
+            PlayerPrefs.SetString("Room", "Nature2");
+            SceneManager.LoadScene("Main");
+        }
+
+        public void JoinBordering1()
+        {
+            PlayerPrefs.SetString("Room", "Bordering1");
+            SceneManager.LoadScene("BorderingScene");
+        }
+
+        public void JoinBordering2()
+        {
+            PlayerPrefs.SetString("Room", "Bordering2");
+            SceneManager.LoadScene("BorderingScene");
         }
 
         void Start()
@@ -129,13 +157,17 @@ namespace Paon.NUI
             Input = Name.GetComponent<InputField>();
             Input.text = PlayerPrefs.GetString("Name", "なまえをにゅうりょく");
             Color = GameObject.Find("Color");
-            Server1 = GameObject.Find("Server1");
-            Server2 = GameObject.Find("Server2");
+            NServer1 = GameObject.Find("NServer1");
+            NServer2 = GameObject.Find("NServer2");
+            BServer1 = GameObject.Find("BServer1");
+            BServer2 = GameObject.Find("BServer2");
             Player = GameObject.Find("PlayerBody");
             Toukei = GameObject.Find("Toukei");
             Statistics = GameObject.Find("Statistics");
             Reset = GameObject.Find("Reset");
             Volume = GameObject.Find("Volume");
+            Volume.GetComponent<Slider>().value =
+                PlayerPrefs.GetFloat("Volume", 0.5f);
         }
 
         void Update()
@@ -155,8 +187,10 @@ namespace Paon.NUI
                 Color.SetActive(false);
                 Volume.SetActive(false);
 
-                Server1.SetActive(false);
-                Server2.SetActive(false);
+                NServer1.SetActive(false);
+                NServer2.SetActive(false);
+                BServer1.SetActive(false);
+                BServer2.SetActive(false);
 
                 Toukei.SetActive(true);
                 Statistics.SetActive(false);
@@ -179,32 +213,10 @@ namespace Paon.NUI
                 Color.SetActive(false);
                 Volume.SetActive(false);
 
-                Server1.SetActive(false);
-                Server2.SetActive(false);
-
-                Toukei.SetActive(false);
-                Statistics.SetActive(false);
-                Reset.SetActive(false);
-
-                Back.SetActive(true);
-            }
-            else if (status == 2)
-            {
-                S.SetActive(false);
-                Option.SetActive(false);
-                Quit.SetActive(false);
-
-                SizenAsobi.SetActive(false);
-                Bordering.SetActive(false);
-
-                Name.SetActive(false);
-                NamePlate.SetActive(false);
-                Player.SetActive(false);
-                Color.SetActive(false);
-                Volume.SetActive(false);
-
-                Server1.SetActive(true);
-                Server2.SetActive(true);
+                NServer1.SetActive(false);
+                NServer2.SetActive(false);
+                BServer1.SetActive(false);
+                BServer2.SetActive(false);
 
                 Toukei.SetActive(false);
                 Statistics.SetActive(false);
@@ -229,8 +241,10 @@ namespace Paon.NUI
                 Color.SetActive(true);
                 Volume.SetActive(true);
 
-                Server1.SetActive(false);
-                Server2.SetActive(false);
+                NServer1.SetActive(false);
+                NServer2.SetActive(false);
+                BServer1.SetActive(false);
+                BServer2.SetActive(false);
 
                 Toukei.SetActive(false);
                 Statistics.SetActive(false);
@@ -253,8 +267,10 @@ namespace Paon.NUI
                 Color.SetActive(false);
                 Volume.SetActive(false);
 
-                Server1.SetActive(false);
-                Server2.SetActive(false);
+                NServer1.SetActive(false);
+                NServer2.SetActive(false);
+                BServer1.SetActive(false);
+                BServer2.SetActive(false);
 
                 Statistics.SetActive(true);
                 Reset.SetActive(true);
@@ -269,6 +285,58 @@ namespace Paon.NUI
                     PlayerPrefs.GetInt("GiveTurn", 0) +
                     "回";
                 Statistics.GetComponent<Text>().text = a + "\n" + b + "\n";
+            }
+            else if (status == 5)
+            {
+                S.SetActive(false);
+                Option.SetActive(false);
+                Quit.SetActive(false);
+
+                SizenAsobi.SetActive(false);
+                Bordering.SetActive(false);
+
+                Name.SetActive(false);
+                NamePlate.SetActive(false);
+                Player.SetActive(false);
+                Color.SetActive(false);
+                Volume.SetActive(false);
+
+                NServer1.SetActive(true);
+                NServer2.SetActive(true);
+                BServer1.SetActive(false);
+                BServer2.SetActive(false);
+
+                Toukei.SetActive(false);
+                Statistics.SetActive(false);
+                Reset.SetActive(false);
+
+                Back.SetActive(true);
+            }
+            else if (status == 6)
+            {
+                S.SetActive(false);
+                Option.SetActive(false);
+                Quit.SetActive(false);
+
+                SizenAsobi.SetActive(false);
+                Bordering.SetActive(false);
+
+                Name.SetActive(false);
+                NamePlate.SetActive(false);
+                Player.SetActive(false);
+                Color.SetActive(false);
+                Volume.SetActive(false);
+
+                NServer1.SetActive(false);
+                NServer2.SetActive(false);
+                BServer1.SetActive(true);
+                BServer2.SetActive(true);
+
+                Toukei.SetActive(false);
+                Statistics.SetActive(false);
+                Reset.SetActive(false);
+
+                Back.SetActive(true);
             }
         }
     }
