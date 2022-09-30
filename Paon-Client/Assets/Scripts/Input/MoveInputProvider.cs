@@ -15,6 +15,10 @@ namespace Paon.NInput
 
 		private GetKeypoints.Keypoint[] pose;
 
+		public Visualizer _visualizer;
+
+		Vector3[] vertices;
+
 		string key = "";
 
 		int crouch = 0;
@@ -58,6 +62,7 @@ namespace Paon.NInput
 
 		void Update()
 		{
+			vertices = _visualizer.GetPoseVertices();
 			previous = gk.pose;
 			if (Input.GetKey(KeyCode.LeftArrow))
 			{
@@ -100,9 +105,11 @@ namespace Paon.NInput
 					key = "up";
 				}
 				//ankle to hip
-				Rleg = Mathf.Abs(pose[16].coords.x - pose[12].coords.x);
-				Lleg = Mathf.Abs(pose[15].coords.x - pose[11].coords.x);
-				// Debug.Log(Rleg);
+				// Rleg = Mathf.Abs(pose[16].coords.x - pose[12].coords.x);
+				// Lleg = Mathf.Abs(pose[15].coords.x - pose[11].coords.x);
+				Rleg = Mathf.Abs(vertices[30].x - vertices[32].x);
+				Lleg = Mathf.Abs(vertices[29].x - vertices[31].x);
+				Debug.Log(Rleg);
 				if (Rleg > 15)
 				{
 					key = "right";
