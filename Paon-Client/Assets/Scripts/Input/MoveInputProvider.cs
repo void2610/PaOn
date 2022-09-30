@@ -95,6 +95,20 @@ namespace Paon.NInput
 			pose = gk.pose;
 			if (pose != null && previous[16].score > 0.7f && previous[15].score > 0.7f)
 			{
+				Vector2 healCenter = Vector2.Lerp(pose[15].coords, pose[16].coords, 0.5f);
+				Vector2 hipCenter = Vector2.Lerp(pose[11].coords, pose[12].coords, 0.5f);
+
+				float legLength = Vector2.Distance(healCenter, hipCenter);
+				if (legLength < 50)
+				{
+					crouch = 1;
+					Debug.Log("crouched: " + crouch);
+				}
+				else
+				{
+					crouch = 0;
+				}
+
 				//right ankle to nose
 				def1 = pose[16].coords.y - pose[0].coords.y;
 				//left
@@ -114,11 +128,11 @@ namespace Paon.NInput
 				Rleg = Mathf.Abs(vertices[30].x - vertices[32].x);
 				Lleg = Mathf.Abs(vertices[29].x - vertices[31].x);
 				Debug.Log(Rleg);
-				if (Rleg > 0.06)
+				if (Rleg > 0.07)
 				{
 					key = "right";
 				}
-				else if (Lleg > 0.06)
+				else if (Lleg > 0.07)
 				{
 					key = "left";
 				}
@@ -127,19 +141,7 @@ namespace Paon.NInput
 					key = "none";
 				}
 
-				Vector2 healCenter = Vector2.Lerp(pose[15].coords, pose[16].coords, 0.5f);
-				Vector2 hipCenter = Vector2.Lerp(pose[11].coords, pose[12].coords, 0.5f);
 
-				float legLength = Vector2.Distance(healCenter, hipCenter);
-				if (legLength < 50)
-				{
-					crouch = 1;
-					Debug.Log("crouched: " + crouch);
-				}
-				else
-				{
-					crouch = 0;
-				}
 
 				predef1 = def1;
 				predef2 = def2;

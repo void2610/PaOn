@@ -44,7 +44,7 @@ namespace Paon.NPlayer
 				}
 				else if (inputProvider.GetInput() == "up")
 				{
-					player.transform.Translate(Vector3.forward * 0.1f);
+					player.transform.Translate(Vector3.forward * 0.05f);
 				}
 				else if (inputProvider.GetInput() == "down")
 				{
