@@ -5,6 +5,7 @@ using MagicOnion.Client;
 using Paon.NNetwork.Shared.Hubs;
 using Paon.NNetwork.Shared.MessagePackObjects;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Paon.NNetwork
 {
@@ -81,6 +82,11 @@ namespace Paon.NNetwork
             return client.DisposeAsync();
         }
 
+        public Task FaceAsync(int FaceID)
+        {
+            return client.FaceAsync(FaceID);
+        }
+
         // 部屋に新しいユーザが入室したときに呼び出される関数
         // または ConnectAsync 関数を実行したときに呼び出される関数
         void IGamingHubReceiver.OnJoin(Player player)
@@ -99,7 +105,6 @@ namespace Paon.NNetwork
                 _right.name = player.Name + "Right";
                 _left.name = player.Name + "Left";
 
-                //Dolls[player.ID % 8].name = player.Name;
                 doll.transform.SetPositionAndRotation(player.BodyPosition, player.Rotation);
                 doll.transform.SetPositionAndRotation(player.RightPosition, player.Rotation);
                 doll.transform.SetPositionAndRotation(player.LeftPosition, player.Rotation);
@@ -128,10 +133,16 @@ namespace Paon.NNetwork
             // ワールド上の該当する GameObject (アバター)の位置(Vector3)と回転(Quaternion) の値を最新のものに更新する
             if (players.TryGetValue(player.Name, out var doll))
             {
-                player.Rotation = player.Rotation * Quaternion.Euler(0f, 90f, 0f);
-                doll.transform.GetChild(0).SetPositionAndRotation(player.BodyPosition, player.Rotation);
-                doll.transform.GetChild(1).SetPositionAndRotation(player.LeftPosition, player.Rotation);
-                doll.transform.GetChild(2).SetPositionAndRotation(player.RightPosition, player.Rotation);
+                doll.transform.GetChild(0).SetPositionAndRotation(player.BodyPosition, player.Rotation * Quaternion.Euler(0f, 90f, 0f));
+                doll.transform.GetChild(1).SetPositionAndRotation(player.LeftPosition, player.Rotation * Quaternion.Euler(0f, 0f, -90f));
+                doll.transform.GetChild(2).SetPositionAndRotation(player.RightPosition, player.Rotation * Quaternion.Euler(0f, 0f, -90f));
+            }
+        }
+
+        void IGamingHubReceiver.ChengeFace(Player player, int FaceID) {
+            if (players.TryGetValue(player.Name, out var doll))
+            {
+                doll.transform.Find("monitor/emoji1").gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("picture/Emoji" + FaceID);
             }
         }
     }
