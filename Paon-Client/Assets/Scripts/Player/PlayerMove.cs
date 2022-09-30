@@ -31,7 +31,7 @@ namespace Paon.NPlayer
 			_Player.name = PlayerPrefs.GetString("Name", "NoName");
 		}
 
-		async void Update()
+		async void FixedUpdate()
 		{
 			p = _Player.playingBordering;
 			if (canMove)
