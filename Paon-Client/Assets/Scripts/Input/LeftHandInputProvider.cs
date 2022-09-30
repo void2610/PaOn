@@ -87,8 +87,8 @@ namespace Paon.NInput
 			if (gk.leftWrist.score > 0.7f)
 			{
 				wrist = gk.leftWrist;
-				Debug.Log("wrist: " + wrist.coords);
-				if (previous != null) Debug.Log("previous: " + previous.coords);
+				// Debug.Log("wrist: " + wrist.coords);
+				// if (previous != null) Debug.Log("previous: " + previous.coords);
 			}
 
 			hold = gk.leftIsClosed;

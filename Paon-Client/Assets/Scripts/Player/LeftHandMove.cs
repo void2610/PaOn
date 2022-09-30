@@ -58,7 +58,7 @@ namespace Paon.NPlayer
 		{
 			coords = inputProvider.GetPosition();
 			delta = inputProvider.GetDelta();
-			Debug.Log(delta);
+			// Debug.Log(delta);
 			if (canMove)
 			{
 				// hand.transform.localPosition =
