@@ -72,7 +72,6 @@ public class SelectEmojiScript : MonoBehaviour
             Now.GetComponent<Image>().sprite =
                 Resources.Load<Sprite>("Picture/Emoji" + select);
         }
-        Debug.Log (select);
     }
 
     void OnTriggerStay(Collider other)
