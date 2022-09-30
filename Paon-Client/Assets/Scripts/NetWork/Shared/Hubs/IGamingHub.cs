@@ -13,6 +13,7 @@ namespace Paon.NNetwork.Shared.Hubs
         void OnJoin(Player player);
         void OnLeave(Player player);
         void OnMove(Player player);
+        void ChengeFace(Player player, int FaceID);
     }
 
     // クライアントがサーバ側で gRPC 実行可能な関数を定義する
@@ -21,5 +22,6 @@ namespace Paon.NNetwork.Shared.Hubs
         Task<Player[]> JoinAsync(string roomName, string userName, Vector3 _body, Vector3 _right, Vector3 _left, Quaternion rotation);
         Task LeaveAsync();
         Task MoveAsync(Vector3 _body, Vector3 _right, Vector3 _left, Quaternion rotation);
+        Task FaceAsync(int FaceID);
     }
 }

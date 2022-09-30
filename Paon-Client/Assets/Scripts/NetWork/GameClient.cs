@@ -48,6 +48,12 @@ namespace Paon.NNetwork
             await this.client.ConnectAsync(this.channel, this.m_RoomName, this.m_UserName);
         }
 
+        public static int SendFaceID(int FaceID)
+        {
+            GameClient.client.FaceAsync(FaceID);
+            return 0;
+        }
+
         public static GameObject MakeDolls(Player player)
         {
             GameObject doll = Instantiate(Doll, player.BodyPosition, player.Rotation);
