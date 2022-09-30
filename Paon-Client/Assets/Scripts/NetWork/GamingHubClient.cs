@@ -106,8 +106,8 @@ namespace Paon.NNetwork
                 _left.name = player.Name + "Left";
 
                 doll.transform.SetPositionAndRotation(player.BodyPosition, player.Rotation);
-                doll.transform.SetPositionAndRotation(player.RightPosition, player.Rotation);
-                doll.transform.SetPositionAndRotation(player.LeftPosition, player.Rotation);
+                _right.transform.SetPositionAndRotation(player.RightPosition, player.Rotation);
+                _left.transform.SetPositionAndRotation(player.LeftPosition, player.Rotation);
                 players[player.Name] = doll;
             }
 
@@ -144,8 +144,11 @@ namespace Paon.NNetwork
             Debug.Log("ChendeFaceには来ました。");
             if (players.TryGetValue(player.Name, out var doll))
             {
+                GameObject Body = doll.transform.GetChild(0).gameObject;
+                GameObject Monitor = Body.transform.GetChild(2).gameObject;
+                GameObject Emoji = Monitor.transform.GetChild(0).gameObject;
                 Debug.Log("TryGetValueは動いてます。");
-                doll.transform.Find(player.Name + "Body/monitor/emoji1").gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Picture/Emoji" + FaceID);
+                Emoji.GetComponent<Image>().sprite = Resources.Load<Sprite>("Picture/emoji" + FaceID);
             }
         }
     }
