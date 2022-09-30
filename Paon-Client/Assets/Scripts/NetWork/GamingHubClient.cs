@@ -114,6 +114,7 @@ namespace Paon.NNetwork
             if (players.TryGetValue(player.Name, out var doll))
             {
                 GameObject.Destroy (doll);
+                Debug.Log("leave:" + player.Name);
             }
         }
 
