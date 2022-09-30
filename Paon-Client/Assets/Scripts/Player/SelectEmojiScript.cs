@@ -20,12 +20,15 @@ public class SelectEmojiScript : MonoBehaviour
 
     GameObject Now;
 
+    GameObject GC;
+
     int select = 1;
 
     void Start()
     {
         Commorose = GameObject.Find("Commorose");
         Now = GameObject.Find("NowEmoji");
+        GC = GameObject.Find("GameClient");
     }
 
     // Update is called once per frame
@@ -82,22 +85,27 @@ public class SelectEmojiScript : MonoBehaviour
             if (other.gameObject.name == "Emoji1")
             {
                 select = 1;
+                GC.GetComponent<GameClient>().SendFaceID(select);
             }
             else if (other.gameObject.name == "Emoji2")
             {
                 select = 2;
+                GC.GetComponent<GameClient>().SendFaceID(select);
             }
             else if (other.gameObject.name == "Emoji3")
             {
                 select = 3;
+                GC.GetComponent<GameClient>().SendFaceID(select);
             }
             else if (other.gameObject.name == "Emoji4")
             {
                 select = 4;
+                GC.GetComponent<GameClient>().SendFaceID(select);
             }
             else if (other.gameObject.name == "Emoji5")
             {
                 select = 5;
+                GC.GetComponent<GameClient>().SendFaceID(select);
             }
             else
             {
