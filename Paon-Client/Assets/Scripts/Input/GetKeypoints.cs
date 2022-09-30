@@ -117,7 +117,7 @@ namespace Paon.NInput
 		private int CloseOrOpen(Vector3[] finger)
 		{
 			float distance = Vector3.Distance(finger[0], finger[12]);
-			Debug.Log("Distance: " + distance);
+			// Debug.Log("Distance: " + distance);
 			if (distance < holdThreshold)
 				return 1;
 			else return 0;
