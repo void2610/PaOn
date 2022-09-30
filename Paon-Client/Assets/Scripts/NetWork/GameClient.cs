@@ -46,7 +46,8 @@ namespace Paon.NNetwork
 
         public static GameObject MakeDolls(Player player)
         {
-            return Instantiate(Doll, player.BodyPosition, player.Rotation);
+            GameObject doll = Instantiate(Doll, player.BodyPosition, player.Rotation);
+            return doll;
         }
 
         // Update is called once per frame

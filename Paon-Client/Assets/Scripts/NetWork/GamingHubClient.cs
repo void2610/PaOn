@@ -10,7 +10,7 @@ namespace Paon.NNetwork
 {
     public class GamingHubClient : IGamingHubReceiver
     {
-        public GameObject[] Dolls = new GameObject[8];
+        //public GameObject[] Dolls = new GameObject[8];
         // 部屋に参加しているユーザ全員の GameObject (アバター)を保持する
         Dictionary<string, GameObject>
             players = new Dictionary<string, GameObject>();
@@ -89,12 +89,20 @@ namespace Paon.NNetwork
             // this.players に player.Name をキーにして保持する
             // 部屋に入室しているユーザの数だけワールド上にキューブを出現する
 
-            Dolls[player.ID % 8] = GameClient.MakeDolls(player);
-            Dolls[player.ID % 8].name = player.Name;
-            Dolls[player.ID % 8].transform.SetPositionAndRotation(player.BodyPosition, player.Rotation);
-            Dolls[player.ID % 8].transform.SetPositionAndRotation(player.BodyPosition, player.Rotation);
-            Dolls[player.ID % 8].transform.SetPositionAndRotation(player.BodyPosition, player.Rotation);
-            players[player.Name] = Dolls[player.ID % 8];
+            GameObject doll = GameClient.MakeDolls(player);
+            GameObject _body = doll.transform.GetChild(0).gameObject;
+            GameObject _left = doll.transform.GetChild(1).gameObject;
+            GameObject _right = doll.transform.GetChild(2).gameObject;
+            doll.name = player.Name;
+            _body.name = player.Name + "Body";
+            _right.name = player.Name + "Right";
+            _left.name = player.Name + "Left";
+
+            //Dolls[player.ID % 8].name = player.Name;
+            doll.transform.SetPositionAndRotation(player.BodyPosition, player.Rotation);
+            doll.transform.SetPositionAndRotation(player.RightPosition, player.Rotation);
+            doll.transform.SetPositionAndRotation(player.LeftPosition, player.Rotation);
+            players[player.Name] = doll;
         }
 
         // 他ユーザが部屋から退出した際に呼び出される関数
@@ -115,10 +123,9 @@ namespace Paon.NNetwork
             // ワールド上の該当する GameObject (アバター)の位置(Vector3)と回転(Quaternion) の値を最新のものに更新する
             if (players.TryGetValue(player.Name, out var doll))
             {
-                doll
-                    .transform
-                    .SetPositionAndRotation(player.BodyPosition,
-                    player.Rotation);
+                doll.transform.GetChild(0).SetPositionAndRotation(player.BodyPosition, player.Rotation);
+                doll.transform.GetChild(1).SetPositionAndRotation(player.LeftPosition, player.Rotation);
+                doll.transform.GetChild(2).SetPositionAndRotation(player.RightPosition, player.Rotation);
             }
         }
     }
