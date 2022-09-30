@@ -125,6 +125,7 @@ namespace Paon.NNetwork
             // ワールド上の該当する GameObject (アバター)の位置(Vector3)と回転(Quaternion) の値を最新のものに更新する
             if (players.TryGetValue(player.Name, out var doll))
             {
+                player.Rotation = player.Rotation * Quaternion.Euler(0f, 90f, 0f);
                 doll.transform.GetChild(0).SetPositionAndRotation(player.BodyPosition, player.Rotation);
                 doll.transform.GetChild(1).SetPositionAndRotation(player.LeftPosition, player.Rotation);
                 doll.transform.GetChild(2).SetPositionAndRotation(player.RightPosition, player.Rotation);
