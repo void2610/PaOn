@@ -32,7 +32,7 @@ namespace Paon.NNaturePlay
 
         void Update()
         {
-            Debug.Log(Time.time - endTime);
+            //Debug.Log(Time.time - endTime);
             if (Time.time - endTime < cooldown)
             {
                 LogText.GetComponent<Text>().text = "セーブしました！";
