@@ -601,7 +601,7 @@ MonoBehaviour:
   humanExistThreshold: 0.5
   handShader: {fileID: 4800000, guid: d5a9b73d8bc27a546bf451b1f892f8bc, type: 3}
   handScoreThreshold: 0.5
-  holisticResource: {fileID: 11400000, guid: c23cac15390b14d8ebbd8054b2462b34, type: 2}
+  holisticResource: {fileID: 11400000, guid: 1b59502ed00788f4f85d7d4d86ed7d35, type: 2}
   holisticInferenceType: 2
 --- !u!114 &8823757632181810757
 MonoBehaviour:
