@@ -35,6 +35,8 @@ namespace Paon.NInput
 
 		float Lleg;
 
+		float prevFoward;
+
 		public int th = 30;
 
 		///<summary>
@@ -55,9 +57,35 @@ namespace Paon.NInput
 			return new Vector2(dx, dy);
 		}
 
+		Vector2 CalculateDelta(Vector3 pre, Vector3 current)
+		{
+			float dx = pre.x - current.x;
+			float dy = pre.y - current.y;
+			return new Vector2(dx, dy);
+		}
+
+		IEnumerator JudgeMove()
+		{
+			while (true)
+			{
+				yield return new WaitForSeconds(0.5f);
+				if (pose != null && previous[16].score > 0.7f && previous[15].score > 0.7f)
+				{
+					float current = Mathf.Abs(pose[16].coords.y - pose[15].coords.y);
+
+					float delta = Mathf.Abs(prevFoward - current);
+					if (delta > 20) key = "up";
+					else key = "none";
+
+					prevFoward = current;
+				}
+			}
+		}
+
 		void Start()
 		{
 			gk = GK.GetComponent<GetKeypoints>();
+			StartCoroutine(JudgeMove);
 		}
 
 		void Update()
@@ -113,6 +141,9 @@ namespace Paon.NInput
 				def1 = pose[16].coords.y - pose[0].coords.y;
 				//left
 				def2 = pose[15].coords.y - pose[0].coords.y;
+
+				Debug.Log("delta1: " + Math.Abs(def1 - predef1));
+				Debug.Log("delta2: " + Math.Abs(def2 - predef2));
 
 				if (Mathf.Abs(def1 - predef1) > th || Mathf.Abs(def2 - predef2) > th)
 				{
