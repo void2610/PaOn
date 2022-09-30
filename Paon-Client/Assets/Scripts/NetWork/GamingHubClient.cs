@@ -105,7 +105,7 @@ namespace Paon.NNetwork
                 _body.name = player.Name + "Body";
                 _right.name = player.Name + "Right";
                 _left.name = player.Name + "Left";
-                NamePlate.GetComponent<TextMesh>().text = PlayerPrefs.GetString("Name", "NULLCHAN");
+                NamePlate.GetComponent<TextMesh>().text = player.Name;
                 doll.transform.SetPositionAndRotation(player.BodyPosition, player.Rotation);
                 _right.transform.SetPositionAndRotation(player.RightPosition, player.Rotation);
                 _left.transform.SetPositionAndRotation(player.LeftPosition, player.Rotation);
