@@ -23,6 +23,8 @@ public class Calibration : MonoBehaviour
 	private Vector3[] left, right;
 
 	[SerializeField]
+	private GameObject GetKeypoints;
+
 	private GetKeypoints gk;
 
 	private GetKeypoints.Keypoint[] pose;
@@ -30,6 +32,7 @@ public class Calibration : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
+		gk = GetKeypoints.GetComponent<GetKeypoints>();
 		pose = gk.pose;
 		state = Phase.PoseEstimation;
 	}
@@ -41,7 +44,7 @@ public class Calibration : MonoBehaviour
 		left = _visualizer.GetLeftVert();
 		right = _visualizer.GetRightVert();
 
-		if (pose != null)
+		if (pose[0] != null)
 		{
 			switch (state)
 			{
