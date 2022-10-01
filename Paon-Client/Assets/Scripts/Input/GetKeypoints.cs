@@ -108,18 +108,29 @@ namespace Paon.NInput
 			//             0);
 			// }
 
-			leftIsClosed = CloseOrOpen(leftTemp);
-			rightIsClosed = CloseOrOpen(rightTemp);
+			leftIsClosed = leftCloseOrOpen(leftTemp);
+			rightIsClosed = rightCloseOrOpen(rightTemp);
 			// Debug.Log("Left: " + leftIsClosed);
 			// Debug.Log("Right: " + rightIsClosed);
 		}
 
-		private int CloseOrOpen(Vector3[] finger)
+		private int leftCloseOrOpen(Vector3[] finger)
 		{
 			float distance = Vector3.Distance(finger[0], finger[12]);
 			// Debug.Log("Distance: " + distance);
 			if (distance < holdThreshold)
 				return 1;
+			else return 0;
+		}
+		private int rightCloseOrOpen(Vector3[] finger)
+		{
+			float distance = Vector3.Distance(finger[0], finger[12]);
+			Debug.Log("rightDistance: " + distance);
+			if (distance < holdThreshold)
+			{
+				Debug.Log("right is closed");
+				return 1;
+			}
 			else return 0;
 		}
 	}
