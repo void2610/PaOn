@@ -10513,7 +10513,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: f65c26a81e1b3c14fb96e0ab80916342,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -25.07
+      value: -25.57
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f65c26a81e1b3c14fb96e0ab80916342,
         type: 3}
@@ -13650,6 +13650,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canMove: 1
+  isCalib: 0
 --- !u!65 &1045148832636091924
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13812,6 +13813,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canMove: 1
+  isCalib: 0
 --- !u!1 &1809293868783012142 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7165138912578484447, guid: 472b9191cc902bb4d9b461dfa070ebf2,
@@ -15316,6 +15318,7 @@ MonoBehaviour:
   _visualizer: {fileID: 8823757631967146482}
   forwardThreshold: 15
   th: 20
+  isDebugEnabled: 0
 --- !u!1 &8314665999515358897
 GameObject:
   m_ObjectHideFlags: 0

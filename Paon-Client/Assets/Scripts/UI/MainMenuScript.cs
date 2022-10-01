@@ -272,6 +272,7 @@ namespace Paon.NUI
                 BServer1.SetActive(false);
                 BServer2.SetActive(false);
 
+                Toukei.SetActive(false);
                 Statistics.SetActive(true);
                 Reset.SetActive(true);
 
