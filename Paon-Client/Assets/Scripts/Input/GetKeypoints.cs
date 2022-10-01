@@ -127,7 +127,10 @@ namespace Paon.NInput
 			float distance = Vector3.Distance(finger[0], finger[12]);
 			Debug.Log("rightDistance: " + distance);
 			if (distance < holdThreshold)
+			{
+				Debug.Log("right is closed");
 				return 1;
+			}
 			else return 0;
 		}
 	}
