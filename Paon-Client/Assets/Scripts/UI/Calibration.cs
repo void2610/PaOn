@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Paon.NInput;
 using UnityEngine;
 
 public class Calibration : MonoBehaviour
