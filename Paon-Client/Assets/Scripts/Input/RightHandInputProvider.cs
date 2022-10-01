@@ -108,14 +108,14 @@ namespace Paon.NInput
 				key = "none";
 			}
 
-			if (Input.GetKey(KeyCode.U))
-			{
-				hold = 1;
-			}
-			else
-			{
-				hold = 0;
-			}
+			// if (Input.GetKey(KeyCode.U))
+			// {
+			// 	hold = 1;
+			// }
+			// else
+			// {
+			// 	hold = 0;
+			// }
 			if (wrist != previous)
 				previous = wrist;
 		}
