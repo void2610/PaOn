@@ -23,6 +23,8 @@ public class Calibration : MonoBehaviour
 	private Vector3[] left, right;
 
 	[SerializeField]
+	private GameObject GetKeypoints;
+
 	private GetKeypoints gk;
 
 	private GetKeypoints.Keypoint[] pose;
@@ -30,6 +32,7 @@ public class Calibration : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
+		gk = GetKeypoints.GetComponent<GetKeypoints>();
 		pose = gk.pose;
 		state = Phase.PoseEstimation;
 	}
@@ -41,25 +44,29 @@ public class Calibration : MonoBehaviour
 		left = _visualizer.GetLeftVert();
 		right = _visualizer.GetRightVert();
 
-		switch (state)
+		if (pose[0] != null)
 		{
-			case Phase.PoseEstimation:
-				Debug.Log("Phase1");
-				if (pose[0].score > minConfidence && pose[15].score > minConfidence && pose[16].score > minConfidence)
-				{
-					state = Phase.Positioning;
-				}
-				return;
-			case Phase.HandEstimation:
-				Debug.Log("Phase2");
-				return;
-			case Phase.Positioning:
-				Debug.Log("Phase3");
-				return;
-			default:
-				Debug.Log("Calibration end");
-				return;
+			switch (state)
+			{
+				case Phase.PoseEstimation:
+					Debug.Log("Phase1");
+					if (pose[0].score > minConfidence && pose[15].score > minConfidence && pose[16].score > minConfidence)
+					{
+						state = Phase.Positioning;
+					}
+					return;
+				case Phase.HandEstimation:
+					Debug.Log("Phase2");
+					return;
+				case Phase.Positioning:
+					Debug.Log("Phase3");
+					return;
+				default:
+					Debug.Log("Calibration end");
+					return;
+			}
 		}
+
 
 		void InitPose()
 		{
