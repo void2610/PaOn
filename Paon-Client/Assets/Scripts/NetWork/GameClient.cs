@@ -29,7 +29,7 @@ namespace Paon.NNetwork
         string m_RoomName;
 
         // StreamingHub クライアントで使用する gRPC チャネルを生成
-        private Channel channel = new Channel("192.168.10.23", 5032, ChannelCredentials.Insecure);
+        private Channel channel = new Channel("192.168.10.7", 5032, ChannelCredentials.Insecure);
 
         // StreamingHub サーバと通信を行うためのクライアント生成
         private GamingHubClient client = new GamingHubClient();

@@ -100,12 +100,12 @@ namespace Paon.NNetwork
                 GameObject _body = doll.transform.GetChild(0).gameObject;
                 GameObject _left = doll.transform.GetChild(1).gameObject;
                 GameObject _right = doll.transform.GetChild(2).gameObject;
-                GameObject NamePlate = doll.transform.GetChild(3).gameObject;
+                GameObject namePlate = doll.transform.Find("NamePlate").gameObject;
                 doll.name = player.Name;
                 _body.name = player.Name + "Body";
                 _right.name = player.Name + "Right";
                 _left.name = player.Name + "Left";
-                NamePlate.GetComponent<TextMesh>().text = player.Name;
+                namePlate.GetComponent<TextMesh> ().text = player.Name;
                 doll.transform.SetPositionAndRotation(player.BodyPosition, player.Rotation);
                 _right.transform.SetPositionAndRotation(player.RightPosition, player.Rotation);
                 _left.transform.SetPositionAndRotation(player.LeftPosition, player.Rotation);
