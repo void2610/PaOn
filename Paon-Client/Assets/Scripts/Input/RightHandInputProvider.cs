@@ -84,6 +84,9 @@ namespace Paon.NInput
 			{
 				wrist = gk.rightWrist;
 			}
+
+			hold = gk.rightIsClosed;
+
 			if (Input.GetKey(KeyCode.I))
 			{
 				key = "up";
@@ -105,14 +108,14 @@ namespace Paon.NInput
 				key = "none";
 			}
 
-			// if (Input.GetKey(KeyCode.U))
-			// {
-			//     hold = 1;
-			// }
-			// else
-			// {
-			//     hold = 0;
-			// }
+			if (Input.GetKey(KeyCode.U))
+			{
+				hold = 1;
+			}
+			else
+			{
+				hold = 0;
+			}
 			if (wrist != previous)
 				previous = wrist;
 		}
