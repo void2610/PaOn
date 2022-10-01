@@ -12,7 +12,7 @@ using System.Collections.Generic;
 namespace Paon.NNetwork.Hubs
 {
     public class GamingHub : StreamingHubBase<IGamingHub, IGamingHubReceiver>, IGamingHub
-    {;
+    {
         // IGroup を使用することで同一のグループに所属している他ユーザ全員に対して
         // 一斉にブロードキャスト送信を行うことが出来る (オンラインゲームで言うルームの概念)
         IGroup room;
@@ -65,6 +65,8 @@ namespace Paon.NNetwork.Hubs
 
         public async Task FaceAsync(int FaceID)
         {
+            Console.WriteLine("hi");
+
             Broadcast(room).ChengeFace(self, FaceID);
         }
     }

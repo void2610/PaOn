@@ -100,14 +100,15 @@ namespace Paon.NNetwork
                 GameObject _body = doll.transform.GetChild(0).gameObject;
                 GameObject _left = doll.transform.GetChild(1).gameObject;
                 GameObject _right = doll.transform.GetChild(2).gameObject;
+                GameObject namePlate = doll.transform.Find("NamePlate").gameObject;
                 doll.name = player.Name;
                 _body.name = player.Name + "Body";
                 _right.name = player.Name + "Right";
                 _left.name = player.Name + "Left";
-
+                namePlate.GetComponent<TextMesh> ().text = player.Name;
                 doll.transform.SetPositionAndRotation(player.BodyPosition, player.Rotation);
-                doll.transform.SetPositionAndRotation(player.RightPosition, player.Rotation);
-                doll.transform.SetPositionAndRotation(player.LeftPosition, player.Rotation);
+                _right.transform.SetPositionAndRotation(player.RightPosition, player.Rotation);
+                _left.transform.SetPositionAndRotation(player.LeftPosition, player.Rotation);
                 players[player.Name] = doll;
             }
 
@@ -139,10 +140,14 @@ namespace Paon.NNetwork
             }
         }
 
-        void IGamingHubReceiver.ChengeFace(Player player, int FaceID) {
+        void IGamingHubReceiver.ChengeFace(Player player, int FaceID)
+        {
+            //Debug.Log("ChendeFaceには来ました。");
             if (players.TryGetValue(player.Name, out var doll))
             {
-                doll.transform.Find("monitor/emoji1").gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("picture/Emoji" + FaceID);
+                GameObject Emoji = doll.transform.GetChild(0).transform.GetChild(2).transform.GetChild(0).gameObject;
+                //Debug.Log(Emoji.GetComponent<SpriteRenderer>());
+                Emoji.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Picture/emoji" + FaceID);
             }
         }
     }

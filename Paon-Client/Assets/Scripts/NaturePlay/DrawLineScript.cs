@@ -11,21 +11,33 @@ namespace Paon.NNatuePlay
         [SerializeField]
         GameObject LineObjectPrefab;
 
-        //現在描画中のLineObject;
+        //現在描画中のLineObject
         private GameObject CurrentLineObject = null;
 
         private Vector3 tmp = Vector3.zero;
 
         public bool drawing = false;
 
+        bool dtmp = false;
+
         void Start()
         {
+            this.GetComponent<AudioSource>().Stop();
         }
 
         // Update is called once per frame
         void Update()
         {
             Vector3 pointer = this.gameObject.transform.position;
+
+            if (!dtmp && drawing)
+            {
+                this.GetComponent<AudioSource>().Play();
+            }
+            if (dtmp && !drawing)
+            {
+                this.GetComponent<AudioSource>().Stop();
+            }
 
             if (drawing && Time.frameCount % 3 == 0)
             {
@@ -64,6 +76,7 @@ namespace Paon.NNatuePlay
                 }
             }
             tmp = pointer;
+            dtmp = drawing;
         }
 
         void OnTriggerStay(Collider other)
