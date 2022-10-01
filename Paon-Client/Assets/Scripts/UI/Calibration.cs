@@ -41,25 +41,29 @@ public class Calibration : MonoBehaviour
 		left = _visualizer.GetLeftVert();
 		right = _visualizer.GetRightVert();
 
-		switch (state)
+		if (pose != null)
 		{
-			case Phase.PoseEstimation:
-				Debug.Log("Phase1");
-				if (pose[0].score > minConfidence && pose[15].score > minConfidence && pose[16].score > minConfidence)
-				{
-					state = Phase.Positioning;
-				}
-				return;
-			case Phase.HandEstimation:
-				Debug.Log("Phase2");
-				return;
-			case Phase.Positioning:
-				Debug.Log("Phase3");
-				return;
-			default:
-				Debug.Log("Calibration end");
-				return;
+			switch (state)
+			{
+				case Phase.PoseEstimation:
+					Debug.Log("Phase1");
+					if (pose[0].score > minConfidence && pose[15].score > minConfidence && pose[16].score > minConfidence)
+					{
+						state = Phase.Positioning;
+					}
+					return;
+				case Phase.HandEstimation:
+					Debug.Log("Phase2");
+					return;
+				case Phase.Positioning:
+					Debug.Log("Phase3");
+					return;
+				default:
+					Debug.Log("Calibration end");
+					return;
+			}
 		}
+
 
 		void InitPose()
 		{
