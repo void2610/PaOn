@@ -60,7 +60,6 @@ namespace Paon.NPlayer
                 PlayerPrefs.GetString("Room", "none") == "Nature2"
             )
             {
-                Debug.Log (c);
                 if (c == 0)
                 {
                     rot =
