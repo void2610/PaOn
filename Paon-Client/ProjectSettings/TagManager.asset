@@ -11,6 +11,7 @@ TagManager:
   - HandTag
   - LineObjectTag
   - CrayonTag
+  - SwitchTag
   layers:
   - Default
   - TransparentFX
