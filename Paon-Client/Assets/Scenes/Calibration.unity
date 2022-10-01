@@ -587,8 +587,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17d67efc63c994c428f28c73af89656a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
+  minConfidence: 0.7
   _visualizer: {fileID: 962768457}
-  gk: {fileID: 9091432781278464179}
+  GetKeypoints: {fileID: 9091432781278464176}
 --- !u!4 &1983806824
 Transform:
   m_ObjectHideFlags: 0
@@ -1929,7 +1931,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HandEstimatior: {fileID: 962768454}
   PoseEstimator: {fileID: 1334799897}
-  holdThreshold: 0.2
+  holdThreshold: 0.09
   leftIsClosed: 0
   rightIsClosed: 0
 --- !u!114 &9091432781320569776
@@ -1989,6 +1991,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GK: {fileID: 9091432781278464176}
   _visualizer: {fileID: 962768457}
+  crouch: 0
   forwardThreshold: 15
   th: 20
   isDebugEnabled: 0
