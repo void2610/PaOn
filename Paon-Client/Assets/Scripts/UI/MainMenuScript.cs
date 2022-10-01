@@ -70,8 +70,10 @@ namespace Paon.NUI
 
         public void ClickBackButton()
         {
-            if (status == 3 || status == 4 || status == 5 || status == 6)
+            if (status == 3 || status == 4)
                 status = 0;
+            else if (status == 5 || status == 6)
+                status = 1;
             else
                 status -= 1;
         }
