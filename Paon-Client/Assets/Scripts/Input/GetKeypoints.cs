@@ -114,7 +114,7 @@ namespace Paon.NInput
 			// Debug.Log("Right: " + rightIsClosed);
 		}
 
-		private int LeftCloseOrOpen(Vector3[] finger)
+		private int leftCloseOrOpen(Vector3[] finger)
 		{
 			float distance = Vector3.Distance(finger[0], finger[12]);
 			// Debug.Log("Distance: " + distance);
@@ -122,7 +122,7 @@ namespace Paon.NInput
 				return 1;
 			else return 0;
 		}
-		private int RightCloseOrOpen(Vector3[] finger)
+		private int rightCloseOrOpen(Vector3[] finger)
 		{
 			float distance = Vector3.Distance(finger[0], finger[12]);
 			Debug.Log("rightDistance: " + distance);
