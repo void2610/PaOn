@@ -22,6 +22,14 @@ namespace Paon.NNetwork
         // サーバ側の関数を実行するための変数
         IGamingHub client;
 
+        void itemStorage(GameObject[] item, int Lenght)
+        {
+            for(int i = 0; i < Lenght; i++)
+            {
+                items[item[i].name] = item[i];
+            }
+        }
+
         // 指定したルームに入室するための関数
         // StreamingHubClient で使用する gRPC チャネル及び、参加したい部屋名、使用するユーザ名を引数に指定する
         public async Task<GameObject>
@@ -88,6 +96,11 @@ namespace Paon.NNetwork
         public Task FaceAsync(int FaceID)
         {
             return client.FaceAsync(FaceID);
+        }
+
+        public Task ItemAsync(string name, Vector3 pos, Quaternion rot)
+        {
+            return client.ItemAsync(name, pos, rot);
         }
 
         // 部屋に新しいユーザが入室したときに呼び出される関数

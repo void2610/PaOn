@@ -21,4 +21,11 @@ namespace Paon.NNetwork.Shared.MessagePackObjects
         [Key(1)] public Vector3 Position { get; set; }
         [Key(2)] public Quaternion Rotation { get; set; }
     }
+
+    [MessagePackObject]
+    public class Counter
+    {
+        [Key(0)] public int Count { get; set; }
+        [Key(1)] public string RoomName { get; set; }
+    }
 }

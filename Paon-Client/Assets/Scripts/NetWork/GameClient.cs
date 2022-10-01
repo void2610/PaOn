@@ -14,6 +14,8 @@ namespace Paon.NNetwork
         [SerializeField]
         static GameObject Doll;
         GameObject body, right, left;
+        GameObject[] items;
+        int length;
         // プレイヤーの Transform (今回はメインカメラの Transform を指定)
         [SerializeField]
         Transform m_PlayerTransform;
@@ -43,6 +45,11 @@ namespace Paon.NNetwork
             body = GameObject.Find("PlayerBody");
             right = GameObject.Find("RightHand");
             left = GameObject.Find("LeftHand");
+            items = GameObject.FindGameObjectsWithTag("HoldableTag");
+            length = items.Length;
+
+            itemStorage(items, length);
+
             // ゲーム起動時に設定した部屋名のルームに設定したユーザ名で入室する。
             await this.client.ConnectAsync(this.channel, this.m_RoomName, this.m_UserName);
         }
@@ -56,6 +63,15 @@ namespace Paon.NNetwork
         {
             GameObject doll = Instantiate(Doll, player.BodyPosition, player.Rotation);
             return doll;
+        }
+
+        public void aaa(GameObject _item)
+        {
+            Vector3 pos = _item.transform.position;
+            Quaternion rot = _item.transform.rotation;
+            string name = _item.name;
+
+            client.ItemAsync(name, pos, rot);
         }
 
         // Update is called once per frame
