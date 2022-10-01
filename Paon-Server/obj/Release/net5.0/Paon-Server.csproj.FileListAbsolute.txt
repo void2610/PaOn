@@ -1,9 +1,3 @@
-/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Server/obj/Release/net5.0/Paon-Server.csproj.AssemblyReference.cache
-/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Server/obj/Release/net5.0/Paon-Server.GeneratedMSBuildEditorConfig.editorconfig
-/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Server/obj/Release/net5.0/Paon-Server.AssemblyInfoInputs.cache
-/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Server/obj/Release/net5.0/Paon-Server.AssemblyInfo.cs
-/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Server/obj/Release/net5.0/Paon-Server.csproj.CoreCompileInputs.cache
-/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Server/obj/Release/net5.0/Paon-Server.MvcApplicationPartsAssemblyInfo.cache
 /Users/mattaharuman/Documents/GitHub/PaOn/Paon-Server/bin/Release/net5.0/appsettings.Development.json
 /Users/mattaharuman/Documents/GitHub/PaOn/Paon-Server/bin/Release/net5.0/appsettings.json
 /Users/mattaharuman/Documents/GitHub/PaOn/Paon-Server/bin/Release/net5.0/Paon-Server
@@ -28,6 +22,12 @@
 /Users/mattaharuman/Documents/GitHub/PaOn/Paon-Server/bin/Release/net5.0/Microsoft.NET.StringTools.dll
 /Users/mattaharuman/Documents/GitHub/PaOn/Paon-Server/bin/Release/net5.0/Paon-Shared.dll
 /Users/mattaharuman/Documents/GitHub/PaOn/Paon-Server/bin/Release/net5.0/Paon-Shared.pdb
+/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Server/obj/Release/net5.0/Paon-Server.csproj.AssemblyReference.cache
+/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Server/obj/Release/net5.0/Paon-Server.GeneratedMSBuildEditorConfig.editorconfig
+/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Server/obj/Release/net5.0/Paon-Server.AssemblyInfoInputs.cache
+/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Server/obj/Release/net5.0/Paon-Server.AssemblyInfo.cs
+/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Server/obj/Release/net5.0/Paon-Server.csproj.CoreCompileInputs.cache
+/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Server/obj/Release/net5.0/Paon-Server.MvcApplicationPartsAssemblyInfo.cache
 /Users/mattaharuman/Documents/GitHub/PaOn/Paon-Server/obj/Release/net5.0/scopedcss/bundle/Paon-Server.styles.css
 /Users/mattaharuman/Documents/GitHub/PaOn/Paon-Server/obj/Release/net5.0/staticwebassets/Paon-Server.StaticWebAssets.Manifest.cache
 /Users/mattaharuman/Documents/GitHub/PaOn/Paon-Server/obj/Release/net5.0/Paon-Server.RazorTargetAssemblyInfo.cache
