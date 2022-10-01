@@ -20,6 +20,9 @@ namespace Paon.NNetwork.Hubs
         // ルーム内での自分の情報 (IGamingHub.cs で定義した Player の情報)
         Player self;
 
+        //ルーム内でのItemの情報
+        Item mono;
+
         // ルームに入室しているユーザ全員（自分も含む）の情報を保持して扱うための変数
         IInMemoryStorage<Player> storage;
 
@@ -61,6 +64,14 @@ namespace Paon.NNetwork.Hubs
             // 動いたユーザの最新の位置(Vector3)と回転(Quaternion) を
             // ルームに入室している他ユーザ全員にユーザの最新情報 (Player) をブロードキャスト送信する
             Broadcast(room).OnMove(self);
+        }
+
+        public async Task ItemAsync(Vector3 position, Quaternion rotation)
+        {
+            mono.Position = position;
+            mono.Rotation = rotation;
+
+            Broadcast(room).OnItem(mono);
         }
 
         public async Task FaceAsync(int FaceID)
