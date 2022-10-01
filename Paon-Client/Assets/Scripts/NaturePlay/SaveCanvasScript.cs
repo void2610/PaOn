@@ -11,7 +11,7 @@ namespace Paon.NNaturePlay
 
         bool startSave = false;
 
-        public int cooldown = 5;
+        public int cooldown = 6;
 
         public GameObject cameraPrefab;
 
@@ -21,8 +21,6 @@ namespace Paon.NNaturePlay
 
         float endTime = -6.0f;
 
-        GameObject LogText;
-
         bool log = false;
 
         public bool display = false;
@@ -31,22 +29,18 @@ namespace Paon.NNaturePlay
 
         GameObject[] Switches;
 
+        public GameObject LogText;
+
         void Start()
         {
-            LogText = GameObject.Find("LogText");
             Switches = GameObject.FindGameObjectsWithTag("SwitchTag");
         }
 
         void Update()
         {
             canHide = true;
-
             for (int i = 0; i < Switches.Length; i++)
             {
-                Debug
-                    .Log(Switches[i].name +
-                    " " +
-                    Switches[i].GetComponent<SaveCanvasScript>().display);
                 if (Switches[i] != this.gameObject)
                 {
                     if (Switches[i].GetComponent<SaveCanvasScript>().display)
@@ -65,7 +59,7 @@ namespace Paon.NNaturePlay
             {
                 LogText.GetComponent<Text>().text = "セーブしました！";
             }
-            if (Time.time - endTime > cooldown)
+            if (Time.time - endTime < cooldown)
             {
                 display = true;
             }
