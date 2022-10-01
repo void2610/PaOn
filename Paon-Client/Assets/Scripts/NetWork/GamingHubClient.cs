@@ -16,6 +16,9 @@ namespace Paon.NNetwork
         Dictionary<string, GameObject>
             players = new Dictionary<string, GameObject>();
 
+        Dictionary<string, GameObject>
+            items = new Dictionary<string, GameObject>();
+
         // サーバ側の関数を実行するための変数
         IGamingHub client;
 
@@ -136,6 +139,14 @@ namespace Paon.NNetwork
                 doll.transform.GetChild(1).SetPositionAndRotation(player.LeftPosition, player.Rotation * Quaternion.Euler(0f, 0f, -90f));
                 doll.transform.GetChild(2).SetPositionAndRotation(player.RightPosition, player.Rotation * Quaternion.Euler(0f, 0f, -90f));
                 doll.transform.GetChild(3).gameObject.GetComponent<TextMesh>().text = player.Name;
+            }
+        }
+
+        void IGamingHubReceiver.OnItem(Item item)
+        {
+            if(items.TryGetValue(item.Name, out var gomi))
+            {
+                gomi.transform.SetPositionAndRotation(item.Position, item.Rotation);
             }
         }
 
