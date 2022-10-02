@@ -48,7 +48,7 @@ namespace Paon.NNetwork
             items = GameObject.FindGameObjectsWithTag("HoldableTag");
             length = items.Length;
 
-            itemStorage(items, length);
+            client.itemStorage(items, length);
 
             // ゲーム起動時に設定した部屋名のルームに設定したユーザ名で入室する。
             await this.client.ConnectAsync(this.channel, this.m_RoomName, this.m_UserName);

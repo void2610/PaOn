@@ -22,7 +22,7 @@ namespace Paon.NNetwork
         // サーバ側の関数を実行するための変数
         IGamingHub client;
 
-        void itemStorage(GameObject[] item, int Lenght)
+        public void itemStorage(GameObject[] item, int Lenght)
         {
             for(int i = 0; i < Lenght; i++)
             {
