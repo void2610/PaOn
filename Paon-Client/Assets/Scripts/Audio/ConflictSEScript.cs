@@ -9,20 +9,14 @@ namespace Paon.NAudio
         // Start is called before the first frame update
         public AudioClip SE;
 
-        void Start()
-        {
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        }
-
         void OnCollisionEnter(Collision collision)
         {
-            if (this.GetComponent<Rigidbody>().velocity.magnitude > 0.1f)
+            if (
+                this.GetComponent<AudioSource>() &&
+                this.GetComponent<Rigidbody>()
+            )
             {
-                if (this.GetComponent<AudioSource>())
+                if (this.GetComponent<Rigidbody>().velocity.magnitude > 0.1f)
                 {
                     GetComponent<AudioSource>().PlayOneShot(SE);
                 }
