@@ -65,11 +65,13 @@ namespace Paon.NNetwork
             return doll;
         }
 
-        public void aaa(GameObject _item)
+        public void SendMovingObject(GameObject _item)
         {
             Vector3 pos = _item.transform.position;
             Quaternion rot = _item.transform.rotation;
             string name = _item.name;
+
+            Debug.Log(name);
 
             client.ItemAsync(name, pos, rot);
         }

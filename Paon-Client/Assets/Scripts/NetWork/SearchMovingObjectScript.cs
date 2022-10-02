@@ -8,6 +8,9 @@ namespace Paon.NNetwork
     {
         GameObject[] Holdables;
 
+        private GameClient client = new GameClient();
+
+
         void Start()
         {
             Holdables = GameObject.FindGameObjectsWithTag("HoldableTag");
@@ -23,8 +26,8 @@ namespace Paon.NNetwork
                     0.05f
                 )
                 {
-                    //SendMovingObject(Holdables[i]);
-                    Debug.Log(Holdables[i].name);
+                    client.SendMovingObject(Holdables[i]);
+                    //Debug.Log(Holdables[i].name);
                 }
             }
         }

@@ -27,6 +27,8 @@ namespace Paon.NNetwork
             for(int i = 0; i < Lenght; i++)
             {
                 items[item[i].name] = item[i];
+
+                Debug.Log(items[item[i].name]);
             }
         }
 
@@ -157,7 +159,7 @@ namespace Paon.NNetwork
 
         void IGamingHubReceiver.OnItem(Item item)
         {
-            if(items.TryGetValue(item.Name, out var gomi))
+            if (items.TryGetValue(item.Name, out var gomi))
             {
                 gomi.transform.SetPositionAndRotation(item.Position, item.Rotation);
             }
