@@ -14,6 +14,7 @@ namespace Paon.NNetwork.Shared.Hubs
         void OnLeave(Player player);
         void OnMove(Player player);
         void OnItem(Item item);
+        void OnGoal(string name, float time);
         void ChengeFace(Player player, int FaceID);
     }
 
@@ -25,5 +26,6 @@ namespace Paon.NNetwork.Shared.Hubs
         Task MoveAsync(Vector3 _body, Vector3 _right, Vector3 _left, Quaternion rotation);
         Task ItemAsync(string name, Vector3 position, Quaternion rotation);
         Task FaceAsync(int FaceID);
+        Task TimeAsync(string name, float time);
     }
 }

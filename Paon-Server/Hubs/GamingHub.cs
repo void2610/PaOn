@@ -84,5 +84,10 @@ namespace Paon.NNetwork.Hubs
 
             Broadcast(room).ChengeFace(self, FaceID);
         }
+
+        public async Task TimeAsync(string name, float time)
+        {
+            Broadcast(room).OnGoal(name, time);
+        }
     }
 }

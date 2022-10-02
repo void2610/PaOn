@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Paon.NNetwork;
 
 namespace Paon.NUI
 {
@@ -16,6 +17,8 @@ namespace Paon.NUI
         float cooldown = Mathf.Infinity;
 
         GameObject GoalText;
+
+        private GamingHubClient client = new GamingHubClient();
 
         public void CountStart()
         {
@@ -56,6 +59,8 @@ namespace Paon.NUI
                 if (GoalText != null)
                 {
                     GoalText.GetComponent<Text>().text = "ゴール！";
+
+                    client.TimeAsync(time);
                 }
             }
             else

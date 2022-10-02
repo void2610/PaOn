@@ -31,7 +31,7 @@ namespace Paon.NNetwork
         string m_RoomName;
 
         // StreamingHub クライアントで使用する gRPC チャネルを生成
-        private Channel channel = new Channel("192.168.10.7", 5032, ChannelCredentials.Insecure);
+        private Channel channel = new Channel("153.125.148.207", 5032, ChannelCredentials.Insecure);
 
         // StreamingHub サーバと通信を行うためのクライアント生成
         private GamingHubClient client = new GamingHubClient();
@@ -70,8 +70,6 @@ namespace Paon.NNetwork
             Vector3 pos = _item.transform.position;
             Quaternion rot = _item.transform.rotation;
             string name = _item.name;
-
-            Debug.Log(name);
 
             client.ItemAsync(name, pos, rot);
         }

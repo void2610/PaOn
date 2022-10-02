@@ -102,7 +102,14 @@ namespace Paon.NNetwork
 
         public Task ItemAsync(string name, Vector3 pos, Quaternion rot)
         {
+            Debug.Log(name);
+
             return client.ItemAsync(name, pos, rot);
+        }
+
+        public Task TimeAsync(string name, float time)
+        {
+            return client.TimeAsync(name, time);
         }
 
         // 部屋に新しいユーザが入室したときに呼び出される関数
