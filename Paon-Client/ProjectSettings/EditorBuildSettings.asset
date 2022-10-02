@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BorderingScene.unity
     guid: ac1407a22b6564f4d8bc1799cdfb8fd4
-  - enabled: 1
+  - enabled: 0
     path: Assets/OpenPose/Examples/Scenes/Demo.unity
     guid: d14f1fe1776644745acd186bbfe3a269
   - enabled: 1

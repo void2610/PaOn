@@ -60,7 +60,7 @@ namespace Paon.NPlayer
                 PlayerPrefs.GetString("Room", "none") == "Nature2"
             )
             {
-                if (c == 0)
+                if (c == 1)
                 {
                     rot =
                         new Vector3(25,
@@ -74,6 +74,7 @@ namespace Paon.NPlayer
                         new Vector3(0,
                             this.gameObject.transform.eulerAngles.y,
                             this.gameObject.transform.eulerAngles.z);
+                    lp = new Vector3(0, 2.3f, 0);
                 }
             }
             else if (

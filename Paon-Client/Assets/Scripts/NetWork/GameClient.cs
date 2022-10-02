@@ -1,11 +1,10 @@
-﻿using Grpc.Core;
+﻿using System;
+using System.Threading.Tasks;
+using Grpc.Core;
 using MagicOnion.Client;
 using Paon.NNetWork.Shared.Services;
-using UnityEngine;
 using Paon.NNetwork.Shared.MessagePackObjects;
-using System.Threading.Tasks;
-using System;
-
+using UnityEngine;
 
 namespace Paon.NNetwork
 {
@@ -13,9 +12,17 @@ namespace Paon.NNetwork
     {
         [SerializeField]
         static GameObject Doll;
-        GameObject body, right, left;
+
+        GameObject
+
+                body,
+                right,
+                left;
+
         GameObject[] items;
+
         int length;
+
         // プレイヤーの Transform (今回はメインカメラの Transform を指定)
         [SerializeField]
         Transform m_PlayerTransform;
@@ -31,7 +38,9 @@ namespace Paon.NNetwork
         string m_RoomName;
 
         // StreamingHub クライアントで使用する gRPC チャネルを生成
-        private Channel channel = new Channel("192.168.10.7", 5032, ChannelCredentials.Insecure);
+        private Channel
+            channel =
+                new Channel("192.168.10.7", 5032, ChannelCredentials.Insecure);
 
         // StreamingHub サーバと通信を行うためのクライアント生成
         private GamingHubClient client = new GamingHubClient();
@@ -41,27 +50,29 @@ namespace Paon.NNetwork
             m_UserName = PlayerPrefs.GetString("Name", "NULLTYAN");
             m_RoomName = PlayerPrefs.GetString("Room", "MAIGO");
             m_RoomName = "poipoi";
-            Doll = (GameObject)Resources.Load("Doll");
+            Doll = (GameObject) Resources.Load("Doll");
             body = GameObject.Find("PlayerBody");
             right = GameObject.Find("RightHand");
             left = GameObject.Find("LeftHand");
             items = GameObject.FindGameObjectsWithTag("HoldableTag");
             length = items.Length;
 
-            itemStorage(items, length);
-
+            //itemStorage(items, length);
             // ゲーム起動時に設定した部屋名のルームに設定したユーザ名で入室する。
-            await this.client.ConnectAsync(this.channel, this.m_RoomName, this.m_UserName);
+            await this
+                .client
+                .ConnectAsync(this.channel, this.m_RoomName, this.m_UserName);
         }
 
         public void SendFaceID(int FaceID)
         {
-            client.FaceAsync(FaceID);
+            client.FaceAsync (FaceID);
         }
 
         public static GameObject MakeDolls(Player player)
         {
-            GameObject doll = Instantiate(Doll, player.BodyPosition, player.Rotation);
+            GameObject doll =
+                Instantiate(Doll, player.BodyPosition, player.Rotation);
             return doll;
         }
 
@@ -71,7 +82,7 @@ namespace Paon.NNetwork
             Quaternion rot = _item.transform.rotation;
             string name = _item.name;
 
-            client.ItemAsync(name, pos, rot);
+            client.ItemAsync (name, pos, rot);
         }
 
         // Update is called once per frame
@@ -79,7 +90,11 @@ namespace Paon.NNetwork
         {
             // 毎フレームプレイヤーの位置(Vector3) と回転(Quaternion) を更新し、
             // ルームに入室している他ユーザ全員にブロードキャスト送信する
-            client.MoveAsync(body.transform.position, right.transform.position, left.transform.position, body.transform.rotation);
+            client
+                .MoveAsync(body.transform.position,
+                right.transform.position,
+                left.transform.position,
+                body.transform.rotation);
             //client.MoveAsync(m_PlayerTransform.position, m_PlayerTransform.rotation);
         }
 
@@ -91,5 +106,4 @@ namespace Paon.NNetwork
             await this.channel.ShutdownAsync();
         }
     }
-
 }
