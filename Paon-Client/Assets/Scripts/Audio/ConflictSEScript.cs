@@ -16,7 +16,6 @@ namespace Paon.NAudio
         // Update is called once per frame
         void Update()
         {
-            //Debug.Log(this.GetComponent<Rigidbody>().velocity.magnitude);
         }
 
         void OnCollisionEnter(Collision collision)
