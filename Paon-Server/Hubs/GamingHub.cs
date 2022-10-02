@@ -25,7 +25,7 @@ namespace Paon.NNetwork.Hubs
         // ルームに入室しているユーザ全員（自分も含む）の情報を保持して扱うための変数
         IInMemoryStorage<Player> storage;
         IInMemoryStorage<Item> memory;
-
+        //IInMemoryStorage<Counter> Count;
 
         // 指定したルームに入室するための関数
         // 入室するルーム名及び、ユーザ自身の情報(ユーザ名,位置(Vector3),回転(Quaternion)) を引数に取る
@@ -69,10 +69,12 @@ namespace Paon.NNetwork.Hubs
 
         public async Task ItemAsync(string name, Vector3 position, Quaternion rotation)
         {
+            Console.WriteLine("items");
+
             mono.Name = name;
             mono.Position = position;
             mono.Rotation = rotation;
-
+            
             Broadcast(room).OnItem(mono);
         }
 
