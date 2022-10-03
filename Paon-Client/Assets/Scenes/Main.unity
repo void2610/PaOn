@@ -22622,6 +22622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b336e0440b4ed5548b5b385552e7719b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SE: {fileID: 0}
   NearObject: {fileID: 0}
 --- !u!65 &1045148831184170343
 BoxCollider:
@@ -23441,6 +23442,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NearObject: {fileID: 0}
   lmip: {fileID: 0}
+  SE: {fileID: 0}
 --- !u!65 &1045148832719796306
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24908,7 +24910,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HandEstimatior: {fileID: 400394162}
   PoseEstimator: {fileID: 1809293868783012142}
-  holdThreshold: 0.2
+  holdThreshold: 0.09
   leftIsClosed: 0
   rightIsClosed: 0
 --- !u!64 &8314665998871262058
@@ -25614,6 +25616,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Estimation
+      objectReference: {fileID: 0}
+    - target: {fileID: 8823757632181810756, guid: 472b9191cc902bb4d9b461dfa070ebf2,
+        type: 3}
+      propertyPath: isDebugEnabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 472b9191cc902bb4d9b461dfa070ebf2, type: 3}
