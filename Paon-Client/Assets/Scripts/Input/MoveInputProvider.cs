@@ -66,9 +66,15 @@ namespace Paon.NInput
 		{
 			while (true)
 			{
-				yield return new WaitForSeconds(0.5f);
 				if (delta < forwardThreshold)
-					isWalking = false;
+				{
+					yield return new WaitForSeconds(0.5f);
+					if (delta < forwardThreshold)
+					{
+						isWalking = false;
+						yield break;
+					}
+				}
 			}
 		}
 
@@ -165,6 +171,7 @@ namespace Paon.NInput
 				if (delta > forwardThreshold && !isWalking)
 				{
 					isWalking = true;
+					StartCoroutine(nameof(JudgeMove));
 				}
 
 				if (isWalking)
@@ -191,11 +198,6 @@ namespace Paon.NInput
 					crouch = 0;
 				}
 			}
-		}
-
-		void JudgeWalk()
-		{
-			StartCoroutine(nameof(JudgeMove));
 		}
 	}
 }
