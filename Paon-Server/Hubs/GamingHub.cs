@@ -87,6 +87,8 @@ namespace Paon.NNetwork.Hubs
 
         public async Task TimeAsync(string name, float time)
         {
+            Console.WriteLine("Goalした人がいるよ。");
+
             Broadcast(room).OnGoal(name, time);
         }
     }

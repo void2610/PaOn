@@ -60,7 +60,7 @@ namespace Paon.NUI
                 {
                     GoalText.GetComponent<Text>().text = "ゴール！";
                     
-                    client.TimeAsync(GameObject.Find("PlayerBody").name, time);
+                    client.TimeAsync(PlayerPrefs.GetString("Name", "NULLTYAN"), time);
                 }
             }
             else
