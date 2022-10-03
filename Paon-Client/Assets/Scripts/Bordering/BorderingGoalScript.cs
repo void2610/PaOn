@@ -6,21 +6,21 @@ namespace Paon.NBordering
 {
     public class BorderingGoalScript : MonoBehaviour
     {
-        GameObject bm;
-
-        GameObject Player;
+        public AudioClip SE;
 
         public bool goaling = false;
 
-        bool tmp = false;
+        private GameObject BorderingManager;
 
-        float sTime = -10.0f;
+        private GameObject Player;
 
-        public AudioClip SE;
+        private bool tmp = false;
+
+        private float sTime = -10.0f;
 
         void Start()
         {
-            bm = GameObject.Find("BorderingManager");
+            BorderingManager = GameObject.Find("BorderingManager");
             Player = GameObject.Find("PlayerBody");
         }
 
@@ -30,7 +30,10 @@ namespace Paon.NBordering
             if (!tmp && goaling)
             {
                 sTime = Time.time;
-                this.GetComponent<AudioSource>().PlayOneShot(SE);
+                if (this.GetComponent<AudioSource>())
+                {
+                    this.GetComponent<AudioSource>().PlayOneShot(SE);
+                }
             }
             if (Time.time - sTime <= 1.5f)
             {
@@ -50,7 +53,10 @@ namespace Paon.NBordering
         {
             if (other.CompareTag("Player"))
             {
-                bm.GetComponent<BorderingTimerScript>().Timer.CountStop();
+                BorderingManager
+                    .GetComponent<BorderingTimerScript>()
+                    .Timer
+                    .CountStop();
                 goaling = true;
             }
             else

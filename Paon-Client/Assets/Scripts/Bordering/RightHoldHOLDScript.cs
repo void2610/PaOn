@@ -29,6 +29,8 @@ namespace Paon.NBordering
 
         float dis = 999;
 
+        public AudioClip SE;
+
         void Start()
         {
             Player = GameObject.Find("PlayerBody");
@@ -53,6 +55,7 @@ namespace Paon.NBordering
                 //新しく物をつかんだときの処理
                 if (NearObject != null && oh.NowHoldObject == null)
                 {
+                    GetComponent<AudioSource>().PlayOneShot(SE);
                     oh.HoldObject (NearObject);
                     if (oh.NowHoldObject.tag == "BorderingHOLDTag")
                     {

@@ -8,15 +8,6 @@ namespace Paon.NBordering
     {
         public bool starting = false;
 
-        void Start()
-        {
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        }
-
         void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player"))

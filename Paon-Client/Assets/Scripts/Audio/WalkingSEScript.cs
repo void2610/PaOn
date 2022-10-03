@@ -6,15 +6,15 @@ namespace Paon.NAudio
 {
     public class WalkingSEScript : MonoBehaviour
     {
-        Vector3 latestPos;
+        private GameObject Player;
 
-        float speed;
+        private Vector3 latestPos;
 
-        GameObject Player;
+        private float speed;
 
-        bool e = false;
+        private bool e = false;
 
-        bool tmp = false;
+        private bool tmp = false;
 
         void Start()
         {
@@ -34,13 +34,16 @@ namespace Paon.NAudio
             {
                 e = false;
             }
-            if (e && !tmp)
+            if (this.GetComponent<AudioSource>())
             {
-                this.GetComponent<AudioSource>().Play();
-            }
-            if (!e && tmp)
-            {
-                this.GetComponent<AudioSource>().Stop();
+                if (e && !tmp)
+                {
+                    this.GetComponent<AudioSource>().Play();
+                }
+                if (!e && tmp)
+                {
+                    this.GetComponent<AudioSource>().Stop();
+                }
             }
             latestPos = Player.transform.position;
             tmp = e;

@@ -9,6 +9,8 @@ namespace Paon.NBordering
 {
     public class LeftHoldHOLDScript : MonoBehaviour
     {
+        public AudioClip SE;
+
         public GameObject NearObject;
 
         public ObjectHolder oh = new ObjectHolder();
@@ -62,6 +64,7 @@ namespace Paon.NBordering
                     oh.HoldObject (NearObject);
                     if (oh.NowHoldObject.tag == "BorderingHOLDTag")
                     {
+                        GetComponent<AudioSource>().PlayOneShot(SE);
                         bts.StartTimer();
                         Player.GetComponent<Rigidbody>().useGravity = false;
                         bodyBase = Player.transform.position;
