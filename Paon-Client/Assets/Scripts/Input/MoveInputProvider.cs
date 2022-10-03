@@ -43,6 +43,8 @@ namespace Paon.NInput
 
 		public bool isDebugEnabled = false;
 
+		private float delta = 0;
+
 		private bool isWalking = false;
 		///<summary>
 		///入力されているキーを返すメソッド
@@ -65,7 +67,8 @@ namespace Paon.NInput
 			while (true)
 			{
 				yield return new WaitForSeconds(0.5f);
-
+				if (delta < forwardThreshold)
+					isWalking = false;
 			}
 		}
 
@@ -73,7 +76,6 @@ namespace Paon.NInput
 		void Start()
 		{
 			gk = GK.GetComponent<GetKeypoints>();
-			StartCoroutine(nameof(JudgeMove));
 		}
 
 		void Update()
@@ -158,9 +160,9 @@ namespace Paon.NInput
 
 				float current = Mathf.Abs(pose[16].coords.y - pose[15].coords.y);
 
-				float delta = Mathf.Abs(prevFoward - current);
+				delta = Mathf.Abs(prevFoward - current);
 				Debug.Log("delta: " + delta);
-				if (delta > forwardThreshold)
+				if (delta > forwardThreshold && !isWalking)
 				{
 					isWalking = true;
 				}
@@ -188,42 +190,12 @@ namespace Paon.NInput
 				{
 					crouch = 0;
 				}
-
-				// 	//right ankle to nose
-				// 	def1 = pose[16].coords.y - pose[0].coords.y;
-				// 	//left
-				// 	def2 = pose[15].coords.y - pose[0].coords.y;
-
-				// 	// Debug.Log("delta1: " + Math.Abs(def1 - predef1));
-				// 	// Debug.Log("delta2: " + Math.Abs(def2 - predef2));
-
-				// 	if (Mathf.Abs(def1 - predef1) > th || Mathf.Abs(def2 - predef2) > th)
-				// 	{
-				// 		key = "up";
-				// 	}
-				// 	else
-				// 	{
-				// 		key = "none";
-				// 	}
-				// 	//ankle to hip
-				// 	// Rleg = Mathf.Abs(pose[16].coords.x - pose[12].coords.x);
-				// 	// Lleg = Mathf.Abs(pose[15].coords.x - pose[11].coords.x);
-				// 	Rleg = Mathf.Abs(vertices[30].x - vertices[32].x);
-				// 	Lleg = Mathf.Abs(vertices[29].x - vertices[31].x);
-				// 	Debug.Log(Rleg);
-				// 	if (Rleg > 0.07)
-				// 	{
-				// 		key = "right";
-				// 	}
-				// 	else if (Lleg > 0.07)
-				// 	{
-				// 		key = "left";
-				// 	}
-				// 	else
-				// 	{
-				// 		key = "none";
 			}
+		}
 
+		void JudgeWalk()
+		{
+			StartCoroutine(nameof(JudgeMove));
 		}
 	}
 }
