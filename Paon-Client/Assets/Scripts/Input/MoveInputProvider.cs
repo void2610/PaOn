@@ -64,16 +64,13 @@ namespace Paon.NInput
 
 		IEnumerator JudgeMove()
 		{
-			while (true)
+			if (delta < forwardThreshold)
 			{
+				yield return new WaitForSeconds(0.5f);
 				if (delta < forwardThreshold)
 				{
-					yield return new WaitForSeconds(0.5f);
-					if (delta < forwardThreshold)
-					{
-						isWalking = false;
-						yield break;
-					}
+					isWalking = false;
+					yield break;
 				}
 			}
 		}
@@ -171,11 +168,13 @@ namespace Paon.NInput
 				if (delta > forwardThreshold && !isWalking)
 				{
 					isWalking = true;
-					StartCoroutine(nameof(JudgeMove));
 				}
 
 				if (isWalking)
+				{
 					key = "up";
+					StartCoroutine(nameof(JudgeMove));
+				}
 			}
 		}
 
