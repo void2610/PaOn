@@ -40,7 +40,7 @@ namespace Paon.NInput
 			}
 			catch (System.NullReferenceException)
 			{
-				return new Vector2(0, 0);
+				return previous.coords;
 			}
 		}
 

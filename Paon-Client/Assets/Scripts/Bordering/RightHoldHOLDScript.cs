@@ -157,7 +157,9 @@ namespace Paon.NBordering
 			}
 
 			tmp = lmip.GetInput();
-			prev = pos;
+
+			if (pos != prev)
+				prev = pos;
 		}
 
 		void OnTriggerEnter(Collider other)
