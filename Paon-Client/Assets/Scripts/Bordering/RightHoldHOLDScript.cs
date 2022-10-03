@@ -51,7 +51,7 @@ namespace Paon.NBordering
 		// Update is called once per frame
 		void Update()
 		{
-			Vector3 pos = rmip.GetPosition();
+			Vector3 pos = lmip.GetPosition();
 
 			//掴んでいるかどうか
 			if (lmip.CheckHold() == 1)
@@ -96,7 +96,7 @@ namespace Paon.NBordering
 				rhm.canMove = false;
 				Hand.transform.position = oh.NowHoldObject.transform.position;
 
-				if (pos.y < prev.y) Player.transform.Tlranslate(Vector3.up * 0.03f);
+				if (pos.y < prev.y) Player.transform.Translate(Vector3.up * 0.03f);
 
 				//この条件式、実際に手で操作できるようになったらいらない
 				if (Mathf.Abs(Vector3.Distance(Player.transform.position, bodyBase)) < 0.6f)
