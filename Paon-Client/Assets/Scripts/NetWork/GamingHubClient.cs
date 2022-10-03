@@ -160,7 +160,7 @@ namespace Paon.NNetwork
                 doll.transform.GetChild(0).SetPositionAndRotation(player.BodyPosition, player.Rotation * Quaternion.Euler(0f, 90f, 0f));
                 doll.transform.GetChild(1).SetPositionAndRotation(player.LeftPosition, player.Rotation * Quaternion.Euler(0f, 0f, -90f));
                 doll.transform.GetChild(2).SetPositionAndRotation(player.RightPosition, player.Rotation * Quaternion.Euler(0f, 0f, -90f));
-                doll.transform.GetChild(3).gameObject.GetComponent<TextMesh>().text = player.Name;
+                doll.transform.GetChild(0).transform.GetChild(3).gameObject.GetComponent<TextMesh>().text = player.Name;
             }
         }
 
