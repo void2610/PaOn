@@ -100,11 +100,11 @@ namespace Paon.NNetwork
             return client.FaceAsync(FaceID);
         }
 
-        public Task ItemAsync(string name, Vector3 pos, Quaternion rot)
+        public Task ItemAsync(string name, Vector3 position, Quaternion quaternion)
         {
             Debug.Log(name);
 
-            return client.ItemAsync(name, pos, rot);
+            return client.ItemAsync(name, position, quaternion);
         }
 
         public Task TimeAsync(string name, float time)
@@ -170,6 +170,11 @@ namespace Paon.NNetwork
             {
                 gomi.transform.SetPositionAndRotation(item.Position, item.Rotation);
             }
+        }
+
+        void IGamingHubReceiver.OnGoal(string name, float time)
+        {
+            Debug.Log("");
         }
 
         void IGamingHubReceiver.ChengeFace(Player player, int FaceID)
