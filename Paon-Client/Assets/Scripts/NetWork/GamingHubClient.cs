@@ -174,7 +174,7 @@ namespace Paon.NNetwork
 
         void IGamingHubReceiver.OnGoal(string name, float time)
         {
-            Debug.Log("");
+            Debug.Log(name + time);
         }
 
         void IGamingHubReceiver.ChengeFace(Player player, int FaceID)

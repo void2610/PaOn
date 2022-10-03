@@ -59,8 +59,8 @@ namespace Paon.NUI
                 if (GoalText != null)
                 {
                     GoalText.GetComponent<Text>().text = "ゴール！";
-
-                    client.TimeAsync(time);
+                    
+                    client.TimeAsync(GameObject.Find("PlayerBody").name, time);
                 }
             }
             else
