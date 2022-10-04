@@ -52,11 +52,11 @@ namespace Paon.NPlayer
 				}
 				else if (inputProvider.GetInput() == "left")
 				{
-					player.transform.Rotate(0, -0.8f, 0);
+					player.transform.Rotate(0, -0.5f, 0);
 				}
 				else if (inputProvider.GetInput() == "right")
 				{
-					player.transform.Rotate(0, 0.8f, 0);
+					player.transform.Rotate(0, 0.5f, 0);
 				}
 			}
 		}

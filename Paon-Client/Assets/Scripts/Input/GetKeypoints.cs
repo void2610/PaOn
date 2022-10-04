@@ -81,32 +81,13 @@ namespace Paon.NInput
 			}
 
 			leftWrist = pose[9];
-
 			rightWrist = pose[10];
 
 			Vector3[] leftTemp = _handVisualizer.GetLeftVert();
 			Vector3[] rightTemp = _handVisualizer.GetRightVert();
 
-			// for (int i = 0; i < left.Length; i++)
-			// {
-			//     left[i] =
-			//        new Keypoint(leftTemp[i].x,
-			//            leftTemp[i].y,
-			//            leftTemp[i].z,
-			//            0);
-			// }
-
-			// Debug.Log("l0: " + left[0].coords);
-			// Debug.Log("l12: " + left[12].coords);
-
-			// for (int i = 0; i < right.Length; i++)
-			// {
-			//     right[i] =
-			//         new Keypoint(rightTemp[i].x,
-			//             rightTemp[i].y,
-			//             rightTemp[i].z,
-			//             0);
-			// }
+			leftWrist.coords.z = leftTemp.z;
+			rightWrist.coords.z = rightTemp.z;
 
 			leftIsClosed = leftCloseOrOpen(leftTemp);
 			rightIsClosed = rightCloseOrOpen(rightTemp);
