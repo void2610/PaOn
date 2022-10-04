@@ -86,8 +86,8 @@ namespace Paon.NInput
 			Vector3[] leftTemp = _handVisualizer.GetLeftVert();
 			Vector3[] rightTemp = _handVisualizer.GetRightVert();
 
-			leftWrist.coords.z = leftTemp.z;
-			rightWrist.coords.z = rightTemp.z;
+			leftWrist.coords.z = leftTemp[0].z;
+			rightWrist.coords.z = rightTemp[0].z;
 
 			leftIsClosed = leftCloseOrOpen(leftTemp);
 			rightIsClosed = rightCloseOrOpen(rightTemp);
