@@ -1,12 +1,12 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using Paon.NInput;
 using Paon.NPlayer;
 using UnityEngine;
 
 public class comocmo : MonoBehaviour
 {
-	[SerializeField]
-	SelectEmojiScript2 script;
-
 	[SerializeField]
 	Visualizer visualizer;
 
@@ -16,6 +16,14 @@ public class comocmo : MonoBehaviour
 	[SerializeField]
 	GetKeypoints.Keypoint left, right, nose;
 
+	public float threshhold = 10f;
+
+	public bool Open = false;
+
+	bool check = false;
+
+	float delta = 0;
+
 	void Start()
 	{
 
@@ -23,6 +31,20 @@ public class comocmo : MonoBehaviour
 
 	void Update()
 	{
+		left = gk.leftWrist;
+		right = gk.rightWrist;
+		delta = Mathf.Abs(left.coords.y - right.coords.y);
+		if (delta > threshhold && !check) StartCoroutine(nameof(CommoRose));
 
+	}
+
+	private IEnumerator CommoRose()
+	{
+		yield return new WaitForSeconds(0.5f);
+		if (delta > threshhold)
+		{
+			check = false;
+			Open = true;
+		}
 	}
 }
