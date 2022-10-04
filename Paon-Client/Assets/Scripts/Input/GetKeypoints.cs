@@ -8,9 +8,6 @@ namespace Paon.NInput
 {
 	public class GetKeypoints : MonoBehaviour
 	{
-		//aaa
-		// private OPDatum datum;
-		// public OpenPoseUserScript op;
 		[SerializeField]
 		private GameObject HandEstimatior;
 
@@ -21,8 +18,6 @@ namespace Paon.NInput
 
 		private Utils.Keypoint[] poseKeypoints;
 
-		// private OPDatum datum;
-		// public OpenPoseUserScript op;
 		private Visualizer _handVisualizer;
 
 		public enum KeyPointType : byte
@@ -58,6 +53,7 @@ namespace Paon.NInput
 		public Keypoint rightWrist = new Keypoint(0, 0, 0, 0);
 
 		public float holdThreshold = 0.05f;
+
 		public int leftIsClosed = 0;
 		public int rightIsClosed = 0;
 

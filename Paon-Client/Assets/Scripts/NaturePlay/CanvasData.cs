@@ -132,10 +132,10 @@ namespace Paon.NNaturePlay
                 "/Resources/NaturePlay/" +
                 name +
                 ".json";
-            StreamWriter writer = new StreamWriter(path, false); //初めに指定したデータの保存先を開く
-            writer.WriteLine (jsonString); //JSONデータを書き込み
-            writer.Flush(); //バッファをクリアする
-            writer.Close(); //ファイルをクローズする
+            StreamWriter writer = new StreamWriter(path, false);
+            writer.WriteLine (jsonString);
+            writer.Flush();
+            writer.Close();
         }
     }
 

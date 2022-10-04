@@ -24,7 +24,7 @@ namespace Paon.NNetwork
 
         public void itemStorage(GameObject[] item, int Lenght)
         {
-            for(int i = 0; i < Lenght; i++)
+            for (int i = 0; i < Lenght; i++)
             {
                 items[item[i].name] = item[i];
 
@@ -100,10 +100,10 @@ namespace Paon.NNetwork
             return client.FaceAsync(FaceID);
         }
 
-        public Task ItemAsync(string name, Vector3 position, Quaternion quaternion)
+        public Task
+        ItemAsync(string name, Vector3 position, Quaternion quaternion)
         {
-            Debug.Log(name);
-
+            //Debug.Log(name);
             return client.ItemAsync(name, position, quaternion);
         }
 
@@ -129,9 +129,18 @@ namespace Paon.NNetwork
                 _body.name = player.Name + "Body";
                 _right.name = player.Name + "Right";
                 _left.name = player.Name + "Left";
-                doll.transform.SetPositionAndRotation(player.BodyPosition, player.Rotation);
-                _right.transform.SetPositionAndRotation(player.RightPosition, player.Rotation);
-                _left.transform.SetPositionAndRotation(player.LeftPosition, player.Rotation);
+                doll
+                    .transform
+                    .SetPositionAndRotation(player.BodyPosition,
+                    player.Rotation);
+                _right
+                    .transform
+                    .SetPositionAndRotation(player.RightPosition,
+                    player.Rotation);
+                _left
+                    .transform
+                    .SetPositionAndRotation(player.LeftPosition,
+                    player.Rotation);
                 players[player.Name] = doll;
             }
 
@@ -157,10 +166,29 @@ namespace Paon.NNetwork
             // ワールド上の該当する GameObject (アバター)の位置(Vector3)と回転(Quaternion) の値を最新のものに更新する
             if (players.TryGetValue(player.Name, out var doll))
             {
-                doll.transform.GetChild(0).SetPositionAndRotation(player.BodyPosition, player.Rotation * Quaternion.Euler(0f, 90f, 0f));
-                doll.transform.GetChild(1).SetPositionAndRotation(player.LeftPosition, player.Rotation * Quaternion.Euler(0f, 0f, -90f));
-                doll.transform.GetChild(2).SetPositionAndRotation(player.RightPosition, player.Rotation * Quaternion.Euler(0f, 0f, -90f));
-                doll.transform.GetChild(0).transform.GetChild(3).gameObject.GetComponent<TextMesh>().text = player.Name;
+                doll
+                    .transform
+                    .GetChild(0)
+                    .SetPositionAndRotation(player.BodyPosition,
+                    player.Rotation * Quaternion.Euler(0f, 90f, 0f));
+                doll
+                    .transform
+                    .GetChild(1)
+                    .SetPositionAndRotation(player.LeftPosition,
+                    player.Rotation * Quaternion.Euler(0f, 0f, -90f));
+                doll
+                    .transform
+                    .GetChild(2)
+                    .SetPositionAndRotation(player.RightPosition,
+                    player.Rotation * Quaternion.Euler(0f, 0f, -90f));
+                doll
+                    .transform
+                    .GetChild(0)
+                    .transform
+                    .GetChild(3)
+                    .gameObject
+                    .GetComponent<TextMesh>()
+                    .text = player.Name;
             }
         }
 
@@ -168,7 +196,9 @@ namespace Paon.NNetwork
         {
             if (items.TryGetValue(item.Name, out var gomi))
             {
-                gomi.transform.SetPositionAndRotation(item.Position, item.Rotation);
+                gomi
+                    .transform
+                    .SetPositionAndRotation(item.Position, item.Rotation);
             }
         }
 
@@ -182,9 +212,19 @@ namespace Paon.NNetwork
             //Debug.Log("ChendeFaceには来ました。");
             if (players.TryGetValue(player.Name, out var doll))
             {
-                GameObject Emoji = doll.transform.GetChild(0).transform.GetChild(2).transform.GetChild(0).gameObject;
+                GameObject Emoji =
+                    doll
+                        .transform
+                        .GetChild(0)
+                        .transform
+                        .GetChild(2)
+                        .transform
+                        .GetChild(0)
+                        .gameObject;
+
                 //Debug.Log(Emoji.GetComponent<SpriteRenderer>());
-                Emoji.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Picture/emoji" + FaceID);
+                Emoji.GetComponent<SpriteRenderer>().sprite =
+                    Resources.Load<Sprite>("Picture/emoji" + FaceID);
             }
         }
     }

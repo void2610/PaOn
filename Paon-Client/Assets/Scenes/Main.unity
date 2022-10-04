@@ -2230,8 +2230,9 @@ GameObject:
   - component: {fileID: 152097218}
   - component: {fileID: 152097217}
   - component: {fileID: 152097216}
+  - component: {fileID: 152097219}
   m_Layer: 0
-  m_Name: Floor (1)
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2313,6 +2314,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 152097214}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &152097219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152097214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48a04aef8eaf041759f5640d31762e40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &158557501
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7075,12 +7088,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SE: {fileID: 8300000, guid: 76aee58c3babd498f8c4d9bd600935c1, type: 3}
-  cooldown: 5
   cameraPrefab: {fileID: 8642419969649489648, guid: d0314a7189d22e84385b3ce6afb6b0a5,
     type: 3}
   Canvas: {fileID: 1478459135}
-  display: 0
   LogText: {fileID: 2056181364}
+  cooldown: 5
+  display: 0
 --- !u!65 &625693397
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9168,7 +9181,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 803445780}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -859, y: -7.81, z: -4.87}
+  m_LocalPosition: {x: -859, y: -7.18, z: -4.87}
   m_LocalScale: {x: 106.76916, y: 0.6666667, z: 0.6666667}
   m_Children:
   - {fileID: 109678556}
@@ -17093,12 +17106,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SE: {fileID: 8300000, guid: 76aee58c3babd498f8c4d9bd600935c1, type: 3}
-  cooldown: 5
   cameraPrefab: {fileID: 8642419969649489648, guid: d0314a7189d22e84385b3ce6afb6b0a5,
     type: 3}
   Canvas: {fileID: 1279448193}
-  display: 0
   LogText: {fileID: 84568362}
+  cooldown: 5
+  display: 0
 --- !u!82 &1553585190
 AudioSource:
   m_ObjectHideFlags: 0
@@ -22452,7 +22465,7 @@ GameObject:
   - component: {fileID: 1045148832636091915}
   - component: {fileID: 162257690674660186}
   - component: {fileID: 162257690674660187}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LeftHand
   m_TagString: HandTag
   m_Icon: {fileID: 0}
@@ -22505,7 +22518,7 @@ GameObject:
   - component: {fileID: 1819604825342979763}
   - component: {fileID: 1045148832935260722}
   - component: {fileID: 1045148832935260723}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RightHand
   m_TagString: HandTag
   m_Icon: {fileID: 0}
@@ -22523,7 +22536,7 @@ GameObject:
   - component: {fileID: 651795090696070944}
   - component: {fileID: 4513873168628672645}
   - component: {fileID: 1819604825966877775}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: monitor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22539,7 +22552,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 651795090485602777}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: skin body and head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23482,9 +23495,9 @@ GameObject:
   - component: {fileID: 1045148831342268638}
   - component: {fileID: 1045148831342268639}
   - component: {fileID: 1045148831342268632}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Emoji3
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23644,9 +23657,9 @@ GameObject:
   - component: {fileID: 1045148831359419240}
   - component: {fileID: 1045148831359419241}
   - component: {fileID: 1045148831359419242}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Emoji1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23727,9 +23740,9 @@ GameObject:
   - component: {fileID: 1045148831587520039}
   - component: {fileID: 1045148831587520032}
   - component: {fileID: 1045148831587520033}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Emoji2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23907,9 +23920,9 @@ GameObject:
   - component: {fileID: 1045148831982308179}
   - component: {fileID: 1045148831982308178}
   - component: {fileID: 1045148831982308188}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Emoji5
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24003,7 +24016,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1045148832112171116}
   - component: {fileID: 1045148832112171117}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Emoji
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24086,9 +24099,9 @@ GameObject:
   - component: {fileID: 1045148832159799245}
   - component: {fileID: 1045148832159799246}
   - component: {fileID: 1045148832159799247}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Emoji4
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24181,9 +24194,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1045148832324525627}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Commorose
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24260,9 +24273,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38da19c7e5171534c986153af3671f43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NearObject: {fileID: 0}
-  lmip: {fileID: 0}
   SE: {fileID: 0}
+  NearObject: {fileID: 0}
+  rmip: {fileID: 0}
 --- !u!65 &1045148832719796306
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25160,7 +25173,7 @@ GameObject:
   - component: {fileID: 5784025173774066123}
   - component: {fileID: 806308992092827800}
   - component: {fileID: 6215229755482835915}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: "\u7403.001"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25308,7 +25321,7 @@ GameObject:
   - component: {fileID: 8746320048471504274}
   - component: {fileID: 6056020769983115200}
   - component: {fileID: 4568886194939784305}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: "\u7403"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
