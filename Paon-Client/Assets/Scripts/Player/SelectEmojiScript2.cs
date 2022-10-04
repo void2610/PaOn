@@ -4,115 +4,121 @@ using Paon.NNetwork;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SelectEmojiScript2 : MonoBehaviour
+namespace Paon.NPlayer
 {
-    public Material e1;
-
-    public Material e2;
-
-    public Material e3;
-
-    public Material e4;
-
-    public Material e5;
-
-    private GameObject ApplyButton;
-
-    private GameObject Now;
-
-    private GameObject GC;
-
-    private int select = 1;
-
-    private bool isSelecting = false;
-
-    void Start()
+    public class SelectEmojiScript2 : MonoBehaviour
     {
-        ApplyButton = GameObject.Find("ApplyButton");
-        Now = GameObject.Find("NowEmoji");
-        GC = GameObject.Find("GameClient");
-        select = 1;
-        GC.GetComponent<GameClient>().SendFaceID(select);
-    }
+        public Material e1;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            isSelecting = true;
-        }
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            isSelecting = false;
-        }
-        if (isSelecting)
-        {
-            e1.color = new Color32(255, 255, 255, 110);
-            e2.color = new Color32(255, 255, 255, 110);
-            e3.color = new Color32(255, 255, 255, 110);
-            e4.color = new Color32(255, 255, 255, 110);
-            e5.color = new Color32(255, 255, 255, 110);
-            if (select == 1)
-            {
-                e1.color = new Color32(255, 255, 255, 255);
-            }
-            else if (select == 2)
-            {
-                e2.color = new Color32(255, 255, 255, 255);
-            }
-            else if (select == 3)
-            {
-                e3.color = new Color32(255, 255, 255, 255);
-            }
-            else if (select == 4)
-            {
-                e4.color = new Color32(255, 255, 255, 255);
-            }
-            else if (select == 5)
-            {
-                e5.color = new Color32(255, 255, 255, 255);
-            }
-        }
-        else
-        {
-            e1.color = new Color32(255, 255, 255, 0);
-            e2.color = new Color32(255, 255, 255, 0);
-            e3.color = new Color32(255, 255, 255, 0);
-            e4.color = new Color32(255, 255, 255, 0);
-            e5.color = new Color32(255, 255, 255, 0);
-        }
-    }
+        public Material e2;
 
-    void OnTriggerStay(Collider other)
-    {
-        if (isSelecting)
+        public Material e3;
+
+        public Material e4;
+
+        public Material e5;
+
+        private GameObject ApplyButton;
+
+        private GameObject Now;
+
+        private GameObject GC;
+
+        private int select = 1;
+
+        public bool isSelecting = false;
+
+        void Start()
         {
-            if (other.gameObject.name == "Emoji1")
+            ApplyButton = GameObject.Find("ApplyButton");
+            ApplyButton.SetActive(false);
+            Now = GameObject.Find("NowEmoji");
+            GC = GameObject.Find("GameClient");
+            select = 1;
+            GC.GetComponent<GameClient>().SendFaceID(select);
+        }
+
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Z))
             {
-                select = 1;
+                isSelecting = true;
             }
-            else if (other.gameObject.name == "Emoji2")
+            if (Input.GetKeyDown(KeyCode.X))
             {
-                select = 2;
+                isSelecting = false;
             }
-            else if (other.gameObject.name == "Emoji3")
+            if (isSelecting)
             {
-                select = 3;
-            }
-            else if (other.gameObject.name == "Emoji4")
-            {
-                select = 4;
-            }
-            else if (other.gameObject.name == "Emoji5")
-            {
-                select = 5;
+                ApplyButton.SetActive(true);
+
+                e1.color = new Color32(255, 255, 255, 110);
+                e2.color = new Color32(255, 255, 255, 110);
+                e3.color = new Color32(255, 255, 255, 110);
+                e4.color = new Color32(255, 255, 255, 110);
+                e5.color = new Color32(255, 255, 255, 110);
+                if (select == 1)
+                {
+                    e1.color = new Color32(255, 255, 255, 255);
+                }
+                else if (select == 2)
+                {
+                    e2.color = new Color32(255, 255, 255, 255);
+                }
+                else if (select == 3)
+                {
+                    e3.color = new Color32(255, 255, 255, 255);
+                }
+                else if (select == 4)
+                {
+                    e4.color = new Color32(255, 255, 255, 255);
+                }
+                else if (select == 5)
+                {
+                    e5.color = new Color32(255, 255, 255, 255);
+                }
             }
             else
             {
-                select = 0;
+                ApplyButton.SetActive(false);
+                e1.color = new Color32(255, 255, 255, 0);
+                e2.color = new Color32(255, 255, 255, 0);
+                e3.color = new Color32(255, 255, 255, 0);
+                e4.color = new Color32(255, 255, 255, 0);
+                e5.color = new Color32(255, 255, 255, 0);
             }
-            GC.GetComponent<GameClient>().SendFaceID(select);
+        }
+
+        void OnTriggerStay(Collider other)
+        {
+            if (isSelecting)
+            {
+                if (other.gameObject.name == "Emoji1")
+                {
+                    select = 1;
+                }
+                else if (other.gameObject.name == "Emoji2")
+                {
+                    select = 2;
+                }
+                else if (other.gameObject.name == "Emoji3")
+                {
+                    select = 3;
+                }
+                else if (other.gameObject.name == "Emoji4")
+                {
+                    select = 4;
+                }
+                else if (other.gameObject.name == "Emoji5")
+                {
+                    select = 5;
+                }
+                else
+                {
+                    select = 0;
+                }
+                GC.GetComponent<GameClient>().SendFaceID(select);
+            }
         }
     }
 }
