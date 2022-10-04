@@ -47,7 +47,7 @@ namespace Paon.NInput
 		///推定された手の座標を返すメソッド
 		///</summary>
 		/// <returns>手の座標</returns>
-		public Vector2 GetPosition()
+		public Vector3 GetPosition()
 		{
 			try
 			{
@@ -55,7 +55,7 @@ namespace Paon.NInput
 			}
 			catch (System.NullReferenceException)
 			{
-				return new Vector2(0, 0);
+				return new Vector3(0, 0);
 			}
 		}
 

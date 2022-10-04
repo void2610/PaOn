@@ -30,9 +30,7 @@ namespace Paon.NInput
 		public class Keypoint
 		{
 			public Vector3 coords;
-
 			public float score;
-
 			public Keypoint(float x, float y, float z, float score)
 			{
 				this.coords.x = x;
@@ -72,9 +70,7 @@ namespace Paon.NInput
 			int cnt = 0;
 			foreach (Utils.Keypoint key in poseKeypoints)
 			{
-				pose[cnt] =
-						new Keypoint(key.position.x, key.position.y, 0, key.score);
-
+				pose[cnt] = new Keypoint(key.position.x, key.position.y, 0, key.score);
 				// Debug.Log("pose[" + cnt + "]: " + pose[cnt].coords);
 				cnt++;
 			}
