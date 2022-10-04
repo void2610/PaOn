@@ -61,6 +61,9 @@ namespace Paon.NInput
 		public int leftIsClosed = 0;
 		public int rightIsClosed = 0;
 
+		Queue<int> leftQueue = new Queue<int>();
+		Queue<int> rightQueue = new Queue<int>();
+
 		void Start()
 		{
 			_PoseEstimator = PoseEstimator.GetComponent<PoseEstimator>();
@@ -89,10 +92,15 @@ namespace Paon.NInput
 			leftWrist.coords.z = leftTemp[0].z;
 			rightWrist.coords.z = rightTemp[0].z;
 
-			leftIsClosed = leftCloseOrOpen(leftTemp);
-			rightIsClosed = rightCloseOrOpen(rightTemp);
+			// leftIsClosed = leftCloseOrOpen(leftTemp);
+			// rightIsClosed = rightCloseOrOpen(rightTemp);
 			// Debug.Log("Left: " + leftIsClosed);
 			// Debug.Log("Right: " + rightIsClosed);
+
+			leftQueue.Enqueue(leftCloseOrOpen(leftTemp));
+			rightQueue.Enqueue(rightCloseOrOpen(rightTemp));
+			if (leftQueue.Count >= 30) leftIsClosed = mode(leftQueue);
+			if (rightQueue.Count >= 30) rightIsClosed = mode(rightQueue);
 		}
 
 		private int leftCloseOrOpen(Vector3[] finger)
@@ -103,6 +111,7 @@ namespace Paon.NInput
 				return 1;
 			else return 0;
 		}
+
 		private int rightCloseOrOpen(Vector3[] finger)
 		{
 			float distance = Vector3.Distance(finger[0], finger[12]);
@@ -113,6 +122,28 @@ namespace Paon.NInput
 				return 1;
 			}
 			else return 0;
+		}
+
+		private int mode(Queue<int> queue)
+		{
+			int result = 0;
+			int[] judge = new int[2];
+			lock (queue)
+			{
+				int[] stack = queue.ToArray();
+				for (int i = 0; i < stack.Length; i++)
+				{
+					if (stack[i] == 0)
+						judge[0]++;
+					else judge[1]++;
+				}
+				if (judge[0] > judge[1]) result = 0;
+				else result = 1;
+
+				queue.Clear();
+			}
+
+			return result;
 		}
 	}
 }
