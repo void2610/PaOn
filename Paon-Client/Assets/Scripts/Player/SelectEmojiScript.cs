@@ -29,7 +29,7 @@ public class SelectEmojiScript : MonoBehaviour
         Commorose = GameObject.Find("Commorose");
         Now = GameObject.Find("NowEmoji");
         GC = GameObject.Find("GameClient");
-        select = 5;
+        select = 1;
         GC.GetComponent<GameClient>().SendFaceID(select);
     }
 

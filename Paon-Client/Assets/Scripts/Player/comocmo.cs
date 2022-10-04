@@ -34,7 +34,8 @@ public class comocmo : MonoBehaviour
 		left = gk.leftWrist;
 		right = gk.rightWrist;
 		delta = Mathf.Abs(left.coords.y - right.coords.y);
-		if (delta > threshhold && !check) StartCoroutine(nameof(CommoRose));
+		if (delta > threshhold && !check) check = true;
+		if (check) StartCoroutine(nameof(CommoRose));
 
 	}
 
@@ -46,5 +47,7 @@ public class comocmo : MonoBehaviour
 			check = false;
 			Open = true;
 		}
+		yield return null;
+		Open = false;
 	}
 }

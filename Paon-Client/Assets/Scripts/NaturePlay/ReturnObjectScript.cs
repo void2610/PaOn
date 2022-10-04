@@ -17,6 +17,8 @@ namespace Paon.NNaturePlay
                     new Vector3(collision.gameObject.transform.position.x,
                         4,
                         collision.gameObject.transform.position.z);
+                collision.gameObject.GetComponent<Rigidbody>().velocity =
+                    Vector3.zero;
             }
         }
     }
