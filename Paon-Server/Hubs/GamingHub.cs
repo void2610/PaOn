@@ -35,6 +35,13 @@ namespace Paon.NNetwork.Hubs
             // ルームにユーザが入室する
             (room, storage) = await Group.AddAsync(roomName, self);
 
+            Console.WriteLine(storage.AllValues.ToArray().Length);
+
+            if (storage.AllValues.ToArray().Length == 0)
+            {
+                Broadcast(room).FiastPlayer();
+            }
+
             // ルームに入室している他ユーザ全員に
             // 入室したユーザの情報をブロードキャスト送信する
             Broadcast(room).OnJoin(self);
@@ -51,6 +58,11 @@ namespace Paon.NNetwork.Hubs
             // ルームに入室している他ユーザ全員に
             // ルームから退出したことをユーザの情報と共にブロードキャスト送信する
             Broadcast(room).OnLeave(self);
+        }
+
+        public async Task ItemJoin(string name, Vector3 position, Quaternion rotation)
+        {
+            mono = new Item() { Name = name, Position = position, Rotation = rotation };
         }
 
         // ユーザがルームの中で動く

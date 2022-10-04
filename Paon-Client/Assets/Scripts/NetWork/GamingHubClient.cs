@@ -11,6 +11,9 @@ namespace Paon.NNetwork
 {
     public class GamingHubClient : IGamingHubReceiver
     {
+        GameObject[] _item;
+        int ItemLenght;
+
         //public GameObject[] Dolls = new GameObject[8];
         // 部屋に参加しているユーザ全員の GameObject (アバター)を保持する
         Dictionary<string, GameObject>
@@ -24,7 +27,10 @@ namespace Paon.NNetwork
 
         public void itemStorage(GameObject[] item, int Lenght)
         {
-            for (int i = 0; i < Lenght; i++)
+            _item = item;
+            ItemLenght = Lenght;
+
+            for(int i = 0; i < Lenght; i++)
             {
                 items[item[i].name] = item[i];
 
@@ -111,6 +117,7 @@ namespace Paon.NNetwork
         {
             return client.TimeAsync(name, time);
         }
+
 
         // 部屋に新しいユーザが入室したときに呼び出される関数
         // または ConnectAsync 関数を実行したときに呼び出される関数
@@ -225,6 +232,14 @@ namespace Paon.NNetwork
                 //Debug.Log(Emoji.GetComponent<SpriteRenderer>());
                 Emoji.GetComponent<SpriteRenderer>().sprite =
                     Resources.Load<Sprite>("Picture/emoji" + FaceID);
+            }
+        }
+
+        void IGamingHubReceiver.FiastPlayer()
+        {
+            for (int i = 0; i < ItemLenght; i++)
+            {
+                client.ItemJoin(_item[i].name, _item[i].transform.position , _item[i].transform.rotation);
             }
         }
     }
