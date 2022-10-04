@@ -17,7 +17,7 @@ namespace Paon.NPlayer
         public Player()
         {
             id = 0;
-            name = "NoName";
+            name = PlayerPrefs.GetString("Name", "NoName");
             timer = 0.0f;
             playingBordering = false;
         }

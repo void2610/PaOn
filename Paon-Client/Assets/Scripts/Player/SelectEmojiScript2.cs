@@ -16,15 +16,15 @@ public class SelectEmojiScript2 : MonoBehaviour
 
     public Material e5;
 
-    GameObject ApplyButton;
+    private GameObject ApplyButton;
 
-    GameObject Now;
+    private GameObject Now;
 
-    GameObject GC;
+    private GameObject GC;
 
-    int select = 1;
+    private int select = 1;
 
-    bool isSelecting = false;
+    private bool isSelecting = false;
 
     void Start()
     {

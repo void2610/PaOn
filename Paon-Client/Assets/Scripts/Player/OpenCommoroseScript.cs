@@ -2,46 +2,50 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OpenCommoroseScript : MonoBehaviour
+namespace Paon.NPlayer
 {
-    GameObject Player;
-
-    public GameObject Hand;
-
-    public Material e1;
-
-    public Material e2;
-
-    public Material e3;
-
-    public Material e4;
-
-    public Material e5;
-
-    void Start()
+    public class OpenCommoroseScript : MonoBehaviour
     {
-        Player = GameObject.Find("PlayerBody");
-    }
+        GameObject Player;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.Z))
+        public GameObject Hand;
+
+        public Material e1;
+
+        public Material e2;
+
+        public Material e3;
+
+        public Material e4;
+
+        public Material e5;
+
+        void Start()
         {
-            e1.color = new Color32(255, 255, 255, 110);
-            e2.color = new Color32(255, 255, 255, 110);
-            e3.color = new Color32(255, 255, 255, 110);
-            e4.color = new Color32(255, 255, 255, 110);
-            e5.color = new Color32(255, 255, 255, 110);
+            Player = GameObject.Find("PlayerBody");
         }
-        else
+
+        // Update is called once per frame
+        void Update()
         {
-            e1.color = new Color32(255, 255, 255, 0);
-            e2.color = new Color32(255, 255, 255, 0);
-            e3.color = new Color32(255, 255, 255, 0);
-            e4.color = new Color32(255, 255, 255, 0);
-            e5.color = new Color32(255, 255, 255, 0);
-            this.gameObject.transform.position = this.Hand.transform.position;
+            if (Input.GetKey(KeyCode.Z))
+            {
+                e1.color = new Color32(255, 255, 255, 110);
+                e2.color = new Color32(255, 255, 255, 110);
+                e3.color = new Color32(255, 255, 255, 110);
+                e4.color = new Color32(255, 255, 255, 110);
+                e5.color = new Color32(255, 255, 255, 110);
+            }
+            else
+            {
+                e1.color = new Color32(255, 255, 255, 0);
+                e2.color = new Color32(255, 255, 255, 0);
+                e3.color = new Color32(255, 255, 255, 0);
+                e4.color = new Color32(255, 255, 255, 0);
+                e5.color = new Color32(255, 255, 255, 0);
+                this.gameObject.transform.position =
+                    this.Hand.transform.position;
+            }
         }
     }
 }
