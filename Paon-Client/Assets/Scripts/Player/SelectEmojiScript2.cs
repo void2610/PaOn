@@ -51,6 +51,7 @@ namespace Paon.NPlayer
 			if (Input.GetKeyDown(KeyCode.X))
 			{
 				isSelecting = false;
+				co.Open = isSelecting;
 			}
 			if (isSelecting)
 			{
