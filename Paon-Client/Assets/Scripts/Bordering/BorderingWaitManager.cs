@@ -46,11 +46,19 @@ namespace Paon.NBordering
 
             //次の待機エリアにテレポートさせる
             //なんか違う気がする
-            if (WaitAreas[1].GetComponent<WaitAreaScript>().ReadyPlayer != null)
+            if (
+                WaitAreas[0].GetComponent<WaitAreaScript>().ReadyPlayer ==
+                null &&
+                WaitAreas[1].GetComponent<WaitAreaScript>().ReadyPlayer != null
+            )
             {
                 WaitAreas[1].GetComponent<WaitAreaScript>().TeleportPlayer();
             }
-            if (WaitAreas[2].GetComponent<WaitAreaScript>().ReadyPlayer != null)
+            if (
+                WaitAreas[1].GetComponent<WaitAreaScript>().ReadyPlayer ==
+                null &&
+                WaitAreas[2].GetComponent<WaitAreaScript>().ReadyPlayer != null
+            )
             {
                 WaitAreas[2].GetComponent<WaitAreaScript>().TeleportPlayer();
             }

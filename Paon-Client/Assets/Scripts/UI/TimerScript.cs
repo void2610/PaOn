@@ -63,14 +63,12 @@ namespace Paon.NUI
             if (display)
             {
                 this.gameObject.GetComponent<Text>().text = time.ToString("F2");
-                if (GoalText != null)
+                if (GoalText != null && !counting)
                 {
                     GoalText.GetComponent<Text>().text = "ゴール！";
-
-                    client
-                        .TimeAsync(PlayerPrefs.GetString("Name", "NULLTYAN"),
-                        time);
                 }
+                client
+                    .TimeAsync(PlayerPrefs.GetString("Name", "NULLTYAN"), time);
             }
             else
             {
