@@ -20,11 +20,11 @@ namespace Paon.NBordering
             WaitAreas[2] = GameObject.Find("WaitArea3");
         }
 
-        // Update is called once per frame
         void Update()
         {
             if (NowPeople < MaxPeople)
             {
+                //人数に空きがあって、待機エリアに人がいる場合、プレイ中にしてテレポートさせる
                 if (
                     WaitAreas[0].GetComponent<WaitAreaScript>().ReadyPlayer !=
                     null
@@ -43,6 +43,9 @@ namespace Paon.NBordering
                     NowPeople++;
                 }
             }
+
+            //次の待機エリアにテレポートさせる
+            //なんか違う気がする
             if (WaitAreas[1].GetComponent<WaitAreaScript>().ReadyPlayer != null)
             {
                 WaitAreas[1].GetComponent<WaitAreaScript>().TeleportPlayer();

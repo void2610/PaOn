@@ -6,7 +6,6 @@ namespace Paon.NAudio
 {
     public class ConflictSEScript : MonoBehaviour
     {
-        // Start is called before the first frame update
         public AudioClip SE;
 
         void OnCollisionEnter(Collision collision)

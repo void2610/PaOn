@@ -10,6 +10,10 @@ namespace Paon.NBordering
 
         public GameObject NextPosition;
 
+        ///<summary>
+        ///次の待機エリアにプレイヤーを移動させるメソッド
+        ///</summary>
+        /// <returns>void</returns>
         public void TeleportPlayer()
         {
             if (ReadyPlayer != null)
@@ -20,18 +24,9 @@ namespace Paon.NBordering
             }
         }
 
-        void Start()
-        {
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        }
-
         void OnTriggerStay(Collider other)
         {
-            if (other.CompareTag("Player"))
+            if (other.gameObject.tag == "Player")
             {
                 if (ReadyPlayer == null)
                 {

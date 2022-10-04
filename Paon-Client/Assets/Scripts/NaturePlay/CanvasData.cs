@@ -14,6 +14,12 @@ namespace Paon.NNaturePlay
 
         public int num = 0;
 
+        ///<summary>
+        ///引数のオブジェクトの種類と位置をObjectDataに保存するメソッド
+        ///</summary>
+        /// <returns>void</returns>
+        /// <param name="obj">対象のオブジェクト</param>
+        /// <param name="position">オブジェクトの座標</param>
         public void AddObject(GameObject obj, Vector3 position)
         {
             //名前を部分検索して親prefab名に変換
@@ -111,6 +117,11 @@ namespace Paon.NNaturePlay
             num++;
         }
 
+        ///<summary>
+        ///格納したオブジェクトをJsonファイルで保存するメソッド
+        ///</summary>
+        /// <returns>void</returns>
+        /// <param name="name">ファイル名</param>
         public void Save(string name)
         {
             string jsonString = JsonUtility.ToJson(this);

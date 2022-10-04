@@ -7,11 +7,14 @@ namespace Paon.NNaturePlay
 {
     public class FixObjectScript : MonoBehaviour
     {
-        [SerializeField]
         public CanvasData canvasData = new CanvasData();
 
         public bool saving = false;
 
+        ///<summary>
+        ///クレヨンの線をJsonファイルで保存するメソッド
+        ///</summary>
+        /// <returns>void</returns>
         public void SaveLine(
             LineRenderer lr,
             string name,

@@ -9,27 +9,27 @@ namespace Paon.NNaturePlay
     {
         public AudioClip SE;
 
-        bool startSave = false;
-
-        public int cooldown = 6;
-
         public GameObject cameraPrefab;
 
         public GameObject Canvas;
 
-        float startTime = 0.0f;
+        public GameObject LogText;
 
-        float endTime = -6.0f;
+        private GameObject[] Switches;
 
-        bool log = false;
+        public int cooldown = 6;
+
+        private float startTime = 0.0f;
+
+        private float endTime = -6.0f;
+
+        private bool startSave = false;
+
+        private bool log = false;
 
         public bool display = false;
 
-        bool canHide = true;
-
-        GameObject[] Switches;
-
-        public GameObject LogText;
+        private bool canHide = true;
 
         void Start()
         {

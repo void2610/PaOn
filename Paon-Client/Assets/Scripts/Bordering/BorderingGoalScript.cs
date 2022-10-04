@@ -16,7 +16,7 @@ namespace Paon.NBordering
 
         private bool tmp = false;
 
-        private float sTime = -10.0f;
+        private float goalTime = -10.0f;
 
         void Start()
         {
@@ -24,22 +24,21 @@ namespace Paon.NBordering
             Player = GameObject.Find("PlayerBody");
         }
 
-        // Update is called once per frame
         void Update()
         {
             if (!tmp && goaling)
             {
-                sTime = Time.time;
+                goalTime = Time.time;
                 if (this.GetComponent<AudioSource>())
                 {
                     this.GetComponent<AudioSource>().PlayOneShot(SE);
                 }
             }
-            if (Time.time - sTime <= 1.5f)
+            if (Time.time - goalTime <= 1.5f)
             {
-                if (Time.time - sTime == 1.5f)
+                if (Time.time - goalTime == 1.5f)
                 {
-                    sTime = -10.0f;
+                    goalTime = -10.0f;
                 }
                 else
                 {
@@ -51,9 +50,10 @@ namespace Paon.NBordering
 
         void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Player"))
+            if (other.gameObject.tag == "Player")
             {
-                BorderingManager
+                this
+                    .BorderingManager
                     .GetComponent<BorderingTimerScript>()
                     .Timer
                     .CountStop();

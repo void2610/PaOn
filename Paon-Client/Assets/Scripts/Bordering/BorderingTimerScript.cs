@@ -10,28 +10,33 @@ namespace Paon.NBordering
     {
         public TimerScript Timer;
 
-        GameObject Player;
+        private GameObject Player;
 
+        ///<summary>
+        ///ボルダリングのタイマーを開始するメソッド
+        ///</summary>
+        /// <returns>void</returns>
         public void StartTimer()
         {
-            if (Player.GetComponent<PlayerMove>()._Player.playingBordering)
+            if (Player.GetComponent<PlayerMove>())
             {
-                if (!Timer.counting)
+                if (Player.GetComponent<PlayerMove>()._Player.playingBordering)
                 {
-                    Timer.CountStart();
+                    if (!Timer.counting)
+                    {
+                        Timer.CountStart();
+                    }
                 }
             }
         }
 
         void Start()
         {
-            Timer = GameObject.Find("Timer").GetComponent<TimerScript>();
+            if (GameObject.Find("Timer").GetComponent<TimerScript>())
+            {
+                Timer = GameObject.Find("Timer").GetComponent<TimerScript>();
+            }
             Player = GameObject.Find("PlayerBody");
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
         }
     }
 }

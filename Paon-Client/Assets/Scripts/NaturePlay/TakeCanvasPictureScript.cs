@@ -15,16 +15,21 @@ namespace Paon.NNaturePlay
         [SerializeField]
         private Camera _captureCamera;
 
+        private bool captured = false;
+
+        ///<summary>
+        ///_captureCameraに写るものを800*600でPNG画像として保存するメソッド
+        ///</summary>
+        /// <returns>IEnumerator</returns>
         public IEnumerator Capture()
         {
-            //_captureCameraに写るものを800*600でPNG画像として保存
             var coroutine =
                 StartCoroutine(CaptureFromCamera(512, 512, _captureCamera));
             yield return coroutine;
         }
 
         /// <summary>
-        /// CaptureMain
+        /// カメラの画像を現在時間をファイル名として保存するメソッド
         /// </summary>
         /// <param name="width">横解像度</param>
         /// <param name="height">縦解像度</param>
@@ -68,8 +73,6 @@ namespace Paon.NNaturePlay
 
             yield break;
         }
-
-        private bool captured = false;
 
         void Start()
         {
