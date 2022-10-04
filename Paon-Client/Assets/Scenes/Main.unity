@@ -22718,6 +22718,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1045148832324525627}
+  - component: {fileID: 1045148832324525628}
   m_Layer: 3
   m_Name: Commorose
   m_TagString: Player
@@ -22744,6 +22745,22 @@ Transform:
   m_Father: {fileID: 9071021502433171008}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &1045148832324525628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045148832324525626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c636683cb1fa4949a3e3fcd757c3494, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visualizer: {fileID: 8823757631967146482}
+  gk: {fileID: 8314665998410147079}
+  threshhold: 10
+  Open: 0
 --- !u!114 &1045148832636091915
 MonoBehaviour:
   m_ObjectHideFlags: 0
