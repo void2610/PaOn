@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3117413752228434714}
   - component: {fileID: 7413722717913102008}
   - component: {fileID: 8771976246065048389}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: NamePlate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7332806707631941965}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: skin body and head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 6936335365367671082}
   - component: {fileID: 204060187822383142}
   - component: {fileID: 3010079465373072952}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: monitor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 6467385150557610372}
   - component: {fileID: 8665820119901444880}
   - component: {fileID: 1230479604039764553}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LeftHand
   m_TagString: HandTag
   m_Icon: {fileID: 0}
@@ -348,7 +348,7 @@ GameObject:
   - component: {fileID: 4036306243203377000}
   - component: {fileID: 7331519766314139942}
   - component: {fileID: 32800803612524585}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: "\u7403.001"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,7 +430,7 @@ GameObject:
   - component: {fileID: 4134678647353391284}
   m_Layer: 3
   m_Name: Doll
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -477,7 +477,7 @@ GameObject:
   - component: {fileID: 9089222328277971595}
   - component: {fileID: 3316632405667400023}
   - component: {fileID: 2531235328787621147}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RightHand
   m_TagString: HandTag
   m_Icon: {fileID: 0}
@@ -571,7 +571,7 @@ GameObject:
   - component: {fileID: 6170638768964915772}
   - component: {fileID: 8048370908606813828}
   - component: {fileID: 4999503426846957250}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: "\u7403"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -651,7 +651,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4352083729348996893}
   - component: {fileID: 9206960804163019860}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: emoji1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
