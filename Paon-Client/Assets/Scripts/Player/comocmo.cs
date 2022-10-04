@@ -1,4 +1,5 @@
 using Paon.NInput;
+using Paon.NPlayer;
 using UnityEngine;
 
 public class comocmo : MonoBehaviour
