@@ -15,23 +15,23 @@ namespace Paon.NPlayer
 
         public GameObject NearObject;
 
-        GameObject Hand;
+        private GameObject Hand;
 
-        GameObject HandInputProvider;
+        private GameObject HandInputProvider;
 
-        GameObject Player;
+        private GameObject Player;
 
         public RightHandInputProvider rmip = null;
 
-        RightHandMove rhm = null;
-
-        Vector3 DefoRotation;
-
-        float dis = 999;
+        private RightHandMove rhm = null;
 
         public ObjectHolder oh = new ObjectHolder();
 
-        Vector2 coords;
+        private Vector3 DefoRotation;
+
+        private float dis = 999;
+
+        private Vector2 coords;
 
         void Start()
         {

@@ -12,28 +12,26 @@ namespace Paon.NPlayer
 {
 	public class RightHandMove : MonoBehaviour
 	{
-		GameObject hand;
+		private GameObject hand;
 
-		GameObject handProvider;
+		private GameObject handProvider;
 
-		RightHandInputProvider inputProvider;
+		private GameObject player;
 
-		GameObject player;
+		private RightHandInputProvider inputProvider;
+
+		private Vector3 coords;
+
+		private Vector2 delta;
 
 		public bool canMove = true;
 
 		public bool isCalib = false;
 
-		Vector2 coords;
-		Vector2 delta;
-
 		async void Start()
 		{
 			hand = this.gameObject;
-			inputProvider =
-					GameObject
-							.Find("RightHandInputProvider")
-							.GetComponent<RightHandInputProvider>();
+			inputProvider = GameObject.Find("RightHandInputProvider").GetComponent<RightHandInputProvider>();
 		}
 
 		async void FixedUpdate()
@@ -60,10 +58,9 @@ namespace Paon.NPlayer
 				}
 
 				if (isCalib)
-					hand.transform.localPosition = new Vector3(-coords.x / 100, -coords.y / 100 + 1, hand.transform.localPosition.z);
+					hand.transform.localPosition = new Vector3(-coords.x / 100, -coords.y / 100 + 1, 3.4f - coords.z);
 				else
-					hand.transform.localPosition = new Vector3(-coords.x / 100 + 2, -coords.y / 100 + 1, hand.transform.localPosition.z);
-
+					hand.transform.localPosition = new Vector3(-coords.x / 100 + 2, -coords.y / 100 + 1, 3.4f - coords.z);
 			}
 		}
 	}

@@ -8,17 +8,17 @@ namespace Paon.NPlayer
 {
     public class PlayerCameraScript : MonoBehaviour
     {
-        BorderingGoalScript goal;
+        private GameObject mip;
 
-        BorderingStartScript start;
+        private BorderingGoalScript goal;
+
+        private BorderingStartScript start;
+
+        private bool tmp = false;
 
         public int stat = 0;
 
-        bool tmp = false;
-
-        int c = 0;
-
-        GameObject mip;
+        private int c = 0;
 
         void Start()
         {
@@ -39,7 +39,6 @@ namespace Paon.NPlayer
             }
         }
 
-        // Update is called once per frame
         void Update()
         {
             c = mip.GetComponent<MoveInputProvider>().crouch;

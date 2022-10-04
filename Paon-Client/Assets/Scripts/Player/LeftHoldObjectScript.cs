@@ -15,23 +15,23 @@ namespace Paon.NPlayer
 
         public GameObject NearObject;
 
-        GameObject Hand;
+        private GameObject Hand;
 
-        GameObject HandInputProvider;
+        private GameObject HandInputProvider;
 
-        GameObject Player;
+        private GameObject Player;
 
         public LeftHandInputProvider lmip = null;
 
-        LeftHandMove lhm = null;
-
-        Vector3 DefoRotation;
-
-        float dis = 999;
+        private LeftHandMove lhm = null;
 
         public ObjectHolder oh = new ObjectHolder();
 
-        Vector2 coords;
+        private Vector3 DefoRotation;
+
+        private float dis = 999;
+
+        private Vector2 coords;
 
         void Start()
         {
@@ -54,7 +54,7 @@ namespace Paon.NPlayer
                 //新しく物をつかんだときの処理
                 if (NearObject != null && oh.NowHoldObject == null)
                 {
-                    oh.HoldObject(NearObject);
+                    oh.HoldObject (NearObject);
                     if (oh.NowHoldObject.tag == "HoldableTag")
                     {
                         DefoRotation = NearObject.transform.eulerAngles;

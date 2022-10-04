@@ -7,204 +7,215 @@ using UnityFx.Outline;
 
 namespace Paon.NBordering
 {
-	public class RightHoldHOLDScript : MonoBehaviour
-	{
-		public GameObject NearObject;
+    public class RightHoldHOLDScript : MonoBehaviour
+    {
+        public AudioClip SE;
 
-		GameObject Hand;
+        public GameObject NearObject;
 
-		GameObject Player;
+        private GameObject Hand;
 
-		public RightHandInputProvider lmip = null;
+        private GameObject Player;
 
-		LeftHoldObjectScript lhos = null;
+        public ObjectHolder oh = new ObjectHolder();
 
-		Vector3 bodyBase;
+        public RightHandInputProvider rmip = null;
 
-		public ObjectHolder oh = new ObjectHolder();
+        private LeftHandInputProvider lmip = null;
 
-		RightHandMove rhm = null;
+        private RightHandMove rhm = null;
 
-		string tmp = "none";
+        private BorderingTimerScript bts = null;
 
-		float dis = 999;
+        private Vector3 bodyBase;
 
-		public AudioClip SE;
+        private Vector3 prev = Vector3.zero;
 
-		Vector3 prev = Vector3.zero;
+        private string tmp = "none";
 
-		void Start()
-		{
-			Player = GameObject.Find("PlayerBody");
-			Hand = GameObject.Find("RightHand");
-			lmip =
-					GameObject
-							.Find("RightHandInputProvider")
-							.GetComponent<RightHandInputProvider>();
-			rhm = Hand.GetComponent<RightHandMove>();
-			lhos =
-					GameObject
-							.Find("LeftHandTrigger")
-							.GetComponent<LeftHoldObjectScript>();
-		}
+        private float dis = 999;
 
-		// Update is called once per frame
-		void Update()
-		{
-			Vector3 pos = lmip.GetPosition();
+        void Start()
+        {
+            Player = GameObject.Find("PlayerBody");
+            Hand = GameObject.Find("RightHand");
+            rmip =
+                GameObject
+                    .Find("RightHandInputProvider")
+                    .GetComponent<RightHandInputProvider>();
+            lmip =
+                GameObject
+                    .Find("LeftHandInputProvider")
+                    .GetComponent<LeftHandInputProvider>();
+            rhm = Hand.GetComponent<RightHandMove>();
+            bts =
+                GameObject
+                    .Find("BorderingManager")
+                    .GetComponent<BorderingTimerScript>();
+        }
 
-			//掴んでいるかどうか
-			if (lmip.CheckHold() == 1)
-			{
-				//新しく物をつかんだときの処理
-				if (NearObject != null && oh.NowHoldObject == null)
-				{
-					GetComponent<AudioSource>().PlayOneShot(SE);
-					oh.HoldObject(NearObject);
-					if (oh.NowHoldObject.tag == "BorderingHOLDTag")
-					{
-						Player.GetComponent<Rigidbody>().useGravity = false;
-						bodyBase = Player.transform.position;
-					}
-				}
-			}
-			else
-			{
-				if (oh.NowHoldObject != null)
-				{
-					//物を離したときの処理
-					if (oh.NowHoldObject.tag == "BorderingHOLDTag")
-					{
-						//もう片方が掴んでいなかったら固定解除
-						if (lhos.lmip.CheckHold() == 0)
-						{
-							Player.GetComponent<Rigidbody>().useGravity = true;
-						}
+        void Update()
+        {
+            Vector3 pos = rmip.GetPosition();
 
-						//手の位置を戻す
-						Hand.transform.localPosition = new Vector3(2f, 0, 3.4f);
-					}
-				}
-				oh.UnHold();
-			}
+            //掴んでいるかどうか
+            if (rmip.CheckHold() == 1)
+            {
+                //新しく物をつかんだときの処理
+                if (NearObject != null && oh.NowHoldObject == null)
+                {
+                    oh.HoldObject (NearObject);
+                    if (oh.NowHoldObject.tag == "BorderingHOLDTag")
+                    {
+                        GetComponent<AudioSource>().PlayOneShot(SE);
+                        bts.StartTimer();
+                        Player.GetComponent<Rigidbody>().useGravity = false;
+                        bodyBase = Player.transform.position;
+                    }
+                }
+            }
+            else
+            {
+                if (oh.NowHoldObject != null)
+                {
+                    //物を離したときの処理
+                    if (oh.NowHoldObject.tag == "BorderingHOLDTag")
+                    {
+                        //もう片方が掴んでいなかったら固定解除
+                        if (lmip.CheckHold() == 0)
+                        {
+                            Player.GetComponent<Rigidbody>().useGravity = true;
+                        }
 
-			//ホールドを掴んでいるときの処理
-			if (oh.Holding)
-			{
-				//手動かなくする
-				Player.GetComponent<PlayerMove>().canMove = false;
-				rhm.canMove = false;
-				Hand.transform.position = oh.NowHoldObject.transform.position;
+                        //手の位置を戻す
+                        Hand.transform.localPosition = new Vector3(2f, 0, 3.4f);
+                    }
+                }
+                oh.UnHold();
+            }
 
-				if (pos.y < prev.y) Player.transform.Translate(Vector3.up * 0.03f);
+            //ホールドを掴んでいるときの処理
+            if (oh.Holding)
+            {
+                //手動かなくする
+                Player.GetComponent<PlayerMove>().canMove = false;
+                rhm.canMove = false;
+                Hand.transform.position = oh.NowHoldObject.transform.position;
 
-				//この条件式、実際に手で操作できるようになったらいらない
-				if (Mathf.Abs(Vector3.Distance(Player.transform.position, bodyBase)) < 0.6f)
-				{
-					//手を動かして体移動
-					if (lmip.GetInput() == "up")
-					{
-						Player.transform.Translate(Vector3.up * 0.03f);
-					}
-					else if (lmip.GetInput() == "down")
-					{
-						Player.transform.Translate(Vector3.down * 0.03f);
-					}
-					else if (lmip.GetInput() == "left")
-					{
-						Player.transform.Translate(Vector3.left * 0.03f);
-					}
-					else if (lmip.GetInput() == "right")
-					{
-						Player.transform.Translate(Vector3.right * 0.03f);
-					}
-				}
-				else
-				{
-					//ここも手で操作できるようになったらいらないかも
-					if (tmp == "up")
-					{
-						Player.transform.Translate(Vector3.up * -0.03f);
-					}
-					else if (tmp == "down")
-					{
-						Player.transform.Translate(Vector3.down * -0.03f);
-					}
-					else if (tmp == "left")
-					{
-						Player.transform.Translate(Vector3.left * -0.03f);
-					}
-					else if (tmp == "right")
-					{
-						Player.transform.Translate(Vector3.right * -0.03f);
-					}
-				}
-			}
-			else
-			{
-				//掴んで無かったら手動かなくしない
-				Player.GetComponent<PlayerMove>().canMove = true;
-				rhm.canMove = true;
-			}
+                if (pos.y < prev.y)
+                    Player.transform.Translate(Vector3.up * 0.03f);
 
-			//近くの物との距離を計算
-			if (NearObject != null)
-			{
-				dis =
-						Vector3
-								.Distance(this.gameObject.transform.position,
-								NearObject.transform.position);
-			}
+                //この条件式、実際に手で操作できるようになったらいらない
+                if (
+                    Mathf
+                        .Abs(Vector3
+                            .Distance(Player.transform.position, bodyBase)) <
+                    0.6f
+                )
+                {
+                    //手を動かして体移動
+                    if (lmip.GetInput() == "up")
+                    {
+                        Player.transform.Translate(Vector3.up * 0.03f);
+                    }
+                    else if (lmip.GetInput() == "down")
+                    {
+                        Player.transform.Translate(Vector3.down * 0.03f);
+                    }
+                    else if (lmip.GetInput() == "left")
+                    {
+                        Player.transform.Translate(Vector3.left * 0.03f);
+                    }
+                    else if (lmip.GetInput() == "right")
+                    {
+                        Player.transform.Translate(Vector3.right * 0.03f);
+                    }
+                }
+                else
+                {
+                    //ここも手で操作できるようになったらいらないかも
+                    if (tmp == "up")
+                    {
+                        Player.transform.Translate(Vector3.up * -0.03f);
+                    }
+                    else if (tmp == "down")
+                    {
+                        Player.transform.Translate(Vector3.down * -0.03f);
+                    }
+                    else if (tmp == "left")
+                    {
+                        Player.transform.Translate(Vector3.left * -0.03f);
+                    }
+                    else if (tmp == "right")
+                    {
+                        Player.transform.Translate(Vector3.right * -0.03f);
+                    }
+                }
+            }
+            else
+            {
+                //掴んで無かったら手動かなくしない
+                Player.GetComponent<PlayerMove>().canMove = true;
+                rhm.canMove = true;
+            }
 
-			tmp = lmip.GetInput();
+            //近くの物との距離を計算
+            if (NearObject != null)
+            {
+                dis =
+                    Vector3
+                        .Distance(this.gameObject.transform.position,
+                        NearObject.transform.position);
+            }
 
-			if (pos != prev)
-				prev = pos;
-		}
+            tmp = rmip.GetInput();
 
-		void OnTriggerEnter(Collider other)
-		{
-			if (other.CompareTag("BorderingHOLDTag"))
-			{
-				if (NearObject != other.gameObject)
-				{
-					if (NearObject != null)
-					{
-						if (NearObject.GetComponent<OutlineBehaviour>())
-						{
-							NearObject
-									.GetComponent<OutlineBehaviour>()
-									.OutlineWidth = 1;
-						}
-					}
-				}
-				NearObject = other.gameObject;
-				if (NearObject.GetComponent<OutlineBehaviour>())
-				{
-					NearObject.GetComponent<OutlineBehaviour>().OutlineWidth =
-							4;
-					NearObject.GetComponent<OutlineBehaviour>().OutlineColor =
-							Color.red;
-				}
-			}
-		}
+            if (pos != prev) prev = pos;
+        }
 
-		void OnTriggerExit(Collider other)
-		{
-			//つかめない距離になったらアウトラインを消す
-			if (other.CompareTag("BorderingHOLDTag"))
-			{
-				if (NearObject == other.gameObject)
-				{
-					if (NearObject.GetComponent<OutlineBehaviour>())
-					{
-						NearObject
-								.GetComponent<OutlineBehaviour>()
-								.OutlineWidth = 1;
-					}
-					NearObject = null;
-				}
-			}
-		}
-	}
+        void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.tag == "BorderingHOLDTag")
+            {
+                if (NearObject != other.gameObject)
+                {
+                    if (NearObject != null)
+                    {
+                        if (NearObject.GetComponent<OutlineBehaviour>())
+                        {
+                            NearObject
+                                .GetComponent<OutlineBehaviour>()
+                                .OutlineWidth = 1;
+                        }
+                    }
+                }
+                NearObject = other.gameObject;
+                if (NearObject.GetComponent<OutlineBehaviour>())
+                {
+                    NearObject.GetComponent<OutlineBehaviour>().OutlineWidth =
+                        4;
+                    NearObject.GetComponent<OutlineBehaviour>().OutlineColor =
+                        Color.red;
+                }
+            }
+        }
+
+        void OnTriggerExit(Collider other)
+        {
+            //つかめない距離になったらアウトラインを消す
+            if (other.CompareTag("BorderingHOLDTag"))
+            {
+                if (NearObject == other.gameObject)
+                {
+                    if (NearObject.GetComponent<OutlineBehaviour>())
+                    {
+                        NearObject
+                            .GetComponent<OutlineBehaviour>()
+                            .OutlineWidth = 1;
+                    }
+                    NearObject = null;
+                }
+            }
+        }
+    }
 }

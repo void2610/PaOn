@@ -7,21 +7,19 @@ namespace Paon.NBordering
 {
     public class ExitPlayAreaScript : MonoBehaviour
     {
-        GameObject NextPosition;
+        private GameObject NextPosition;
+
+        private GameObject BM;
 
         void Start()
         {
             NextPosition = GameObject.Find("SpawnPositionAnchor");
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
+            BM = GameObject.Find("BorderingManager");
         }
 
         void OnTriggerStay(Collider other)
         {
-            if (other.CompareTag("Player"))
+            if (other.gameObject.tag == "Player")
             {
                 other
                     .gameObject
@@ -30,6 +28,7 @@ namespace Paon.NBordering
                     .playingBordering = false;
                 other.gameObject.transform.position =
                     NextPosition.transform.position;
+                BM.GetComponent<BorderingWaitManager>().NowPeople--;
             }
         }
     }

@@ -8,10 +8,14 @@ namespace Paon.NNaturePlay
 {
     public class LoadPictureScript : MonoBehaviour
     {
-        GameObject[] pictures = new GameObject[5];
+        private GameObject[] pictures = new GameObject[5];
 
-        string path;
+        private string path;
 
+        ///<summary>
+        ///新しい5枚の写真を読み込んで表示するメソッド
+        ///</summary>
+        /// <returns>void</returns>
         void LoadPicture()
         {
             //ファイル名
@@ -50,10 +54,6 @@ namespace Paon.NNaturePlay
             pictures[3] = GameObject.Find("Picture4");
             pictures[4] = GameObject.Find("Picture5");
             LoadPicture();
-        }
-
-        void Update()
-        {
         }
     }
 }

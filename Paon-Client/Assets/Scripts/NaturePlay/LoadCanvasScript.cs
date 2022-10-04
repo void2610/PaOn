@@ -6,12 +6,17 @@ namespace Paon.NNaturePlay
 {
     public class LoadCanvasScript : MonoBehaviour
     {
-        string inputString;
+        private string inputString;
 
-        CanvasData cd = new CanvasData();
+        private CanvasData cd = new CanvasData();
 
-        LineData ld = new LineData();
+        private LineData ld = new LineData();
 
+        ///<summary>
+        ///ファイル名からCanvasDataを読み込むメソッド
+        ///</summary>
+        /// <returns>読み込んだCanvasData</returns>
+        /// <param name="name">読み込むファイル名</param>
         CanvasData loadCanvasData(string name)
         {
             string jsonString =
@@ -21,6 +26,11 @@ namespace Paon.NNaturePlay
             return canvasData;
         }
 
+        ///<summary>
+        ///ファイル名からLineDataを読み込むメソッド
+        ///</summary>
+        /// <returns>読み込んだLineData</returns>
+        /// <param name="name">読み込むファイル名</param>
         LineData loadLineData(string name)
         {
             string jsonString =
@@ -29,6 +39,11 @@ namespace Paon.NNaturePlay
             return canvasData;
         }
 
+        ///<summary>
+        ///CanvasDataからオブジェクトを配置するメソッド
+        ///</summary>
+        /// <returns>void</returns>
+        /// <param name="canvasData">読み込むデータ</param>
         void SetObject(CanvasData canvasData)
         {
             for (int i = 0; i < 100; i++)
@@ -56,6 +71,11 @@ namespace Paon.NNaturePlay
             }
         }
 
+        ///<summary>
+        ///LineDataからオブジェクトを配置するメソッド
+        ///</summary>
+        /// <returns>void</returns>
+        /// <param name="ld">読み込むデータ</param>
         void SetLine(LineData ld)
         {
             LineRenderer lr =
@@ -79,18 +99,6 @@ namespace Paon.NNaturePlay
                 }
             }
             Debug.Log("loaded " + ld.color);
-        }
-
-        void Start()
-        {
-            // cd = loadCanvasData("Canvas_20228231484");
-            // SetObject (cd);
-            // ld = loadLineData("Line0_20228231484");
-            // SetLine (ld);
-        }
-
-        void Update()
-        {
         }
     }
 }

@@ -11,46 +11,46 @@ namespace Paon.NUI
     {
         int status = 0; //0:main menu, 1:stage menu, 3:option menu 4:toukei,5:nature play server menu,6: bordering server menu
 
-        GameObject S;
+        private GameObject S;
 
-        GameObject Option;
+        private GameObject Option;
 
-        GameObject Quit;
+        private GameObject Quit;
 
-        GameObject SizenAsobi;
+        private GameObject SizenAsobi;
 
-        GameObject Bordering;
+        private GameObject Bordering;
 
-        GameObject Back;
+        private GameObject Back;
 
-        GameObject Color;
+        private GameObject Color;
 
-        GameObject NServer1;
+        private GameObject NServer1;
 
-        GameObject NServer2;
+        private GameObject NServer2;
 
-        GameObject BServer1;
+        private GameObject BServer1;
 
-        GameObject BServer2;
+        private GameObject BServer2;
 
-        GameObject Name;
+        private GameObject Name;
 
-        GameObject NamePlate;
+        private GameObject NamePlate;
 
-        GameObject Toukei;
+        private GameObject Toukei;
 
-        GameObject Player;
+        private GameObject Player;
 
-        GameObject Statistics;
+        private GameObject Statistics;
 
-        GameObject Reset;
+        private GameObject Reset;
 
-        InputField Input;
+        private InputField Input;
 
-        GameObject Volume;
+        private GameObject Volume;
 
         [SerializeField]
-        Material Skin;
+        private Material Skin;
 
         public void ClickStartButton()
         {

@@ -1,31 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
+using Paon.NNetwork;
 using UnityEngine;
 using UnityEngine.UI;
-using Paon.NNetwork;
 
 namespace Paon.NUI
 {
     public class TimerScript : MonoBehaviour
     {
-        float time = 0.0f;
+        private GameObject GoalText;
+
+        private GamingHubClient client = new GamingHubClient();
 
         public bool counting = false;
 
         public bool display = false;
 
-        float cooldown = Mathf.Infinity;
+        private float time = 0.0f;
 
-        GameObject GoalText;
+        private float cooldown = Mathf.Infinity;
 
-        private GamingHubClient client = new GamingHubClient();
-
+        ///<summary>
+        ///タイマーをスタートするメソッド
+        ///</summary>
+        /// <returns>void</returns>
         public void CountStart()
         {
             time = 0.0f;
             counting = true;
         }
 
+        ///<summary>
+        ///タイマーをストップするメソッド
+        ///</summary>
+        /// <returns>void</returns>
         public void CountStop()
         {
             counting = false;
@@ -36,7 +44,6 @@ namespace Paon.NUI
             GoalText = GameObject.Find("GoalText");
         }
 
-        // Update is called once per frame
         void Update()
         {
             if (counting)
@@ -56,12 +63,12 @@ namespace Paon.NUI
             if (display)
             {
                 this.gameObject.GetComponent<Text>().text = time.ToString("F2");
-                if (GoalText != null)
+                if (GoalText != null && !counting)
                 {
                     GoalText.GetComponent<Text>().text = "ゴール！";
-                    
-                    client.TimeAsync(PlayerPrefs.GetString("Name", "NULLTYAN"), time);
                 }
+                client
+                    .TimeAsync(PlayerPrefs.GetString("Name", "NULLTYAN"), time);
             }
             else
             {

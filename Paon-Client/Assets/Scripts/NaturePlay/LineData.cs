@@ -13,11 +13,21 @@ namespace Paon.NNaturePlay
 
         public string color = "BlackLine";
 
+        ///<summary>
+        ///線の座標を保存するメソッド
+        ///</summary>
+        /// <returns>void</returns>
+        /// <param name="positions">線の座標</param>
         public void AddLine(Vector3[] positions)
         {
             lines = positions;
         }
 
+        ///<summary>
+        ///インスタンスの名前から線の色を決定するメソッド
+        ///</summary>
+        /// <returns>void</returns>
+        /// <param name="name">インスタンスの名前</param>
         public void SetColor(string name)
         {
             if (name.Contains("Black"))
@@ -30,6 +40,11 @@ namespace Paon.NNaturePlay
             }
         }
 
+        ///<summary>
+        ///Jsonファイルに線のデータを保存するメソッド
+        ///</summary>
+        /// <returns>void</returns>
+        /// <param name="name">ファイル名</param>
         public void Save(string name)
         {
             string jsonString = JsonUtility.ToJson(this);

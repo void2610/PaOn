@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
-    bool pause = false;
+    private GameObject PauseMenu;
 
-    GameObject PauseMenu;
+    private bool pause = false;
 
     public void returnButton()
     {
@@ -26,7 +26,6 @@ public class PauseManager : MonoBehaviour
         PauseMenu.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && pause == false)
