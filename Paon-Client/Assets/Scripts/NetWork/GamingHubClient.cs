@@ -106,10 +106,10 @@ namespace Paon.NNetwork
             return client.FaceAsync(FaceID);
         }
 
-        public Task ItemAsync(string name, Vector3 position, Quaternion quaternion)
+        public Task ItemAsync(string name, Vector3 position, Quaternion quaternion, int i)
         {
             //Debug.Log(name);
-            return client.ItemAsync(name, position, quaternion);
+            return client.ItemAsync(name, position, quaternion, i);
         }
 
         public Task TimeAsync(string name, float time)
@@ -238,7 +238,7 @@ namespace Paon.NNetwork
         {
             for (int i = 0; i < ItemLenght; i++)
             {
-                client.ItemJoin(_item[i].name, _item[i].transform.position , _item[i].transform.rotation);
+                client.ItemJoin(_item[i].name, _item[i].transform.position , _item[i].transform.rotation, i);
             }
         }
     }

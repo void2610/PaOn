@@ -25,7 +25,7 @@ namespace Paon.NNetwork
 						0.05f
 				)
 				{
-					// client.SendMovingObject(Holdables[i]);
+				client.SendMovingObject(Holdables[i], i);
 				}
 			}
 		}
