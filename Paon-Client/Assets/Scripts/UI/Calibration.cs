@@ -54,7 +54,6 @@ public class Calibration : MonoBehaviour
 		right = _visualizer.GetRightVert();
 
 		image.texture = webCamInput.inputImageTexture;
-		image.transform.localScale = webCamInput.transform.localScale / 2;
 
 		leftScore = gk.GetScore(GetKeypoints.LeftOrRight.left);
 		rightScore = gk.GetScore(GetKeypoints.LeftOrRight.right);
