@@ -108,6 +108,7 @@ public class Calibration : MonoBehaviour
 
 	IEnumerator DecideCloseThreshold()
 	{
+		yield return new WaitForSeconds(5);
 		float[] buffer = new float[60];
 		float delta = 99;
 		float result = 0;
@@ -129,10 +130,11 @@ public class Calibration : MonoBehaviour
 
 	IEnumerator DecideWalkThreshold()
 	{
+		yield return new WaitForSeconds(5);
 		float[] buffer = new float[60];
 		float delta = 99;
 		float result = 0;
-		for (int i = 0; i < 30; i++)
+		for (int i = 0; i < 150; i++)
 		{
 			delta = mo.GetDelta();
 			buffer[i] = delta;
