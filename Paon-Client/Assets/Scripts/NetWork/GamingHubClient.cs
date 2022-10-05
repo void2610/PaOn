@@ -138,7 +138,7 @@ namespace Paon.NNetwork
                 GameObject _left = doll.transform.GetChild(1).gameObject;
                 GameObject _right = doll.transform.GetChild(2).gameObject;
 
-                Material skin = (Material)Resources.Load("Doll" + n++ + "Material");
+                Material skin = (Material)Resources.Load("Materials/Doll" + n++ + "Material");
                 skin.color = new Color(Red, Green, Blue);
 
                 _body.transform.GetChild(0).gameObject.GetComponent<Renderer>().material = skin;
