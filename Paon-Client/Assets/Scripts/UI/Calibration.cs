@@ -85,9 +85,8 @@ public class Calibration : MonoBehaviour
 					Debug.Log("Phase2");
 					if (!isRunning && leftScore > 0.7f && rightScore > 0.7f)
 					{
-						StartCoroutine(nameof(DecideCloseThreshold));
 						isRunning = true;
-						state = Phase.Positioning;
+						StartCoroutine(nameof(DecideCloseThreshold));
 					}
 					return;
 
@@ -95,9 +94,8 @@ public class Calibration : MonoBehaviour
 					Debug.Log("Phase3");
 					if (!isRunning)
 					{
-						StartCoroutine(nameof(DecideWalkThreshold));
 						isRunning = true;
-						state = Phase.End;
+						StartCoroutine(nameof(DecideWalkThreshold));
 					}
 					return;
 
@@ -110,6 +108,7 @@ public class Calibration : MonoBehaviour
 
 	IEnumerator DecideCloseThreshold()
 	{
+		yield return new WaitForSeconds(5);
 		float[] buffer = new float[60];
 		float delta = 99;
 		float result = 0;
@@ -125,14 +124,17 @@ public class Calibration : MonoBehaviour
 		PlayerPrefs.SetFloat("CloseThreshold", result);
 		Debug.Log("CloseThreshold is determined");
 		isRunning = false;
+		state = Phase.Positioning;
+
 	}
 
 	IEnumerator DecideWalkThreshold()
 	{
-		float[] buffer = new float[60];
+		yield return new WaitForSeconds(5);
+		float[] buffer = new float[200];
 		float delta = 99;
 		float result = 0;
-		for (int i = 0; i < 30; i++)
+		for (int i = 0; i < 150; i++)
 		{
 			delta = mo.GetDelta();
 			buffer[i] = delta;
@@ -144,6 +146,7 @@ public class Calibration : MonoBehaviour
 		PlayerPrefs.SetFloat("WalkThreshold", result);
 		Debug.Log("WalkThreshold is determined");
 		isRunning = false;
+		state = Phase.End;
 	}
 
 	IEnumerator DecideRotateThreshold()
