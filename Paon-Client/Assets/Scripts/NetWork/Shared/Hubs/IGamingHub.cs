@@ -10,7 +10,7 @@ namespace Paon.NNetwork.Shared.Hubs
     /// </summary>
     public interface IGamingHubReceiver
     {
-        void OnJoin(Player player, float Red, float Blue, float Green);
+        void OnJoin(Player player);
         void OnLeave(Player player);
         void OnMove(Player player);
         void OnItem(Item item);

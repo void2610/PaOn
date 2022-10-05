@@ -126,7 +126,7 @@ namespace Paon.NNetwork
 
         // 部屋に新しいユーザが入室したときに呼び出される関数
         // または ConnectAsync 関数を実行したときに呼び出される関数
-        void IGamingHubReceiver.OnJoin(Player player, float Red, float Blue, float Green)
+        void IGamingHubReceiver.OnJoin(Player player)
         {
             // ユーザの GameObject (アバター)を Player 情報を元に生成して
             // this.players に player.Name をキーにして保持する
@@ -138,8 +138,9 @@ namespace Paon.NNetwork
                 GameObject _left = doll.transform.GetChild(1).gameObject;
                 GameObject _right = doll.transform.GetChild(2).gameObject;
 
-                Material skin = (Material)Resources.Load("Materials/Doll" + n++ + "Material");
-                skin.color = new Color(Red, Green, Blue);
+                Material skin = (Material)Resources.Load("Materials/Doll" + n + "Material");
+                n++;
+                skin.color = new Color(player.red, player.green, player.blue);
 
                 _body.transform.GetChild(0).gameObject.GetComponent<Renderer>().material = skin;
                 _body.transform.GetChild(1).gameObject.GetComponent<Renderer>().material = skin;

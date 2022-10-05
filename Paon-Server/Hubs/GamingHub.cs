@@ -31,7 +31,7 @@ namespace Paon.NNetwork.Hubs
         // 入室するルーム名及び、ユーザ自身の情報(ユーザ名,位置(Vector3),回転(Quaternion)) を引数に取る
         public async Task<Player[]> JoinAsync(string roomName, string userName, Vector3 _body, Vector3 _right, Vector3 _left, Quaternion rotation, float Red, float Blue, float Green)
         {
-            self = new Player() { Name = userName, BodyPosition = _body, RightPosition = _right, LeftPosition = _left, Rotation = rotation };
+            self = new Player() { Name = userName, BodyPosition = _body, RightPosition = _right, LeftPosition = _left, Rotation = rotation, red = Red, blue = Blue, green = Green};
             // ルームにユーザが入室する
             (room, storage) = await Group.AddAsync(roomName, self);
 
@@ -44,7 +44,7 @@ namespace Paon.NNetwork.Hubs
 
             // ルームに入室している他ユーザ全員に
             // 入室したユーザの情報をブロードキャスト送信する
-            Broadcast(room).OnJoin(self, Red, Blue, Green);
+            Broadcast(room).OnJoin(self);
 
             // ルームに入室している他ユーザ全員の情報を配列で取得する
             return storage.AllValues.ToArray();

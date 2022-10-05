@@ -12,6 +12,9 @@ namespace Paon.NNetwork.Shared.MessagePackObjects
         [Key(3)] public Vector3 RightPosition { get; set; }
         [Key(4)] public Vector3 LeftPosition { get; set; }
         [Key(5)] public Quaternion Rotation { get; set; }
+        [Key(6)] public float red { get; set; }
+        [Key(7)] public float blue { get; set; }
+        [Key(8)] public float green { get; set; }
     }
 
     [MessagePackObject]
