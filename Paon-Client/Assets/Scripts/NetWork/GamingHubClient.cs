@@ -34,7 +34,7 @@ namespace Paon.NNetwork
             {
                 items[item[i].name] = item[i];
 
-                Debug.Log(items[item[i].name]);
+                //Debug.Log(items[item[i].name]);
             }
         }
 
@@ -142,6 +142,7 @@ namespace Paon.NNetwork
                 Material skin = (Material)Resources.Load("Materials/Doll" + n + "Material");
                 n++;
 
+                Debug.Log(n);
                 Debug.Log("akfjhljshf" + Red);
 
                 skin.color = new Color(Red, Green, Blue);
