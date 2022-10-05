@@ -43,6 +43,7 @@ namespace Paon.NNetwork
         public async Task<GameObject>
         ConnectAsync(Channel grpcChannel, string roomName, string playerName, float Red, float Blue, float Green)
         {
+            //Debug.Log("aaaaaaaGreeeeeeen" + Green);
             // サーバ側の関数を実行するための StreamingHubClient を生成する
             client =
                 StreamingHubClient
@@ -70,7 +71,7 @@ namespace Paon.NNetwork
             {
                 if (player.Name != playerName)
                 {
-                    (this as IGamingHubReceiver).OnJoin(player);
+                    (this as IGamingHubReceiver).OnJoin(player, Red, Blue, Green);
                 }
             }
 
@@ -126,7 +127,7 @@ namespace Paon.NNetwork
 
         // 部屋に新しいユーザが入室したときに呼び出される関数
         // または ConnectAsync 関数を実行したときに呼び出される関数
-        void IGamingHubReceiver.OnJoin(Player player)
+        void IGamingHubReceiver.OnJoin(Player player, float Red, float Blue, float Green)
         {
             // ユーザの GameObject (アバター)を Player 情報を元に生成して
             // this.players に player.Name をキーにして保持する
@@ -140,7 +141,10 @@ namespace Paon.NNetwork
 
                 Material skin = (Material)Resources.Load("Materials/Doll" + n + "Material");
                 n++;
-                skin.color = new Color(player.red, player.green, player.blue);
+
+                Debug.Log("akfjhljshf" + player.red);
+
+                skin.color = new Color(Red, Green, Blue);
 
                 _body.transform.GetChild(0).gameObject.GetComponent<Renderer>().material = skin;
                 _body.transform.GetChild(1).gameObject.GetComponent<Renderer>().material = skin;

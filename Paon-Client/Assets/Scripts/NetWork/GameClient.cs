@@ -87,9 +87,9 @@ namespace Paon.NNetwork
             Quaternion rot = _item.transform.rotation;
             string name = _item.name;
 
-            Debug.Log (name);
-            Debug.Log(pos);
-            Debug.Log(rot);
+            //Debug.Log (name);
+            //Debug.Log(pos);
+            //Debug.Log(rot);
 
             client.ItemAsync (name, pos, rot, i);
         }

@@ -44,7 +44,7 @@ namespace Paon.NNetwork.Hubs
 
             // ルームに入室している他ユーザ全員に
             // 入室したユーザの情報をブロードキャスト送信する
-            Broadcast(room).OnJoin(self);
+            Broadcast(room).OnJoin(self, self.red, self.blue, self.green);
 
             // ルームに入室している他ユーザ全員の情報を配列で取得する
             return storage.AllValues.ToArray();
