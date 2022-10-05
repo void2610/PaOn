@@ -12,7 +12,7 @@ namespace Paon.NNetwork
     public class GamingHubClient : IGamingHubReceiver
     {
         GameObject[] _item;
-        int ItemLenght;
+        int ItemLenght, n = 1;
 
         //public GameObject[] Dolls = new GameObject[8];
         // 部屋に参加しているユーザ全員の GameObject (アバター)を保持する
@@ -137,6 +137,13 @@ namespace Paon.NNetwork
                 GameObject _body = doll.transform.GetChild(0).gameObject;
                 GameObject _left = doll.transform.GetChild(1).gameObject;
                 GameObject _right = doll.transform.GetChild(2).gameObject;
+
+                Material skin = (Material)Resources.Load("Doll" + n++ + "Material");
+                skin.color = new Color(Red, Green, Blue);
+
+                _body.transform.GetChild(0).gameObject.GetComponent<Renderer>().material = skin;
+                _body.transform.GetChild(1).gameObject.GetComponent<Renderer>().material = skin;
+                _body.transform.GetChild(2).gameObject.GetComponent<Renderer>().material = skin;
 
                 doll.name = player.Name;
                 _body.name = player.Name + "Body";
