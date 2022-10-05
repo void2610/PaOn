@@ -107,7 +107,6 @@ namespace Paon.NInput
 		private int rightCloseOrOpen(Vector3[] finger)
 		{
 			float distance = Vector3.Distance(finger[0], finger[12]);
-			Debug.Log("rightDistance: " + distance);
 			if (distance < holdThreshold)
 			{
 				Debug.Log("right is closed");

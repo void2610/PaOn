@@ -17,6 +17,7 @@ namespace Paon.NPlayer
 
 		void OnTriggerStay(Collider other)
 		{
+			Debug.Log(other.gameObject.name);
 			if (other.gameObject.name == "LeftHand")
 			{
 				SES2.isSelecting = false;

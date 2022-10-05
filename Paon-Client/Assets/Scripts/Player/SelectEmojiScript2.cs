@@ -92,6 +92,11 @@ namespace Paon.NPlayer
 				e4.color = new Color32(255, 255, 255, 0);
 				e5.color = new Color32(255, 255, 255, 0);
 			}
+			if (Resources.Load<Sprite>("Picture/Emoji" + select) != null)
+        	{
+            	Now.GetComponent<Image>().sprite =
+                	Resources.Load<Sprite>("Picture/Emoji" + select);
+        	}
 		}
 
 		void OnTriggerStay(Collider other)
@@ -122,7 +127,7 @@ namespace Paon.NPlayer
 				{
 					select = 0;
 				}
-				GC.GetComponent<GameClient>().SendFaceID(select);
+				//GC.GetComponent<GameClient>().SendFaceID(select);
 			}
 		}
 	}
