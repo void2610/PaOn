@@ -42,15 +42,11 @@ namespace Paon.NInput
 
 		public Keypoint[] pose = new Keypoint[25];
 
-		public Keypoint[] right = new Keypoint[21];
-
-		public Keypoint[] left = new Keypoint[21];
-
 		public Keypoint leftWrist = new Keypoint(0, 0, 0, 0);
 
 		public Keypoint rightWrist = new Keypoint(0, 0, 0, 0);
 
-		public float holdThreshold = 0.05f;
+		public float closeThreshold = 0.05f;
 
 		public int leftIsClosed = 0;
 		public int rightIsClosed = 0;
@@ -64,6 +60,8 @@ namespace Paon.NInput
 		{
 			_PoseEstimator = PoseEstimator.GetComponent<PoseEstimator>();
 			_handVisualizer = HandEstimatior.GetComponent<Visualizer>();
+
+			if (PlayerPrefs.HasKey("CloseThreshold")) closeThreshold = PlayerPrefs.GetFloat("CloseThreshold");
 		}
 
 		void Update()
@@ -83,6 +81,11 @@ namespace Paon.NInput
 			Vector3[] leftTemp = _handVisualizer.GetLeftVert();
 			Vector3[] rightTemp = _handVisualizer.GetRightVert();
 
+			float leftScore = leftTemp[21].x;
+			float rightScore = rightTemp[21].x;
+			Debug.Log("leftScore : " + leftScore);
+			Debug.Log("rightScore : " + rightScore);
+
 			leftWrist.coords.z = leftTemp[0].z;
 			rightWrist.coords.z = rightTemp[0].z;
 
@@ -100,7 +103,7 @@ namespace Paon.NInput
 		private int CloseOrOpen(Vector3[] finger)
 		{
 			distance = Vector3.Distance(finger[0], finger[12]);
-			if (distance < holdThreshold)
+			if (distance < closeThreshold)
 			{
 				return 1;
 			}
@@ -127,6 +130,11 @@ namespace Paon.NInput
 			}
 
 			return result;
+		}
+
+		public float GetDistance()
+		{
+			return distance;
 		}
 	}
 }

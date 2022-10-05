@@ -41,7 +41,7 @@ namespace Paon.NNetwork
         // 指定したルームに入室するための関数
         // StreamingHubClient で使用する gRPC チャネル及び、参加したい部屋名、使用するユーザ名を引数に指定する
         public async Task<GameObject>
-        ConnectAsync(Channel grpcChannel, string roomName, string playerName)
+        ConnectAsync(Channel grpcChannel, string roomName, string playerName, float Red, float Blue, float Green)
         {
             // サーバ側の関数を実行するための StreamingHubClient を生成する
             client =
@@ -57,7 +57,10 @@ namespace Paon.NNetwork
                     Vector3.zero,
                     Vector3.zero,
                     Vector3.zero,
-                    Quaternion.identity);
+                    Quaternion.identity,
+                    Red,
+                    Blue,
+                    Green);
 
             // 自ユーザ以外を OnJoin 関数に渡して、
             // this.players に部屋の他ユーザ全員の情報をセットする
@@ -106,10 +109,13 @@ namespace Paon.NNetwork
             return client.FaceAsync(FaceID);
         }
 
-        public Task ItemAsync(string name, Vector3 position, Quaternion quaternion, int i)
+        public Task ItemAsync(string name, Vector3 position, Quaternion rotation, int i)
         {
             //Debug.Log(name);
-            return client.ItemAsync(name, position, quaternion, i);
+            //Debug.Log(position);
+            //Debug.Log(rotation);
+
+            return client.ItemAsync(name, position, rotation, i);
         }
 
         public Task TimeAsync(string name, float time)
@@ -120,7 +126,7 @@ namespace Paon.NNetwork
 
         // 部屋に新しいユーザが入室したときに呼び出される関数
         // または ConnectAsync 関数を実行したときに呼び出される関数
-        void IGamingHubReceiver.OnJoin(Player player)
+        void IGamingHubReceiver.OnJoin(Player player, float Red, float Blue, float Green)
         {
             // ユーザの GameObject (アバター)を Player 情報を元に生成して
             // this.players に player.Name をキーにして保持する
@@ -131,6 +137,7 @@ namespace Paon.NNetwork
                 GameObject _body = doll.transform.GetChild(0).gameObject;
                 GameObject _left = doll.transform.GetChild(1).gameObject;
                 GameObject _right = doll.transform.GetChild(2).gameObject;
+
                 doll.name = player.Name;
                 _body.name = player.Name + "Body";
                 _right.name = player.Name + "Right";
