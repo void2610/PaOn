@@ -176,6 +176,8 @@ namespace Paon.NNetwork
         // 他ユーザが部屋から退出した際に呼び出される関数
         void IGamingHubReceiver.OnLeave(Player player)
         {
+            n--;
+
             // this.players に保持していた GameObject (アバター)を破棄する
             // ワールド上から該当する GameObject (アバター)のキューブが消滅する
             if (players.TryGetValue(player.Name, out var doll))
