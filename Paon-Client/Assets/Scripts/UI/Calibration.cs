@@ -110,6 +110,8 @@ public class Calibration : MonoBehaviour
                     Debug.Log("Calibration end");
                     return;
             }
+
+            if (Input.GetKeyDown(KeyCode.Backspace)) DeleteThreshold();
         }
 
         if (end) SceneManager.LoadScene("MainMenu");
@@ -175,5 +177,11 @@ public class Calibration : MonoBehaviour
     void OnDestroy()
     {
         PlayerPrefs.Save();
+    }
+
+    void DeleteThreshold()
+    {
+        PlayerPrefs.DeleteKey("CloseThreshold");
+        PlayerPrefs.DeleteKey("WalkThreshold");
     }
 }
