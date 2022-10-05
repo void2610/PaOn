@@ -87,6 +87,8 @@ public class Calibration : MonoBehaviour
 
                 case Phase.HandEstimation:
                     Debug.Log("Phase2");
+                    if (!isRunning)
+                        message.text = splitText[1];
                     if (!isRunning && leftScore > 0.7f && rightScore > 0.7f)
                     {
                         isRunning = true;
@@ -104,6 +106,7 @@ public class Calibration : MonoBehaviour
                     return;
 
                 default:
+                    message.text = splitText[4];
                     Debug.Log("Calibration end");
                     return;
             }
@@ -115,14 +118,16 @@ public class Calibration : MonoBehaviour
     IEnumerator DecideCloseThreshold()
     {
         yield return new WaitForSeconds(5);
+        message.text = splitText[2];
         float[] buffer = new float[60];
         float delta, result;
-        for (int i = 0; i < 30; i++)
-        {
-            delta = gk.GetDistance();
-            buffer[i] = delta;
-            yield return null;
-        }
+        if (leftScore > minConfidence && rightScore > minConfidence)
+            for (int i = 0; i < 30; i++)
+            {
+                delta = gk.GetDistance();
+                buffer[i] = delta;
+                yield return null;
+            }
         result = buffer.Average();
         result -= result * 0.1f;
         gk.closeThreshold = result;
@@ -136,6 +141,7 @@ public class Calibration : MonoBehaviour
     IEnumerator DecideWalkThreshold()
     {
         yield return new WaitForSeconds(5);
+        message.text = splitText[3];
         float[] buffer = new float[200];
         float delta, result;
         for (int i = 0; i < 150; i++)
