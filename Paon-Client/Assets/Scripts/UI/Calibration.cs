@@ -20,14 +20,16 @@ public class Calibration : MonoBehaviour
 	[SerializeField]
 	private Visualizer _visualizer;
 
+	[SerializeField]
+	GetKeypoints gk;
+
 	private Vector3[] left, right;
 
 	[SerializeField]
 	private GameObject GetKeypoints;
-
-	private GetKeypoints gk;
-
 	private GetKeypoints.Keypoint[] pose;
+
+	private bool isRunning = false;
 
 	// Start is called before the first frame update
 	void Start()
@@ -56,6 +58,11 @@ public class Calibration : MonoBehaviour
 					}
 					return;
 				case Phase.HandEstimation:
+					if (!isRunning)
+					{
+						StartCoroutine(nameof(DecideCloseThreshold));
+						isRunning = true;
+					}
 					Debug.Log("Phase2");
 					return;
 				case Phase.Positioning:
@@ -66,12 +73,25 @@ public class Calibration : MonoBehaviour
 					return;
 			}
 		}
+	}
 
+	void InitHands()
+	{
 
-		void InitPose()
+	}
+
+	IEnumerator DecideCloseThreshold()
+	{
+		float[] buffer = new float[60];
+		for (int i = 0; i < 30; i++)
 		{
+			yield return null;
 
 		}
+	}
+
+	void InitPose()
+	{
 
 	}
 }

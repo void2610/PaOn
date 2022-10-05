@@ -58,6 +58,8 @@ namespace Paon.NInput
 		Queue<int> leftQueue = new Queue<int>();
 		Queue<int> rightQueue = new Queue<int>();
 
+		float distance = 999;
+
 		void Start()
 		{
 			_PoseEstimator = PoseEstimator.GetComponent<PoseEstimator>();
@@ -89,27 +91,17 @@ namespace Paon.NInput
 			// Debug.Log("Left: " + leftIsClosed);
 			// Debug.Log("Right: " + rightIsClosed);
 
-			leftQueue.Enqueue(leftCloseOrOpen(leftTemp));
-			rightQueue.Enqueue(rightCloseOrOpen(rightTemp));
+			leftQueue.Enqueue(CloseOrOpen(leftTemp));
+			rightQueue.Enqueue(CloseOrOpen(rightTemp));
 			if (leftQueue.Count >= 10) leftIsClosed = mode(leftQueue);
 			if (rightQueue.Count >= 10) rightIsClosed = mode(rightQueue);
 		}
 
-		private int leftCloseOrOpen(Vector3[] finger)
+		private int CloseOrOpen(Vector3[] finger)
 		{
-			float distance = Vector3.Distance(finger[0], finger[12]);
-			// Debug.Log("Distance: " + distance);
-			if (distance < holdThreshold)
-				return 1;
-			else return 0;
-		}
-
-		private int rightCloseOrOpen(Vector3[] finger)
-		{
-			float distance = Vector3.Distance(finger[0], finger[12]);
+			distance = Vector3.Distance(finger[0], finger[12]);
 			if (distance < holdThreshold)
 			{
-				Debug.Log("right is closed");
 				return 1;
 			}
 			else return 0;
