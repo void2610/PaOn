@@ -13,6 +13,7 @@ public class Calibration : MonoBehaviour
 		PoseEstimation,
 		HandEstimation,
 		Positioning,
+		End,
 	};
 
 	public Phase state;
@@ -76,7 +77,7 @@ public class Calibration : MonoBehaviour
 					Debug.Log("Phase1");
 					if (pose[0].score > minConfidence && pose[15].score > minConfidence && pose[16].score > minConfidence)
 					{
-						state = Phase.Positioning;
+						state = Phase.HandEstimation;
 					}
 					return;
 
@@ -86,6 +87,7 @@ public class Calibration : MonoBehaviour
 					{
 						StartCoroutine(nameof(DecideCloseThreshold));
 						isRunning = true;
+						state = Phase.Positioning;
 					}
 					return;
 
@@ -95,6 +97,7 @@ public class Calibration : MonoBehaviour
 					{
 						StartCoroutine(nameof(DecideWalkThreshold));
 						isRunning = true;
+						state = Phase.End;
 					}
 					return;
 
@@ -138,7 +141,7 @@ public class Calibration : MonoBehaviour
 		result = buffer.Average();
 		result = result - result * 0.1f;
 		mo.forwardThreshold = result;
-		PlayerPrefs.SetFloat("ForwardThreshold", result);
+		PlayerPrefs.SetFloat("WalkThreshold", result);
 		Debug.Log("WalkThreshold is determined");
 		isRunning = false;
 	}

@@ -79,6 +79,7 @@ namespace Paon.NInput
 		void Start()
 		{
 			gk = GK.GetComponent<GetKeypoints>();
+			if (PlayerPrefs.HasKey("WalkThreshold")) forwardThreshold = PlayerPrefs.GetFloat("WalkThreshold");
 		}
 
 		void Update()
