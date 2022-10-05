@@ -42,15 +42,11 @@ namespace Paon.NInput
 
 		public Keypoint[] pose = new Keypoint[25];
 
-		public Keypoint[] right = new Keypoint[21];
-
-		public Keypoint[] left = new Keypoint[21];
-
 		public Keypoint leftWrist = new Keypoint(0, 0, 0, 0);
 
 		public Keypoint rightWrist = new Keypoint(0, 0, 0, 0);
 
-		public float holdThreshold = 0.05f;
+		public float closeThreshold = 0.05f;
 
 		public int leftIsClosed = 0;
 		public int rightIsClosed = 0;
@@ -58,10 +54,14 @@ namespace Paon.NInput
 		Queue<int> leftQueue = new Queue<int>();
 		Queue<int> rightQueue = new Queue<int>();
 
+		float distance = 999;
+
 		void Start()
 		{
 			_PoseEstimator = PoseEstimator.GetComponent<PoseEstimator>();
 			_handVisualizer = HandEstimatior.GetComponent<Visualizer>();
+
+			if (PlayerPrefs.HasKey("CloseThreshold")) closeThreshold = PlayerPrefs.GetFloat("CloseThreshold");
 		}
 
 		void Update()
@@ -81,6 +81,11 @@ namespace Paon.NInput
 			Vector3[] leftTemp = _handVisualizer.GetLeftVert();
 			Vector3[] rightTemp = _handVisualizer.GetRightVert();
 
+			float leftScore = leftTemp[21].x;
+			float rightScore = rightTemp[21].x;
+			Debug.Log("leftScore : " + leftScore);
+			Debug.Log("rightScore : " + rightScore);
+
 			leftWrist.coords.z = leftTemp[0].z;
 			rightWrist.coords.z = rightTemp[0].z;
 
@@ -89,27 +94,17 @@ namespace Paon.NInput
 			// Debug.Log("Left: " + leftIsClosed);
 			// Debug.Log("Right: " + rightIsClosed);
 
-			leftQueue.Enqueue(leftCloseOrOpen(leftTemp));
-			rightQueue.Enqueue(rightCloseOrOpen(rightTemp));
+			leftQueue.Enqueue(CloseOrOpen(leftTemp));
+			rightQueue.Enqueue(CloseOrOpen(rightTemp));
 			if (leftQueue.Count >= 10) leftIsClosed = mode(leftQueue);
 			if (rightQueue.Count >= 10) rightIsClosed = mode(rightQueue);
 		}
 
-		private int leftCloseOrOpen(Vector3[] finger)
+		private int CloseOrOpen(Vector3[] finger)
 		{
-			float distance = Vector3.Distance(finger[0], finger[12]);
-			// Debug.Log("Distance: " + distance);
-			if (distance < holdThreshold)
-				return 1;
-			else return 0;
-		}
-
-		private int rightCloseOrOpen(Vector3[] finger)
-		{
-			float distance = Vector3.Distance(finger[0], finger[12]);
-			if (distance < holdThreshold)
+			distance = Vector3.Distance(finger[0], finger[12]);
+			if (distance < closeThreshold)
 			{
-				Debug.Log("right is closed");
 				return 1;
 			}
 			else return 0;
@@ -135,6 +130,11 @@ namespace Paon.NInput
 			}
 
 			return result;
+		}
+
+		public float GetDistance()
+		{
+			return distance;
 		}
 	}
 }

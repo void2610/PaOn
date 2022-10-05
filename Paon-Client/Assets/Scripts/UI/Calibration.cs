@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Paon.NInput;
 using UnityEngine;
 
@@ -20,14 +21,19 @@ public class Calibration : MonoBehaviour
 	[SerializeField]
 	private Visualizer _visualizer;
 
+	[SerializeField]
+	GetKeypoints gk;
+
+	[SerializeField]
+	MoveInputProvider mo;
+
 	private Vector3[] left, right;
 
 	[SerializeField]
 	private GameObject GetKeypoints;
-
-	private GetKeypoints gk;
-
 	private GetKeypoints.Keypoint[] pose;
+
+	private bool isRunning = false;
 
 	// Start is called before the first frame update
 	void Start()
@@ -55,23 +61,86 @@ public class Calibration : MonoBehaviour
 						state = Phase.Positioning;
 					}
 					return;
+
 				case Phase.HandEstimation:
 					Debug.Log("Phase2");
+					if (!isRunning)
+					{
+						StartCoroutine(nameof(DecideCloseThreshold));
+						isRunning = true;
+					}
 					return;
+
 				case Phase.Positioning:
 					Debug.Log("Phase3");
+					if (!isRunning)
+					{
+						StartCoroutine(nameof(DecideWalkThreshold));
+						isRunning = true;
+					}
 					return;
+
 				default:
 					Debug.Log("Calibration end");
 					return;
 			}
 		}
+	}
 
-
-		void InitPose()
+	IEnumerator DecideCloseThreshold()
+	{
+		float[] buffer = new float[60];
+		float delta = 99;
+		float result = 0;
+		for (int i = 0; i < 30; i++)
 		{
-
+			delta = gk.GetDistance();
+			buffer[i] = delta;
+			yield return null;
 		}
+		result = buffer.Average();
+		result = result - result * 0.1f;
+		gk.closeThreshold = result;
+		PlayerPrefs.SetFloat("CloseThreshold", result);
+		Debug.Log("CloseThreshold is determined");
+		isRunning = false;
+	}
 
+	IEnumerator DecideWalkThreshold()
+	{
+		float[] buffer = new float[60];
+		float delta = 99;
+		float result = 0;
+		for (int i = 0; i < 30; i++)
+		{
+			delta = mo.GetDelta();
+			buffer[i] = delta;
+			yield return null;
+		}
+		result = buffer.Average();
+		result = result - result * 0.1f;
+		mo.forwardThreshold = result;
+		PlayerPrefs.SetFloat("ForwardThreshold", result);
+		Debug.Log("WalkThreshold is determined");
+		isRunning = false;
+	}
+
+	IEnumerator DecideRotateThreshold()
+	{
+		float[] buffer = new float[60];
+		float delta = 99;
+		float result = 0;
+		for (int i = 0; i < 30; i++)
+		{
+			delta = mo.GetDelta();
+			yield return null;
+		}
+	}
+
+	IEnumerator Decide() { yield return null; }
+
+	void OnDestroy()
+	{
+		PlayerPrefs.Save();
 	}
 }

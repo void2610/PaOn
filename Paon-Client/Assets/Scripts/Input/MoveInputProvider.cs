@@ -35,7 +35,7 @@ namespace Paon.NInput
 
 		float Lleg;
 
-		float prevFoward;
+		float prevForward;
 
 		public float forwardThreshold = 15f;
 
@@ -163,7 +163,7 @@ namespace Paon.NInput
 
 				float current = Mathf.Abs(pose[16].coords.y - pose[15].coords.y);
 
-				delta = Mathf.Abs(prevFoward - current);
+				delta = Mathf.Abs(prevForward - current);
 				if (delta > forwardThreshold && !isWalking)
 				{
 					isWalking = true;
@@ -196,6 +196,11 @@ namespace Paon.NInput
 					crouch = 0;
 				}
 			}
+		}
+
+		public float GetDelta()
+		{
+			return delta;
 		}
 	}
 }
