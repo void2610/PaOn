@@ -51,6 +51,7 @@ namespace Paon.NPlayer
 			if (Input.GetKeyDown(KeyCode.X))
 			{
 				isSelecting = false;
+				co.Open = isSelecting;
 			}
 			if (isSelecting)
 			{
@@ -91,6 +92,11 @@ namespace Paon.NPlayer
 				e4.color = new Color32(255, 255, 255, 0);
 				e5.color = new Color32(255, 255, 255, 0);
 			}
+			if (Resources.Load<Sprite>("Picture/Emoji" + select) != null)
+        	{
+            	Now.GetComponent<Image>().sprite =
+                	Resources.Load<Sprite>("Picture/Emoji" + select);
+        	}
 		}
 
 		void OnTriggerStay(Collider other)

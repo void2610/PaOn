@@ -47,7 +47,5 @@ public class comocmo : MonoBehaviour
 			check = false;
 			Open = true;
 		}
-		yield return null;
-		Open = false;
 	}
 }

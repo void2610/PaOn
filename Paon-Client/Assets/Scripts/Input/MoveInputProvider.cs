@@ -164,7 +164,6 @@ namespace Paon.NInput
 				float current = Mathf.Abs(pose[16].coords.y - pose[15].coords.y);
 
 				delta = Mathf.Abs(prevFoward - current);
-				Debug.Log("delta: " + delta);
 				if (delta > forwardThreshold && !isWalking)
 				{
 					isWalking = true;
