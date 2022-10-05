@@ -20,12 +20,10 @@ namespace Paon.NInput
 
 		private Visualizer _handVisualizer;
 
-		public enum KeyPointType : byte
+		public enum LeftOrRight
 		{
-			pk = 0,
-			lhk,
-			rhk
-		}
+			left, right
+		};
 
 		public class Keypoint
 		{
@@ -50,6 +48,8 @@ namespace Paon.NInput
 
 		public int leftIsClosed = 0;
 		public int rightIsClosed = 0;
+
+		float leftScore, rightScore;
 
 		Queue<int> leftQueue = new Queue<int>();
 		Queue<int> rightQueue = new Queue<int>();
@@ -81,10 +81,10 @@ namespace Paon.NInput
 			Vector3[] leftTemp = _handVisualizer.GetLeftVert();
 			Vector3[] rightTemp = _handVisualizer.GetRightVert();
 
-			float leftScore = leftTemp[21].x;
-			float rightScore = rightTemp[21].x;
-			Debug.Log("leftScore : " + leftScore);
-			Debug.Log("rightScore : " + rightScore);
+			leftScore = leftTemp[21].x;
+			rightScore = rightTemp[21].x;
+			// Debug.Log("leftScore : " + leftScore);
+			// Debug.Log("rightScore : " + rightScore);
 
 			leftWrist.coords.z = leftTemp[0].z;
 			rightWrist.coords.z = rightTemp[0].z;
@@ -93,17 +93,22 @@ namespace Paon.NInput
 			// rightIsClosed = rightCloseOrOpen(rightTemp);
 			// Debug.Log("Left: " + leftIsClosed);
 			// Debug.Log("Right: " + rightIsClosed);
-
-			leftQueue.Enqueue(CloseOrOpen(leftTemp));
-			rightQueue.Enqueue(CloseOrOpen(rightTemp));
+			if (leftScore > 0.7f)
+				leftQueue.Enqueue(CloseOrOpen(leftTemp, LeftOrRight.left));
+			if (rightScore > 0.7f)
+				rightQueue.Enqueue(CloseOrOpen(rightTemp, LeftOrRight.right));
 			if (leftQueue.Count >= 10) leftIsClosed = mode(leftQueue);
 			if (rightQueue.Count >= 10) rightIsClosed = mode(rightQueue);
 		}
 
-		private int CloseOrOpen(Vector3[] finger)
+		private int CloseOrOpen(Vector3[] finger, LeftOrRight type)
 		{
 			distance = Vector3.Distance(finger[0], finger[12]);
-			if (distance < closeThreshold)
+			float score = 0;
+			if (type == LeftOrRight.left) score = leftScore;
+			else score = rightScore;
+
+			if (distance < closeThreshold && score > 0.7f)
 			{
 				return 1;
 			}
@@ -135,6 +140,12 @@ namespace Paon.NInput
 		public float GetDistance()
 		{
 			return distance;
+		}
+
+		public float GetScore(LeftOrRight handedness)
+		{
+			if (handedness == LeftOrRight.left) return leftScore;
+			else return rightScore;
 		}
 	}
 }
