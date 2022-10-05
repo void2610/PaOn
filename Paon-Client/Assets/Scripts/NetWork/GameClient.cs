@@ -23,6 +23,8 @@ namespace Paon.NNetwork
 
         int length;
 
+        float Red, Blue, Green;
+
         // プレイヤーの Transform (今回はメインカメラの Transform を指定)
         [SerializeField]
         Transform m_PlayerTransform;
@@ -48,6 +50,9 @@ namespace Paon.NNetwork
         {
             m_UserName = PlayerPrefs.GetString("Name", "NULLTYAN");
             m_RoomName = PlayerPrefs.GetString("Room", "MAIGO");
+            Red = PlayerPrefs.GetFloat("Color_Red", 0);
+            Blue = PlayerPrefs.GetFloat("Color_Blue", 0);
+            Green = PlayerPrefs.GetFloat("Color_Green", 0);
             m_RoomName = "poipoi";
             Doll = (GameObject) Resources.Load("Doll");
             body = GameObject.Find("PlayerBody");
@@ -61,7 +66,7 @@ namespace Paon.NNetwork
             // ゲーム起動時に設定した部屋名のルームに設定したユーザ名で入室する。
             await this
                 .client
-                .ConnectAsync(this.channel, this.m_RoomName, this.m_UserName);
+                .ConnectAsync(this.channel, this.m_RoomName, this.m_UserName, Red, Blue, Green);
         }
 
         public void SendFaceID(int FaceID)
@@ -82,7 +87,9 @@ namespace Paon.NNetwork
             Quaternion rot = _item.transform.rotation;
             string name = _item.name;
 
-            //Debug.Log (name);
+            Debug.Log (name);
+            Debug.Log(pos);
+            Debug.Log(rot);
 
             client.ItemAsync (name, pos, rot, i);
         }
