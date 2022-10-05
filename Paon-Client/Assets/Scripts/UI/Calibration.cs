@@ -39,11 +39,21 @@ public class Calibration : MonoBehaviour
 
 	[SerializeField]
 	WebCamInput webCamInput;
+
+	[SerializeField]
+	Text textObject;
+
+	private string loadText = "";
+	private string[] splitText;
+
+	private int textIndex = 0;
 	// Start is called before the first frame update
 	void Start()
 	{
 		pose = gk.pose;
 		state = Phase.PoseEstimation;
+		loadText = (Resources.Load("CalibrationMessage", typeof(TextAsset)) as TextAsset).text;
+		splitText = loadText.Split(char.Parse("\n"));
 	}
 
 	// Update is called once per frame
