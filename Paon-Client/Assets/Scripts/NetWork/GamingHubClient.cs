@@ -106,10 +106,13 @@ namespace Paon.NNetwork
             return client.FaceAsync(FaceID);
         }
 
-        public Task ItemAsync(string name, Vector3 position, Quaternion quaternion, int i)
+        public Task ItemAsync(string name, Vector3 position, Quaternion rotation, int i)
         {
-            //Debug.Log(name);
-            return client.ItemAsync(name, position, quaternion, i);
+            Debug.Log(name);
+            Debug.Log(position);
+            Debug.Log(rotation);
+
+            return client.ItemAsync(name, position, rotation, i);
         }
 
         public Task TimeAsync(string name, float time)
