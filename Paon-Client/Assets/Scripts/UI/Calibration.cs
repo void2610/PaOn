@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Paon.NInput;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Calibration : MonoBehaviour
 {
@@ -29,16 +30,18 @@ public class Calibration : MonoBehaviour
 
 	private Vector3[] left, right;
 
-	[SerializeField]
-	private GameObject GetKeypoints;
+	private float leftScore, rightScore;
 	private GetKeypoints.Keypoint[] pose;
-
 	private bool isRunning = false;
 
+	[SerializeField]
+	RawImage image;
+
+	[SerializeField]
+	WebCamInput webCamInput;
 	// Start is called before the first frame update
 	void Start()
 	{
-		gk = GetKeypoints.GetComponent<GetKeypoints>();
 		pose = gk.pose;
 		state = Phase.PoseEstimation;
 	}
@@ -49,6 +52,12 @@ public class Calibration : MonoBehaviour
 		pose = gk.pose;
 		left = _visualizer.GetLeftVert();
 		right = _visualizer.GetRightVert();
+
+		image.texture = webCamInput.inputImageTexture;
+		image.transform.localScale = webCamInput.transform.localScale / 2;
+
+		leftScore = gk.GetScore(GetKeypoints.LeftOrRight.left);
+		rightScore = gk.GetScore(GetKeypoints.LeftOrRight.right);
 
 		if (pose[0] != null)
 		{
@@ -64,7 +73,7 @@ public class Calibration : MonoBehaviour
 
 				case Phase.HandEstimation:
 					Debug.Log("Phase2");
-					if (!isRunning)
+					if (!isRunning && leftScore > 0.7f && rightScore > 0.7f)
 					{
 						StartCoroutine(nameof(DecideCloseThreshold));
 						isRunning = true;
