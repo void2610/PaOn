@@ -87,8 +87,8 @@ public class Calibration : MonoBehaviour
 					{
 						StartCoroutine(nameof(DecideCloseThreshold));
 						isRunning = true;
+						state = Phase.Positioning;
 					}
-					state = Phase.Positioning;
 					return;
 
 				case Phase.Positioning:
@@ -97,8 +97,8 @@ public class Calibration : MonoBehaviour
 					{
 						StartCoroutine(nameof(DecideWalkThreshold));
 						isRunning = true;
+						state = Phase.End;
 					}
-					state = Phase.End;
 					return;
 
 				default:
