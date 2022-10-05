@@ -142,7 +142,7 @@ namespace Paon.NNetwork
                 Material skin = (Material)Resources.Load("Materials/Doll" + n + "Material");
                 n++;
 
-                Debug.Log("akfjhljshf" + player.red);
+                Debug.Log("akfjhljshf" + Red);
 
                 skin.color = new Color(Red, Green, Blue);
 
