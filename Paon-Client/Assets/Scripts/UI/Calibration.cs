@@ -131,7 +131,7 @@ public class Calibration : MonoBehaviour
 	IEnumerator DecideWalkThreshold()
 	{
 		yield return new WaitForSeconds(5);
-		float[] buffer = new float[60];
+		float[] buffer = new float[200];
 		float delta = 99;
 		float result = 0;
 		for (int i = 0; i < 150; i++)
