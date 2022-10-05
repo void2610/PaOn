@@ -33,6 +33,10 @@ namespace Paon.NNetwork
         [SerializeField]
         string m_RoomName;
 
+        float Red = 0;
+        float Green = 0;
+        float Blue = 0;
+
         // StreamingHub クライアントで使用する gRPC チャネルを生成
 
         private Channel channel = new Channel("153.125.148.207", 5032, ChannelCredentials.Insecure);
@@ -45,6 +49,9 @@ namespace Paon.NNetwork
             m_UserName = PlayerPrefs.GetString("Name", "NULLTYAN");
             m_RoomName = PlayerPrefs.GetString("Room", "MAIGO");
             Doll = (GameObject) Resources.Load("Doll");
+            Red = PlayerPrefs.GetFloat("Color_Red", 0);
+            Blue = PlayerPrefs.GetFloat("Color_Blue", 0);
+            Green = PlayerPrefs.GetFloat("Color_Green", 0);
             body = GameObject.Find("PlayerBody");
             right = GameObject.Find("RightHand");
             left = GameObject.Find("LeftHand");
@@ -52,7 +59,7 @@ namespace Paon.NNetwork
             // ゲーム起動時に設定した部屋名のルームに設定したユーザ名で入室する。
             await this
                 .client
-                .ConnectAsync(this.channel, this.m_RoomName, this.m_UserName);
+                .ConnectAsync(this.channel, this.m_RoomName, this.m_UserName, Red, Blue, Green);
         }
 
         public void SendFaceID(int FaceID)

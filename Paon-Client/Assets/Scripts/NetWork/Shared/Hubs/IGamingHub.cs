@@ -22,7 +22,7 @@ namespace Paon.NNetwork.Shared.Hubs
     // クライアントがサーバ側で gRPC 実行可能な関数を定義する
     public interface IGamingHub : IStreamingHub<IGamingHub, IGamingHubReceiver>
     {
-        Task<Player[]> JoinAsync(string roomName, string userName, Vector3 _body, Vector3 _right, Vector3 _left, Quaternion rotation);
+        Task<Player[]> JoinAsync(string roomName, string userName, Vector3 _body, Vector3 _right, Vector3 _left, Quaternion rotation, float Red, float Blue, float Green);
         Task LeaveAsync();
         Task MoveAsync(Vector3 _body, Vector3 _right, Vector3 _left, Quaternion rotation);
         Task ItemAsync(string name, Vector3 position, Quaternion rotation, int i);

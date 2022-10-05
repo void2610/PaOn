@@ -45,7 +45,6 @@ namespace Paon.NBordering
             }
 
             //次の待機エリアにテレポートさせる
-            //なんか違う気がする
             if (
                 WaitAreas[0].GetComponent<WaitAreaScript>().ReadyPlayer ==
                 null &&
