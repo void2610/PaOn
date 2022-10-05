@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "/0UgC4wlrqVpzkUBSZZnljDPvb5NR+w7N69WpMVbinQmZGGsjkFxq8WJTbT3KZP1uocAuJQ57/aPhXT/0VXhlQ==",
+  "dgSpecHash": "taIv79BeVrpijsoVL/l+B6NecYXtN9Dezt+mDZznK7uUDo5ZrOQSa4TBC6yu/hSi+5xUK93SyIz3dDUNf6dZnQ==",
   "success": true,
   "projectFilePath": "/Users/mattaharuman/Documents/GitHub/PaOn/Paon-Server/Paon-Server.csproj",
   "expectedPackageFiles": [
@@ -33,9 +33,7 @@
     "/Users/mattaharuman/.nuget/packages/system.diagnostics.diagnosticsource/4.5.1/system.diagnostics.diagnosticsource.4.5.1.nupkg.sha512",
     "/Users/mattaharuman/.nuget/packages/system.memory/4.5.4/system.memory.4.5.4.nupkg.sha512",
     "/Users/mattaharuman/.nuget/packages/system.runtime.compilerservices.unsafe/5.0.0/system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512",
-    "/Users/mattaharuman/.nuget/packages/microsoft.netcore.app.runtime.linux-x64/5.0.17/microsoft.netcore.app.runtime.linux-x64.5.0.17.nupkg.sha512",
-    "/Users/mattaharuman/.nuget/packages/microsoft.aspnetcore.app.runtime.linux-x64/5.0.17/microsoft.aspnetcore.app.runtime.linux-x64.5.0.17.nupkg.sha512",
-    "/Users/mattaharuman/.nuget/packages/microsoft.netcore.app.host.linux-x64/5.0.17/microsoft.netcore.app.host.linux-x64.5.0.17.nupkg.sha512"
+    "/Users/mattaharuman/.nuget/packages/microsoft.netcore.app.host.osx-x64/5.0.17/microsoft.netcore.app.host.osx-x64.5.0.17.nupkg.sha512"
   ],
   "logs": []
 }

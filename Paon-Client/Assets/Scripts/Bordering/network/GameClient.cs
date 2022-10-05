@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Paon.NNetwork
 {
-    public class GameClient : MonoBehaviour
+    public class Border : MonoBehaviour
     {
         [SerializeField]
         static GameObject Doll;
