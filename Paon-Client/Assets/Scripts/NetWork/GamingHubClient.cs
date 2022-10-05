@@ -70,7 +70,7 @@ namespace Paon.NNetwork
             {
                 if (player.Name != playerName)
                 {
-                    (this as IGamingHubReceiver).OnJoin(player);
+                    (this as IGamingHubReceiver).OnJoin(player,Red,Green,Blue);
                 }
             }
 
