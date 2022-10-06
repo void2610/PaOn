@@ -128,7 +128,7 @@ public class Calibration : MonoBehaviour
 		message.text = splitText[2];
 		float[] buffer = new float[60];
 		float delta, result;
-		bool good = false;
+		bool go = false;
 		for (int i = 0; i < 30; i++)
 		{
 			if (leftScore > 0.7f && rightScore > 0.7f)
