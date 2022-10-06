@@ -124,11 +124,12 @@ public class Calibration : MonoBehaviour
 
 	IEnumerator DecideCloseThreshold()
 	{
-		yield return new WaitForSeconds(5);
+		yield return new WaitForSeconds(3);
 		message.text = splitText[2];
 		float[] buffer = new float[60];
 		float delta, result;
 		bool go = false;
+		while (leftScore < 0.7f && rightScore < 0.7f) yield return null;
 		for (int i = 0; i < 30; i++)
 		{
 			if (leftScore > 0.7f && rightScore > 0.7f)
@@ -155,7 +156,7 @@ public class Calibration : MonoBehaviour
 
 	IEnumerator DecideWalkThreshold()
 	{
-		yield return new WaitForSeconds(5);
+		yield return new WaitForSeconds(3);
 		message.text = splitText[3];
 		float[] buffer = new float[200];
 		float delta, result;
