@@ -26,7 +26,7 @@ public class Calibration : MonoBehaviour
 	[SerializeField]
 	RawImage[] Lamps;
 
-	Color green = new Color(50, 210, 50);
+	Color green = new Color(0, 210, 50);
 
 	[SerializeField]
 	private Visualizer _visualizer;
@@ -136,7 +136,7 @@ public class Calibration : MonoBehaviour
 				yield return null;
 			}
 		result = buffer.Average();
-		result -= result * 0.1f;
+		result /= 2;
 		gk.closeThreshold = result;
 		PlayerPrefs.SetFloat("CloseThreshold", result);
 		Debug.Log("CloseThreshold is determined");
