@@ -84,7 +84,7 @@ namespace Paon.NBordering
 						//もう片方が掴んでいなかったら固定解除
 						if (lmip.CheckHold() == 0)
 						{
-							Player.GetComponent<Rigidbody>().useGravity = true;
+							StartCoroutine(nameof(GravityFall));
 						}
 
 						//手の位置を戻す
@@ -216,6 +216,12 @@ namespace Paon.NBordering
 					NearObject = null;
 				}
 			}
+		}
+
+		IEnumerator GravityFall()
+		{
+			yield return new WaitForSeconds(3);
+			Player.GetComponent<Rigidbody>().useGravity = true;
 		}
 	}
 }
