@@ -9,6 +9,8 @@ namespace Paon.NUI
 {
     public class MainMenuScript : MonoBehaviour
     {
+        public AudioClip SE;
+
         int status = 0; //0:main menu, 1:stage menu, 3:option menu 4:toukei,5:nature play server menu,6: bordering server menu
 
         private GameObject S;
@@ -54,22 +56,26 @@ namespace Paon.NUI
 
         public void ClickStartButton()
         {
+            GetComponent<AudioSource>().PlayOneShot(SE);
             status = 1;
         }
 
         public void ClickOptionButton()
         {
+            GetComponent<AudioSource>().PlayOneShot(SE);
             status = 3;
         }
 
         public void ClickQuitButton()
         {
+            GetComponent<AudioSource>().PlayOneShot(SE);
             Debug.Log("Quit");
             Application.Quit();
         }
 
         public void ClickBackButton()
         {
+            GetComponent<AudioSource>().PlayOneShot(SE);
             if (status == 3 || status == 4)
                 status = 0;
             else if (status == 5 || status == 6)
@@ -80,27 +86,32 @@ namespace Paon.NUI
 
         public void ClickNaturePlayButton()
         {
+            GetComponent<AudioSource>().PlayOneShot(SE);
             status = 5;
         }
 
         public void ClickBorderingButton()
         {
+            GetComponent<AudioSource>().PlayOneShot(SE);
             status = 6;
         }
 
         public void ClickToukeiButton()
         {
+            GetComponent<AudioSource>().PlayOneShot(SE);
             status = 4;
         }
 
         public void ApplyName()
         {
+            GetComponent<AudioSource>().PlayOneShot(SE);
             PlayerPrefs.SetString("Name", Input.text);
             PlayerPrefs.Save();
         }
 
         public void ChangeColor()
         {
+            GetComponent<AudioSource>().PlayOneShot(SE);
             float red = Random.value;
             float green = Random.value;
             float blue = Random.value;
@@ -112,6 +123,7 @@ namespace Paon.NUI
 
         public void ResetStatistics()
         {
+            GetComponent<AudioSource>().PlayOneShot(SE);
             PlayerPrefs.SetInt("GiveItem", 0);
             PlayerPrefs.SetInt("GiveTurn", 0);
         }
@@ -124,24 +136,28 @@ namespace Paon.NUI
 
         public void JoinNature1()
         {
+            GetComponent<AudioSource>().PlayOneShot(SE);
             PlayerPrefs.SetString("Room", "Nature1");
             SceneManager.LoadScene("Main");
         }
 
         public void JoinNature2()
         {
+            GetComponent<AudioSource>().PlayOneShot(SE);
             PlayerPrefs.SetString("Room", "Nature2");
             SceneManager.LoadScene("Main");
         }
 
         public void JoinBordering1()
         {
+            GetComponent<AudioSource>().PlayOneShot(SE);
             PlayerPrefs.SetString("Room", "Bordering1");
             SceneManager.LoadScene("BorderingScene");
         }
 
         public void JoinBordering2()
         {
+            GetComponent<AudioSource>().PlayOneShot(SE);
             PlayerPrefs.SetString("Room", "Bordering2");
             SceneManager.LoadScene("BorderingScene");
         }
@@ -157,7 +173,7 @@ namespace Paon.NUI
             Name = GameObject.Find("Name");
             NamePlate = GameObject.Find("NamePlate");
             Input = Name.GetComponent<InputField>();
-            Input.text = PlayerPrefs.GetString("Name", "なまえをにゅうりょく");
+            Input.text = PlayerPrefs.GetString("Name", "プレイヤー");
             Color = GameObject.Find("Color");
             NServer1 = GameObject.Find("NServer1");
             NServer2 = GameObject.Find("NServer2");
@@ -238,7 +254,7 @@ namespace Paon.NUI
                 Name.SetActive(true);
                 NamePlate.SetActive(true);
                 NamePlate.GetComponent<Text>().text =
-                    PlayerPrefs.GetString("Name", "なまえをにゅうりょく");
+                    PlayerPrefs.GetString("Name", "プレイヤー");
                 Player.SetActive(true);
                 Color.SetActive(true);
                 Volume.SetActive(true);
