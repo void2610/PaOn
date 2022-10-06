@@ -113,6 +113,7 @@ public class Calibration : MonoBehaviour
 
 				default:
 					message.text = splitText[4];
+					end = true;
 					Debug.Log("Calibration end");
 					return;
 			}
@@ -144,7 +145,7 @@ public class Calibration : MonoBehaviour
 		if (go)
 		{
 			result = buffer.Average();
-			result += result * 0.2f;
+			result += result * 0.5f;
 			gk.closeThreshold = result;
 			PlayerPrefs.SetFloat("CloseThreshold", result);
 			Debug.Log("CloseThreshold is determined");
@@ -156,8 +157,8 @@ public class Calibration : MonoBehaviour
 
 	IEnumerator DecideWalkThreshold()
 	{
-		yield return new WaitForSeconds(3);
 		message.text = splitText[3];
+		yield return new WaitForSeconds(3);
 		float[] buffer = new float[200];
 		float delta, result;
 		for (int i = 0; i < 150; i++)
