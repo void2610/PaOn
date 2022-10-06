@@ -80,12 +80,13 @@ namespace Paon.NNetwork
             Vector3 pos = _item.transform.position;
             Quaternion rot = _item.transform.rotation;
             string name = _item.name;
+            string PlayerName = PlayerPrefs.GetString("Name", "NULLTYAN");
 
             //Debug.Log (name);
             //Debug.Log(pos);
             //Debug.Log(rot);
 
-            client.ItemAsync (name, pos, rot);
+            client.ItemAsync (name, pos, rot, PlayerName);
         }
 
         // Update is called once per frame

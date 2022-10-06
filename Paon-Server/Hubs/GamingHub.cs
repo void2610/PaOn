@@ -85,7 +85,7 @@ namespace Paon.NNetwork.Hubs
             Broadcast(room).OnMove(self);
         }
 
-        public async Task ItemAsync(string name, Vector3 position, Quaternion rotation)
+        public async Task ItemAsync(string name, Vector3 position, Quaternion rotation, string PlayerName)
         {
             //Console.WriteLine(name);
 
@@ -96,7 +96,7 @@ namespace Paon.NNetwork.Hubs
             Console.WriteLine(mono.Name);
             Console.WriteLine(mono);
 
-            Broadcast(room).OnItem(mono);
+            Broadcast(room).OnItem(mono, PlayerName);
         }
 
         public async Task FaceAsync(int FaceID)
