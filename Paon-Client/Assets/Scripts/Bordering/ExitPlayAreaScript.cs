@@ -9,15 +9,13 @@ namespace Paon.NBordering
     {
         private GameObject NextPosition;
 
-        private GameObject BM;
-
         private GameObject client;
 
         void Start()
         {
             NextPosition = GameObject.Find("SpawnPositionAnchor");
             BM = GameObject.Find("BorderingManager");
-            client = GameObject.Find("Border");
+            client = GameObject.Find("BorderingClient");
         }
 
         void OnTriggerStay(Collider other)
@@ -31,7 +29,7 @@ namespace Paon.NBordering
                     .playingBordering = false;
                 other.gameObject.transform.position =
                     NextPosition.transform.position;
-                client.GetComponent<Border>().OutBorder();
+                client.GetComponent<BorderingClient>().OutBorder();
             }
         }
     }
