@@ -224,6 +224,8 @@ namespace Paon.NNetwork
                 Items
                     .transform
                     .SetPositionAndRotation(item.Position, item.Rotation);
+
+                Debug.Log("untiiiii" + item.Name);
             }
         }
 
