@@ -128,20 +128,29 @@ public class Calibration : MonoBehaviour
 		message.text = splitText[2];
 		float[] buffer = new float[60];
 		float delta, result;
+		bool good = false;
 		for (int i = 0; i < 30; i++)
 		{
-			delta = gk.GetDistance();
-			buffer[i] = delta;
+			if (leftScore > 0.7f && rightScore > 0.7f)
+			{
+				delta = gk.GetDistance();
+				buffer[i] = delta;
+			}
+			else i--;
 			yield return null;
+			if (i == 29) go = true;
 		}
-		result = buffer.Average();
-		result += result * 0.1f;
-		gk.closeThreshold = result;
-		PlayerPrefs.SetFloat("CloseThreshold", result);
-		Debug.Log("CloseThreshold is determined");
-		isRunning = false;
-		state = Phase.Positioning;
-		Lamps[1].color = green;
+		if (go)
+		{
+			result = buffer.Average();
+			result += result * 0.2f;
+			gk.closeThreshold = result;
+			PlayerPrefs.SetFloat("CloseThreshold", result);
+			Debug.Log("CloseThreshold is determined");
+			isRunning = false;
+			state = Phase.Positioning;
+			Lamps[1].color = green;
+		}
 	}
 
 	IEnumerator DecideWalkThreshold()
