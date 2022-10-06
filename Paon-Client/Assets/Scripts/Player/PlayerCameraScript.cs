@@ -51,7 +51,7 @@ namespace Paon.NPlayer
 
             if (goal != null)
             {
-                if (!tmp && goal.goaling)
+                if (stat == 0 && goal.goaling)
                 {
                     //ゴールした瞬間、1
                     stat = 1;
@@ -85,71 +85,6 @@ namespace Paon.NPlayer
                 PlayerPrefs.GetString("Room", "none") == "Bordering2"
             )
             {
-                // if (stat == 1 && start.starting)
-                // {
-                //     //ゴールした後にまたスタートしたらまた登ってる判定
-                //     stat = 2;
-                //     Debug.Log("stat : " + stat);
-                // }
-                // if (stat == 1)
-                // {
-                //     //ゴール中だったら下向く
-                //     rot =
-                //         new Vector3(25,
-                //             this.gameObject.transform.eulerAngles.y,
-                //             this.gameObject.transform.eulerAngles.z);
-                // }
-                // else if (stat == 2 && y < 0.5f)
-                // {
-                //     //登ってるけど下の方の時は正面向く
-                //     rot =
-                //         new Vector3(0,
-                //             this.gameObject.transform.eulerAngles.y,
-                //             this.gameObject.transform.eulerAngles.z);
-                // }
-                // else if (y > 0.5f && stat == 0)
-                // {
-                //     //初回登っているとき(だんだん上向く)
-                //     if (y < 1.5f)
-                //     {
-                //         rot =
-                //             new Vector3(-15 * y,
-                //                 this.gameObject.transform.eulerAngles.y,
-                //                 this.gameObject.transform.eulerAngles.z);
-                //     }
-                //     else
-                //     {
-                //         rot =
-                //             new Vector3(-22.5f,
-                //                 this.gameObject.transform.eulerAngles.y,
-                //                 this.gameObject.transform.eulerAngles.z);
-                //     }
-                // }
-                // else if (y > 0.5f && stat == 2)
-                // {
-                //     Debug.Log("stat2");
-                //     if (y < 1.5f)
-                //     {
-                //         rot =
-                //             new Vector3(-15 * y,
-                //                 this.gameObject.transform.eulerAngles.y,
-                //                 this.gameObject.transform.eulerAngles.z);
-                //     }
-                //     else
-                //     {
-                //         rot =
-                //             new Vector3(-22.5f,
-                //                 this.gameObject.transform.eulerAngles.y,
-                //                 this.gameObject.transform.eulerAngles.z);
-                //     }
-                // }
-                // else
-                // {
-                //     rot =
-                //         new Vector3(0,
-                //             this.gameObject.transform.eulerAngles.y,
-                //             this.gameObject.transform.eulerAngles.z);
-                // }
                 if (stat == 0)
                 {
                     if (y < 1.5f)
@@ -172,22 +107,17 @@ namespace Paon.NPlayer
                     if (y > 1.5f)
                     {
                         rot =
-                            new Vector3(-22.5f,
+                            new Vector3(22.5f,
                                 this.gameObject.transform.eulerAngles.y,
                                 this.gameObject.transform.eulerAngles.z);
                     }
                     else
                     {
                         rot =
-                            new Vector3(-15 * y,
+                            new Vector3(15 * y,
                                 this.gameObject.transform.eulerAngles.y,
                                 this.gameObject.transform.eulerAngles.z);
                     }
-                }
-
-                if (goal != null)
-                {
-                    tmp = goal.goaling;
                 }
             }
             this.gameObject.transform.eulerAngles = rot;
