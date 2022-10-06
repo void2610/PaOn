@@ -42,6 +42,10 @@ namespace Paon.NNaturePlay
                 other.gameObject.GetComponent<Rigidbody>().constraints =
                     RigidbodyConstraints.FreezeAll;
                 other.gameObject.GetComponent<Rigidbody>().useGravity = false;
+                other.gameObject.transform.eulerAngles =
+                    new Vector3(90,
+                        other.gameObject.transform.eulerAngles.y,
+                        -90);
             }
 
             if (saving)
