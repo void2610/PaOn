@@ -13,6 +13,8 @@ namespace Paon.NUI
 
         int status = 0; //0:main menu, 1:stage menu, 3:option menu 4:toukei,5:nature play server menu,6: bordering server menu
 
+        private GameObject Title;
+
         private GameObject S;
 
         private GameObject Option;
@@ -47,9 +49,11 @@ namespace Paon.NUI
 
         private GameObject Reset;
 
-        private InputField Input;
+        private GameObject Calibration;
 
         private GameObject Volume;
+
+        private InputField Input;
 
         [SerializeField]
         private Material Skin;
@@ -94,6 +98,12 @@ namespace Paon.NUI
         {
             GetComponent<AudioSource>().PlayOneShot(SE);
             status = 6;
+        }
+
+        public void ClickCalibrationButton()
+        {
+            GetComponent<AudioSource>().PlayOneShot(SE);
+            SceneManager.LoadScene("Calibration");
         }
 
         public void ClickToukeiButton()
@@ -164,6 +174,7 @@ namespace Paon.NUI
 
         void Start()
         {
+            Title = GameObject.Find("Title");
             S = GameObject.Find("Start");
             Option = GameObject.Find("Option");
             Quit = GameObject.Find("Quit");
@@ -184,6 +195,7 @@ namespace Paon.NUI
             Statistics = GameObject.Find("Statistics");
             Reset = GameObject.Find("Reset");
             Volume = GameObject.Find("Volume");
+            Calibration = GameObject.Find("Calibration");
             Volume.GetComponent<Slider>().value =
                 PlayerPrefs.GetFloat("Volume", 0.5f);
         }
@@ -192,6 +204,7 @@ namespace Paon.NUI
         {
             if (status == 0)
             {
+                Title.SetActive(true);
                 S.SetActive(true);
                 Option.SetActive(true);
                 Quit.SetActive(true);
@@ -204,6 +217,7 @@ namespace Paon.NUI
                 Player.SetActive(false);
                 Color.SetActive(false);
                 Volume.SetActive(false);
+                Calibration.SetActive(false);
 
                 NServer1.SetActive(false);
                 NServer2.SetActive(false);
@@ -218,6 +232,7 @@ namespace Paon.NUI
             }
             else if (status == 1)
             {
+                Title.SetActive(true);
                 S.SetActive(false);
                 Option.SetActive(false);
                 Quit.SetActive(false);
@@ -230,6 +245,7 @@ namespace Paon.NUI
                 Player.SetActive(false);
                 Color.SetActive(false);
                 Volume.SetActive(false);
+                Calibration.SetActive(false);
 
                 NServer1.SetActive(false);
                 NServer2.SetActive(false);
@@ -244,6 +260,7 @@ namespace Paon.NUI
             }
             else if (status == 3)
             {
+                Title.SetActive(false);
                 S.SetActive(false);
                 Option.SetActive(false);
                 Quit.SetActive(false);
@@ -258,6 +275,7 @@ namespace Paon.NUI
                 Player.SetActive(true);
                 Color.SetActive(true);
                 Volume.SetActive(true);
+                Calibration.SetActive(true);
 
                 NServer1.SetActive(false);
                 NServer2.SetActive(false);
@@ -272,6 +290,7 @@ namespace Paon.NUI
             }
             else if (status == 4)
             {
+                Title.SetActive(true);
                 S.SetActive(false);
                 Option.SetActive(false);
                 Quit.SetActive(false);
@@ -284,6 +303,7 @@ namespace Paon.NUI
                 Player.SetActive(false);
                 Color.SetActive(false);
                 Volume.SetActive(false);
+                Calibration.SetActive(false);
 
                 NServer1.SetActive(false);
                 NServer2.SetActive(false);
@@ -307,6 +327,7 @@ namespace Paon.NUI
             }
             else if (status == 5)
             {
+                Title.SetActive(true);
                 S.SetActive(false);
                 Option.SetActive(false);
                 Quit.SetActive(false);
@@ -319,6 +340,7 @@ namespace Paon.NUI
                 Player.SetActive(false);
                 Color.SetActive(false);
                 Volume.SetActive(false);
+                Calibration.SetActive(false);
 
                 NServer1.SetActive(true);
                 NServer2.SetActive(true);
@@ -333,6 +355,7 @@ namespace Paon.NUI
             }
             else if (status == 6)
             {
+                Title.SetActive(true);
                 S.SetActive(false);
                 Option.SetActive(false);
                 Quit.SetActive(false);
@@ -345,6 +368,7 @@ namespace Paon.NUI
                 Player.SetActive(false);
                 Color.SetActive(false);
                 Volume.SetActive(false);
+                Calibration.SetActive(false);
 
                 NServer1.SetActive(false);
                 NServer2.SetActive(false);
