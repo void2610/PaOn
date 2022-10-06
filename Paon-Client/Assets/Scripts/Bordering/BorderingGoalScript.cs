@@ -18,6 +18,10 @@ namespace Paon.NBordering
 
         private float goalTime = -10.0f;
 
+        private float transferTime = 1.5f;
+
+        private float goalCooldown = 30.0f;
+
         void Start()
         {
             BorderingManager = GameObject.Find("BorderingManager");
@@ -26,7 +30,7 @@ namespace Paon.NBordering
 
         void Update()
         {
-            Debug.Log (goalTime);
+            Debug.Log("Goaled : " + goalTime);
             if (!tmp && goaling)
             {
                 goalTime = Time.time;
@@ -35,9 +39,9 @@ namespace Paon.NBordering
                     this.GetComponent<AudioSource>().PlayOneShot(SE);
                 }
             }
-            if (Time.time - goalTime <= 1.5f)
+            if (Time.time - goalTime <= transferTime)
             {
-                if (Time.time - goalTime == 1.5f)
+                if (Time.time - goalTime == transferTime)
                 {
                     goalTime = -10.0f;
                 }
@@ -45,6 +49,10 @@ namespace Paon.NBordering
                 {
                     Player.transform.Translate(0, 0.1f, 0.1f);
                 }
+            }
+            if (Time.time - goalTime < goalCooldown)
+            {
+                goaling = false;
             }
             tmp = goaling;
         }
@@ -58,14 +66,10 @@ namespace Paon.NBordering
                     .GetComponent<BorderingTimerScript>()
                     .Timer
                     .CountStop();
-                if (Time.time - goalTime == 30)
-                {
-                    goaling = true;
-                }
             }
             else
             {
-                goaling = true;
+                goaling = false;
             }
         }
 

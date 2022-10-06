@@ -12,7 +12,7 @@ namespace Paon.NAudio
 
         private float speed;
 
-        private bool e = false;
+        private bool play = false;
 
         private bool tmp = false;
 
@@ -28,25 +28,25 @@ namespace Paon.NAudio
                     .magnitude;
             if (speed > 0.1f)
             {
-                e = true;
+                play = true;
             }
             else
             {
-                e = false;
+                play = false;
             }
             if (this.GetComponent<AudioSource>())
             {
-                if (e && !tmp)
+                if (play && !tmp)
                 {
                     this.GetComponent<AudioSource>().Play();
                 }
-                if (!e && tmp)
+                if (!play && tmp)
                 {
                     this.GetComponent<AudioSource>().Stop();
                 }
             }
             latestPos = Player.transform.position;
-            tmp = e;
+            tmp = play;
         }
     }
 }
