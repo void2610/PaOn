@@ -65,7 +65,7 @@ public class Visualizer : MonoBehaviour
 					new Vector4(24, 26), new Vector4(26, 28),
 					new Vector4(28, 30), new Vector4(30, 32),
 					new Vector4(32, 28)
-};
+	};
 
 	public bool isDebugEnabled = false;
 
