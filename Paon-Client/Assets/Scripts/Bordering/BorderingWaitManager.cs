@@ -16,7 +16,7 @@ namespace Paon.NBordering
 
         public GameObject[] WaitAreas = new GameObject[3];
 
-        private GameObject client;
+        public GameObject client;
 
         void Start()
         {
