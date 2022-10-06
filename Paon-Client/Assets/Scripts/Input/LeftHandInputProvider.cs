@@ -20,6 +20,8 @@ namespace Paon.NInput
 		private Vector3 finger;
 		string key = "";
 
+		public bool isDebugEnabled = false;
+
 		int hold = 0;
 
 		private float CalculateDistance(Vector2 start, Vector2 end)
@@ -94,6 +96,8 @@ namespace Paon.NInput
 			hold = gk.leftIsClosed;
 			// Debug.Log("left: " + hold);
 
+			if (Input.GetKey(KeyCode.Return)) isDebugEnabled = !isDebugEnabled;
+
 			if (Input.GetKey(KeyCode.W))
 			{
 				key = "up";
@@ -114,15 +118,19 @@ namespace Paon.NInput
 			{
 				key = "none";
 			}
+			if (isDebugEnabled)
+			{
+				if (Input.GetKey(KeyCode.Q))
+				{
+					hold = 1;
+				}
+				else
+				{
+					hold = 0;
+				}
+			}
 
-			// if (Input.GetKey(KeyCode.Q))
-			// {
-			//     hold = 1;
-			// }
-			// else
-			// {
-			//     hold = 0;
-			// }
+
 			if (wrist != previous)
 				previous = wrist;
 		}
