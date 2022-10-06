@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 273561361947046310}
   - component: {fileID: 259085066944740248}
   - component: {fileID: 259085066944740244}
-  - component: {fileID: 260258626692361609}
   - component: {fileID: -3888049527330014666}
   - component: {fileID: -9136536022833006107}
+  - component: {fileID: 2807638127747359669}
   m_Layer: 0
   m_Name: Props_Skeleton_Bone
   m_TagString: HoldableTag
@@ -116,30 +116,6 @@ CapsuleCollider:
   m_Height: 0.71775854
   m_Direction: 0
   m_Center: {x: 0.005603552, y: 0.04898104, z: 0.0015794635}
---- !u!114 &260258626692361609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 260258626692361610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 271c580db5fd384429cdac899152e9e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _outlineResources: {fileID: 11400000, guid: d28e70f030b1a634db9a6a6d5478ef19, type: 2}
-  _outlineSettings:
-    _outlineSettings: {fileID: 0}
-    _outlineColor: {r: 1, g: 0, b: 0, a: 1}
-    _outlineWidth: 1
-    _outlineIntensity: 2
-    _outlineAlphaCutoff: 0.9
-    _outlineMode: 0
-  _ignoreLayerMask: 0
-  _cameraEvent: 15
-  _targetCamera: {fileID: 0}
-  _updateRenderers: 0
 --- !u!82 &-3888049527330014666
 AudioSource:
   m_ObjectHideFlags: 0
@@ -151,7 +127,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 92eee2cd77e7a4538add1f0c5189ec2f, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -249,3 +225,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SE: {fileID: 8300000, guid: 794553bd78df04a62935b19edeb22054, type: 3}
+--- !u!114 &2807638127747359669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260258626692361610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 0
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
