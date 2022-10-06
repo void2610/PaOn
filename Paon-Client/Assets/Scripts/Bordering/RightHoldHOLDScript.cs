@@ -34,6 +34,10 @@ namespace Paon.NBordering
 
 		private float dis = 999;
 
+		[SerializeField]
+		private comocmo co;
+		public bool isRunning = false;
+
 		void Start()
 		{
 			Player = GameObject.Find("PlayerBody");
@@ -68,6 +72,8 @@ namespace Paon.NBordering
 					{
 						GetComponent<AudioSource>().PlayOneShot(SE);
 						bts.StartTimer();
+						isRunning = true;
+						co.isBordering = true;
 						Player.GetComponent<Rigidbody>().useGravity = false;
 						StopCoroutine(nameof(GravityFall));
 						bodyBase = Player.transform.position;
