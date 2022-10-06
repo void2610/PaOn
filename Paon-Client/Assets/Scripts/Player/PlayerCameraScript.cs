@@ -18,7 +18,7 @@ namespace Paon.NPlayer
 
         public int stat = 0;
 
-        private int c = 0;
+        private int crouch = 0;
 
         void Start()
         {
@@ -41,7 +41,9 @@ namespace Paon.NPlayer
 
         void Update()
         {
-            c = mip.GetComponent<MoveInputProvider>().crouch;
+            //Debug.Log(this.gameObject.transform.eulerAngles.x);
+            Debug.Log (stat);
+            crouch = mip.GetComponent<MoveInputProvider>().crouch;
             float y = this.gameObject.transform.position.y;
             Vector3 rot = this.gameObject.transform.eulerAngles;
             Vector3 lp = new Vector3(0, 2.3f, 0);
@@ -50,6 +52,7 @@ namespace Paon.NPlayer
             {
                 if (!tmp && goal.goaling)
                 {
+                    //ゴールした瞬間、1
                     stat = 1;
                 }
             }
@@ -59,7 +62,7 @@ namespace Paon.NPlayer
                 PlayerPrefs.GetString("Room", "none") == "Nature2"
             )
             {
-                if (c == 1)
+                if (crouch == 1)
                 {
                     rot =
                         new Vector3(25,
@@ -83,11 +86,14 @@ namespace Paon.NPlayer
             {
                 if (stat == 1 && start.starting)
                 {
+                    //ゴールした後にまたスタートしたらまた登ってる判定
                     stat = 2;
+                    Debug.Log("stat : " + stat);
                 }
 
                 if (stat == 1)
                 {
+                    //ゴール中だったら下向く
                     rot =
                         new Vector3(25,
                             this.gameObject.transform.eulerAngles.y,
@@ -95,6 +101,7 @@ namespace Paon.NPlayer
                 }
                 else if (stat == 2 && y < 0.5f)
                 {
+                    //登ってるけど下の方の時は正面向く
                     rot =
                         new Vector3(0,
                             this.gameObject.transform.eulerAngles.y,
@@ -102,6 +109,7 @@ namespace Paon.NPlayer
                 }
                 else if (y > 0.5f && stat == 0)
                 {
+                    //初回登っているとき(だんだん上向く)
                     if (y < 1.5f)
                     {
                         rot =

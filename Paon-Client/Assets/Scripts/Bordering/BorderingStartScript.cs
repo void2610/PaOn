@@ -13,10 +13,7 @@ namespace Paon.NBordering
             if (other.gameObject.tag == "Player")
             {
                 starting = true;
-            }
-            else
-            {
-                starting = true;
+                Debug.Log("Bordering Started");
             }
         }
 
