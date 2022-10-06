@@ -19,8 +19,6 @@ namespace Paon.NBordering
                 right,
                 left;
 
-        Player MyInfo;
-
         // プレイヤーの Transform (今回はメインカメラの Transform を指定)
         [SerializeField]
         Transform m_PlayerTransform;
@@ -60,8 +58,6 @@ namespace Paon.NBordering
             right = GameObject.Find("RightHand");
             left = GameObject.Find("LeftHand");
 
-            MyInfo = new Player { Name = m_UserName, Flag = false };
-
             // ゲーム起動時に設定した部屋名のルームに設定したユーザ名で入室する。
             await this
                 .client
@@ -71,6 +67,27 @@ namespace Paon.NBordering
         public void SendFaceID(int FaceID)
         {
             client.FaceAsync (FaceID);
+        }
+
+        public void CheckBorder()
+        {
+            int F = 0;
+
+            client.FlagAsync(F);
+        }
+
+        public void StartBorder()
+        {
+            int F = 1;
+
+            client.FlagAsync(F);
+        }
+
+        public void OutBorder()
+        {
+            int F = 2;
+
+            client.FlagAsync(F);
         }
 
         public static GameObject MakeDolls(Player player)
@@ -99,27 +116,6 @@ namespace Paon.NBordering
             await this.client.LeaveAsync();
             await this.client.DisposeAsync();
             await this.channel.ShutdownAsync();
-        }
-
-        public void CheckBorder()
-        {
-            int F = 0;
-
-            client.FlagAsync(F);
-        }
-
-        public void StartBorder()
-        {
-            int F = 1;
-
-            client.FlagAsync(F);
-        }
-
-        public void OutBorder()
-        {
-            int F = 2;
-
-            client.FlagAsync(F);
         }
     }
 }
