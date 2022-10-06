@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Paon.NInput;
 using UnityEngine;
-using UnityFx.Outline;
 
 //handの子オブジェクトのHandTriggerにアタッチする
 namespace Paon.NPlayer
@@ -116,11 +115,9 @@ namespace Paon.NPlayer
             {
                 if (NearObject != null)
                 {
-                    if (NearObject.GetComponent<OutlineBehaviour>())
+                    if (NearObject.GetComponent<Outline>())
                     {
-                        NearObject
-                            .GetComponent<OutlineBehaviour>()
-                            .OutlineWidth = 1;
+                        NearObject.GetComponent<Outline>().OutlineWidth = 0;
                     }
                 }
                 NearObject = null;
@@ -137,23 +134,18 @@ namespace Paon.NPlayer
                 {
                     if (NearObject != null)
                     {
-                        if (NearObject.GetComponent<OutlineBehaviour>())
+                        if (NearObject.GetComponent<Outline>())
                         {
-                            NearObject
-                                .GetComponent<OutlineBehaviour>()
-                                .OutlineWidth = 1;
+                            NearObject.GetComponent<Outline>().OutlineWidth = 0;
                         }
                     }
 
                     NearObject = other.gameObject;
-                    if (NearObject.GetComponent<OutlineBehaviour>())
+                    if (NearObject.GetComponent<Outline>())
                     {
-                        NearObject
-                            .GetComponent<OutlineBehaviour>()
-                            .OutlineWidth = 4;
-                        NearObject
-                            .GetComponent<OutlineBehaviour>()
-                            .OutlineColor = Color.red;
+                        NearObject.GetComponent<Outline>().OutlineWidth = 8;
+                        NearObject.GetComponent<Outline>().OutlineColor =
+                            Color.red;
                     }
                 }
             }
