@@ -277,6 +277,8 @@ namespace Paon.NNetwork
 
         void IGamingHubReceiver.BorderCount(int Count)
         {
+            Debug.Log("Count: " + Count);
+
             bool Flags;
 
             if(Count > 2)
