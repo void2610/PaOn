@@ -15,7 +15,7 @@ namespace Paon.NNetwork
         GameObject[] _item;
         int ItemLenght, n = 1;
 
-        GameObject BorderWait = GameObject.Find("BorderingWaitManager");
+        GameObject BorderWait;
 
         //public GameObject[] Dolls = new GameObject[8];
         // 部屋に参加しているユーザ全員の GameObject (アバター)を保持する
@@ -277,6 +277,8 @@ namespace Paon.NNetwork
 
         void IGamingHubReceiver.BorderCount(int Count)
         {
+            BorderWait = GameObject.Find("BorderingWaitManager");
+
             Debug.Log("Count: " + Count);
 
             bool Flags;

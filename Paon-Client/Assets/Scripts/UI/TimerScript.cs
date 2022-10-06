@@ -18,7 +18,7 @@ namespace Paon.NUI
 
         GameObject GoalText;
 
-        private GamingHubClient client = new GamingHubClient();
+        private GameObject client;
 
         public void CountStart()
         {
@@ -34,6 +34,7 @@ namespace Paon.NUI
         void Start()
         {
             GoalText = GameObject.Find("GoalText");
+            client = GameObject.Find("GamingHubClient");
         }
 
         // Update is called once per frame
@@ -61,7 +62,7 @@ namespace Paon.NUI
                     GoalText.GetComponent<Text>().text = "ゴール！";
 
                     client
-                        .TimeAsync(PlayerPrefs.GetString("Name", "NULLTYAN"),
+                        .GetComponent<GamingHubClient>().TimeAsync(PlayerPrefs.GetString("Name", "NULLTYAN"),
                         time);
                 }
             }
