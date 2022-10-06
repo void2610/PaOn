@@ -24,6 +24,11 @@ public class Calibration : MonoBehaviour
 	public bool end = false;
 
 	[SerializeField]
+	RawImage[] Lamps;
+
+	Color green = new Color(50, 210, 50);
+
+	[SerializeField]
 	private Visualizer _visualizer;
 
 	[SerializeField]
@@ -56,7 +61,7 @@ public class Calibration : MonoBehaviour
 	{
 		pose = gk.pose;
 		state = Phase.PoseEstimation;
-		loadText = (Resources.Load("CalibrationMessage", typeof(TextAsset)) as TextAsset).text;
+		loadText = (Resources.Load("CalibrationResources/CalibrationMessage", typeof(TextAsset)) as TextAsset).text;
 		splitText = loadText.Split(char.Parse("\n"));
 	}
 
@@ -82,6 +87,7 @@ public class Calibration : MonoBehaviour
 					if (pose[0].score > minConfidence && pose[15].score > minConfidence && pose[16].score > minConfidence)
 					{
 						state = Phase.HandEstimation;
+						Lamps[0].color = green;
 					}
 					return;
 
@@ -136,7 +142,7 @@ public class Calibration : MonoBehaviour
 		Debug.Log("CloseThreshold is determined");
 		isRunning = false;
 		state = Phase.Positioning;
-
+		Lamps[1].color = green;
 	}
 
 	IEnumerator DecideWalkThreshold()
@@ -158,6 +164,7 @@ public class Calibration : MonoBehaviour
 		Debug.Log("WalkThreshold is determined");
 		isRunning = false;
 		state = Phase.End;
+		Lamps[2].color = green;
 	}
 
 	IEnumerator DecideRotateThreshold()
