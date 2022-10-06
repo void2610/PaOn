@@ -38,7 +38,7 @@ namespace Paon.NPlayer
 			Now = GameObject.Find("NowEmoji");
 			GC = GameObject.Find("GameClient");
 			select = 1;
-			GC.GetComponent<GameClient>().SendFaceID(select);
+			// GC.GetComponent<GameClient>().SendFaceID(select);
 		}
 
 		void Update()
@@ -93,10 +93,10 @@ namespace Paon.NPlayer
 				e5.color = new Color32(255, 255, 255, 0);
 			}
 			if (Resources.Load<Sprite>("Picture/Emoji" + select) != null)
-        	{
-            	Now.GetComponent<Image>().sprite =
-                	Resources.Load<Sprite>("Picture/Emoji" + select);
-        	}
+			{
+				Now.GetComponent<Image>().sprite =
+						Resources.Load<Sprite>("Picture/Emoji" + select);
+			}
 		}
 
 		void OnTriggerStay(Collider other)
@@ -127,7 +127,7 @@ namespace Paon.NPlayer
 				{
 					select = 0;
 				}
-				GC.GetComponent<GameClient>().SendFaceID(select);
+				// GC.GetComponent<GameClient>().SendFaceID(select);
 			}
 		}
 	}
