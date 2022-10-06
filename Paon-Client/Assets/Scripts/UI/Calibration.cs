@@ -68,6 +68,8 @@ public class Calibration : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		if (Input.GetKeyDown(KeyCode.Backspace)) DeleteThreshold();
+		if (end) SceneManager.LoadScene("MainMenu");
 		pose = gk.pose;
 		left = _visualizer.GetLeftVert();
 		right = _visualizer.GetRightVert();
@@ -119,8 +121,7 @@ public class Calibration : MonoBehaviour
 			}
 
 		}
-		if (Input.GetKeyDown(KeyCode.Backspace)) DeleteThreshold();
-		if (end) SceneManager.LoadScene("MainMenu");
+
 	}
 
 	IEnumerator DecideCloseThreshold()
