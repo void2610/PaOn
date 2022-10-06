@@ -67,6 +67,8 @@ namespace Paon.NNetwork.Hubs
             mono = new Item() { Name = name, Position = position, Rotation = rotation };
 
             (room, memory) = await Group.AddAsync(roomName, mono);
+
+            Console.WriteLine(memory.AllValues.ToArray());
         }
 
         // ユーザがルームの中で動く
@@ -85,7 +87,7 @@ namespace Paon.NNetwork.Hubs
 
         public async Task ItemAsync(string name, Vector3 position, Quaternion rotation)
         {
-            //Console.WriteLine(name);
+            Console.WriteLine(name);
 
             mono.Name = name;
             mono.Position = position;

@@ -138,14 +138,16 @@ namespace Paon.NNetwork
                 Material skin = (Material)Resources.Load("Materials/Doll" + n + "Material");
                 n++;
 
-                Debug.Log(n);
                 Debug.Log("akfjhljshf" + Red);
 
+                //マテリアルの色変更
                 skin.color = new Color(Red, Green, Blue);
 
-                _body.transform.GetChild(0).gameObject.GetComponent<Renderer>().material = skin;
-                _body.transform.GetChild(1).gameObject.GetComponent<Renderer>().material = skin;
-                _body.transform.GetChild(2).gameObject.GetComponent<Renderer>().material = skin;
+                //マテリアルを適用
+                doll.transform.GetChild(0).gameObject.GetComponent<Renderer>().material = skin;
+                doll.transform.GetChild(1).gameObject.GetComponent<Renderer>().material = skin;
+                doll.transform.GetChild(2).gameObject.GetComponent<Renderer>().material = skin;
+
 
                 doll.name = player.Name;
                 _body.name = player.Name + "Body";
@@ -166,7 +168,7 @@ namespace Paon.NNetwork
                 players[player.Name] = doll;
             }
 
-            Debug.Log("login:" + player.Name);
+            Debug.Log("login:" + player.Name + ":" + n);
         }
 
         // 他ユーザが部屋から退出した際に呼び出される関数
@@ -179,7 +181,7 @@ namespace Paon.NNetwork
             if (players.TryGetValue(player.Name, out var doll))
             {
                 GameObject.Destroy (doll);
-                Debug.Log("leave:" + player.Name);
+                Debug.Log("leave:" + player.Name + ":" + n);
             }
         }
 
@@ -218,9 +220,9 @@ namespace Paon.NNetwork
 
         void IGamingHubReceiver.OnItem(Item item)
         {
-            if (items.TryGetValue(item.Name, out var gomi))
+            if (items.TryGetValue(item.Name, out var Items))
             {
-                gomi
+                Items
                     .transform
                     .SetPositionAndRotation(item.Position, item.Rotation);
             }
