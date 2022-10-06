@@ -112,10 +112,6 @@ namespace Paon.NNetwork
 
         public Task ItemAsync(string name, Vector3 position, Quaternion rotation)
         {
-            //Debug.Log(name);
-            //Debug.Log(position);
-            //Debug.Log(rotation);
-
             return client.ItemAsync(name, position, rotation);
         }
 

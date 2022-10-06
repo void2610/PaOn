@@ -62,6 +62,8 @@ namespace Paon.NNetwork.Hubs
 
         public async Task ItemJoin(string name, Vector3 position, Quaternion rotation, string roomName)
         {
+            Console.WriteLine(name);
+
             mono = new Item() { Name = name, Position = position, Rotation = rotation };
 
             (room, memory) = await Group.AddAsync(roomName, mono);
@@ -83,7 +85,7 @@ namespace Paon.NNetwork.Hubs
 
         public async Task ItemAsync(string name, Vector3 position, Quaternion rotation)
         {
-            Console.WriteLine(name);
+            //Console.WriteLine(name);
 
             mono.Name = name;
             mono.Position = position;
