@@ -128,13 +128,12 @@ public class Calibration : MonoBehaviour
 		message.text = splitText[2];
 		float[] buffer = new float[60];
 		float delta, result;
-		if (leftScore > minConfidence && rightScore > minConfidence)
-			for (int i = 0; i < 30; i++)
-			{
-				delta = gk.GetDistance();
-				buffer[i] = delta;
-				yield return null;
-			}
+		for (int i = 0; i < 30; i++)
+		{
+			delta = gk.GetDistance();
+			buffer[i] = delta;
+			yield return null;
+		}
 		result = buffer.Average();
 		result /= 2;
 		gk.closeThreshold = result;

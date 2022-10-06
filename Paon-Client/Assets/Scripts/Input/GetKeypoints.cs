@@ -54,7 +54,7 @@ namespace Paon.NInput
 		Queue<int> leftQueue = new Queue<int>();
 		Queue<int> rightQueue = new Queue<int>();
 
-		float distance = 999;
+		public float distance = 999;
 
 		void Start()
 		{
