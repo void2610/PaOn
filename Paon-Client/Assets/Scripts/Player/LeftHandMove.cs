@@ -10,61 +10,61 @@ using UnityEngine;
 
 namespace Paon.NPlayer
 {
-    public class LeftHandMove : MonoBehaviour
-    {
-        private GameObject hand;
+	public class LeftHandMove : MonoBehaviour
+	{
+		private GameObject hand;
 
-        private GameObject handProvider;
+		private GameObject handProvider;
 
-        private GameObject player;
+		private GameObject player;
 
-        private LeftHandInputProvider inputProvider;
+		private LeftHandInputProvider inputProvider;
 
-        private Vector3 coords;
+		private Vector3 coords;
 
-        private Vector2 delta;
+		private Vector2 delta;
 
-        public bool canMove = true;
+		public bool canMove = true;
 
-        public bool isCalib = false;
+		public bool isCalib = false;
 
-        async void Start()
-        {
-            hand = this.gameObject;
-            inputProvider = GameObject.Find("LeftHandInputProvider").GetComponent<LeftHandInputProvider>();
-            player = this.gameObject;
-        }
+		async void Start()
+		{
+			hand = this.gameObject;
+			inputProvider = GameObject.Find("LeftHandInputProvider").GetComponent<LeftHandInputProvider>();
+			player = this.gameObject;
+		}
 
-        async void FixedUpdate()
-        {
-            coords = inputProvider.GetPosition();
-            delta = inputProvider.GetDelta();
-            if (canMove)
-            {
-                if (inputProvider.GetInput() == "up")
-                {
-                    hand.transform.Translate(Vector3.left * 0.01f);
-                }
-                else if (inputProvider.GetInput() == "down")
-                {
-                    hand.transform.Translate(Vector3.right * 0.01f);
-                }
-                else if (inputProvider.GetInput() == "left")
-                {
-                    hand.transform.Translate(Vector3.up * 0.01f);
-                }
-                else if (inputProvider.GetInput() == "right")
-                {
-                    hand.transform.Translate(Vector3.down * 0.01f);
-                }
+		async void FixedUpdate()
+		{
+			coords = inputProvider.GetPosition();
+			delta = inputProvider.GetDelta();
+			if (canMove)
+			{
+				if (inputProvider.GetInput() == "up")
+				{
+					hand.transform.Translate(Vector3.left * 0.01f);
+				}
+				else if (inputProvider.GetInput() == "down")
+				{
+					hand.transform.Translate(Vector3.right * 0.01f);
+				}
+				else if (inputProvider.GetInput() == "left")
+				{
+					hand.transform.Translate(Vector3.up * 0.01f);
+				}
+				else if (inputProvider.GetInput() == "right")
+				{
+					hand.transform.Translate(Vector3.down * 0.01f);
+				}
 
-                if (isCalib)
-                {
-                    hand.transform.localPosition = new Vector3(coords.x / 70 - 3, -coords.y / 70 + 2, hand.transform.localPosition.z);
-                }
-                else
-                    hand.transform.localPosition = new Vector3(-coords.x / 70 + 2, -coords.y / 70 + 1, hand.transform.localPosition.z);
-            }
-        }
-    }
+				if (isCalib)
+				{
+					hand.transform.localPosition = new Vector3(coords.x / 70 - 3, -coords.y / 70 + 1, hand.transform.localPosition.z);
+				}
+				else
+					hand.transform.localPosition = new Vector3(-coords.x / 50 + 2, -coords.y / 70, hand.transform.localPosition.z);
+			}
+		}
+	}
 }
