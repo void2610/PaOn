@@ -46,10 +46,11 @@ namespace Paon.NNetwork
         {
             m_UserName = PlayerPrefs.GetString("Name", "NULLTYAN");
             m_RoomName = PlayerPrefs.GetString("Room", "MAIGO");
+
             Red = PlayerPrefs.GetFloat("Color_Red", 0);
             Blue = PlayerPrefs.GetFloat("Color_Blue", 0);
             Green = PlayerPrefs.GetFloat("Color_Green", 0);
-            m_RoomName = "poipoi";
+
             Doll = (GameObject) Resources.Load("Doll");
             body = GameObject.Find("PlayerBody");
             right = GameObject.Find("RightHand");

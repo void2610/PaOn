@@ -219,9 +219,8 @@ namespace Paon.NNetwork
 
         void IGamingHubReceiver.OnItem(Item item, string PlayerName)
         {
-            if (PlayerName != PlayerPrefs.GetString("Name", "NULLTYAN"))
+            if (PlayerName != PlayerPrefs.GetString("Name", "aaa"))
             {
-
                 if (items.TryGetValue(item.Name, out var Items))
                 {
                     Items
