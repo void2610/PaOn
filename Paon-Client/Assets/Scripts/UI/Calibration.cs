@@ -69,6 +69,7 @@ public class Calibration : MonoBehaviour
 	void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.Backspace)) DeleteThreshold();
+		if (Input.GetKeyDown(KeyCode.Escape)) end = true;
 		if (end) SceneManager.LoadScene("MainMenu");
 		pose = gk.pose;
 		left = _visualizer.GetLeftVert();

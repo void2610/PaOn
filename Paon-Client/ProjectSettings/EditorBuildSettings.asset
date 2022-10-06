@@ -5,22 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: fc6dc02f23a6c9a49b8c3f6996a50ef9
   - enabled: 1
-    path: Assets/Scenes/BorderingScene.unity
-    guid: ac1407a22b6564f4d8bc1799cdfb8fd4
-  - enabled: 1
     path: Assets/Scenes/Calibration.unity
     guid: e8a8d22abcafa5c41b1e22fec4de49dd
-  - enabled: 0
-    path: Assets/OpenPose/Examples/Scenes/Demo.unity
-    guid: d14f1fe1776644745acd186bbfe3a269
   - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: 624a57926d53c9f42ac648cc528c871e
+  - enabled: 1
+    path: Assets/Scenes/BorderingScene.unity
+    guid: ac1407a22b6564f4d8bc1799cdfb8fd4
   m_configObjects: {}
