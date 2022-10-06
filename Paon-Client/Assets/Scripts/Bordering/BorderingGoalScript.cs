@@ -10,6 +10,8 @@ namespace Paon.NBordering
 
         public bool goaling = false;
 
+        private GameObject GoalPosition;
+
         private GameObject BorderingManager;
 
         private GameObject Player;
@@ -26,6 +28,7 @@ namespace Paon.NBordering
         {
             BorderingManager = GameObject.Find("BorderingManager");
             Player = GameObject.Find("PlayerBody");
+            GoalPosition = GameObject.Find("GoalAnchor");
         }
 
         void Update()
@@ -38,18 +41,20 @@ namespace Paon.NBordering
                 {
                     this.GetComponent<AudioSource>().PlayOneShot(SE);
                 }
+                Player.transform.position = GoalPosition.transform.position;
             }
-            if (Time.time - goalTime <= transferTime)
-            {
-                if (Time.time - goalTime == transferTime)
-                {
-                    goalTime = -10.0f;
-                }
-                else
-                {
-                    Player.transform.Translate(0, 0.1f, 0.1f);
-                }
-            }
+
+            // if (Time.time - goalTime <= transferTime)
+            // {
+            //     if (Time.time - goalTime == transferTime)
+            //     {
+            //         goalTime = -10.0f;
+            //     }
+            //     else
+            //     {
+            //         Player.transform.Translate(0, 0.1f, 0.1f);
+            //     }
+            // }
             if (Time.time - goalTime < goalCooldown)
             {
                 goaling = false;
