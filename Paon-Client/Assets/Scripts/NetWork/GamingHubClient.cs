@@ -25,14 +25,14 @@ namespace Paon.NNetwork
         // サーバ側の関数を実行するための変数
         IGamingHub client;
 
-        public void itemStorage(GameObject[] item, int Lenght)
+        public void itemStorage()
         {
-            _item = item;
-            ItemLenght = Lenght;
+            _item = GameObject.FindGameObjectsWithTag("HoldableTag");
+            ItemLenght = _item.Length;
 
-            for(int i = 0; i < Lenght; i++)
+            for (int i = 0; i < ItemLenght; i++)
             {
-                items[item[i].name] = item[i];
+                items[_item[i].name] = _item[i];
 
                 //Debug.Log(items[item[i].name]);
             }
