@@ -47,10 +47,10 @@ public class WebCamInput : MonoBehaviour
 		Graphics.Blit(webCamTexture, inputRT, scale, offset);
 	}
 
-	void OnEnable()
-	{
-		SetCamera(0);
-	}
+	// void OnEnable()
+	// {
+	// 	SetCamera(0);
+	// }
 
 	void SetCamera(int idx)
 	{
