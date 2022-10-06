@@ -16,7 +16,6 @@ namespace Paon.NNetwork.Shared.Hubs
         void OnItem(Item item, string PlayerName);
         void OnGoal(string name, float time);
         void ChengeFace(Player player, int FaceID);
-        void ItemItem(Item item);
         void FiastPlayer();
     }
 
