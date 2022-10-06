@@ -124,30 +124,39 @@ public class Calibration : MonoBehaviour
 
 	IEnumerator DecideCloseThreshold()
 	{
-		yield return new WaitForSeconds(5);
+		yield return new WaitForSeconds(3);
 		message.text = splitText[2];
-		float[] buffer = new float[60];
+		float[] buffer = new float[200];
 		float delta, result;
-		if (leftScore > minConfidence && rightScore > minConfidence)
-			for (int i = 0; i < 30; i++)
+		bool go = false;
+		while (leftScore < 0.7f && rightScore < 0.7f) yield return null;
+		for (int i = 0; i < 150; i++)
+		{
+			if (leftScore > 0.7f && rightScore > 0.7f)
 			{
 				delta = gk.GetDistance();
 				buffer[i] = delta;
-				yield return null;
 			}
-		result = buffer.Average();
-		result /= 2;
-		gk.closeThreshold = result;
-		PlayerPrefs.SetFloat("CloseThreshold", result);
-		Debug.Log("CloseThreshold is determined");
-		isRunning = false;
-		state = Phase.Positioning;
-		Lamps[1].color = green;
+			else i--;
+			yield return null;
+			if (i == 29) go = true;
+		}
+		if (go)
+		{
+			result = buffer.Average();
+			result += result * 0.2f;
+			gk.closeThreshold = result;
+			PlayerPrefs.SetFloat("CloseThreshold", result);
+			Debug.Log("CloseThreshold is determined");
+			isRunning = false;
+			state = Phase.Positioning;
+			Lamps[1].color = green;
+		}
 	}
 
 	IEnumerator DecideWalkThreshold()
 	{
-		yield return new WaitForSeconds(5);
+		yield return new WaitForSeconds(3);
 		message.text = splitText[3];
 		float[] buffer = new float[200];
 		float delta, result;
@@ -158,7 +167,7 @@ public class Calibration : MonoBehaviour
 			yield return null;
 		}
 		result = buffer.Average();
-		result -= result * 0.1f;
+		result += result * 0.4f;
 		mo.forwardThreshold = result;
 		PlayerPrefs.SetFloat("WalkThreshold", result);
 		Debug.Log("WalkThreshold is determined");
