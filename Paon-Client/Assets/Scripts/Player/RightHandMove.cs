@@ -58,7 +58,7 @@ namespace Paon.NPlayer
 				}
 
 				if (isCalib)
-					hand.transform.localPosition = new Vector3(coords.x / 100 - 2, -coords.y / 100 + 2, hand.transform.localPosition.z);
+					hand.transform.localPosition = new Vector3(coords.x / 70 - 2, -coords.y / 70 + 1, hand.transform.localPosition.z);
 				else
 					hand.transform.localPosition = new Vector3(-coords.x / 50 + 2, -coords.y / 70 + 1, hand.transform.localPosition.z);
 			}
