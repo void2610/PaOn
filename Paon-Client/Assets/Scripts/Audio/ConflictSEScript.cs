@@ -8,6 +8,8 @@ namespace Paon.NAudio
     {
         public AudioClip SE;
 
+        private float speed = 0.1f;
+
         void OnCollisionEnter(Collision collision)
         {
             if (
@@ -15,7 +17,7 @@ namespace Paon.NAudio
                 this.GetComponent<Rigidbody>()
             )
             {
-                if (this.GetComponent<Rigidbody>().velocity.magnitude > 0.1f)
+                if (this.GetComponent<Rigidbody>().velocity.magnitude > speed)
                 {
                     GetComponent<AudioSource>().PlayOneShot(SE);
                 }

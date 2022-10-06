@@ -10,41 +10,56 @@ namespace Paon.NBordering
 
         public bool goaling = false;
 
+        private GameObject GoalPosition;
+
         private GameObject BorderingManager;
 
         private GameObject Player;
 
         private bool tmp = false;
 
-        private float goalTime = -10.0f;
+        private float goalTime = -30.0f;
+
+        private float transferTime = 1.5f;
+
+        private float goalCooldown = 30.0f;
 
         void Start()
         {
             BorderingManager = GameObject.Find("BorderingManager");
             Player = GameObject.Find("PlayerBody");
+            GoalPosition = GameObject.Find("GoalAnchor");
         }
 
         void Update()
         {
-            if (!tmp && goaling)
+            Debug.Log("Goaled : " + goalTime);
+            if (!tmp && goaling && (Time.time - goalTime > goalCooldown))
             {
                 goalTime = Time.time;
                 if (this.GetComponent<AudioSource>())
                 {
                     this.GetComponent<AudioSource>().PlayOneShot(SE);
                 }
+                this
+                    .BorderingManager
+                    .GetComponent<BorderingTimerScript>()
+                    .Timer
+                    .CountStop();
+                Player.transform.position = GoalPosition.transform.position;
             }
-            if (Time.time - goalTime <= 1.5f)
-            {
-                if (Time.time - goalTime == 1.5f)
-                {
-                    goalTime = -10.0f;
-                }
-                else
-                {
-                    Player.transform.Translate(0, 0.1f, 0.1f);
-                }
-            }
+
+            // if (Time.time - goalTime <= transferTime)
+            // {
+            //     if (Time.time - goalTime == transferTime)
+            //     {
+            //         goalTime = -10.0f;
+            //     }
+            //     else
+            //     {
+            //         Player.transform.Translate(0, 0.1f, 0.1f);
+            //     }
+            // }
             tmp = goaling;
         }
 
@@ -52,16 +67,11 @@ namespace Paon.NBordering
         {
             if (other.gameObject.tag == "Player")
             {
-                this
-                    .BorderingManager
-                    .GetComponent<BorderingTimerScript>()
-                    .Timer
-                    .CountStop();
                 goaling = true;
             }
             else
             {
-                goaling = true;
+                goaling = false;
             }
         }
 

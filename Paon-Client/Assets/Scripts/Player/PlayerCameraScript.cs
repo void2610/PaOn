@@ -18,7 +18,8 @@ namespace Paon.NPlayer
 
         public int stat = 0;
 
-        private int c = 0;
+        //0:最初~ゴール前,1:ゴール後~降りるまで
+        private int crouch = 0;
 
         void Start()
         {
@@ -41,15 +42,18 @@ namespace Paon.NPlayer
 
         void Update()
         {
-            c = mip.GetComponent<MoveInputProvider>().crouch;
+            //Debug.Log(this.gameObject.transform.eulerAngles.x);
+            Debug.Log (stat);
+            crouch = mip.GetComponent<MoveInputProvider>().crouch;
             float y = this.gameObject.transform.position.y;
             Vector3 rot = this.gameObject.transform.eulerAngles;
             Vector3 lp = new Vector3(0, 2.3f, 0);
 
             if (goal != null)
             {
-                if (!tmp && goal.goaling)
+                if (stat == 0 && goal.goaling)
                 {
+                    //ゴールした瞬間、1
                     stat = 1;
                 }
             }
@@ -59,7 +63,7 @@ namespace Paon.NPlayer
                 PlayerPrefs.GetString("Room", "none") == "Nature2"
             )
             {
-                if (c == 1)
+                if (crouch == 1)
                 {
                     rot =
                         new Vector3(25,
@@ -81,26 +85,7 @@ namespace Paon.NPlayer
                 PlayerPrefs.GetString("Room", "none") == "Bordering2"
             )
             {
-                if (stat == 1 && start.starting)
-                {
-                    stat = 2;
-                }
-
-                if (stat == 1)
-                {
-                    rot =
-                        new Vector3(25,
-                            this.gameObject.transform.eulerAngles.y,
-                            this.gameObject.transform.eulerAngles.z);
-                }
-                else if (stat == 2 && y < 0.5f)
-                {
-                    rot =
-                        new Vector3(0,
-                            this.gameObject.transform.eulerAngles.y,
-                            this.gameObject.transform.eulerAngles.z);
-                }
-                else if (y > 0.5f && stat == 0)
+                if (stat == 0)
                 {
                     if (y < 1.5f)
                     {
@@ -117,35 +102,22 @@ namespace Paon.NPlayer
                                 this.gameObject.transform.eulerAngles.z);
                     }
                 }
-                else if (y > 0.5f && stat == 2)
+                else if (stat == 1)
                 {
-                    Debug.Log("stat2");
-                    if (y < 1.5f)
+                    if (y > 1.5f)
                     {
                         rot =
-                            new Vector3(-15 * y,
+                            new Vector3(22.5f,
                                 this.gameObject.transform.eulerAngles.y,
                                 this.gameObject.transform.eulerAngles.z);
                     }
                     else
                     {
                         rot =
-                            new Vector3(-22.5f,
+                            new Vector3(15 * y,
                                 this.gameObject.transform.eulerAngles.y,
                                 this.gameObject.transform.eulerAngles.z);
                     }
-                }
-                else
-                {
-                    rot =
-                        new Vector3(0,
-                            this.gameObject.transform.eulerAngles.y,
-                            this.gameObject.transform.eulerAngles.z);
-                }
-
-                if (goal != null)
-                {
-                    tmp = goal.goaling;
                 }
             }
             this.gameObject.transform.eulerAngles = rot;
