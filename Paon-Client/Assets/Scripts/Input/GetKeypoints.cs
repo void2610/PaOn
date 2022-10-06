@@ -94,9 +94,11 @@ namespace Paon.NInput
 			// Debug.Log("Left: " + leftIsClosed);
 			// Debug.Log("Right: " + rightIsClosed);
 			if (leftScore > 0.7f)
-				leftQueue.Enqueue(CloseOrOpen(leftTemp, LeftOrRight.left));
+				// leftQueue.Enqueue(CloseOrOpen(leftTemp, LeftOrRight.left));
+				leftQueue.Enqueue(leftCloseOrOpen(leftTemp));
 			if (rightScore > 0.7f)
-				rightQueue.Enqueue(CloseOrOpen(rightTemp, LeftOrRight.right));
+				// rightQueue.Enqueue(CloseOrOpen(rightTemp, LeftOrRight.right));
+				rightQueue.Enqueue(rightCloseOrOpen(rightTemp));
 			if (leftQueue.Count >= 10) leftIsClosed = mode(leftQueue);
 			if (rightQueue.Count >= 10) rightIsClosed = mode(rightQueue);
 		}
@@ -109,6 +111,26 @@ namespace Paon.NInput
 			else score = rightScore;
 
 			if (distance < closeThreshold && score > 0.7f)
+			{
+				return 1;
+			}
+			else return 0;
+		}
+
+		private int leftCloseOrOpen(Vector3[] finger)
+		{
+			distance = Vector3.Distance(finger[0], finger[12]);
+			if (distance < closeThreshold + closeThreshold * 0.2f && leftScore > 0.7f)
+			{
+				return 1;
+			}
+			else return 0;
+		}
+
+		private int rightCloseOrOpen(Vector3[] finger)
+		{
+			distance = Vector3.Distance(finger[0], finger[12]);
+			if (distance < closeThreshold && rightScore > 0.7f)
 			{
 				return 1;
 			}
