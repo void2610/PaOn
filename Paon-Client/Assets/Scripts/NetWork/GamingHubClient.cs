@@ -143,12 +143,6 @@ namespace Paon.NNetwork
                 //マテリアルの色変更
                 skin.color = new Color(Red, Green, Blue);
 
-                //マテリアルを適用
-                doll.transform.GetChild(0).gameObject.GetComponent<Renderer>().material = skin;
-                doll.transform.GetChild(1).gameObject.GetComponent<Renderer>().material = skin;
-                doll.transform.GetChild(2).gameObject.GetComponent<Renderer>().material = skin;
-
-
                 doll.name = player.Name;
                 _body.name = player.Name + "Body";
                 _right.name = player.Name + "Right";
@@ -166,6 +160,11 @@ namespace Paon.NNetwork
                     .SetPositionAndRotation(player.LeftPosition,
                     player.Rotation);
                 players[player.Name] = doll;
+
+                //マテリアルを適用
+                players[player.Name].transform.GetChild(0).gameObject.GetComponent<Renderer>().material = skin;
+                players[player.Name].transform.GetChild(1).gameObject.GetComponent<Renderer>().material = skin;
+                players[player.Name].transform.GetChild(2).gameObject.GetComponent<Renderer>().material = skin;
             }
 
             Debug.Log("login:" + player.Name + ":" + n);
