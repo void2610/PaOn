@@ -19,10 +19,6 @@ namespace Paon.NNetwork
                 right,
                 left;
 
-        GameObject[] items;
-
-        int length;
-
         float Red, Blue, Green;
 
         // プレイヤーの Transform (今回はメインカメラの Transform を指定)
@@ -58,10 +54,8 @@ namespace Paon.NNetwork
             body = GameObject.Find("PlayerBody");
             right = GameObject.Find("RightHand");
             left = GameObject.Find("LeftHand");
-            items = GameObject.FindGameObjectsWithTag("HoldableTag");
-            length = items.Length;
 
-            client.itemStorage (items, length);
+            client.itemStorage ();
 
             // ゲーム起動時に設定した部屋名のルームに設定したユーザ名で入室する。
             await this
