@@ -41,6 +41,10 @@ namespace Paon.NNetwork.Hubs
             {
                 Broadcast(room).FiastPlayer();
             }
+            //else
+            //{
+            //    ItemItem();
+            //}
 
             // ルームに入室している他ユーザ全員に
             // 入室したユーザの情報をブロードキャスト送信する
@@ -49,6 +53,11 @@ namespace Paon.NNetwork.Hubs
             // ルームに入室している他ユーザ全員の情報を配列で取得する
             return storage.AllValues.ToArray();
         }
+
+        //void ItemItem()
+        //{
+        //    Broadcast(room).OnItem(mono, PlayerName);
+        //}
 
         // ユーザがルームから退出する
         public async Task LeaveAsync()
