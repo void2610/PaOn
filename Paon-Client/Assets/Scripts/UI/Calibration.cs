@@ -26,7 +26,7 @@ public class Calibration : MonoBehaviour
 	[SerializeField]
 	RawImage[] Lamps;
 
-	Color green = new Color(0, 210, 50);
+	Color green = new Color(0, 50, 210);
 
 	[SerializeField]
 	private Visualizer _visualizer;
