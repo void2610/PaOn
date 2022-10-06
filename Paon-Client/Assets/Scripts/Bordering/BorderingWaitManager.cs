@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Paon.NPlayer;
+using Paon.NNetwork;
 using UnityEngine;
 
 namespace Paon.NBordering
@@ -52,7 +53,7 @@ namespace Paon.NBordering
                         .GetComponent<WaitAreaScript>()
                         .TeleportPlayer();
                     NowPeople++;
-                    client.GetComponent<Border>().StartBorder();
+                    client.GetComponent<BorderingClient>().StartBorder();
                 }
             }
 

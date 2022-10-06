@@ -5,11 +5,11 @@ using MagicOnion.Client;
 using Paon.NNetWork.Shared.Services;
 using Paon.NNetwork.Shared.MessagePackObjects;
 using UnityEngine;
-using Paon.NNetwork;
+using Paon.NBordering;
 
-namespace Paon.NBordering
+namespace Paon.NNetwork
 {
-    public class Border : MonoBehaviour
+    public class BorderingClient : MonoBehaviour
     {
         [SerializeField]
         static GameObject Doll;

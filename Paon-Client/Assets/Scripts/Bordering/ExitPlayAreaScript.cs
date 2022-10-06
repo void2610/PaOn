@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Paon.NPlayer;
+using Paon.NNetwork;
 using UnityEngine;
 
 namespace Paon.NBordering
@@ -14,7 +15,6 @@ namespace Paon.NBordering
         void Start()
         {
             NextPosition = GameObject.Find("SpawnPositionAnchor");
-            BM = GameObject.Find("BorderingManager");
             client = GameObject.Find("BorderingClient");
         }
 
