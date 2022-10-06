@@ -20,7 +20,7 @@ namespace Paon.NNetwork.Hubs
         Player self;
 
         //ルーム内でのItemの情報
-        Item[] mono;
+        Item mono;
 
         // ルームに入室しているユーザ全員（自分も含む）の情報を保持して扱うための変数
         IInMemoryStorage<Player> storage;
@@ -37,7 +37,7 @@ namespace Paon.NNetwork.Hubs
 
             Console.WriteLine(storage.AllValues.ToArray().Length);
 
-            if (storage.AllValues.ToArray().Length == 0)
+            if (storage.AllValues.ToArray().Length == 1)
             {
                 Broadcast(room).FiastPlayer();
             }
@@ -60,9 +60,11 @@ namespace Paon.NNetwork.Hubs
             Broadcast(room).OnLeave(self);
         }
 
-        public async Task ItemJoin(string name, Vector3 position, Quaternion rotation, int i)
+        public async Task ItemJoin(string name, Vector3 position, Quaternion rotation, string roomName)
         {
-            mono[i] = new Item() { Name = name, Position = position, Rotation = rotation };
+            mono = new Item() { Name = name, Position = position, Rotation = rotation };
+
+            (room, memory) = await Group.AddAsync(roomName, mono);
         }
 
         // ユーザがルームの中で動く
@@ -79,15 +81,15 @@ namespace Paon.NNetwork.Hubs
             Broadcast(room).OnMove(self);
         }
 
-        public async Task ItemAsync(string name, Vector3 position, Quaternion rotation, int i)
+        public async Task ItemAsync(string name, Vector3 position, Quaternion rotation)
         {
             Console.WriteLine(name);
 
-            mono[i].Name = name;
-            mono[i].Position = position;
-            mono[i].Rotation = rotation;
+            mono.Name = name;
+            mono.Position = position;
+            mono.Rotation = rotation;
             
-            Broadcast(room).OnItem(mono[i]);
+            Broadcast(room).OnItem(mono);
         }
 
         public async Task FaceAsync(int FaceID)

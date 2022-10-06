@@ -26,7 +26,7 @@ namespace Paon.NNetwork
 						0.05f
 				)
 				{
-				client.GetComponent<GameClient>().SendMovingObject(Holdables[i], i);
+				client.GetComponent<GameClient>().SendMovingObject(Holdables[i]);
 				}
 			}
 		}

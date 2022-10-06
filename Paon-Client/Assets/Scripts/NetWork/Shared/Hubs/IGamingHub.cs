@@ -25,9 +25,9 @@ namespace Paon.NNetwork.Shared.Hubs
         Task<Player[]> JoinAsync(string roomName, string userName, Vector3 _body, Vector3 _right, Vector3 _left, Quaternion rotation, float Red, float Blue, float Green);
         Task LeaveAsync();
         Task MoveAsync(Vector3 _body, Vector3 _right, Vector3 _left, Quaternion rotation);
-        Task ItemAsync(string name, Vector3 position, Quaternion rotation, int i);
+        Task ItemAsync(string name, Vector3 position, Quaternion rotation);
         Task FaceAsync(int FaceID);
         Task TimeAsync(string name, float time);
-        Task ItemJoin(string name, Vector3 position, Quaternion rotation, int i);
+        Task ItemJoin(string name, Vector3 position, Quaternion rotation, string roomName);
     }
 }

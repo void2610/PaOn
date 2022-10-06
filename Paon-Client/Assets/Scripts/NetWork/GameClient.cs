@@ -81,7 +81,7 @@ namespace Paon.NNetwork
             return doll;
         }
 
-        public void SendMovingObject(GameObject _item, int i)
+        public void SendMovingObject(GameObject _item)
         {
             Vector3 pos = _item.transform.position;
             Quaternion rot = _item.transform.rotation;
@@ -91,7 +91,7 @@ namespace Paon.NNetwork
             //Debug.Log(pos);
             //Debug.Log(rot);
 
-            client.ItemAsync (name, pos, rot, i);
+            client.ItemAsync (name, pos, rot);
         }
 
         // Update is called once per frame
