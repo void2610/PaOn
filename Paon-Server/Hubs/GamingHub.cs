@@ -31,16 +31,13 @@ namespace Paon.NNetwork.Hubs
         // 入室するルーム名及び、ユーザ自身の情報(ユーザ名,位置(Vector3),回転(Quaternion)) を引数に取る
         public async Task<Player[]> JoinAsync(string roomName, string userName, Vector3 _body, Vector3 _right, Vector3 _left, Quaternion rotation, float Red, float Blue, float Green)
         {
-            self = new Player() { Name = userName, BodyPosition = _body, RightPosition = _right, LeftPosition = _left, Rotation = rotation, red = Red, blue = Blue, green = Green};
+            self = new Player() { Name = userName, BodyPosition = _body, RightPosition = _right, LeftPosition = _left, Rotation = rotation, red = Red, blue = Blue, green = Green, Flag = false};
             // ルームにユーザが入室する
             (room, storage) = await Group.AddAsync(roomName, self);
 
             Console.WriteLine(storage.AllValues.ToArray().Length);
 
-            if (storage.AllValues.ToArray().Length == 1)
-            {
-                Broadcast(room).FiastPlayer();
-            }
+            Broadcast(room).FiastPlayer();
 
             // ルームに入室している他ユーザ全員に
             // 入室したユーザの情報をブロードキャスト送信する
@@ -111,6 +108,24 @@ namespace Paon.NNetwork.Hubs
             Console.WriteLine("Goalした人がいるよ。");
 
             Broadcast(room).OnGoal(name, time);
+        }
+
+        public async Task FlagAsync()
+        {
+            self.Flag = true;
+
+            int Count = 0;
+            Player[] Flags = storage.AllValues.ToArray();
+
+            for (int i = 0; i < Flags.Length; i++)
+            {
+                if (Flags[i].Flag == true)
+                {
+                    Count++;
+                }
+            }
+            
+            Broadcast(room).BorderCount(Count);
         }
     }
 }

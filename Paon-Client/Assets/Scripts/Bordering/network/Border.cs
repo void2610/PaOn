@@ -5,8 +5,9 @@ using MagicOnion.Client;
 using Paon.NNetWork.Shared.Services;
 using Paon.NNetwork.Shared.MessagePackObjects;
 using UnityEngine;
+using Paon.NNetwork;
 
-namespace Paon.NNetwork
+namespace Paon.NBordering
 {
     public class Border : MonoBehaviour
     {
@@ -17,6 +18,8 @@ namespace Paon.NNetwork
                 body,
                 right,
                 left;
+
+        Player MyInfo;
 
         // プレイヤーの Transform (今回はメインカメラの Transform を指定)
         [SerializeField]
@@ -57,6 +60,8 @@ namespace Paon.NNetwork
             right = GameObject.Find("RightHand");
             left = GameObject.Find("LeftHand");
 
+            MyInfo = new Player { Name = m_UserName, Flag = false };
+
             // ゲーム起動時に設定した部屋名のルームに設定したユーザ名で入室する。
             await this
                 .client
@@ -94,6 +99,11 @@ namespace Paon.NNetwork
             await this.client.LeaveAsync();
             await this.client.DisposeAsync();
             await this.channel.ShutdownAsync();
+        }
+
+        public void StartBorder()
+        {
+            client.FlagAsync();
         }
     }
 }

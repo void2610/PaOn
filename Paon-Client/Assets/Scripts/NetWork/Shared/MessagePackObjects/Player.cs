@@ -15,6 +15,7 @@ namespace Paon.NNetwork.Shared.MessagePackObjects
         [Key(6)] public float red { get; set; }
         [Key(7)] public float blue { get; set; }
         [Key(8)] public float green { get; set; }
+        [Key(9)] public bool Flag { get; set; }
     }
 
     [MessagePackObject]

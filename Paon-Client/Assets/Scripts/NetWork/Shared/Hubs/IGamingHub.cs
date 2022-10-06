@@ -17,6 +17,7 @@ namespace Paon.NNetwork.Shared.Hubs
         void OnGoal(string name, float time);
         void ChengeFace(Player player, int FaceID);
         void FiastPlayer();
+        void BorderCount(int Count);
     }
 
     // クライアントがサーバ側で gRPC 実行可能な関数を定義する
@@ -29,5 +30,6 @@ namespace Paon.NNetwork.Shared.Hubs
         Task FaceAsync(int FaceID);
         Task TimeAsync(string name, float time);
         Task ItemJoin(string name, Vector3 position, Quaternion rotation, string roomName);
+        Task FlagAsync();
     }
 }

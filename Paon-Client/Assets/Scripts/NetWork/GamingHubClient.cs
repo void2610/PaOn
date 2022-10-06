@@ -5,6 +5,7 @@ using MagicOnion.Client;
 using Paon.NNetwork.Shared.Hubs;
 using Paon.NNetwork.Shared.MessagePackObjects;
 using UnityEngine;
+using Paon.NBordering;
 using UnityEngine.UI;
 
 namespace Paon.NNetwork
@@ -13,6 +14,8 @@ namespace Paon.NNetwork
     {
         GameObject[] _item;
         int ItemLenght, n = 1;
+
+        GameObject BorderWait = GameObject.Find("BorderingWaitManager");
 
         //public GameObject[] Dolls = new GameObject[8];
         // 部屋に参加しているユーザ全員の GameObject (アバター)を保持する
@@ -120,6 +123,10 @@ namespace Paon.NNetwork
             return client.TimeAsync(name, time);
         }
 
+        public Task FlagAsync()
+        {
+            return client.FlagAsync();
+        }
 
         // 部屋に新しいユーザが入室したときに呼び出される関数
         // または ConnectAsync 関数を実行したときに呼び出される関数
@@ -268,9 +275,20 @@ namespace Paon.NNetwork
             }
         }
 
-        //void IGamingHubReceiver.ItemItem(Item item)
-        //{
+        void IGamingHubReceiver.BorderCount(int Count)
+        {
+            bool Flags;
 
-        //}
+            if(Count > 2)
+            {
+                Flags = false;
+            }
+            else
+            {
+                Flags = true;
+            }
+
+            BorderWait.GetComponent<BorderingWaitManager>().FlagCheck(Flags);
+        }
     }
 }

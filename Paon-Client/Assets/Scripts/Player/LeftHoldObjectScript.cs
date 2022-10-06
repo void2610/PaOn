@@ -81,6 +81,8 @@ namespace Paon.NPlayer
                         RigidbodyConstraints.None;
                     oh.NowHoldObject.GetComponent<Rigidbody>().useGravity =
                         true;
+
+
                 }
                 oh.UnHold();
             }
