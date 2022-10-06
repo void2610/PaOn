@@ -126,11 +126,11 @@ public class Calibration : MonoBehaviour
 	{
 		yield return new WaitForSeconds(3);
 		message.text = splitText[2];
-		float[] buffer = new float[60];
+		float[] buffer = new float[200];
 		float delta, result;
 		bool go = false;
 		while (leftScore < 0.7f && rightScore < 0.7f) yield return null;
-		for (int i = 0; i < 30; i++)
+		for (int i = 0; i < 150; i++)
 		{
 			if (leftScore > 0.7f && rightScore > 0.7f)
 			{
