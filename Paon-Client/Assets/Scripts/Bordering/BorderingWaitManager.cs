@@ -28,11 +28,12 @@ namespace Paon.NBordering
             WaitAreas[1] = GameObject.Find("WaitArea2");
             WaitAreas[2] = GameObject.Find("WaitArea3");
             client = GameObject.Find("Border");
-            client.GetComponent<Border>().CheckBorder();
         }
 
         void Update()
         {
+            client.GetComponent<Border>().CheckBorder();
+
             if (NowPeople < MaxPeople)
             {
                 //人数に空きがあって、待機エリアに人がいる場合、プレイ中にしてテレポートさせる
