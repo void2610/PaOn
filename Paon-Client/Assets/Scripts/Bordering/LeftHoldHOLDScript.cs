@@ -69,6 +69,7 @@ namespace Paon.NBordering
 						GetComponent<AudioSource>().PlayOneShot(SE);
 						bts.StartTimer();
 						Player.GetComponent<Rigidbody>().useGravity = false;
+						StopCoroutine(nameof(GravityFall));
 						bodyBase = Player.transform.position;
 					}
 				}
