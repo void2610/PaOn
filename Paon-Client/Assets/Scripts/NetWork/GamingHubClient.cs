@@ -110,9 +110,9 @@ namespace Paon.NNetwork
             return client.FaceAsync(FaceID);
         }
 
-        public Task ItemAsync(string name, Vector3 position, Quaternion rotation)
+        public Task ItemAsync(string name, Vector3 position, Quaternion rotation, string PlayerName)
         {
-            return client.ItemAsync(name, position, rotation);
+            return client.ItemAsync(name, position, rotation, PlayerName);
         }
 
         public Task TimeAsync(string name, float time)
@@ -162,9 +162,9 @@ namespace Paon.NNetwork
                 players[player.Name] = doll;
 
                 //マテリアルを適用
-                players[player.Name].transform.GetChild(0).gameObject.GetComponent<Renderer>().material = skin;
-                players[player.Name].transform.GetChild(1).gameObject.GetComponent<Renderer>().material = skin;
-                players[player.Name].transform.GetChild(2).gameObject.GetComponent<Renderer>().material = skin;
+                doll.transform.GetChild(0).gameObject.GetComponent<Renderer>().material = skin;
+                doll.transform.GetChild(1).gameObject.GetComponent<Renderer>().material = skin;
+                doll.transform.GetChild(2).gameObject.GetComponent<Renderer>().material = skin;
             }
 
             Debug.Log("login:" + player.Name + ":" + n);
@@ -217,15 +217,19 @@ namespace Paon.NNetwork
             }
         }
 
-        void IGamingHubReceiver.OnItem(Item item)
+        void IGamingHubReceiver.OnItem(Item item, string PlayerName)
         {
-            if (items.TryGetValue(item.Name, out var Items))
+            if (PlayerName != PlayerPrefs.GetString("Name", "NULLTYAN"))
             {
-                Items
-                    .transform
-                    .SetPositionAndRotation(item.Position, item.Rotation);
 
-                Debug.Log("untiiiii" + item.Name);
+                if (items.TryGetValue(item.Name, out var Items))
+                {
+                    Items
+                        .transform
+                        .SetPositionAndRotation(item.Position, item.Rotation);
+
+                    Debug.Log("untiiiii" + item.Name);
+                }
             }
         }
 
