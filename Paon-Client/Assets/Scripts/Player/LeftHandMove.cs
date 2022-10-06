@@ -63,7 +63,7 @@ namespace Paon.NPlayer
 					hand.transform.localPosition = new Vector3(coords.x / 70 - 3, -coords.y / 70 + 1, hand.transform.localPosition.z);
 				}
 				else
-					hand.transform.localPosition = new Vector3(-coords.x / 50 + 3, -coords.y / 70 + 1, hand.transform.localPosition.z);
+					hand.transform.localPosition = new Vector3(-coords.x / 50 + 3, -coords.y / 50 + 1, hand.transform.localPosition.z);
 			}
 		}
 	}
