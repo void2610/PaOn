@@ -81,7 +81,7 @@ namespace Paon.NNetwork.Hubs
 
         public async Task ItemAsync(string name, Vector3 position, Quaternion rotation, int i)
         {
-            Console.WriteLine("items");
+            Console.WriteLine(name);
 
             mono[i].Name = name;
             mono[i].Position = position;
