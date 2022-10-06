@@ -26,6 +26,7 @@ namespace Paon.NBordering
 
         void Update()
         {
+            Debug.Log (goalTime);
             if (!tmp && goaling)
             {
                 goalTime = Time.time;
@@ -57,7 +58,10 @@ namespace Paon.NBordering
                     .GetComponent<BorderingTimerScript>()
                     .Timer
                     .CountStop();
-                goaling = true;
+                if (Time.time - goalTime == 30)
+                {
+                    goaling = true;
+                }
             }
             else
             {
