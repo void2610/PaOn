@@ -37,7 +37,7 @@ public class WebCamInput : MonoBehaviour
 	void Update()
 	{
 		if (!webCamTexture.didUpdateThisFrame) return;
-		if (Input.GetKey("space")) { SetCamera(index); }
+		if (Input.GetKey("space")) { SetCamera(); }
 		if (!webCamTexture.isPlaying) webCamTexture.Play();
 
 		var aspect1 = (float)webCamTexture.width / webCamTexture.height;
@@ -56,21 +56,23 @@ public class WebCamInput : MonoBehaviour
 	// 	SetCamera(0);
 	// }
 
-	void SetCamera(int idx)
+	void SetCamera()
 	{
 		int length = WebCamTexture.devices.Length;
+		Debug.Log("length" + length);
 		if (length == 0) return;
 		try
 		{
 			webCamTexture.Stop();
 		}
 		catch { }
-		idx++;
-		if (idx == length) idx = 0;
-		webCamTexture = new WebCamTexture(WebCamTexture.devices[idx % length].name, (int)webCamResolution.x, (int)webCamResolution.y);
+		index++;
+		if (index == length) index = 0;
+		Debug.Log("idx" + index);
+		webCamTexture = new WebCamTexture(WebCamTexture.devices[index].name, (int)webCamResolution.x, (int)webCamResolution.y, 30);
 		webCamTexture.Play();
 
-		Debug.Log(idx + ": " + WebCamTexture.devices[idx % length].name);
+		Debug.Log(index + ": " + WebCamTexture.devices[index].name);
 
 		inputRT = new RenderTexture((int)webCamResolution.x, (int)webCamResolution.y, 0);
 	}
