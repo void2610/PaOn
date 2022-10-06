@@ -135,7 +135,7 @@ public class Calibration : MonoBehaviour
 			yield return null;
 		}
 		result = buffer.Average();
-		result /= 2;
+		result += result * 0.1f;
 		gk.closeThreshold = result;
 		PlayerPrefs.SetFloat("CloseThreshold", result);
 		Debug.Log("CloseThreshold is determined");
