@@ -23,7 +23,7 @@ namespace Paon.NNetwork
 			{
 				if (
 						Holdables[i].GetComponent<Rigidbody>().velocity.magnitude >
-						0.25f
+						0.05f
 				)
 				{
 				client.GetComponent<GameClient>().SendMovingObject(Holdables[i]);

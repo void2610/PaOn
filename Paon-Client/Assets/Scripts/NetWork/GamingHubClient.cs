@@ -219,7 +219,9 @@ namespace Paon.NNetwork
 
         void IGamingHubReceiver.OnItem(Item item, string PlayerName)
         {
-            if (PlayerName != PlayerPrefs.GetString("Name", "aaa"))
+            Debug.Log("NameName" + PlayerName);
+
+            if (PlayerName != PlayerPrefs.GetString("Name", "aoaoaoaoaoo"))
             {
                 if (items.TryGetValue(item.Name, out var Items))
                 {
@@ -265,5 +267,10 @@ namespace Paon.NNetwork
                 client.ItemJoin(_item[i].name, _item[i].transform.position , _item[i].transform.rotation, PlayerPrefs.GetString("Room", "MAIGO"));
             }
         }
+
+        //void IGamingHubReceiver.ItemItem(Item item)
+        //{
+
+        //}
     }
 }
