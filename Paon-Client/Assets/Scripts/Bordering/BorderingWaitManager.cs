@@ -16,14 +16,14 @@ namespace Paon.NBordering
 
         public GameObject[] WaitAreas = new GameObject[3];
 
-        public GameObject client;
+        private GameObject client;
 
         void Start()
         {
             WaitAreas[0] = GameObject.Find("WaitArea1");
             WaitAreas[1] = GameObject.Find("WaitArea2");
             WaitAreas[2] = GameObject.Find("WaitArea3");
-            client = GameObject.Find("BorderingClient");
+            client = GameObject.Find("GameClient");
             client.GetComponent<BorderingClient>().CheckBorder();
         }
 
