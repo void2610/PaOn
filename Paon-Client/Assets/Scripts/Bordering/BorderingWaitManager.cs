@@ -7,7 +7,7 @@ namespace Paon.NBordering
 {
     public class BorderingWaitManager : MonoBehaviour
     {
-        bool Flags;
+        bool Flag;
 
         public int NowPeople = 0;
 
@@ -17,9 +17,9 @@ namespace Paon.NBordering
 
         private GameObject client;
 
-        public void FlagCheck(bool Flag)
+        public void FlagCheck(bool Flags)
         {
-            Flags = Flag;
+            Flag = Flags;
         }
 
         void Start()
@@ -28,6 +28,7 @@ namespace Paon.NBordering
             WaitAreas[1] = GameObject.Find("WaitArea2");
             WaitAreas[2] = GameObject.Find("WaitArea3");
             client = GameObject.Find("Border");
+            client.GetComponent<Border>().CheckBorder();
         }
 
         void Update()
@@ -37,7 +38,7 @@ namespace Paon.NBordering
                 //人数に空きがあって、待機エリアに人がいる場合、プレイ中にしてテレポートさせる
                 if (
                     WaitAreas[0].GetComponent<WaitAreaScript>().ReadyPlayer !=
-                    null && Flags == true
+                    null && Flag == true
                 )
                 {
                     WaitAreas[0]
@@ -51,7 +52,6 @@ namespace Paon.NBordering
                         .GetComponent<WaitAreaScript>()
                         .TeleportPlayer();
                     NowPeople++;
-
                     client.GetComponent<Border>().StartBorder();
                 }
             }

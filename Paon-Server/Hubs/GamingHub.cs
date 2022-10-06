@@ -110,11 +110,20 @@ namespace Paon.NNetwork.Hubs
             Broadcast(room).OnGoal(name, time);
         }
 
-        public async Task FlagAsync()
+        public async Task FlagAsync(int F)
         {
-            self.Flag = true;
-
             int Count = 0;
+
+            if (F == 1)
+            {
+                self.Flag = true;
+            }
+            else
+            if (F == 2)
+            {
+                self.Flag = false;
+            }
+
             Player[] Flags = storage.AllValues.ToArray();
 
             for (int i = 0; i < Flags.Length; i++)

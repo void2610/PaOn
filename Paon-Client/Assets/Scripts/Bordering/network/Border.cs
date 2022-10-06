@@ -101,9 +101,25 @@ namespace Paon.NBordering
             await this.channel.ShutdownAsync();
         }
 
+        public void CheckBorder()
+        {
+            int F = 0;
+
+            client.FlagAsync(F);
+        }
+
         public void StartBorder()
         {
-            client.FlagAsync();
+            int F = 1;
+
+            client.FlagAsync(F);
+        }
+
+        public void OutBorder()
+        {
+            int F = 2;
+
+            client.FlagAsync(F);
         }
     }
 }

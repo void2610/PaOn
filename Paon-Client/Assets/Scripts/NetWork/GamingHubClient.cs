@@ -123,9 +123,9 @@ namespace Paon.NNetwork
             return client.TimeAsync(name, time);
         }
 
-        public Task FlagAsync()
+        public Task FlagAsync(int F)
         {
-            return client.FlagAsync();
+            return client.FlagAsync(F);
         }
 
         // 部屋に新しいユーザが入室したときに呼び出される関数
@@ -287,6 +287,8 @@ namespace Paon.NNetwork
             {
                 Flags = true;
             }
+
+            Debug.Log(Flags);
 
             BorderWait.GetComponent<BorderingWaitManager>().FlagCheck(Flags);
         }
