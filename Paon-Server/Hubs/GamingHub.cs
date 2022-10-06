@@ -103,7 +103,7 @@ namespace Paon.NNetwork.Hubs
             mono.Rotation = rotation;
 
             Console.WriteLine(mono.Name);
-            Console.WriteLine(mono);
+            // Console.WriteLine(mono);
 
             Broadcast(room).OnItem(mono, PlayerName);
         }

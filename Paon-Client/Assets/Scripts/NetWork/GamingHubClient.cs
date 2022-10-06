@@ -221,7 +221,7 @@ namespace Paon.NNetwork
         {
             Debug.Log("NameName" + PlayerName);
 
-            if (PlayerName != PlayerPrefs.GetString("Name", "aaa"))
+            if (PlayerName != PlayerPrefs.GetString("Name", "aoaoaoaoaoo"))
             {
                 if (items.TryGetValue(item.Name, out var Items))
                 {
@@ -268,9 +268,9 @@ namespace Paon.NNetwork
             }
         }
 
-        void IGamingHubReceiver.ItemItem(Item item)
-        {
+        //void IGamingHubReceiver.ItemItem(Item item)
+        //{
 
-        }
+        //}
     }
 }
