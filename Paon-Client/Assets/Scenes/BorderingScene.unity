@@ -28952,6 +28952,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5013851560433931615}
+  - component: {fileID: 5013851560433931616}
   m_Layer: 0
   m_Name: Commorose
   m_TagString: Untagged
@@ -28978,6 +28979,22 @@ Transform:
   m_Father: {fileID: 3960748480881299557}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &5013851560433931616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5013851560433931614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c636683cb1fa4949a3e3fcd757c3494, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visualizer: {fileID: 1594043741}
+  gk: {fileID: 3255128322117545191}
+  threshhold: 70
+  Open: 0
 --- !u!1 &5013851560755073799
 GameObject:
   m_ObjectHideFlags: 0
@@ -30451,7 +30468,7 @@ MonoBehaviour:
   e4: {fileID: 2100000, guid: 92f48db6f0fe6fb4083b76250f791242, type: 2}
   e5: {fileID: 2100000, guid: 03d2a4ecf0151634b9098384a96aa5d1, type: 2}
   isSelecting: 0
-  co: {fileID: 0}
+  co: {fileID: 5013851560433931616}
 --- !u!1 &5284321876750944317
 GameObject:
   m_ObjectHideFlags: 0

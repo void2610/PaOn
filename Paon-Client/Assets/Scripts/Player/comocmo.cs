@@ -16,7 +16,7 @@ public class comocmo : MonoBehaviour
 	[SerializeField]
 	GetKeypoints.Keypoint left, right, nose;
 
-	public float threshhold = 10f;
+	public float threshhold = 70f;
 
 	public bool Open = false;
 
