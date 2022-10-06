@@ -120,7 +120,7 @@ namespace Paon.NInput
 		private int leftCloseOrOpen(Vector3[] finger)
 		{
 			distance = Vector3.Distance(finger[0], finger[12]);
-			if (distance < closeThreshold && leftScore > 0.7f)
+			if (distance < closeThreshold + closeThreshold * 0.1f && leftScore > 0.7f)
 			{
 				return 1;
 			}
