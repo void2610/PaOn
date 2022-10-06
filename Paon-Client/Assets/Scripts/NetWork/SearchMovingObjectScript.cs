@@ -8,11 +8,12 @@ namespace Paon.NNetwork
 	{
 		GameObject[] Holdables;
 
-		private GameClient client = new GameClient();
+		private GameObject client;
 
 		void Start()
 		{
 			Holdables = GameObject.FindGameObjectsWithTag("HoldableTag");
+			client = GameObject.Find("GameClient");
 		}
 
 		// Update is called once per frame
@@ -25,7 +26,7 @@ namespace Paon.NNetwork
 						0.05f
 				)
 				{
-				client.SendMovingObject(Holdables[i], i);
+				client.GetComponent<GameClient>().SendMovingObject(Holdables[i], i);
 				}
 			}
 		}

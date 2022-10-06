@@ -30,7 +30,7 @@ public class SelectEmojiScript : MonoBehaviour
         Now = GameObject.Find("NowEmoji");
         GC = GameObject.Find("GameClient");
         select = 1;
-        GC.GetComponent<GameClient>().SendFaceID(select);
+        //GC.GetComponent<GameClient>().SendFaceID(select);
     }
 
     // Update is called once per frame
