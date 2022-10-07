@@ -7,7 +7,7 @@ namespace Paon.NNaturePlay
 {
     public class FixObjectScript : MonoBehaviour
     {
-        void OnTriggerStay(Collider other)
+        void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.tag == "HoldableTag")
             {
@@ -18,6 +18,16 @@ namespace Paon.NNaturePlay
                     new Vector3(90,
                         other.gameObject.transform.eulerAngles.y,
                         -90);
+            }
+        }
+
+        void OnTriggerExit(Collider other)
+        {
+            if (other.gameObject.tag == "HoldableTag")
+            {
+                other.gameObject.GetComponent<Rigidbody>().constraints =
+                    RigidbodyConstraints.None;
+                other.gameObject.GetComponent<Rigidbody>().useGravity = true;
             }
         }
     }
