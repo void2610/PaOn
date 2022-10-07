@@ -12,6 +12,8 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
+[Uu]serSettings
+
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
 # ===================================== #
