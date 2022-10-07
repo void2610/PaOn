@@ -20,8 +20,6 @@ namespace Paon.NBordering
 
         private float goalTime = -30.0f;
 
-        private float transferTime = 1.5f;
-
         private float goalCooldown = 30.0f;
 
         void Start()
@@ -48,18 +46,6 @@ namespace Paon.NBordering
                     .CountStop();
                 Player.transform.position = GoalPosition.transform.position;
             }
-
-            // if (Time.time - goalTime <= transferTime)
-            // {
-            //     if (Time.time - goalTime == transferTime)
-            //     {
-            //         goalTime = -10.0f;
-            //     }
-            //     else
-            //     {
-            //         Player.transform.Translate(0, 0.1f, 0.1f);
-            //     }
-            // }
             tmp = goaling;
         }
 

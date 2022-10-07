@@ -112,6 +112,8 @@ namespace Paon.NNetwork.Hubs
 
         public async Task FlagAsync(int F)
         {
+            Console.WriteLine(F);
+
             int Count = 0;
 
             if (F == 1)
@@ -125,6 +127,8 @@ namespace Paon.NNetwork.Hubs
             }
 
             Player[] Flags = storage.AllValues.ToArray();
+
+            Console.WriteLine(Flags[3].Name);
 
             for (int i = 0; i < Flags.Length; i++)
             {

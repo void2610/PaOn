@@ -123,14 +123,16 @@ namespace Paon.NNetwork
 			return client.TimeAsync(name, time);
 		}
 
-		// public Task FlagAsync(int F)
-		// {
-		// 	return client.FlagAsync(F);
-		// }
+        public Task FlagAsync(int F)
+        {
+			Debug.Log("aaaaaaaa" + F);
 
-		// 部屋に新しいユーザが入室したときに呼び出される関数
-		// または ConnectAsync 関数を実行したときに呼び出される関数
-		void IGamingHubReceiver.OnJoin(Player player, float Red, float Blue, float Green)
+            return client.FlagAsync(F);
+        }
+
+        // 部屋に新しいユーザが入室したときに呼び出される関数
+        // または ConnectAsync 関数を実行したときに呼び出される関数
+        void IGamingHubReceiver.OnJoin(Player player, float Red, float Blue, float Green)
 		{
 			// ユーザの GameObject (アバター)を Player 情報を元に生成して
 			// this.players に player.Name をキーにして保持する
@@ -277,6 +279,8 @@ namespace Paon.NNetwork
 
 		void IGamingHubReceiver.BorderCount(int Count)
 		{
+			Debug.Log("Count: ");
+
 			BorderWait = GameObject.Find("GameClient");
 
 			Debug.Log("Count: " + Count);
