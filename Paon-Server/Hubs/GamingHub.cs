@@ -38,8 +38,8 @@ namespace Paon.NNetwork.Hubs
 
             //Console.WriteLine(storage.AllValues.ToArray().Length);
 
-            Console.WriteLine(Flags.Length);
-            Console.WriteLine(Flags[0].Flag);
+            //Console.WriteLine(Flags.Length);
+            //Console.WriteLine(Flags[0].Flag);
 
             Broadcast(room).FiastPlayer();
 

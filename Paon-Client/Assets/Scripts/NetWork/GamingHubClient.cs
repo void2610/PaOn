@@ -46,7 +46,7 @@ namespace Paon.NNetwork
 		public async Task<GameObject>
 		ConnectAsync(Channel grpcChannel, string roomName, string playerName, float Red, float Blue, float Green)
 		{
-			//Debug.Log("aaaaaaaGreeeeeeen" + Green);
+			Debug.Log("aaaaaaaGreeeeeeen" + roomName);
 			// サーバ側の関数を実行するための StreamingHubClient を生成する
 			client =
 					StreamingHubClient
@@ -123,11 +123,11 @@ namespace Paon.NNetwork
 			return client.TimeAsync(name, time);
 		}
 
-        public Task FlagAsync(int F)
+        public Task FlagAsync(int Mode)
         {
 			//Debug.Log("aaaaaaaa" + F);
 
-            return client.FlagAsync(F);
+            return client.FlagAsync(Mode);
         }
 
         // 部屋に新しいユーザが入室したときに呼び出される関数
@@ -143,11 +143,11 @@ namespace Paon.NNetwork
 
 				string r = PlayerPrefs.GetString("Room", "none");
 
-				if(r == "Nature1" || r == "Nature2")
+				if( r == "Nature1" || r == "Nature2" )
 				{
 					doll = GameClient.MakeDolls(player);
 				}
-				else if(r == "Bordering1" || r == "Bordering2")
+				else if( r == "Bordering1" || r == "Bordering2" )
                 {
 					doll = BorderingClient.MakeDolls(player);
 				}
@@ -251,7 +251,7 @@ namespace Paon.NNetwork
 							.transform
 							.SetPositionAndRotation(item.Position, item.Rotation);
 
-					Debug.Log("untiiiii" + item.Name);
+					//Debug.Log("ItemName:" + item.Name);
 				}
 			}
 		}
