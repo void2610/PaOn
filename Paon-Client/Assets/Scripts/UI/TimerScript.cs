@@ -8,17 +8,17 @@ namespace Paon.NUI
 {
     public class TimerScript : MonoBehaviour
     {
-        float time = 0.0f;
+        private GameObject GoalText;
+
+        private GameObject client;
+
+        private float time = 0.0f;
 
         public bool counting = false;
 
         public bool display = false;
 
-        float cooldown = Mathf.Infinity;
-
-        GameObject GoalText;
-
-        private GameObject client;
+        private float cooldown = Mathf.Infinity;
 
         public void CountStart()
         {
@@ -62,7 +62,8 @@ namespace Paon.NUI
                     GoalText.GetComponent<Text>().text = "ゴール！";
 
                     client
-                        .GetComponent<GamingHubClient>().TimeAsync(PlayerPrefs.GetString("Name", "NULLTYAN"),
+                        .GetComponent<GamingHubClient>()
+                        .TimeAsync(PlayerPrefs.GetString("Name", "NULLTYAN"),
                         time);
                 }
             }
