@@ -35,9 +35,9 @@ public class WebCamInput : MonoBehaviour
 
 	void Update()
 	{
+		if (!webCamTexture.isPlaying) webCamTexture.Play();
 		if (!webCamTexture.didUpdateThisFrame) return;
 		if (Input.GetKey("space")) { SetCamera(); }
-		if (!webCamTexture.isPlaying) webCamTexture.Play();
 
 		var aspect1 = (float)webCamTexture.width / webCamTexture.height;
 		var aspect2 = (float)inputRT.width / inputRT.height;
