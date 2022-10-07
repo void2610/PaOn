@@ -160,7 +160,7 @@ namespace Paon.NNetwork
 				Material skin = (Material)Resources.Load("Materials/Doll" + n + "Material");
 				n++;
 
-				Debug.Log("akfjhljshf" + Red);
+				//Debug.Log("akfjhljshf" + Red);
 
 				//マテリアルの色変更
 				skin.color = new Color(Red, Green, Blue);
@@ -241,7 +241,7 @@ namespace Paon.NNetwork
 
 		void IGamingHubReceiver.OnItem(Item item, string PlayerName)
 		{
-			Debug.Log("NameName" + PlayerName);
+			//Debug.Log("NameName" + PlayerName);
 
 			if (PlayerName != PlayerPrefs.GetString("Name", "aoaoaoaoaoo"))
 			{
