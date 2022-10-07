@@ -277,7 +277,7 @@ namespace Paon.NNetwork
 
 		void IGamingHubReceiver.BorderCount(int Count)
 		{
-			BorderWait = GameObject.Find("BorderingWaitManager");
+			BorderWait = GameObject.Find("GameClient");
 
 			Debug.Log("Count: " + Count);
 
