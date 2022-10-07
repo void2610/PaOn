@@ -23,8 +23,6 @@ namespace Paon.NNaturePlay
 
         private float endTime = -6.0f;
 
-        private bool startSave = false;
-
         private bool log = false;
 
         public bool display = false;
