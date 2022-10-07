@@ -16,6 +16,7 @@ namespace Paon.NNetwork
 		int ItemLenght, n = 1;
 
 		GameObject BorderWait;
+		GameObject WaitArea;
 
 		//public GameObject[] Dolls = new GameObject[8];
 		// 部屋に参加しているユーザ全員の GameObject (アバター)を保持する
@@ -46,7 +47,7 @@ namespace Paon.NNetwork
 		public async Task<GameObject>
 		ConnectAsync(Channel grpcChannel, string roomName, string playerName, float Red, float Blue, float Green)
 		{
-			//Debug.Log("aaaaaaaGreeeeeeen" + Green);
+			Debug.Log("aaaaaaaGreeeeeeen" + roomName);
 			// サーバ側の関数を実行するための StreamingHubClient を生成する
 			client =
 					StreamingHubClient
@@ -123,11 +124,11 @@ namespace Paon.NNetwork
 			return client.TimeAsync(name, time);
 		}
 
-        public Task FlagAsync(int F)
+        public Task FlagAsync(int Mode)
         {
 			//Debug.Log("aaaaaaaa" + F);
 
-            return client.FlagAsync(F);
+            return client.FlagAsync(Mode);
         }
 
         // 部屋に新しいユーザが入室したときに呼び出される関数
@@ -143,16 +144,19 @@ namespace Paon.NNetwork
 
 				string r = PlayerPrefs.GetString("Room", "none");
 
-				if(r == "Nature1" || r == "Nature2")
+				if( r == "Nature1" || r == "Nature2" )
 				{
+					Debug.Log(player.Name);
+
 					doll = GameClient.MakeDolls(player);
 				}
-				else if(r == "Bordering1" || r == "Bordering2")
+				else if( r == "Bordering1" || r == "Bordering2" )
                 {
 					doll = BorderingClient.MakeDolls(player);
 				}
 
-				
+				players[player.Name] = doll;
+
 				GameObject _body = doll.transform.GetChild(0).gameObject;
 				GameObject _left = doll.transform.GetChild(1).gameObject;
 				GameObject _right = doll.transform.GetChild(2).gameObject;
@@ -160,7 +164,7 @@ namespace Paon.NNetwork
 				Material skin = (Material)Resources.Load("Materials/Doll" + n + "Material");
 				n++;
 
-				Debug.Log("akfjhljshf" + Red);
+				//Debug.Log("akfjhljshf" + Red);
 
 				//マテリアルの色変更
 				skin.color = new Color(Red, Green, Blue);
@@ -181,7 +185,6 @@ namespace Paon.NNetwork
 						.transform
 						.SetPositionAndRotation(player.LeftPosition,
 						player.Rotation);
-				players[player.Name] = doll;
 
 				//マテリアルを適用
 				doll.transform.GetChild(0).gameObject.GetComponent<Renderer>().material = skin;
@@ -241,7 +244,7 @@ namespace Paon.NNetwork
 
 		void IGamingHubReceiver.OnItem(Item item, string PlayerName)
 		{
-			Debug.Log("NameName" + PlayerName);
+			//Debug.Log("NameName" + PlayerName);
 
 			if (PlayerName != PlayerPrefs.GetString("Name", "aoaoaoaoaoo"))
 			{
@@ -251,7 +254,7 @@ namespace Paon.NNetwork
 							.transform
 							.SetPositionAndRotation(item.Position, item.Rotation);
 
-					Debug.Log("untiiiii" + item.Name);
+					//Debug.Log("ItemName:" + item.Name);
 				}
 			}
 		}
@@ -296,7 +299,7 @@ namespace Paon.NNetwork
 
 			bool flag;
 
-			if (Count < 3)
+			if (Count == 0)
 			{
 				flag = true;
 			}
@@ -307,6 +310,7 @@ namespace Paon.NNetwork
 
 			Debug.Log(flag);
 
+			BorderWait.GetComponent<BorderingWaitManager>().KindCheck(Count);
 			BorderWait.GetComponent<BorderingWaitManager>().FlagCheck(flag);
 		}
 	}

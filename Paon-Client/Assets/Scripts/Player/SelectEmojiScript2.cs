@@ -29,7 +29,7 @@ namespace Paon.NPlayer
 		public bool isSelecting = false;
 
 		[SerializeField]
-		comocmo co;
+		OpenCommorose oc;
 
 		void Start()
 		{
@@ -43,7 +43,7 @@ namespace Paon.NPlayer
 
 		void Update()
 		{
-			isSelecting = co.Open;
+			isSelecting = oc.Open;
 			if (Input.GetKeyDown(KeyCode.Z))
 			{
 				isSelecting = true;
@@ -51,7 +51,7 @@ namespace Paon.NPlayer
 			if (Input.GetKeyDown(KeyCode.X))
 			{
 				isSelecting = false;
-				co.Open = isSelecting;
+				oc.Open = isSelecting;
 			}
 			if (isSelecting)
 			{

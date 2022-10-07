@@ -38,8 +38,8 @@ namespace Paon.NNetwork.Hubs
 
             //Console.WriteLine(storage.AllValues.ToArray().Length);
 
-            Console.WriteLine(Flags.Length);
-            Console.WriteLine(Flags[0].Flag);
+            //Console.WriteLine(Flags.Length);
+            //Console.WriteLine(Flags[0].Flag);
 
             Broadcast(room).FiastPlayer();
 
@@ -146,5 +146,15 @@ namespace Paon.NNetwork.Hubs
 
             Broadcast(room).BorderCount(Count);
         }
+
+        //public int CountPlayer()
+        //{
+        //    int Count;
+
+        //    Flags = storage.AllValues.ToArray();
+        //    Count = Flags.Length;
+
+        //    return Count;
+        //}
     }
 }

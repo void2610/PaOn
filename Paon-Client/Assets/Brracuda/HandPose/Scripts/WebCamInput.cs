@@ -27,11 +27,10 @@ public class WebCamInput : MonoBehaviour
 
 	void Start()
 	{
-		webCamTexture = new WebCamTexture(webCamName, (int)webCamResolution.x, (int)webCamResolution.y, 30);
-		if (!webCamTexture.isPlaying) webCamTexture.Play();
+		webCamTexture = new WebCamTexture(webCamName, (int)webCamResolution.x, (int)webCamResolution.y, 60);
+		webCamTexture.Play();
 
 		inputRT = new RenderTexture((int)webCamResolution.x, (int)webCamResolution.y, 0);
-		DontDestroyOnLoad(gameObject);
 	}
 
 	void Update()
@@ -51,11 +50,6 @@ public class WebCamInput : MonoBehaviour
 		Graphics.Blit(webCamTexture, inputRT, scale, offset);
 	}
 
-	// void OnEnable()
-	// {
-	// 	SetCamera();
-	// }
-
 	void SetCamera()
 	{
 		int length = WebCamTexture.devices.Length;
@@ -69,7 +63,7 @@ public class WebCamInput : MonoBehaviour
 		index++;
 		if (index == length) index = 0;
 		Debug.Log("idx" + index);
-		webCamTexture = new WebCamTexture(WebCamTexture.devices[index].name, (int)webCamResolution.x, (int)webCamResolution.y, 30);
+		webCamTexture = new WebCamTexture(WebCamTexture.devices[index].name, (int)webCamResolution.x, (int)webCamResolution.y, 60);
 		webCamTexture.Play();
 
 		Debug.Log(index + ": " + WebCamTexture.devices[index].name);
@@ -79,7 +73,11 @@ public class WebCamInput : MonoBehaviour
 
 	void OnDestroy()
 	{
-		if (webCamTexture != null) Destroy(webCamTexture);
+		if (webCamTexture != null)
+		{
+			webCamTexture.Stop();
+			Destroy(webCamTexture);
+		}
 		if (inputRT != null) Destroy(inputRT);
 	}
 
