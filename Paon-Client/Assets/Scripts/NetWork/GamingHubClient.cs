@@ -37,8 +37,6 @@ namespace Paon.NNetwork
 			for (int i = 0; i < ItemLenght; i++)
 			{
 				items[_item[i].name] = _item[i];
-
-				//Debug.Log(items[item[i].name]);
 			}
 		}
 
@@ -204,6 +202,7 @@ namespace Paon.NNetwork
 				Debug.Log("leave:" + player.Name + ":" + n);
 			}
 		}
+
 
 		// 部屋の中でいずれかのユーザが動いたときに呼び出される関数
 		void IGamingHubReceiver.OnMove(Player player)
