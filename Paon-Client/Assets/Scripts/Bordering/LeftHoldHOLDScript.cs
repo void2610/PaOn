@@ -37,7 +37,7 @@ namespace Paon.NBordering
 		private bool isRunning = false;
 
 		[SerializeField]
-		private comocmo co;
+		private OpenCommorose oc;
 
 		void Start()
 		{
@@ -74,7 +74,7 @@ namespace Paon.NBordering
 						GetComponent<AudioSource>().PlayOneShot(SE);
 						bts.StartTimer();
 						isRunning = false;
-						co.isBordering = true;
+						oc.isBordering = true;
 						Player.GetComponent<Rigidbody>().useGravity = false;
 						StopCoroutine(nameof(GravityFall));
 						bodyBase = Player.transform.position;

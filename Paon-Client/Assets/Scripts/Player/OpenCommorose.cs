@@ -5,7 +5,7 @@ using Paon.NInput;
 using Paon.NPlayer;
 using UnityEngine;
 
-public class comocmo : MonoBehaviour
+public class OpenCommorose : MonoBehaviour
 {
 	[SerializeField]
 	Visualizer visualizer;

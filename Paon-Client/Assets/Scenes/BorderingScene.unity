@@ -1017,7 +1017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ddc197845c414b678cecb018afdbc03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  co: {fileID: 5013851560433931616}
+  co: {fileID: 0}
 --- !u!54 &280742009
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -29199,7 +29199,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5013851560433931614}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c636683cb1fa4949a3e3fcd757c3494, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b8fab9c1fbf7e94094f547ee6cc7c3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   visualizer: {fileID: 1594043741}
@@ -29600,7 +29600,7 @@ MonoBehaviour:
   SE: {fileID: 0}
   NearObject: {fileID: 0}
   rmip: {fileID: 0}
-  co: {fileID: 5013851560433931616}
+  oc: {fileID: 5013851560433931616}
   isRunning: 0
 --- !u!65 &5013851561361716022
 BoxCollider:
@@ -30003,7 +30003,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SE: {fileID: 0}
   NearObject: {fileID: 0}
-  co: {fileID: 5013851560433931616}
+  oc: {fileID: 5013851560433931616}
 --- !u!65 &5013851561706153475
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30684,7 +30684,7 @@ MonoBehaviour:
   e4: {fileID: 2100000, guid: 92f48db6f0fe6fb4083b76250f791242, type: 2}
   e5: {fileID: 2100000, guid: 03d2a4ecf0151634b9098384a96aa5d1, type: 2}
   isSelecting: 0
-  co: {fileID: 5013851560433931616}
+  oc: {fileID: 5013851560433931616}
 --- !u!54 &5284321876383220740
 Rigidbody:
   m_ObjectHideFlags: 0
