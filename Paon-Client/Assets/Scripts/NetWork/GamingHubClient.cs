@@ -126,8 +126,6 @@ namespace Paon.NNetwork
 
         public Task FlagAsync(int Mode)
         {
-			//Debug.Log("aaaaaaaa" + F);
-
             return client.FlagAsync(Mode);
         }
 
@@ -163,8 +161,6 @@ namespace Paon.NNetwork
 
 				Material skin = (Material)Resources.Load("Materials/Doll" + n + "Material");
 				n++;
-
-				//Debug.Log("akfjhljshf" + Red);
 
 				//マテリアルの色変更
 				skin.color = new Color(Red, Green, Blue);
@@ -279,7 +275,6 @@ namespace Paon.NNetwork
 								.GetChild(0)
 								.gameObject;
 
-				//Debug.Log(Emoji.GetComponent<SpriteRenderer>());
 				Emoji.GetComponent<SpriteRenderer>().sprite =
 						Resources.Load<Sprite>("Picture/emoji" + FaceID);
 			}
@@ -299,7 +294,7 @@ namespace Paon.NNetwork
 
 			bool flag;
 
-			if (Count == 0)
+			if (Count < 2)
 			{
 				flag = true;
 			}

@@ -83,10 +83,6 @@ namespace Paon.NNetwork
             string name = _item.name;
             string PlayerName = PlayerPrefs.GetString("Name", "NULLTYAN");
 
-            //Debug.Log (name);
-            //Debug.Log(pos);
-            //Debug.Log(rot);
-
             client.ItemAsync (name, pos, rot, PlayerName);
         }
 
@@ -100,7 +96,6 @@ namespace Paon.NNetwork
                 right.transform.position,
                 left.transform.position,
                 body.transform.rotation);
-            //client.MoveAsync(m_PlayerTransform.position, m_PlayerTransform.rotation);
         }
 
         async Task OnDestroy()

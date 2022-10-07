@@ -72,27 +72,23 @@ namespace Paon.NNetwork
 
 		public void CheckBorder()
 		{
-			int F = 0;
+			int Mode = 0;
 
-			//Debug.Log("apapapapapa" + F);
-
-			//Debug.Log(client);
-
-			client.FlagAsync(F);
+			client.FlagAsync(Mode);
 		}
 
 		public void StartBorder()
 		{
-			int F = 1;
+			int Mode = 1;
 
-			client.FlagAsync(F);
+			client.FlagAsync(Mode);
 		}
 
 		public void OutBorder()
 		{
-			int F = 2;
+			int Mode = 2;
 
-			client.FlagAsync(F);
+			client.FlagAsync(Mode);
 		}
 
 		public static GameObject MakeDolls(Player player)
