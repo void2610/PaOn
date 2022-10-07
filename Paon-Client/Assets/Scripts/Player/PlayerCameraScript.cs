@@ -43,7 +43,7 @@ namespace Paon.NPlayer
         void Update()
         {
             //Debug.Log(this.gameObject.transform.eulerAngles.x);
-            Debug.Log (stat);
+            //Debug.Log (stat);
             crouch = mip.GetComponent<MoveInputProvider>().crouch;
             float y = this.gameObject.transform.position.y;
             Vector3 rot = this.gameObject.transform.eulerAngles;
