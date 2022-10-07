@@ -75,7 +75,7 @@ namespace Paon.NNetwork
 
 			Debug.Log("unti" + F);
 
-			// client.FlagAsync(F);
+			client.FlagAsync(F);
 		}
 
 		public void StartBorder()

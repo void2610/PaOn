@@ -29,6 +29,8 @@ namespace Paon.NBordering
 
         public void FlagCheck(bool Flags)
         {
+            Debug.Log("kokomadekita");
+
             Flag = Flags;
         }
 
