@@ -10,6 +10,8 @@ namespace Paon.NBordering
     {
         bool Flag;
 
+        int count;
+
         public int NowPeople = 0;
 
         public int MaxPeople = 2;
@@ -31,6 +33,11 @@ namespace Paon.NBordering
             Flag = Flags;
 
             //Debug.Log(Flag);
+        }
+
+        public void KindCheck(int Count)
+        {
+            count = Count - 2;
         }
 
         void Update()
@@ -77,6 +84,14 @@ namespace Paon.NBordering
             )
             {
                 WaitAreas[2].GetComponent<WaitAreaScript>().TeleportPlayer();
+            }
+
+            if (WaitAreas[0].GetComponent<WaitAreaScript>().ReadyPlayer != null )
+            {
+                if (count == client.GetComponent<BorderingClient>().Counter() - 1)
+                {
+                    PlayerPrefs.SetInt("GiveTurn", PlayerPrefs.GetInt("GiveTurn", 0) + 1);
+                }
             }
         }
     }

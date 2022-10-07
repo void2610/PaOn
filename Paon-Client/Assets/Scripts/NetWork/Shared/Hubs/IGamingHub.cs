@@ -31,5 +31,6 @@ namespace Paon.NNetwork.Shared.Hubs
         Task TimeAsync(string name, float time);
         Task ItemJoin(string name, Vector3 position, Quaternion rotation, string roomName);
         Task FlagAsync(int Mode);
+        int CountPlayer();
     }
 }
