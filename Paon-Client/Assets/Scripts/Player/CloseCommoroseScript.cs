@@ -7,7 +7,7 @@ namespace Paon.NPlayer
 	public class CloseCommoroseScript : MonoBehaviour
 	{
 		[SerializeField]
-		comocmo co;
+		OpenCommorose co;
 		SelectEmojiScript2 SES2;
 
 		void Start()

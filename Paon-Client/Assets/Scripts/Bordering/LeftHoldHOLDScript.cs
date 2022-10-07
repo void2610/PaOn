@@ -37,7 +37,7 @@ namespace Paon.NBordering
 		private bool isRunning = false;
 
 		[SerializeField]
-		private comocmo co;
+		private OpenCommorose oc;
 
 		void Start()
 		{
@@ -74,7 +74,7 @@ namespace Paon.NBordering
 						GetComponent<AudioSource>().PlayOneShot(SE);
 						bts.StartTimer();
 						isRunning = false;
-						co.isBordering = true;
+						oc.isBordering = true;
 						Player.GetComponent<Rigidbody>().useGravity = false;
 						StopCoroutine(nameof(GravityFall));
 						bodyBase = Player.transform.position;
@@ -109,55 +109,8 @@ namespace Paon.NBordering
 				lhm.canMove = false;
 				Hand.transform.position = oh.NowHoldObject.transform.position;
 
-				if (pos.y < prev.y && Player.transform.position.y <= oh.NowHoldObject.transform.position.y + 3)
+				if (pos.y < prev.y && Player.transform.position.y <= oh.NowHoldObject.transform.position.y + 1)
 					Player.transform.Translate(Vector3.up * 0.1f);
-
-				//この条件式、実際に手で操作できるようになったらいらない
-				// if (
-				//     Mathf
-				//         .Abs(Vector3
-				//             .Distance(Player.transform.position, bodyBase)) <
-				//     0.6f
-				// )
-				// {
-				//     //手を動かして体移動
-				//     if (lmip.GetInput() == "up")
-				//     {
-				//         Player.transform.Translate(Vector3.up * 0.03f);
-				//     }
-				//     else if (lmip.GetInput() == "down")
-				//     {
-				//         Player.transform.Translate(Vector3.down * 0.03f);
-				//     }
-				//     else if (lmip.GetInput() == "left")
-				//     {
-				//         Player.transform.Translate(Vector3.left * 0.03f);
-				//     }
-				//     else if (lmip.GetInput() == "right")
-				//     {
-				//         Player.transform.Translate(Vector3.right * 0.03f);
-				//     }
-				// }
-				// else
-				// {
-				//     //ここも手で操作できるようになったらいらないかも
-				//     if (tmp == "up")
-				//     {
-				//         Player.transform.Translate(Vector3.up * -0.03f);
-				//     }
-				//     else if (tmp == "down")
-				//     {
-				//         Player.transform.Translate(Vector3.down * -0.03f);
-				//     }
-				//     else if (tmp == "left")
-				//     {
-				//         Player.transform.Translate(Vector3.left * -0.03f);
-				//     }
-				//     else if (tmp == "right")
-				//     {
-				//         Player.transform.Translate(Vector3.right * -0.03f);
-				//     }
-				// }
 			}
 			else
 			{

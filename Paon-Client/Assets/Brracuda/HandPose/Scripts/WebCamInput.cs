@@ -31,7 +31,6 @@ public class WebCamInput : MonoBehaviour
 		webCamTexture.Play();
 
 		inputRT = new RenderTexture((int)webCamResolution.x, (int)webCamResolution.y, 0);
-		DontDestroyOnLoad(gameObject);
 	}
 
 	void Update()
@@ -49,11 +48,6 @@ public class WebCamInput : MonoBehaviour
 		var offset = new Vector2((1 - aspectGap) / 2, vMirrored ? 1 : 0);
 
 		Graphics.Blit(webCamTexture, inputRT, scale, offset);
-	}
-
-	void OnEnable()
-	{
-		SetCamera();
 	}
 
 	void SetCamera()
@@ -79,7 +73,11 @@ public class WebCamInput : MonoBehaviour
 
 	void OnDestroy()
 	{
-		if (webCamTexture != null) Destroy(webCamTexture);
+		if (webCamTexture != null)
+		{
+			webCamTexture.Stop();
+			Destroy(webCamTexture);
+		}
 		if (inputRT != null) Destroy(inputRT);
 	}
 
