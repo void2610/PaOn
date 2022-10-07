@@ -147,14 +147,14 @@ namespace Paon.NNetwork.Hubs
             Broadcast(room).BorderCount(Count);
         }
 
-        public int CountPlayer()
-        {
-            int Count;
+        //public int CountPlayer()
+        //{
+        //    int Count;
 
-            Flags = storage.AllValues.ToArray();
-            Count = Flags.Length;
+        //    Flags = storage.AllValues.ToArray();
+        //    Count = Flags.Length;
 
-            return Count;
-        }
+        //    return Count;
+        //}
     }
 }

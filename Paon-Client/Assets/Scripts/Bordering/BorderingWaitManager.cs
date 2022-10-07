@@ -12,6 +12,8 @@ namespace Paon.NBordering
 
         int count;
 
+        Vector3 temp;
+
         public int NowPeople = 0;
 
         public int MaxPeople = 2;
@@ -68,6 +70,11 @@ namespace Paon.NBordering
                 }
             }
 
+
+            if (WaitAreas[0].GetComponent<WaitAreaScript>().ReadyPlayer == GameObject.Find("PlayerBody")) {
+                temp = GameObject.Find("PlayerBody").transform.position;
+            }
+
             //次の待機エリアにテレポートさせる
             if (
                 WaitAreas[0].GetComponent<WaitAreaScript>().ReadyPlayer ==
@@ -86,9 +93,9 @@ namespace Paon.NBordering
                 WaitAreas[2].GetComponent<WaitAreaScript>().TeleportPlayer();
             }
 
-            if (WaitAreas[0].GetComponent<WaitAreaScript>().ReadyPlayer != null )
+            if (WaitAreas[0].GetComponent<WaitAreaScript>().ReadyPlayer != null && temp != GameObject.Find("PlayerBody").transform.position)
             {
-                if (count == client.GetComponent<BorderingClient>().Counter() - 1)
+                if (count == 2)
                 {
                     PlayerPrefs.SetInt("GiveTurn", PlayerPrefs.GetInt("GiveTurn", 0) + 1);
                 }

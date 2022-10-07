@@ -131,11 +131,6 @@ namespace Paon.NNetwork
             return client.FlagAsync(Mode);
         }
 
-		public int CountPlayer()
-        {
-			return client.CountPlayer();
-        }
-
         // 部屋に新しいユーザが入室したときに呼び出される関数
         // または ConnectAsync 関数を実行したときに呼び出される関数
         void IGamingHubReceiver.OnJoin(Player player, float Red, float Blue, float Green)
