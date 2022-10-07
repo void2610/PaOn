@@ -73,7 +73,7 @@ namespace Paon.NNetwork
         {
             int F = 0;
 
-            Debug.Log("unti");
+            Debug.Log("unti" + F);
 
             client.FlagAsync(F);
         }
