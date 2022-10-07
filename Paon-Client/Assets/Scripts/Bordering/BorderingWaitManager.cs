@@ -30,7 +30,7 @@ namespace Paon.NBordering
         {
             Flag = Flags;
 
-            Debug.Log(Flag);
+            //Debug.Log(Flag);
         }
 
         void Update()
