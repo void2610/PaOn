@@ -299,7 +299,7 @@ namespace Paon.NNetwork
 
 			bool flag;
 
-			if (Count <= 2)
+			if (Count == 0)
 			{
 				flag = true;
 			}
