@@ -139,7 +139,20 @@ namespace Paon.NNetwork
 			// 部屋に入室しているユーザの数だけワールド上にキューブを出現する
 			if (player.Name != PlayerPrefs.GetString("Name", "NULLTYAN"))
 			{
-				GameObject doll = GameClient.MakeDolls(player);
+				GameObject doll = null;
+
+				string r = PlayerPrefs.GetString("Room", "none");
+
+				if(r == "Nature1" || r == "Nature2")
+				{
+					doll = GameClient.MakeDolls(player);
+				}
+				else if(r == "Bordering1" || r == "Bordering2")
+                {
+					doll = BorderingClient.MakeDolls(player);
+				}
+
+				
 				GameObject _body = doll.transform.GetChild(0).gameObject;
 				GameObject _left = doll.transform.GetChild(1).gameObject;
 				GameObject _right = doll.transform.GetChild(2).gameObject;

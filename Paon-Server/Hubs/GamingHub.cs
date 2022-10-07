@@ -122,7 +122,6 @@ namespace Paon.NNetwork.Hubs
             Console.WriteLine("int F:" + Mode);
 
             int Count = 0;
-            bool flag;
 
             if (Mode == 1)
             {
@@ -144,16 +143,7 @@ namespace Paon.NNetwork.Hubs
                 }
             }
 
-            if (Count < 3)
-            {
-                flag = true;
-            }
-            else
-            {
-                flag = false;
-            }
-
-            Broadcast(room).BorderCount(flag);
+            Broadcast(room).BorderCount(Count);
         }
     }
 }
