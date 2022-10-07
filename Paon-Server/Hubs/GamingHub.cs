@@ -38,9 +38,6 @@ namespace Paon.NNetwork.Hubs
 
             //Console.WriteLine(storage.AllValues.ToArray().Length);
 
-
-            Flags = storage.AllValues.ToArray();
-
             Console.WriteLine(Flags.Length);
             Console.WriteLine(Flags[0].Flag);
 
@@ -123,6 +120,8 @@ namespace Paon.NNetwork.Hubs
 
             int Count = 0;
 
+            Flags = storage.AllValues.ToArray();
+
             if (Mode == 1)
             {
                 self.Flag = true;
@@ -141,6 +140,7 @@ namespace Paon.NNetwork.Hubs
                 }
             }
 
+            Console.WriteLine(self.Flag);
             Console.WriteLine("Count:" + Count);
 
 

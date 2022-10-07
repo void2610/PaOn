@@ -125,7 +125,7 @@ namespace Paon.NNetwork
 
         public Task FlagAsync(int F)
         {
-			Debug.Log("aaaaaaaa" + F);
+			//Debug.Log("aaaaaaaa" + F);
 
             return client.FlagAsync(F);
         }
