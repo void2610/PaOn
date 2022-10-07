@@ -74,9 +74,9 @@ namespace Paon.NNetwork
 		{
 			int F = 0;
 
-			Debug.Log("apapapapapa" + F);
+			//Debug.Log("apapapapapa" + F);
 
-			Debug.Log(client);
+			//Debug.Log(client);
 
 			client.FlagAsync(F);
 		}
