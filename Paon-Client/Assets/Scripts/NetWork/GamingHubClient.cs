@@ -145,6 +145,8 @@ namespace Paon.NNetwork
 
 				if( r == "Nature1" || r == "Nature2" )
 				{
+					Debug.Log(player.Name);
+
 					doll = GameClient.MakeDolls(player);
 				}
 				else if( r == "Bordering1" || r == "Bordering2" )
@@ -152,7 +154,8 @@ namespace Paon.NNetwork
 					doll = BorderingClient.MakeDolls(player);
 				}
 
-				
+				players[player.Name] = doll;
+
 				GameObject _body = doll.transform.GetChild(0).gameObject;
 				GameObject _left = doll.transform.GetChild(1).gameObject;
 				GameObject _right = doll.transform.GetChild(2).gameObject;
@@ -181,7 +184,6 @@ namespace Paon.NNetwork
 						.transform
 						.SetPositionAndRotation(player.LeftPosition,
 						player.Rotation);
-				players[player.Name] = doll;
 
 				//マテリアルを適用
 				doll.transform.GetChild(0).gameObject.GetComponent<Renderer>().material = skin;

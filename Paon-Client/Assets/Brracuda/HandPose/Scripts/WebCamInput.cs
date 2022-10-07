@@ -27,7 +27,7 @@ public class WebCamInput : MonoBehaviour
 
 	void Start()
 	{
-		webCamTexture = new WebCamTexture(webCamName, (int)webCamResolution.x, (int)webCamResolution.y, 30);
+		webCamTexture = new WebCamTexture(webCamName, (int)webCamResolution.x, (int)webCamResolution.y, 60);
 		webCamTexture.Play();
 
 		inputRT = new RenderTexture((int)webCamResolution.x, (int)webCamResolution.y, 0);
@@ -69,7 +69,7 @@ public class WebCamInput : MonoBehaviour
 		index++;
 		if (index == length) index = 0;
 		Debug.Log("idx" + index);
-		webCamTexture = new WebCamTexture(WebCamTexture.devices[index].name, (int)webCamResolution.x, (int)webCamResolution.y, 30);
+		webCamTexture = new WebCamTexture(WebCamTexture.devices[index].name, (int)webCamResolution.x, (int)webCamResolution.y, 60);
 		webCamTexture.Play();
 
 		Debug.Log(index + ": " + WebCamTexture.devices[index].name);
