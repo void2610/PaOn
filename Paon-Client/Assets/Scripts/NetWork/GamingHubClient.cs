@@ -277,9 +277,20 @@ namespace Paon.NNetwork
 			}
 		}
 
-		void IGamingHubReceiver.BorderCount(bool flag)
+		void IGamingHubReceiver.BorderCount(int Count)
 		{
-			BorderWait = GameObject.Find("GameClient");
+			BorderWait = GameObject.Find("BorderingManager");
+
+			bool flag;
+
+			if (Count < 3)
+			{
+				flag = true;
+			}
+			else
+			{
+				flag = false;
+			}
 
 			Debug.Log(flag);
 
