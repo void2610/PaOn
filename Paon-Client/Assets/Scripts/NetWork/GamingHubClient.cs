@@ -16,6 +16,7 @@ namespace Paon.NNetwork
 		int ItemLenght, n = 1;
 
 		GameObject BorderWait;
+		GameObject WaitArea;
 
 		//public GameObject[] Dolls = new GameObject[8];
 		// 部屋に参加しているユーザ全員の GameObject (アバター)を保持する
@@ -128,6 +129,11 @@ namespace Paon.NNetwork
 			//Debug.Log("aaaaaaaa" + F);
 
             return client.FlagAsync(Mode);
+        }
+
+		public int CountPlayer()
+        {
+			return client.CountPlayer();
         }
 
         // 部屋に新しいユーザが入室したときに呼び出される関数
@@ -298,7 +304,7 @@ namespace Paon.NNetwork
 
 			bool flag;
 
-			if (Count < 3)
+			if (Count <= 2)
 			{
 				flag = true;
 			}
@@ -309,6 +315,7 @@ namespace Paon.NNetwork
 
 			Debug.Log(flag);
 
+			BorderWait.GetComponent<BorderingWaitManager>().KindCheck(Count);
 			BorderWait.GetComponent<BorderingWaitManager>().FlagCheck(flag);
 		}
 	}
