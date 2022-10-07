@@ -28,17 +28,17 @@ public class WebCamInput : MonoBehaviour
 	void Start()
 	{
 		webCamTexture = new WebCamTexture(webCamName, (int)webCamResolution.x, (int)webCamResolution.y, 30);
-		webCamTexture.Play();
+		if (!webCamTexture.isPlaying) webCamTexture.Play();
 
 		inputRT = new RenderTexture((int)webCamResolution.x, (int)webCamResolution.y, 0);
-		// DontDestroyOnLoad(gameObject);
+		DontDestroyOnLoad(gameObject);
 	}
 
 	void Update()
 	{
+		if (!webCamTexture.isPlaying) webCamTexture.Play();
 		if (!webCamTexture.didUpdateThisFrame) return;
 		if (Input.GetKey("space")) { SetCamera(); }
-		if (!webCamTexture.isPlaying) webCamTexture.Play();
 
 		var aspect1 = (float)webCamTexture.width / webCamTexture.height;
 		var aspect2 = (float)inputRT.width / inputRT.height;
@@ -51,10 +51,10 @@ public class WebCamInput : MonoBehaviour
 		Graphics.Blit(webCamTexture, inputRT, scale, offset);
 	}
 
-	void OnEnable()
-	{
-		SetCamera();
-	}
+	// void OnEnable()
+	// {
+	// 	SetCamera();
+	// }
 
 	void SetCamera()
 	{
