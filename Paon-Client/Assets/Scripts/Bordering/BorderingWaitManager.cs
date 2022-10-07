@@ -44,6 +44,7 @@ namespace Paon.NBordering
                     null && Flag == true
                 )
                 {
+
                     WaitAreas[0]
                         .GetComponent<WaitAreaScript>()
                         .ReadyPlayer
