@@ -145,6 +145,8 @@ namespace Paon.NNetwork
 
 				if( r == "Nature1" || r == "Nature2" )
 				{
+					Debug.Log(player.Name);
+
 					doll = GameClient.MakeDolls(player);
 				}
 				else if( r == "Bordering1" || r == "Bordering2" )
