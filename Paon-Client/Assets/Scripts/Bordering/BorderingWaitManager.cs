@@ -24,18 +24,19 @@ namespace Paon.NBordering
             WaitAreas[1] = GameObject.Find("WaitArea2");
             WaitAreas[2] = GameObject.Find("WaitArea3");
             client = GameObject.Find("GameClient");
-            client.GetComponent<BorderingClient>().CheckBorder();
         }
 
         public void FlagCheck(bool Flags)
         {
-            Debug.Log("kokomadekita");
-
             Flag = Flags;
+
+            Debug.Log(Flag);
         }
 
         void Update()
         {
+            client.GetComponent<BorderingClient>().CheckBorder();
+
             if (NowPeople < MaxPeople)
             {
                 //人数に空きがあって、待機エリアに人がいる場合、プレイ中にしてテレポートさせる

@@ -119,7 +119,7 @@ namespace Paon.NNetwork.Hubs
 
         public async Task FlagAsync(int Mode)
         {
-            Console.WriteLine("int F:" + Mode);
+            Console.WriteLine("Mode:" + Mode);
 
             int Count = 0;
 
@@ -133,8 +133,6 @@ namespace Paon.NNetwork.Hubs
                 self.Flag = false;
             }
 
-            Console.WriteLine(Flags[0].Flag);
-
             for (int i = 0; i < Flags.Length; i++)
             {
                 if (Flags[i].Flag == true)
@@ -142,6 +140,9 @@ namespace Paon.NNetwork.Hubs
                     Count++;
                 }
             }
+
+            Console.WriteLine("Count:" + Count);
+
 
             Broadcast(room).BorderCount(Count);
         }
