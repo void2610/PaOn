@@ -72,7 +72,7 @@ public class Visualizer : MonoBehaviour
 	void Start()
 	{
 		// Make instance of HolisticPipeline
-		holisticPipeline = new HolisticPipeline(holisticResource);
+		holisticPipeline = new HolisticPipeline();
 
 		poseMaterial = new Material(poseShader);
 		handMaterial = new Material(handShader);
