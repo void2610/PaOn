@@ -1888,6 +1888,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  client: {fileID: 0}
 --- !u!1001 &653008551
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29205,6 +29206,7 @@ MonoBehaviour:
   visualizer: {fileID: 1594043741}
   gk: {fileID: 3255128322117545191}
   threshhold: 70
+  isBordering: 0
   Open: 0
 --- !u!1 &5013851560755073799
 GameObject:
@@ -29599,6 +29601,8 @@ MonoBehaviour:
   SE: {fileID: 0}
   NearObject: {fileID: 0}
   rmip: {fileID: 0}
+  co: {fileID: 5013851560433931616}
+  isRunning: 0
 --- !u!65 &5013851561361716022
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30000,6 +30004,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SE: {fileID: 0}
   NearObject: {fileID: 0}
+  co: {fileID: 5013851560433931616}
 --- !u!65 &5013851561706153475
 BoxCollider:
   m_ObjectHideFlags: 0

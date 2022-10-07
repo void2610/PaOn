@@ -34,6 +34,11 @@ namespace Paon.NBordering
 
 		private float dis = 999;
 
+		private bool isRunning = false;
+
+		[SerializeField]
+		private comocmo co;
+
 		void Start()
 		{
 			Player = GameObject.Find("PlayerBody");
@@ -68,6 +73,8 @@ namespace Paon.NBordering
 					{
 						GetComponent<AudioSource>().PlayOneShot(SE);
 						bts.StartTimer();
+						isRunning = false;
+						co.isBordering = true;
 						Player.GetComponent<Rigidbody>().useGravity = false;
 						StopCoroutine(nameof(GravityFall));
 						bodyBase = Player.transform.position;
@@ -102,7 +109,7 @@ namespace Paon.NBordering
 				lhm.canMove = false;
 				Hand.transform.position = oh.NowHoldObject.transform.position;
 
-				if (pos.y < prev.y)
+				if (pos.y < prev.y && Player.transform.position.y <= oh.NowHoldObject.transform.position.y + 3)
 					Player.transform.Translate(Vector3.up * 0.1f);
 
 				//この条件式、実際に手で操作できるようになったらいらない

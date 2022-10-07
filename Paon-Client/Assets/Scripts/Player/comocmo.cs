@@ -18,6 +18,7 @@ public class comocmo : MonoBehaviour
 
 	public float threshhold = 70f;
 
+	public bool isBordering = false;
 	public bool Open = false;
 
 	bool check = false;
@@ -31,11 +32,14 @@ public class comocmo : MonoBehaviour
 
 	void Update()
 	{
-		left = gk.leftWrist;
-		right = gk.rightWrist;
-		delta = Mathf.Abs(left.coords.y - right.coords.y);
-		if (delta > threshhold && !check) check = true;
-		if (check) StartCoroutine(nameof(CommoRose));
+		if (!isBordering)
+		{
+			left = gk.leftWrist;
+			right = gk.rightWrist;
+			delta = Mathf.Abs(left.coords.y - right.coords.y);
+			if (delta > threshhold && !check) check = true;
+			if (check) StartCoroutine(nameof(CommoRose));
+		}
 
 	}
 
