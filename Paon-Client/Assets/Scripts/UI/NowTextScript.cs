@@ -7,14 +7,13 @@ namespace Paon.NUI
 {
     public class NowTextScript : MonoBehaviour
     {
-        GameObject InputText;
+        private GameObject InputText;
 
         void Start()
         {
             InputText = GameObject.Find("Name");
         }
 
-        // Update is called once per frame
         void Update()
         {
             this.GetComponent<Text>().text =
