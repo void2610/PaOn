@@ -23,6 +23,8 @@ namespace Paon.NPlayer
 				SES2.isSelecting = false;
 				co.Open = SES2.isSelecting;
 			}
+			else if (other.gameObject.name == "BorderingStart")
+				co.isBordering = true;
 		}
 	}
 }
