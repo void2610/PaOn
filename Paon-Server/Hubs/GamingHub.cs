@@ -18,6 +18,7 @@ namespace Paon.NNetwork.Hubs
 
         // ルーム内での自分の情報 (IGamingHub.cs で定義した Player の情報)
         Player self;
+        Player[] Flags;
 
         //ルーム内でのItemの情報
         Item mono;
@@ -35,7 +36,13 @@ namespace Paon.NNetwork.Hubs
             // ルームにユーザが入室する
             (room, storage) = await Group.AddAsync(roomName, self);
 
-            Console.WriteLine(storage.AllValues.ToArray().Length);
+            //Console.WriteLine(storage.AllValues.ToArray().Length);
+
+
+            Flags = storage.AllValues.ToArray();
+
+            Console.WriteLine(Flags.Length);
+            Console.WriteLine(Flags[0].Flag);
 
             Broadcast(room).FiastPlayer();
 
@@ -112,9 +119,10 @@ namespace Paon.NNetwork.Hubs
 
         public async Task FlagAsync(int F)
         {
-            Console.WriteLine(F);
+            Console.WriteLine("int F:" + F);
 
             int Count = 0;
+            bool flag;
 
             if (F == 1)
             {
@@ -126,9 +134,7 @@ namespace Paon.NNetwork.Hubs
                 self.Flag = false;
             }
 
-            Player[] Flags = storage.AllValues.ToArray();
-
-            Console.WriteLine(Flags[3].Name);
+            Console.WriteLine(Flags[0].Flag);
 
             for (int i = 0; i < Flags.Length; i++)
             {
@@ -137,8 +143,17 @@ namespace Paon.NNetwork.Hubs
                     Count++;
                 }
             }
-            
-            Broadcast(room).BorderCount(Count);
+
+            if (Count < 3)
+            {
+                flag = true;
+            }
+            else
+            {
+                flag = false;
+            }
+
+            Broadcast(room).BorderCount(flag);
         }
     }
 }

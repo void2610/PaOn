@@ -277,28 +277,13 @@ namespace Paon.NNetwork
 			}
 		}
 
-		void IGamingHubReceiver.BorderCount(int Count)
+		void IGamingHubReceiver.BorderCount(bool flag)
 		{
-			Debug.Log("Count: ");
-
 			BorderWait = GameObject.Find("GameClient");
 
-			Debug.Log("Count: " + Count);
+			Debug.Log(flag);
 
-			bool Flags;
-
-			if (Count > 2)
-			{
-				Flags = false;
-			}
-			else
-			{
-				Flags = true;
-			}
-
-			Debug.Log(Flags);
-
-			BorderWait.GetComponent<BorderingWaitManager>().FlagCheck(Flags);
+			BorderWait.GetComponent<BorderingWaitManager>().FlagCheck(flag);
 		}
 	}
 }

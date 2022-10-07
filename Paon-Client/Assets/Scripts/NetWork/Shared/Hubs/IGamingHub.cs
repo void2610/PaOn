@@ -17,7 +17,7 @@ namespace Paon.NNetwork.Shared.Hubs
         void OnGoal(string name, float time);
         void ChengeFace(Player player, int FaceID);
         void FiastPlayer();
-        void BorderCount(int Count);
+        void BorderCount(bool flag);
     }
 
     // クライアントがサーバ側で gRPC 実行可能な関数を定義する
