@@ -31,7 +31,6 @@ public class WebCamInput : MonoBehaviour
 		webCamTexture.Play();
 
 		inputRT = new RenderTexture((int)webCamResolution.x, (int)webCamResolution.y, 0);
-		// DontDestroyOnLoad(gameObject);
 	}
 
 	void Update()
@@ -50,11 +49,6 @@ public class WebCamInput : MonoBehaviour
 
 		Graphics.Blit(webCamTexture, inputRT, scale, offset);
 	}
-
-	// void OnEnable()
-	// {
-	// 	SetCamera();
-	// }
 
 	void SetCamera()
 	{
