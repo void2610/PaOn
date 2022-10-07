@@ -117,19 +117,19 @@ namespace Paon.NNetwork.Hubs
             Broadcast(room).OnGoal(name, time);
         }
 
-        public async Task FlagAsync(int F)
+        public async Task FlagAsync(int Mode)
         {
-            Console.WriteLine("int F:" + F);
+            Console.WriteLine("int F:" + Mode);
 
             int Count = 0;
             bool flag;
 
-            if (F == 1)
+            if (Mode == 1)
             {
                 self.Flag = true;
             }
             else
-            if (F == 2)
+            if (Mode == 2)
             {
                 self.Flag = false;
             }

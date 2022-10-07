@@ -44,7 +44,8 @@ namespace Paon.NNetwork
 		// StreamingHub サーバと通信を行うためのクライアント生成
 		private GamingHubClient client = new GamingHubClient();
 
-		async Task Start()
+
+		async Task Awake()
 		{
 			m_UserName = PlayerPrefs.GetString("Name", "NULLTYAN");
 			m_RoomName = PlayerPrefs.GetString("Room", "MAIGO");
@@ -74,6 +75,8 @@ namespace Paon.NNetwork
 			int F = 0;
 
 			Debug.Log("apapapapapa" + F);
+
+			Debug.Log(client);
 
 			client.FlagAsync(F);
 		}
