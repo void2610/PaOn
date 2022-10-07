@@ -95,11 +95,6 @@ namespace Paon.NNetwork
 			client.FlagAsync(F);
 		}
 
-		public int Counter()
-        {
-			return client.CountPlayer();
-        }
-
 		public static GameObject MakeDolls(Player player)
 		{
 			GameObject doll =
