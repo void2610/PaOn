@@ -15,7 +15,7 @@ namespace Paon.NBordering
         void Start()
         {
             NextPosition = GameObject.Find("SpawnPositionAnchor");
-            client = GameObject.Find("BorderingClient");
+            client = GameObject.Find("GameClient");
         }
 
         void OnTriggerStay(Collider other)
