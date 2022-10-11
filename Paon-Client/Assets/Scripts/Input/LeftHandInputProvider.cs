@@ -134,23 +134,5 @@ namespace Paon.NInput
 			if (wrist != previous)
 				previous = wrist;
 		}
-
-		// 	void LateUpdate()
-		// 	{
-		// 		if (gk.leftWrist.score > 0.7f)
-		// 			wrist = gk.leftWrist;
-
-		// 		// hand = gk.left;
-		// 		// Debug.Log(hand.Length);
-		// 		// // if (hand[0].coords != null && hand[12].coords != null)
-		// 		// // {
-		// 		// //     float distance = Vector3.Distance(hand[0].coords, hand[12].coords);
-		// 		// //     if (distance < holdThreshold)
-		// 		// //     {
-		// 		// //         hold = 1;
-		// 		// //     }
-		// 		// // }
-
-		// 	}
 	}
 }

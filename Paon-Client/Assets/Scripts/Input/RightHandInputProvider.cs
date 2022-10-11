@@ -17,6 +17,8 @@ namespace Paon.NInput
 
 		string key = "";
 
+		public bool isDebugEnabled = false;
+
 		int hold = 0;
 
 		///<summary>
@@ -87,6 +89,8 @@ namespace Paon.NInput
 
 			hold = gk.rightIsClosed;
 
+			if (Input.GetKey(KeyCode.Return)) isDebugEnabled = !isDebugEnabled;
+
 			if (Input.GetKey(KeyCode.I))
 			{
 				key = "up";
@@ -108,39 +112,19 @@ namespace Paon.NInput
 				key = "none";
 			}
 
-			// if (Input.GetKey(KeyCode.U))
-			// {
-			// 	hold = 1;
-			// }
-			// else
-			// {
-			// 	hold = 0;
-			// }
+			if (isDebugEnabled)
+			{
+				if (Input.GetKey(KeyCode.U))
+				{
+					hold = 1;
+				}
+				else
+				{
+					hold = 0;
+				}
+			}
 			if (wrist != previous)
 				previous = wrist;
 		}
-
-		// 	void LateUpdate()
-		// 	{
-		// 		if (gk.rightWrist.score > 0.7f)
-		// 			wrist = gk.rightWrist;
-		// 		// hand = gk.right;
-		// 		// if (hand != null && previous[0] != null)
-		// 		// {
-		// 		//     //Vector2 delta = CalculateDelta(previous[0].coords, hand[0].coords);
-		// 		//     float fd =
-		// 		//         (float)Vector2.Distance(hand[4].coords, hand[12].coords);
-		// 		//     if (fd < 40)
-		// 		//     {
-		// 		//         hold = 1;
-		// 		//     }
-		// 		//     else
-		// 		//     {
-		// 		//         hold = 0;
-		// 		//     }
-		// 		// }
-		// 		hold = gk.rightIsClosed;
-		// 		Debug.Log("right: " + hold);
-		// 	}
 	}
 }
