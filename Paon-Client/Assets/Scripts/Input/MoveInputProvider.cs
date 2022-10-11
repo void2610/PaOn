@@ -130,25 +130,11 @@ namespace Paon.NInput
 
 				// Debug.Log("delta1: " + Math.Abs(def1 - predef1));
 				// Debug.Log("delta2: " + Math.Abs(def2 - predef2));
-				if (
-								Mathf.Abs(def1 - predef1) > th ||
-								Mathf.Abs(def2 - predef2) > th
-				)
-				{
-					key = "up";
-				}
-				else
-				{
-					key = "none";
-				}
 
 				//ankle to hip
-				// Rleg = Mathf.Abs(pose[16].coords.x - pose[12].coords.x);
-				// Lleg = Mathf.Abs(pose[15].coords.x - pose[11].coords.x);
 				Rleg = Mathf.Abs(vertices[30].x - vertices[32].x);
 				Lleg = Mathf.Abs(vertices[29].x - vertices[31].x);
 
-				// Debug.Log(Rleg);
 				if (Rleg > 0.07)
 				{
 					key = "right";
@@ -162,8 +148,6 @@ namespace Paon.NInput
 					key = "none";
 				}
 
-				predef1 = def1;
-				predef2 = def2;
 
 				float current = Mathf.Abs(pose[16].coords.y - pose[15].coords.y);
 
@@ -178,6 +162,10 @@ namespace Paon.NInput
 					key = "up";
 					StartCoroutine(nameof(JudgeMove));
 				}
+
+				predef1 = def1;
+				predef2 = def2;
+				prevForward = current;
 			}
 		}
 
