@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Grpc.Core;
@@ -20,6 +21,8 @@ namespace Paon.NPlayer
 
 		private LeftHandInputProvider inputProvider;
 
+		private MoveInputProvider mp;
+
 		private Vector3 coords;
 
 		private Vector2 delta;
@@ -28,10 +31,13 @@ namespace Paon.NPlayer
 
 		public bool isCalib = false;
 
+		private bool crouch = false;
+
 		async void Start()
 		{
 			hand = this.gameObject;
 			inputProvider = GameObject.Find("LeftHandInputProvider").GetComponent<LeftHandInputProvider>();
+			mp = GameObject.Find("MoveInputProvider").GetComponent<MoveInputProvider>();
 			player = this.gameObject;
 		}
 
@@ -39,6 +45,7 @@ namespace Paon.NPlayer
 		{
 			coords = inputProvider.GetPosition();
 			delta = inputProvider.GetDelta();
+			crouch = mp.crouch;
 			if (canMove)
 			{
 				if (inputProvider.GetInput() == "up")
@@ -62,6 +69,8 @@ namespace Paon.NPlayer
 				{
 					hand.transform.localPosition = new Vector3(coords.x / 70 - 2, -coords.y / 70 + 1, hand.transform.localPosition.z);
 				}
+				else if (crouch)
+					hand.transform.localPosition = new Vector3(-coords.x / 40 + 4, -coords.y / 30 + hand.transform.localPosition.y + Mathf.tan(25) * 3, hand.transform.localPosition.z);
 				else
 					hand.transform.localPosition = new Vector3(-coords.x / 40 + 4, -coords.y / 30 + 1.5f, hand.transform.localPosition.z);
 			}
