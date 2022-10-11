@@ -16,9 +16,9 @@ namespace Paon.NPlayer
 
         private bool tmp = false;
 
+        //0:最初~ゴール前,1:ゴール後~降りるまで
         public int stat = 0;
 
-        //0:最初~ゴール前,1:ゴール後~降りるまで
         private int crouch = 0;
 
         void Start()
@@ -42,8 +42,6 @@ namespace Paon.NPlayer
 
         void Update()
         {
-            //Debug.Log(this.gameObject.transform.eulerAngles.x);
-            //Debug.Log (stat);
             crouch = mip.GetComponent<MoveInputProvider>().crouch;
             float y = this.gameObject.transform.position.y;
             Vector3 rot = this.gameObject.transform.eulerAngles;

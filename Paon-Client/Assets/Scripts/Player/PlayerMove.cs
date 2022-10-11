@@ -38,9 +38,9 @@ namespace Paon.NPlayer
             {
                 if (inputProvider.GetInput() == "space")
                 {
-                    player
-                        .GetComponent<Rigidbody>()
-                        .AddForce(Vector3.up * 0.25f, ForceMode.Impulse);
+                    // player
+                    //     .GetComponent<Rigidbody>()
+                    //     .AddForce(Vector3.up * 0.25f, ForceMode.Impulse);
                 }
                 else if (inputProvider.GetInput() == "up")
                 {
