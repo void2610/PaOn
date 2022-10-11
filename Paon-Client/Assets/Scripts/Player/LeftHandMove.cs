@@ -45,7 +45,10 @@ namespace Paon.NPlayer
 		{
 			coords = inputProvider.GetPosition();
 			delta = inputProvider.GetDelta();
-			crouch = mp.crouch;
+			if (mp.crouch == 1) { crouch = true; }
+			else
+			if (mp.crouch == 0) { crouch = false; }
+
 			if (canMove)
 			{
 				if (inputProvider.GetInput() == "up")
@@ -70,7 +73,7 @@ namespace Paon.NPlayer
 					hand.transform.localPosition = new Vector3(coords.x / 70 - 2, -coords.y / 70 + 1, hand.transform.localPosition.z);
 				}
 				else if (crouch)
-					hand.transform.localPosition = new Vector3(-coords.x / 40 + 4, -coords.y / 30 + hand.transform.localPosition.y + Mathf.tan(25) * 3, hand.transform.localPosition.z);
+					hand.transform.localPosition = new Vector3(-coords.x / 40 + 4, -coords.y / 30 + hand.transform.localPosition.y + Mathf.Tan(25) * 3, hand.transform.localPosition.z);
 				else
 					hand.transform.localPosition = new Vector3(-coords.x / 40 + 4, -coords.y / 30 + 1.5f, hand.transform.localPosition.z);
 			}
