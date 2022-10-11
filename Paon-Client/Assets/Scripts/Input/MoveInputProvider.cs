@@ -122,6 +122,9 @@ namespace Paon.NInput
 				Vector2 healCenter = Vector2.Lerp(pose[15].coords, pose[16].coords, 0.5f);
 				Vector2 hipCenter = Vector2.Lerp(pose[11].coords, pose[12].coords, 0.5f);
 
+				//right
+				def1 = pose[16].coords.y - pose[0].coords.y;
+
 				//left
 				def2 = pose[15].coords.y - pose[0].coords.y;
 
