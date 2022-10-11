@@ -20,11 +20,15 @@ namespace Paon.NPlayer
 
 		private RightHandInputProvider inputProvider;
 
+		private MoveInputProvider mp;
+
 		private Vector3 coords;
 
 		private Vector2 delta;
 
 		public bool canMove = true;
+
+		private bool crouch = false;
 
 		public bool isCalib = false;
 
@@ -32,12 +36,14 @@ namespace Paon.NPlayer
 		{
 			hand = this.gameObject;
 			inputProvider = GameObject.Find("RightHandInputProvider").GetComponent<RightHandInputProvider>();
+			mp = GameObject.Find("MoveInputProvider").GetComponent<MoveInputProvider>();
 		}
 
 		async void FixedUpdate()
 		{
 			coords = inputProvider.GetPosition();
 			delta = inputProvider.GetDelta();
+			crouch = mp.crouch;
 			if (canMove)
 			{
 				if (inputProvider.GetInput() == "up")
@@ -59,6 +65,8 @@ namespace Paon.NPlayer
 
 				if (isCalib)
 					hand.transform.localPosition = new Vector3(coords.x / 70 - 1, -coords.y / 70 + 1, hand.transform.localPosition.z);
+				else if (crouch)
+					hand.transform.localPosition = new Vector3(-coords.x / 40 + 4, -coords.y / 30 + hand.transform.localPosition.y + Mathf.tan(25) * 3, hand.transform.localPosition.z);
 				else
 					hand.transform.localPosition = new Vector3(-coords.x / 40 + 4, -coords.y / 30 + 1.5f, hand.transform.localPosition.z);
 			}
