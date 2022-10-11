@@ -157,7 +157,7 @@ namespace Paon.NInput
 					isWalking = true;
 				}
 
-				if (isWalking)
+				if (isWalking && crouch == 0)
 				{
 					key = "up";
 					StartCoroutine(nameof(JudgeMove));
