@@ -78,7 +78,7 @@ namespace Paon.NPlayer
 					hand.transform.eulerAngles = new Vector3(hand.transform.eulerAngles.x, 25, hand.transform.eulerAngles.z);
 				}
 				else
-					hand.transform.localPosition = new Vector3(-coords.x / 40 + 4, -coords.y / 30 + 3.5f, hand.transform.localPosition.z);
+					hand.transform.localPosition = new Vector3(-coords.x / 40 + 4, -coords.y / 30 + 2.5f, hand.transform.localPosition.z);
 			}
 		}
 	}
