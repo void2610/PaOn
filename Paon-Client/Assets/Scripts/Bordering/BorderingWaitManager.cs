@@ -46,12 +46,15 @@ namespace Paon.NBordering
 
         void Update()
         {
-            client.GetComponent<BorderingClient>().CheckBorder();
             check = client.GetComponent<BorderingClient>().OfflineMode();
 
             if (check == 1)
             {
                 Flag = true;
+            }
+            else
+            {
+                client.GetComponent<BorderingClient>().CheckBorder();
             }
 
             if (NowPeople < MaxPeople)
