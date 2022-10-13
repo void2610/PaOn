@@ -20,6 +20,8 @@ namespace Paon.NBordering
 
         public GameObject[] WaitAreas = new GameObject[3];
 
+        int check;
+
         private GameObject client;
 
         void Start()
@@ -45,6 +47,12 @@ namespace Paon.NBordering
         void Update()
         {
             client.GetComponent<BorderingClient>().CheckBorder();
+            check = client.GetComponent<BorderingClient>().OfflineMode();
+
+            if (check == 1)
+            {
+                Flag = true;
+            }
 
             if (NowPeople < MaxPeople)
             {

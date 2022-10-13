@@ -24,6 +24,7 @@ namespace Paon.NNetwork.Shared.MessagePackObjects
         [Key(0)] public string Name { get; set; }
         [Key(1)] public Vector3 Position { get; set; }
         [Key(2)] public Quaternion Rotation { get; set; }
+        [Key(3)] public bool GiveCheck { get; set; }
     }
 
     [MessagePackObject]

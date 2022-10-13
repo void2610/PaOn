@@ -65,7 +65,7 @@ namespace Paon.NNetwork.Hubs
         {
             Console.WriteLine(name);
 
-            mono = new Item() { Name = name, Position = position, Rotation = rotation };
+            mono = new Item() { Name = name, Position = position, Rotation = rotation, GiveCheck = false };
 
             (room, memory) = await Group.AddAsync(roomName, mono);
 
@@ -140,21 +140,10 @@ namespace Paon.NNetwork.Hubs
                 }
             }
 
-            Console.WriteLine(self.Flag);
-            Console.WriteLine("Count:" + Count);
-
+            //Console.WriteLine(self.Flag);
+            //Console.WriteLine("Count:" + Count);
 
             Broadcast(room).BorderCount(Count);
         }
-
-        //public int CountPlayer()
-        //{
-        //    int Count;
-
-        //    Flags = storage.AllValues.ToArray();
-        //    Count = Flags.Length;
-
-        //    return Count;
-        //}
     }
 }

@@ -8,6 +8,7 @@ using Paon.NNetwork.Shared.MessagePackObjects;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 namespace Paon.NNetwork
 {
 	public class GamingHubClient : IGamingHubReceiver
@@ -127,9 +128,21 @@ namespace Paon.NNetwork
             return client.FlagAsync(Mode);
         }
 
-        // 部屋に新しいユーザが入室したときに呼び出される関数
-        // または ConnectAsync 関数を実行したときに呼び出される関数
-        void IGamingHubReceiver.OnJoin(Player player, float Red, float Blue, float Green)
+		public int OffLineCheck()
+        {
+			int check = 0;
+
+			if ( client == null)
+            {
+				check = 1;
+            }
+
+			return check;
+        }
+
+		// 部屋に新しいユーザが入室したときに呼び出される関数
+		// または ConnectAsync 関数を実行したときに呼び出される関数
+		void IGamingHubReceiver.OnJoin(Player player, float Red, float Blue, float Green)
 		{
 			// ユーザの GameObject (アバター)を Player 情報を元に生成して
 			// this.players に player.Name をキーにして保持する

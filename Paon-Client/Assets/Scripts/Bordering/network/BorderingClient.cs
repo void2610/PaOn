@@ -11,6 +11,13 @@ namespace Paon.NNetwork
 {
 	public class BorderingClient : MonoBehaviour
 	{
+		bool flag = false;
+
+		public void Unti(bool Flag)
+        {
+			flag = Flag;
+        }
+
 		[SerializeField]
 		static GameObject Doll;
 
@@ -64,6 +71,14 @@ namespace Paon.NNetwork
 					.client
 					.ConnectAsync(this.channel, this.m_RoomName, this.m_UserName, Red, Blue, Green);
 		}
+
+		public int OfflineMode()
+        {
+			int Check = client.OffLineCheck();
+
+			return Check;
+        }
+
 
 		public void SendFaceID(int FaceID)
 		{
