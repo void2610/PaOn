@@ -47,6 +47,7 @@ namespace Paon.NPlayer
                     .Find("LeftHandInputProvider")
                     .GetComponent<LeftHandInputProvider>();
             lhm = Hand.GetComponent<LeftHandMove>();
+            client = GameObject.Find("GameClient");
         }
 
         void Update()
