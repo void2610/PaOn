@@ -364,6 +364,370 @@
           "bin/placeholder/Paon-Shared.dll": {}
         }
       }
+    },
+    "net5.0/linux-x64": {
+      "Google.Protobuf/3.14.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Memory": "4.5.3",
+          "System.Runtime.CompilerServices.Unsafe": "4.5.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Google.Protobuf.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Protobuf.dll": {}
+        }
+      },
+      "Grpc.AspNetCore/2.34.0": {
+        "type": "package",
+        "dependencies": {
+          "Google.Protobuf": "3.14.0",
+          "Grpc.AspNetCore.Server.ClientFactory": "2.34.0",
+          "Grpc.Tools": "2.34.0"
+        },
+        "compile": {
+          "lib/net5.0/_._": {}
+        },
+        "runtime": {
+          "lib/net5.0/_._": {}
+        }
+      },
+      "Grpc.AspNetCore.Server/2.34.0": {
+        "type": "package",
+        "dependencies": {
+          "Grpc.Net.Common": "2.34.0"
+        },
+        "compile": {
+          "lib/net5.0/Grpc.AspNetCore.Server.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/Grpc.AspNetCore.Server.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "Grpc.AspNetCore.Server.ClientFactory/2.34.0": {
+        "type": "package",
+        "dependencies": {
+          "Grpc.AspNetCore.Server": "2.34.0",
+          "Grpc.Net.ClientFactory": "2.34.0"
+        },
+        "compile": {
+          "lib/net5.0/Grpc.AspNetCore.Server.ClientFactory.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/Grpc.AspNetCore.Server.ClientFactory.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "Grpc.Core.Api/2.35.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Memory": "4.5.3"
+        },
+        "compile": {
+          "lib/netstandard2.0/Grpc.Core.Api.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Grpc.Core.Api.dll": {}
+        }
+      },
+      "Grpc.Net.Client/2.34.0": {
+        "type": "package",
+        "dependencies": {
+          "Grpc.Net.Common": "2.34.0",
+          "Microsoft.Extensions.Logging.Abstractions": "3.0.3",
+          "System.Diagnostics.DiagnosticSource": "4.5.1"
+        },
+        "compile": {
+          "lib/net5.0/Grpc.Net.Client.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/Grpc.Net.Client.dll": {}
+        }
+      },
+      "Grpc.Net.ClientFactory/2.34.0": {
+        "type": "package",
+        "dependencies": {
+          "Grpc.Net.Client": "2.34.0",
+          "Microsoft.Extensions.Http": "3.0.3"
+        },
+        "compile": {
+          "lib/net5.0/Grpc.Net.ClientFactory.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/Grpc.Net.ClientFactory.dll": {}
+        }
+      },
+      "Grpc.Net.Common/2.34.0": {
+        "type": "package",
+        "dependencies": {
+          "Grpc.Core.Api": "2.34.0"
+        },
+        "compile": {
+          "lib/net5.0/Grpc.Net.Common.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/Grpc.Net.Common.dll": {}
+        }
+      },
+      "Grpc.Tools/2.34.0": {
+        "type": "package",
+        "build": {
+          "build/Grpc.Tools.props": {},
+          "build/Grpc.Tools.targets": {}
+        }
+      },
+      "MagicOnion.Abstractions/4.5.1": {
+        "type": "package",
+        "dependencies": {
+          "Grpc.Core.Api": "2.35.0",
+          "MessagePack": "2.2.85"
+        },
+        "compile": {
+          "lib/netstandard2.0/MagicOnion.Abstractions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/MagicOnion.Abstractions.dll": {}
+        }
+      },
+      "MagicOnion.Server/4.5.1": {
+        "type": "package",
+        "dependencies": {
+          "Grpc.AspNetCore.Server": "2.34.0",
+          "Grpc.Core.Api": "2.35.0",
+          "MagicOnion.Abstractions": "4.5.1",
+          "MagicOnion.Shared": "4.5.1"
+        },
+        "compile": {
+          "lib/net5.0/MagicOnion.Server.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/MagicOnion.Server.dll": {}
+        }
+      },
+      "MagicOnion.Shared/4.5.1": {
+        "type": "package",
+        "dependencies": {
+          "Grpc.Core.Api": "2.35.0",
+          "MagicOnion.Abstractions": "4.5.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/MagicOnion.Shared.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/MagicOnion.Shared.dll": {}
+        }
+      },
+      "MessagePack/2.4.35": {
+        "type": "package",
+        "dependencies": {
+          "MessagePack.Annotations": "2.4.35",
+          "Microsoft.NET.StringTools": "1.0.0"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/MessagePack.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/MessagePack.dll": {}
+        }
+      },
+      "MessagePack.Annotations/2.4.35": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/MessagePack.Annotations.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/MessagePack.Annotations.dll": {}
+        }
+      },
+      "MessagePack.UnityShims/2.4.35": {
+        "type": "package",
+        "dependencies": {
+          "MessagePack": "2.4.35"
+        },
+        "compile": {
+          "lib/netstandard2.0/MessagePack.UnityShims.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/MessagePack.UnityShims.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Configuration/3.0.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "3.0.3"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/Microsoft.Extensions.Configuration.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/Microsoft.Extensions.Configuration.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Configuration.Abstractions/3.0.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "3.0.3"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/Microsoft.Extensions.Configuration.Abstractions.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/Microsoft.Extensions.Configuration.Abstractions.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Configuration.Binder/3.0.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration": "3.0.3"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/Microsoft.Extensions.Configuration.Binder.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/Microsoft.Extensions.Configuration.Binder.dll": {}
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection/3.0.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.0.3"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/Microsoft.Extensions.DependencyInjection.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/Microsoft.Extensions.DependencyInjection.dll": {}
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/3.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Http/3.0.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.0.3",
+          "Microsoft.Extensions.Logging": "3.0.3",
+          "Microsoft.Extensions.Options": "3.0.3"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/Microsoft.Extensions.Http.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/Microsoft.Extensions.Http.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Logging/3.0.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Binder": "3.0.3",
+          "Microsoft.Extensions.DependencyInjection": "3.0.3",
+          "Microsoft.Extensions.Logging.Abstractions": "3.0.3",
+          "Microsoft.Extensions.Options": "3.0.3"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/Microsoft.Extensions.Logging.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/Microsoft.Extensions.Logging.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Logging.Abstractions/3.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Options/3.0.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.0.3",
+          "Microsoft.Extensions.Primitives": "3.0.3"
+        },
+        "compile": {
+          "lib/netcoreapp3.0/Microsoft.Extensions.Options.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/Microsoft.Extensions.Options.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Primitives/3.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/Microsoft.Extensions.Primitives.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/Microsoft.Extensions.Primitives.dll": {}
+        }
+      },
+      "Microsoft.NET.StringTools/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Memory": "4.5.4",
+          "System.Runtime.CompilerServices.Unsafe": "5.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.NET.StringTools.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.NET.StringTools.dll": {}
+        }
+      },
+      "System.Diagnostics.DiagnosticSource/4.5.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.dll": {}
+        }
+      },
+      "System.Memory/4.5.4": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp2.1/_._": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.1/_._": {}
+        }
+      },
+      "System.Runtime.CompilerServices.Unsafe/5.0.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.1/System.Runtime.CompilerServices.Unsafe.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
+        }
+      },
+      "Paon-Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "MagicOnion.Abstractions": "4.5.1",
+          "MessagePack.UnityShims": "2.4.35"
+        },
+        "compile": {
+          "bin/placeholder/Paon-Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Paon-Shared.dll": {}
+        }
+      }
     }
   },
   "libraries": {
@@ -983,7 +1347,15 @@
         "warn": true,
         "downloadDependencies": [
           {
-            "name": "Microsoft.NETCore.App.Host.osx-x64",
+            "name": "Microsoft.AspNetCore.App.Runtime.linux-x64",
+            "version": "[5.0.17, 5.0.17]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.linux-x64",
+            "version": "[5.0.17, 5.0.17]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Runtime.linux-x64",
             "version": "[5.0.17, 5.0.17]"
           }
         ],
@@ -996,6 +1368,11 @@
           }
         },
         "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.302/RuntimeIdentifierGraph.json"
+      }
+    },
+    "runtimes": {
+      "linux-x64": {
+        "#import": []
       }
     }
   }

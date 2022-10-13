@@ -48,8 +48,6 @@ namespace Paon.NNetwork.Hubs
             // 入室したユーザの情報をブロードキャスト送信する
             Broadcast(room).OnJoin(self, self.red, self.blue, self.green);
 
-            StartCoroutine(nameof(DelayCoroutine));
-
             // ルームに入室している他ユーザ全員の情報を配列で取得する
             return storage.AllValues.ToArray();
         }
@@ -68,7 +66,7 @@ namespace Paon.NNetwork.Hubs
         {
             Console.WriteLine(name);
 
-            mono = new Item() { Name = name, Position = position, Rotation = rotation, GiveCheck = false };
+            mono = new Item() { Name = name, Position = position, Rotation = rotation, Presenter = null };
 
             (room, memory) = await Group.AddAsync(roomName, mono);
 
@@ -158,6 +156,8 @@ namespace Paon.NNetwork.Hubs
 
         public async Task TakeChecker(string ItemName, string PlayerName, DateTime UnHoldTime)
         {
+            mono.Name = ItemName;
+
             TimeSpan sp = new TimeSpan(0, 0, 0, 3);
 
             if (mono.Presenter != PlayerName)
