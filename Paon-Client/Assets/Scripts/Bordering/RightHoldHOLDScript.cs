@@ -108,7 +108,7 @@ namespace Paon.NBordering
 				rhm.canMove = false;
 				Hand.transform.position = oh.NowHoldObject.transform.position;
 
-				if (pos.y < prev.y && Player.transform.position.y <= oh.NowHoldObject.transform.position.y + 1)
+				if (pos.y < prev.y && Player.transform.position.y <= oh.NowHoldObject.transform.position.y + 0.3f)
 				{
 					Player.transform.Translate(Vector3.up * 0.1f);
 				}
