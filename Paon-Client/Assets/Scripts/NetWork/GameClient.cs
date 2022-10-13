@@ -41,7 +41,6 @@ namespace Paon.NNetwork
 
         // StreamingHub サーバと通信を行うためのクライアント生成
         private GamingHubClient client = new GamingHubClient();
-        private Timer time = new Timer();
 
         async Task Awake()
         {
