@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Paon.NInput;
 using UnityEngine;
 using Paon.NNetwork;
+using System;
 
 //handの子オブジェクトのHandTriggerにアタッチする
 namespace Paon.NPlayer
