@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using System;
 using Grpc.Core;
 using MagicOnion.Client;
 using Paon.NBordering;
@@ -139,6 +140,11 @@ namespace Paon.NNetwork
 
 			return check;
         }
+
+		public Task GiveChecker(string ItemName, string PlayerName, DateTime UnHoldTime)
+        {
+			return client.GiveChecker(ItemName, PlayerName, UnHoldTime);
+		}
 
 		// 部屋に新しいユーザが入室したときに呼び出される関数
 		// または ConnectAsync 関数を実行したときに呼び出される関数
@@ -319,6 +325,14 @@ namespace Paon.NNetwork
 
 			BorderWait.GetComponent<BorderingWaitManager>().KindCheck(Count);
 			BorderWait.GetComponent<BorderingWaitManager>().FlagCheck(flag);
+		}
+
+		void IGamingHubReceiver.GoodPlayCount(string PlayerName)
+        {
+			if(PlayerName == PlayerPrefs.GetString("Name", "NULLTYAN"))
+            {
+				PlayerPrefs.SetInt("GiveItem", PlayerPrefs.GetInt("GiveItem", 0) + 1);
+			}
 		}
 	}
 }

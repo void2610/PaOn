@@ -41,6 +41,7 @@ namespace Paon.NNetwork
 
         // StreamingHub サーバと通信を行うためのクライアント生成
         private GamingHubClient client = new GamingHubClient();
+        private Timer time = new Timer();
 
         async Task Awake()
         {
@@ -67,6 +68,11 @@ namespace Paon.NNetwork
         public void SendFaceID(int FaceID)
         {
             client.FaceAsync (FaceID);
+        }
+
+        public void Givecheck(GameObject present, DateTime UnHoldTime)
+        {
+            client.GiveChecker(present.name, PlayerPrefs.GetString("Name", "NULLTYAN"), UnHoldTime);
         }
 
         public static GameObject MakeDolls(Player player)

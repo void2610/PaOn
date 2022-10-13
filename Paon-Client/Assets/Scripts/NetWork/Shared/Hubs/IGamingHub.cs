@@ -2,6 +2,7 @@
 using MagicOnion;
 using Paon.NNetwork.Shared.MessagePackObjects;
 using UnityEngine;
+using System;
 
 namespace Paon.NNetwork.Shared.Hubs
 {
@@ -18,6 +19,7 @@ namespace Paon.NNetwork.Shared.Hubs
         void ChengeFace(Player player, int FaceID);
         void FiastPlayer();
         void BorderCount(int Count);
+        void GoodPlayCount(string PlayerName);
     }
 
     // クライアントがサーバ側で gRPC 実行可能な関数を定義する
@@ -31,6 +33,6 @@ namespace Paon.NNetwork.Shared.Hubs
         Task TimeAsync(string name, float time);
         Task ItemJoin(string name, Vector3 position, Quaternion rotation, string roomName);
         Task FlagAsync(int Mode);
-        //int CountPlayer();
+        Task GiveChecker(string ItemName, string PlayerName, DateTime UnHoldTime);
     }
 }

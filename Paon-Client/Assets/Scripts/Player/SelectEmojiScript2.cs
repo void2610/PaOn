@@ -37,7 +37,7 @@ namespace Paon.NPlayer
 			ApplyButton.SetActive(false);
 			Now = GameObject.Find("NowEmoji");
 			GC = GameObject.Find("GameClient");
-			select = 1;
+			//select = 1;
 			// GC.GetComponent<GameClient>().SendFaceID(select);
 		}
 
@@ -127,7 +127,7 @@ namespace Paon.NPlayer
 				{
 					select = 0;
 				}
-				// GC.GetComponent<GameClient>().SendFaceID(select);
+				GC.GetComponent<GameClient>().SendFaceID(select);
 			}
 		}
 	}

@@ -1,11 +1,12 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Collections;
 using MagicOnion.Server.Hubs;
 using Paon.NNetwork.Shared.Hubs;
 using Paon.NNetwork.Shared.MessagePackObjects;
 using UnityEngine;
-using System;
-using System.Collections.Generic;
 
 
 namespace Paon.NNetwork.Hubs
@@ -46,6 +47,8 @@ namespace Paon.NNetwork.Hubs
             // ルームに入室している他ユーザ全員に
             // 入室したユーザの情報をブロードキャスト送信する
             Broadcast(room).OnJoin(self, self.red, self.blue, self.green);
+
+            StartCoroutine(nameof(DelayCoroutine));
 
             // ルームに入室している他ユーザ全員の情報を配列で取得する
             return storage.AllValues.ToArray();
@@ -144,6 +147,28 @@ namespace Paon.NNetwork.Hubs
             //Console.WriteLine("Count:" + Count);
 
             Broadcast(room).BorderCount(Count);
+        }
+
+        public async Task GiveChecker(string ItemName, string PlayerName, DateTime UnHoldTime)
+        {
+            mono.Name = ItemName;
+            mono.Presenter = PlayerName;
+            mono.ReleaseTime = UnHoldTime;
+        }
+
+        public async Task TakeChecker(string ItemName, string PlayerName, DateTime UnHoldTime)
+        {
+            TimeSpan sp = new TimeSpan(0, 0, 0, 3);
+
+            if (mono.Presenter != PlayerName)
+            {
+                if(mono.ReleaseTime + sp > UnHoldTime)
+                {
+                    Broadcast(room).GoodPlayCount(mono.Presenter);
+                }
+            }
+
+            mono.Presenter = null;
         }
     }
 }

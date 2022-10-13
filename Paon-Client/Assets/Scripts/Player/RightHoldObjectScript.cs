@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Paon.NInput;
 using UnityEngine;
+using System;
 
 //handの子オブジェクトのHandTriggerにアタッチする
 namespace Paon.NPlayer
@@ -32,6 +33,10 @@ namespace Paon.NPlayer
 
         private Vector2 coords;
 
+        private GameObject client;
+
+        private DateTime UnHoldTime;
+
         void Start()
         {
             Player = GameObject.Find("PlayerBody");
@@ -41,6 +46,7 @@ namespace Paon.NPlayer
                     .Find("RightHandInputProvider")
                     .GetComponent<RightHandInputProvider>();
             rhm = Hand.GetComponent<RightHandMove>();
+            client = GameObject.Find("GameClient");
         }
 
         void Update()
@@ -76,11 +82,14 @@ namespace Paon.NPlayer
                 Hand.GetComponent<MeshFilter>().mesh = OpenHand;
                 if (oh.NowHoldObject != null)
                 {
+                    UnHoldTime = DateTime.Now;
+
                     //物を離したときの処理
                     oh.NowHoldObject.GetComponent<Rigidbody>().constraints =
                         RigidbodyConstraints.None;
                     oh.NowHoldObject.GetComponent<Rigidbody>().useGravity =
                         true;
+                    client.Givecheck(oh.NowHoldObject, UnHoldTime);
                 }
                 oh.UnHold();
             }
