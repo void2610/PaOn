@@ -19,7 +19,7 @@ public class PoseEstimator : MonoBehaviour
     }
 
     [Tooltip("The requested webcam dimensions")]
-    public Vector2Int webcamDims = new Vector2Int(1980, 1080);
+    public Vector2Int webcamDims = new Vector2Int(640, 1080);
 
     [Tooltip("The requested webcam frame rate")]
     public int webcamFPS = 60;

@@ -27363,11 +27363,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Estimation
       objectReference: {fileID: 0}
-    - target: {fileID: 8823757632181810756, guid: 472b9191cc902bb4d9b461dfa070ebf2,
-        type: 3}
-      propertyPath: isDebugEnabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 472b9191cc902bb4d9b461dfa070ebf2, type: 3}
 --- !u!114 &8823757631967146482 stripped

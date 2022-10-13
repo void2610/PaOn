@@ -750,7 +750,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 748.3902, y: 333.8048}
-  m_SizeDelta: {x: 400, y: 400}
+  m_SizeDelta: {x: 237, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &892354056
 MonoBehaviour:
@@ -2899,6 +2899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcc81461c43d5b445929d3ff54667773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDebugEnabled: 0
 --- !u!4 &9091432781320569777
 Transform:
   m_ObjectHideFlags: 0
