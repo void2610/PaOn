@@ -146,6 +146,12 @@ namespace Paon.NNetwork
 			return client.GiveChecker(ItemName, PlayerName, UnHoldTime);
 		}
 
+		public Task TakeChecker(string ItemName, string PlayerName, DateTime UnHoldTime)
+        {
+			return TakeChecker(ItemName, PlayerName, UnHoldTime);
+
+		}
+
 		// 部屋に新しいユーザが入室したときに呼び出される関数
 		// または ConnectAsync 関数を実行したときに呼び出される関数
 		void IGamingHubReceiver.OnJoin(Player player, float Red, float Blue, float Green)

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Paon.NNetwork;
 using Paon.NInput;
 using UnityEngine;
 using System;
@@ -59,6 +60,8 @@ namespace Paon.NPlayer
                 //新しく物をつかんだときの処理
                 if (NearObject != null && oh.NowHoldObject == null)
                 {
+                    UnHoldTime = DateTime.Now;
+
                     oh.HoldObject (NearObject);
                     if (oh.NowHoldObject.tag == "HoldableTag")
                     {
@@ -75,6 +78,8 @@ namespace Paon.NPlayer
                         oh.NowHoldObject.GetComponent<Rigidbody>().useGravity =
                             false;
                     }
+
+                    client.GetComponent<GameClient>().TakeCheck(oh.NowHoldObject, UnHoldTime);
                 }
             }
             else
@@ -89,7 +94,7 @@ namespace Paon.NPlayer
                         RigidbodyConstraints.None;
                     oh.NowHoldObject.GetComponent<Rigidbody>().useGravity =
                         true;
-                    client.Givecheck(oh.NowHoldObject, UnHoldTime);
+                    client.GetComponent<GameClient>().Givecheck(oh.NowHoldObject, UnHoldTime);
                 }
                 oh.UnHold();
             }

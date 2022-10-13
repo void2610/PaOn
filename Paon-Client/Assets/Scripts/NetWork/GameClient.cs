@@ -74,6 +74,11 @@ namespace Paon.NNetwork
             client.GiveChecker(present.name, PlayerPrefs.GetString("Name", "NULLTYAN"), UnHoldTime);
         }
 
+        public void TakeCheck(GameObject present, DateTime UnHoldTime)
+        {
+            client.TakeChecker(present.name, PlayerPrefs.GetString("Name", "NULLTYAN"), UnHoldTime);
+        }
+
         public static GameObject MakeDolls(Player player)
         {
             GameObject doll =
