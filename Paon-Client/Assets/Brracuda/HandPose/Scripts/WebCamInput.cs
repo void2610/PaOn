@@ -10,7 +10,7 @@ public class WebCamInput : MonoBehaviour
 	private string webCamName;
 
 	[SerializeField]
-	Vector2 webCamResolution = new Vector2(1920, 1080);
+	Vector2 webCamResolution = new Vector2(640, 1080);
 
 	// Provide input image Texture.
 	public Texture inputImageTexture

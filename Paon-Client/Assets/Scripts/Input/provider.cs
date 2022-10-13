@@ -4,24 +4,24 @@ using UnityEngine;
 
 public class Provider : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject Estimatior;
+	[SerializeField]
+	private GameObject Estimatior;
 
-    private PoseEstimator _PoseEstimator;
+	private PoseEstimator _PoseEstimator;
 
-    private Utils.Keypoint[] pose;
+	private Utils.Keypoint[] pose;
 
-    void Start()
-    {
-        _PoseEstimator = Estimatior.GetComponent<PoseEstimator>();
-    }
+	void Start()
+	{
+		_PoseEstimator = Estimatior.GetComponent<PoseEstimator>();
+	}
 
-    void Update()
-    {
-        pose = _PoseEstimator.GetKeypoints();
-        foreach (Utils.Keypoint key in pose)
-        {
-            Debug.Log(key.position);
-        }
-    }
+	void Update()
+	{
+		pose = _PoseEstimator.GetKeypoints();
+		// foreach (Utils.Keypoint key in pose)
+		// {
+		// 	Debug.Log(key.position);
+		// }
+	}
 }
