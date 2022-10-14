@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using Paon.NPlayer;
 using Paon.NNetwork;
+using Paon.NPlayer;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Paon.NBordering
 {
@@ -20,6 +21,8 @@ namespace Paon.NBordering
 
         public GameObject[] WaitAreas = new GameObject[3];
 
+        GameObject WaitText;
+
         int check;
 
         private GameObject client;
@@ -30,6 +33,7 @@ namespace Paon.NBordering
             WaitAreas[1] = GameObject.Find("WaitArea2");
             WaitAreas[2] = GameObject.Find("WaitArea3");
             client = GameObject.Find("GameClient");
+            WaitText = GameObject.Find("WaitText");
         }
 
         public void FlagCheck(bool Flags)
@@ -56,16 +60,33 @@ namespace Paon.NBordering
             {
                 client.GetComponent<BorderingClient>().CheckBorder();
             }
+            Flag = false;
+            if (
+                WaitAreas[0].GetComponent<WaitAreaScript>().ReadyPlayer !=
+                null &&
+                !Flag
+            )
+            {
+                WaitText.GetComponent<Text>().text =
+                    "じゅんばんまち　ちょっとまってね！";
+            }
+            if (
+                Flag ||
+                WaitAreas[0].GetComponent<WaitAreaScript>().ReadyPlayer == null
+            )
+            {
+                WaitText.GetComponent<Text>().text = "";
+            }
 
             if (NowPeople < MaxPeople)
             {
                 //人数に空きがあって、待機エリアに人がいる場合、プレイ中にしてテレポートさせる
                 if (
                     WaitAreas[0].GetComponent<WaitAreaScript>().ReadyPlayer !=
-                    null && Flag == true
+                    null &&
+                    Flag == true
                 )
                 {
-
                     WaitAreas[0]
                         .GetComponent<WaitAreaScript>()
                         .ReadyPlayer
@@ -81,8 +102,11 @@ namespace Paon.NBordering
                 }
             }
 
-
-            if (WaitAreas[0].GetComponent<WaitAreaScript>().ReadyPlayer == GameObject.Find("PlayerBody")) {
+            if (
+                WaitAreas[0].GetComponent<WaitAreaScript>().ReadyPlayer ==
+                GameObject.Find("PlayerBody")
+            )
+            {
                 temp = GameObject.Find("PlayerBody").transform.position;
             }
 
@@ -104,11 +128,17 @@ namespace Paon.NBordering
                 WaitAreas[2].GetComponent<WaitAreaScript>().TeleportPlayer();
             }
 
-            if (WaitAreas[0].GetComponent<WaitAreaScript>().ReadyPlayer != null && temp != GameObject.Find("PlayerBody").transform.position)
+            if (
+                WaitAreas[0].GetComponent<WaitAreaScript>().ReadyPlayer !=
+                null &&
+                temp != GameObject.Find("PlayerBody").transform.position
+            )
             {
                 if (count == 2)
                 {
-                    PlayerPrefs.SetInt("GiveTurn", PlayerPrefs.GetInt("GiveTurn", 0) + 1);
+                    PlayerPrefs
+                        .SetInt("GiveTurn",
+                        PlayerPrefs.GetInt("GiveTurn", 0) + 1);
                 }
             }
         }

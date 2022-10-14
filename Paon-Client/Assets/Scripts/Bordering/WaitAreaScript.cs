@@ -24,7 +24,7 @@ namespace Paon.NBordering
             }
         }
 
-        void OnTriggerStay(Collider other)
+        void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.tag == "Player")
             {
@@ -37,6 +37,11 @@ namespace Paon.NBordering
             {
                 ReadyPlayer = null;
             }
+        }
+
+        void OnTriggerExit(Collider other)
+        {
+            ReadyPlayer = null;
         }
     }
 }
