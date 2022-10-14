@@ -206,9 +206,9 @@ namespace Paon.NNetwork
 						player.Rotation);
 
 				//マテリアルを適用
-				doll.transform.GetChild(0).gameObject.GetComponent<Renderer>().material = skin;
+				doll.transform.GetChild(0).transform.GetChild(0).gameObject.GetComponent<Renderer>().material = skin;
+				doll.transform.GetChild(0).transform.GetChild(1).gameObject.GetComponent<Renderer>().material = skin;
 				doll.transform.GetChild(1).gameObject.GetComponent<Renderer>().material = skin;
-				doll.transform.GetChild(2).gameObject.GetComponent<Renderer>().material = skin;
 			}
 
 			Debug.Log("login:" + player.Name + ":" + n);
