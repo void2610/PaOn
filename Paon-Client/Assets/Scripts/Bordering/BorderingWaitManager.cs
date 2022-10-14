@@ -60,7 +60,6 @@ namespace Paon.NBordering
             {
                 client.GetComponent<BorderingClient>().CheckBorder();
             }
-            Flag = false;
             if (
                 WaitAreas[0].GetComponent<WaitAreaScript>().ReadyPlayer !=
                 null &&
