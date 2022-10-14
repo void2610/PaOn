@@ -232,6 +232,8 @@ namespace Paon.NNetwork
 		// 部屋の中でいずれかのユーザが動いたときに呼び出される関数
 		void IGamingHubReceiver.OnMove(Player player)
 		{
+			Debug.Log(player.Name);
+
 			// 引数の player の Name を元に this.players 内から GameObject を取得する
 			// ワールド上の該当する GameObject (アバター)の位置(Vector3)と回転(Quaternion) の値を最新のものに更新する
 			if (players.TryGetValue(player.Name, out var doll))
