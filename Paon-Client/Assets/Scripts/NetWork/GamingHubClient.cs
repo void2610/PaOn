@@ -186,7 +186,7 @@ namespace Paon.NNetwork
 				n++;
 
 				//マテリアルの色変更
-				skin.color = new Color(Red, Green, Blue);
+				skin.color = new Color(Red, Green, Blue, 1);
 
 				doll.name = player.Name;
 				_body.name = player.Name + "Body";
