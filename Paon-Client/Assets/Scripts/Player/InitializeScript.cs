@@ -8,12 +8,12 @@ namespace Paon.NPlayer
     {
         void Start()
         {
-            AudioListener.volume = PlayerPrefs.GetFloat("Volume", 0.5f);
+            AudioListener.volume = 0;
         }
 
         void Update()
         {
-            if (Time.time < 10)
+            if (Time.time < 5)
             {
                 AudioListener.volume = 0;
             }
