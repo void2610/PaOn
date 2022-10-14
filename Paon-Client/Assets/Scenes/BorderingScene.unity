@@ -1017,7 +1017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ddc197845c414b678cecb018afdbc03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  co: {fileID: 0}
+  co: {fileID: 5013851560433931616}
 --- !u!54 &280742009
 Rigidbody:
   m_ObjectHideFlags: 0
