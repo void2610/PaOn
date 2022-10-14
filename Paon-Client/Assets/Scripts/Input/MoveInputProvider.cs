@@ -135,11 +135,11 @@ namespace Paon.NInput
 				Rleg = Mathf.Abs(vertices[30].x - vertices[32].x);
 				Lleg = Mathf.Abs(vertices[29].x - vertices[31].x);
 
-				if (Rleg > 0.07)
+				if (Rleg > 0.05)
 				{
 					key = "right";
 				}
-				else if (Lleg > 0.07)
+				else if (Lleg > 0.05)
 				{
 					key = "left";
 				}
