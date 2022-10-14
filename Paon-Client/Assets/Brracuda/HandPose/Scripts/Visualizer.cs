@@ -80,7 +80,7 @@ public class Visualizer : MonoBehaviour
 
 	void Update()
 	{
-		if (Input.GetKey(KeyCode.Return)) isDebugEnabled = !isDebugEnabled;
+		if (Input.GetKey(KeyCode.PageUp)) isDebugEnabled = !isDebugEnabled;
 		image.texture = webCamInput.inputImageTexture;
 
 		// Inference. Switchable inference type anytime.
