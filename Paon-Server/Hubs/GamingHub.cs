@@ -42,7 +42,10 @@ namespace Paon.NNetwork.Hubs
             //Console.WriteLine(Flags.Length);
             //Console.WriteLine(Flags[0].Flag);
 
-            Broadcast(room).FiastPlayer();
+            if ( storage.AllValues.ToArray().Length == 1 )
+            {
+                Broadcast(room).FiastPlayer();
+            }
 
             // ルームに入室している他ユーザ全員に
             // 入室したユーザの情報をブロードキャスト送信する
