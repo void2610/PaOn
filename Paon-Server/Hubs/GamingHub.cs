@@ -145,7 +145,7 @@ namespace Paon.NNetwork.Hubs
             }
 
             //Console.WriteLine(self.Flag);
-            //Console.WriteLine("Count:" + Count);
+            Console.WriteLine("Count:" + Count);
 
             Broadcast(room).BorderCount(Count);
         }

@@ -320,7 +320,7 @@ namespace Paon.NNetwork
 
 			bool flag;
 
-			if (Count < 2)
+			if (Count < 1)
 			{
 				flag = true;
 			}
