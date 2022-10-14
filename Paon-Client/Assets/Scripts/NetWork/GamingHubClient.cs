@@ -247,12 +247,12 @@ namespace Paon.NNetwork
 						.transform
 						.GetChild(1)
 						.SetPositionAndRotation(player.LeftPosition,
-						player.Rotation * Quaternion.Euler(0f, 0f, -90f));
+						player.Rotation * Quaternion.Euler(180f, 0f, -90f));
 				doll
 						.transform
 						.GetChild(2)
 						.SetPositionAndRotation(player.RightPosition,
-						player.Rotation * Quaternion.Euler(0f, 0f, -90f));
+						player.Rotation * Quaternion.Euler(180f, 0f, -90f));
 				doll
 						.transform
 						.GetChild(0)
