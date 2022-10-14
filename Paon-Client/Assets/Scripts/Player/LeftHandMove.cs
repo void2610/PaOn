@@ -75,10 +75,13 @@ namespace Paon.NPlayer
 				else if (crouch)
 				{
 					hand.transform.localPosition = new Vector3(-coords.x / 40 + 4, -coords.y / 30 + 3, hand.transform.localPosition.z);
-					hand.transform.eulerAngles = new Vector3(hand.transform.eulerAngles.x, 25, hand.transform.eulerAngles.z);
+					hand.transform.eulerAngles = new Vector3(-25, hand.transform.eulerAngles.y, hand.transform.eulerAngles.z);
 				}
 				else
+				{
 					hand.transform.localPosition = new Vector3(-coords.x / 40 + 4, -coords.y / 30 + 2.5f, hand.transform.localPosition.z);
+					hand.transform.eulerAngles = new Vector3(0, hand.transform.eulerAngles.y, hand.transform.eulerAngles.z);
+				}
 			}
 		}
 	}
