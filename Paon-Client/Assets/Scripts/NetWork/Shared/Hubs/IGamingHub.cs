@@ -34,5 +34,6 @@ namespace Paon.NNetwork.Shared.Hubs
         Task ItemJoin(string name, Vector3 position, Quaternion rotation, string roomName);
         Task FlagAsync(int Mode);
         Task GiveChecker(string ItemName, string PlayerName, DateTime UnHoldTime);
+        Task TakeChecker(string ItemName, string PlayerName, DateTime UnHoldTime);
     }
 }

@@ -148,7 +148,7 @@ namespace Paon.NNetwork
 
 		public Task TakeChecker(string ItemName, string PlayerName, DateTime UnHoldTime)
         {
-			return TakeChecker(ItemName, PlayerName, UnHoldTime);
+			return client.TakeChecker(ItemName, PlayerName, UnHoldTime);
 
 		}
 
