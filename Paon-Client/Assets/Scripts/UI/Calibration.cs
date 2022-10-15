@@ -170,7 +170,7 @@ public class Calibration : MonoBehaviour
 			yield return null;
 		}
 		result = buffer.Average();
-		result += result * 0.1f;
+		result += result * 0.3f;
 		mo.forwardThreshold = result;
 		PlayerPrefs.SetFloat("WalkThreshold", result);
 		Debug.Log("WalkThreshold is determined");
