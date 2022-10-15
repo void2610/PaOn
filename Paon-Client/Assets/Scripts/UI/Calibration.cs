@@ -246,8 +246,7 @@ public class Calibration : MonoBehaviour
 
 	void CountDown()
 	{
-		time = 0;
-		while (time < 3)
+		while (time < 3.0f)
 		{
 			timer.text = (3 - Time.deltaTime).ToString();
 			Circle.fillAmount = (3 - time) / 3;
