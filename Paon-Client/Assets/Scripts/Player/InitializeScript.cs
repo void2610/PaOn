@@ -6,7 +6,7 @@ namespace Paon.NPlayer
 {
     public class InitializeScript : MonoBehaviour
     {
-        void Start()
+        void Awake()
         {
             AudioListener.volume = 0;
         }
