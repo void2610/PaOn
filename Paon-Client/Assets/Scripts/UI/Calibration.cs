@@ -187,11 +187,13 @@ public class Calibration : MonoBehaviour
 		float[] buffer = new float[200];
 		float delta, result, tmp;
 		//right leg
+		int i = 0;
 		while (time >= 3.0)
 		{
 			delta = mo.GetDelta();
 			buffer[i] = delta;
 			yield return null;
+			i++;
 		}
 		tmp = buffer.Average();
 		Array.Clear(buffer, 0, buffer.Length);
@@ -206,11 +208,13 @@ public class Calibration : MonoBehaviour
 
 		//left leg
 		message.text = splitText[4];
+		i = 0;
 		while (time >= 3.0)
 		{
 			delta = mo.GetDelta();
 			buffer[i] = delta;
 			yield return null;
+			i++;
 		}
 		result = buffer.Average();
 		result = (tmp + result) / 2;
