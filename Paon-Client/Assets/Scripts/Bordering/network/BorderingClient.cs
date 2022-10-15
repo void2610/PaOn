@@ -46,7 +46,7 @@ namespace Paon.NNetwork
 
 		// StreamingHub クライアントで使用する gRPC チャネルを生成
 
-		private Channel channel = new Channel("153.125.148.207", 5032, ChannelCredentials.Insecure);
+		private Channel channel = new Channel("192.168.43.196", 5032, ChannelCredentials.Insecure);
 
 		// StreamingHub サーバと通信を行うためのクライアント生成
 		private GamingHubClient client = new GamingHubClient();
