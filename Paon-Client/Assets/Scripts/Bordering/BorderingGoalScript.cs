@@ -47,10 +47,7 @@ namespace Paon.NBordering
                 {
                     this.GetComponent<AudioSource>().PlayOneShot(SE);
                 }
-                client
-                    .GetComponent<GamingHubClient>()
-                    .TimeAsync(PlayerPrefs.GetString("Name", "NULLTYAN"),
-                    goalTime);
+
                 this
                     .BorderingManager
                     .GetComponent<BorderingTimerScript>()
@@ -58,6 +55,10 @@ namespace Paon.NBordering
                     .CountEnd();
                 Player.transform.position = GoalPosition.transform.position;
                 Player.GetComponent<Rigidbody>().useGravity = true;
+                client
+                    .GetComponent<GamingHubClient>()
+                    .TimeAsync(PlayerPrefs.GetString("Name", "NULLTYAN"),
+                    goalTime);
             }
             if (Time.time - goalTime < 5)
             {
