@@ -37,7 +37,8 @@ namespace Paon.NBordering
 		[SerializeField]
 		private OpenCommorose oc;
 		public bool isRunning = false;
-		public bool isDebugEnabled = false;
+		private bool isDebugEnabled = false;
+		private DebugManager debugger;
 
 		void Start()
 		{
@@ -56,11 +57,12 @@ namespace Paon.NBordering
 					GameObject
 							.Find("BorderingManager")
 							.GetComponent<BorderingTimerScript>();
+			debugger = GameObject.Find("DebugManager").GetComponent<DebugManager>();
 		}
 
 		void Update()
 		{
-			if (Input.GetKeyDown(KeyCode.Return)) isDebugEnabled = !isDebugEnabled;
+			isDebugEnabled = debugger.isDebugEnabled;
 			Vector3 pos = rmip.GetPosition();
 
 			//掴んでいるかどうか

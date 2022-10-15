@@ -41,7 +41,8 @@ namespace Paon.NInput
 
 		public float th = 1.0f;
 
-		public bool isDebugEnabled = false;
+		private bool isDebugEnabled = false;
+		private DebugManager debugger;
 
 		private float delta = 0;
 
@@ -79,13 +80,13 @@ namespace Paon.NInput
 		void Start()
 		{
 			gk = GK.GetComponent<GetKeypoints>();
+			debugger = GameObject.Find("DebugManager").GetComponent<DebugManager>();
 			if (PlayerPrefs.HasKey("WalkThreshold")) forwardThreshold = PlayerPrefs.GetFloat("WalkThreshold");
 		}
 
 		void Update()
 		{
-			if (Input.GetKeyDown(KeyCode.Return)) isDebugEnabled = !isDebugEnabled;
-
+			isDebugEnabled = debugger.isDebugEnabled;
 			if (isDebugEnabled)
 			{
 				if (Input.GetKey(KeyCode.LeftArrow))

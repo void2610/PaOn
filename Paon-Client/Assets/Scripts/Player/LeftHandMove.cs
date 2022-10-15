@@ -31,7 +31,8 @@ namespace Paon.NPlayer
 
 		public bool isCalib = false;
 
-		public bool isDebugEnabled = false;
+		private bool isDebugEnabled = false;
+		private DebugManager debugger;
 
 		private bool crouch = false;
 
@@ -41,11 +42,12 @@ namespace Paon.NPlayer
 			inputProvider = GameObject.Find("LeftHandInputProvider").GetComponent<LeftHandInputProvider>();
 			mp = GameObject.Find("MoveInputProvider").GetComponent<MoveInputProvider>();
 			player = this.gameObject;
+			debugger = GameObject.Find("DebugManager").GetComponent<DebugManager>();
 		}
 
 		async void FixedUpdate()
 		{
-			if (Input.GetKeyDown(KeyCode.Return)) isDebugEnabled = !isDebugEnabled;
+			isDebugEnabled = debugger.isDebugEnabled;
 			coords = inputProvider.GetPosition();
 			delta = inputProvider.GetDelta();
 			if (mp.crouch == 1) { crouch = true; }
