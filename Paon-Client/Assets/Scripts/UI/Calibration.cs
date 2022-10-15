@@ -181,7 +181,7 @@ public class Calibration : MonoBehaviour
 		time = 0.0f;
 		while (time < 3.0)
 		{
-			timer.text = 3 - Time.deltaTime;
+			timer.text = (3 - Time.deltaTime).ToString();
 			Circle.fillAmount = (3 - time) / 3;
 			delta = mo.GetDelta();
 			buffer[i] = delta;
@@ -199,7 +199,7 @@ public class Calibration : MonoBehaviour
 		time = 0.0f;
 		while (time < 3.0)
 		{
-			timer.text = 3 - Time.deltaTime;
+			timer.text = (3 - Time.deltaTime).ToString();
 			Circle.fillAmount = (3 - time) / 3;
 			delta = mo.GetDelta();
 			buffer[i] = delta;
