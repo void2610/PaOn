@@ -67,6 +67,7 @@ namespace Paon.NInput
 		void Update()
 		{
 			poseKeypoints = _PoseEstimator.GetKeypoints();
+			distance = Vector3.Distance(finger[0], finger[12]);
 			int cnt = 0;
 			foreach (Utils.Keypoint key in poseKeypoints)
 			{
@@ -119,7 +120,7 @@ namespace Paon.NInput
 
 		private int leftCloseOrOpen(Vector3[] finger)
 		{
-			distance = Vector3.Distance(finger[0], finger[12]);
+			// distance = Vector3.Distance(finger[0], finger[12]);
 			if (distance < closeThreshold && leftScore > 0.7f)
 			{
 				return 1;
@@ -129,7 +130,7 @@ namespace Paon.NInput
 
 		private int rightCloseOrOpen(Vector3[] finger)
 		{
-			distance = Vector3.Distance(finger[0], finger[12]);
+			// distance = Vector3.Distance(finger[0], finger[12]);
 			if (distance < closeThreshold && rightScore > 0.7f)
 			{
 				return 1;

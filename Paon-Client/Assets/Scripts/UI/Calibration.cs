@@ -155,6 +155,7 @@ public class Calibration : MonoBehaviour
 			if (leftScore > 0.7f && rightScore > 0.7f)
 			{
 				delta = gk.GetDistance();
+				Debug.Log("closeDelta: " + delta);
 				buffer[i] = delta;
 			}
 			else i--;
