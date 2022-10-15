@@ -71,7 +71,7 @@ namespace Paon.NPlayer
 					hand.transform.Translate(Vector3.down * 0.01f);
 				}
 
-				if (isDebugEnabled)
+				if (!isDebugEnabled)
 				{
 					if (isCalib)
 						hand.transform.localPosition = new Vector3(coords.x / 70 - 1, -coords.y / 70 + 1, hand.transform.localPosition.z);
