@@ -58,10 +58,21 @@ public class OpenCommorose : MonoBehaviour
 	private IEnumerator CommoRose()
 	{
 		yield return new WaitForSeconds(0.5f);
-		if (delta > threshhold)
+		if (!isDebugEnabled)
 		{
-			check = false;
-			Open = true;
+			if (delta > threshhold)
+			{
+				check = false;
+				Open = true;
+			}
+		}
+		else
+		{
+			if (delta >= 1.5f)
+			{
+				check = false;
+				Open = true;
+			}
 		}
 	}
 }
