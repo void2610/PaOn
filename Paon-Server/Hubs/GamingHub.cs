@@ -27,13 +27,12 @@ namespace Paon.NNetwork.Hubs
         // ルームに入室しているユーザ全員（自分も含む）の情報を保持して扱うための変数
         IInMemoryStorage<Player> storage;
         IInMemoryStorage<Item> memory;
-        IInMemoryStorage<string> Exiter;
 
         // 指定したルームに入室するための関数
         // 入室するルーム名及び、ユーザ自身の情報(ユーザ名,位置(Vector3),回転(Quaternion)) を引数に取る
         public async Task<Player[]> JoinAsync(string roomName, string userName, Vector3 _body, Vector3 _right, Vector3 _left, Quaternion rotation, float Red, float Blue, float Green)
         {
-            self = new Player() { Name = userName, BodyPosition = _body, RightPosition = _right, LeftPosition = _left, Rotation = rotation, red = Red, blue = Blue, green = Green, Flag = false};
+            self = new Player() { Name = userName, BodyPosition = _body, RightPosition = _right, LeftPosition = _left, Rotation = rotation, red = Red, blue = Blue, green = Green, Flag = false, Check = false};
             // ルームにユーザが入室する
             (room, storage) = await Group.AddAsync(roomName, self);
 
@@ -131,15 +130,18 @@ namespace Paon.NNetwork.Hubs
             {
                 TimeSpan sp = new TimeSpan(0, 0, 0, 3);
 
-                Console.WriteLine(Exiter);
-                Console.WriteLine(PlayerName);
+                //Console.WriteLine(PlayerName);
 
                 for (int i = 0; i < Flags.Length; i++)
                 {
-                    if (Flags[i].Exiter != null)
+                    Console.WriteLine(Flags[i].Exiter);
+
+                    if (Flags[i].Check == true)
                     {
                         if (Flags[i].Exiter != PlayerName)
                         {
+                            Console.WriteLine("譲った人の判定まで○");
+
                             if (Flags[i].OutTime + sp > nowTime)
                             {
                                 Console.WriteLine("入室" + self.OutTime);
@@ -150,7 +152,6 @@ namespace Paon.NNetwork.Hubs
                     }
                 }
 
-
                 self.Flag = true;
             }
             //譲ったとき
@@ -160,6 +161,7 @@ namespace Paon.NNetwork.Hubs
                 self.Flag = false;
                 self.OutTime = nowTime;
                 self.Exiter = PlayerName;
+                self.Check = true;
 
                 Console.WriteLine("交代" + self.Exiter);
             }
@@ -205,6 +207,7 @@ namespace Paon.NNetwork.Hubs
         public async Task ResetGiveTurn()
         {
             self.Exiter = null;
+            self.Check = false;
         }
     }
 }

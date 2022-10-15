@@ -19,6 +19,7 @@ namespace Paon.NNetwork.Shared.MessagePackObjects
         [Key(9)] public bool Flag { get; set; }
         [Key(10)] public DateTime OutTime { get; set; }
         [Key(11)] public string Exiter { get; set; }
+        [Key(12)] public bool Check { get; set; }
     }
 
     [MessagePackObject]
