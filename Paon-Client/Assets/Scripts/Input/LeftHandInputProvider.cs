@@ -6,8 +6,6 @@ namespace Paon.NInput
 {
 	public class LeftHandInputProvider : MonoBehaviour
 	{
-		[Range(0.0f, 1.0f)]
-		public float holdThreshold = 0.1f;
 		GameObject GK;
 
 		private GetKeypoints gk;
