@@ -33,7 +33,7 @@ namespace Paon.NNetwork.Shared.Hubs
         Task FaceAsync(int FaceID);
         Task TimeAsync(string name, float time);
         Task ItemJoin(string name, Vector3 position, Quaternion rotation, string roomName);
-        Task FlagAsync(int Mode, DateTime nowTime, string PlayerName);
+        Task FlagAsync(int Mode, DateTime nowTime);
         Task GiveChecker(string ItemName, string PlayerName, DateTime UnHoldTime);
         Task TakeChecker(string ItemName, string PlayerName, DateTime UnHoldTime);
         Task ResetGiveTurn();
