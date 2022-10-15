@@ -139,7 +139,7 @@ public class Calibration : MonoBehaviour
 	{
 		time = 0;
 		message.text = splitText[2];
-		CountDown();
+		StartCoroutine(nameof(CountDown));
 
 		float[] buffer = new float[200];
 		float delta, result;
@@ -172,7 +172,7 @@ public class Calibration : MonoBehaviour
 	IEnumerator DecideWalkThreshold()
 	{
 		message.text = splitText[3];
-		CountDown();
+		StartCoroutine(nameof(CountDown));
 
 		float[] buffer = new float[200];
 		float delta, result, tmp;
@@ -192,7 +192,7 @@ public class Calibration : MonoBehaviour
 		Array.Clear(buffer, 0, buffer.Length);
 
 		message.text = splitText[4];
-		CountDown();
+		StartCoroutine(nameof(CountDown));
 
 		//left leg
 		i = 0;
@@ -244,12 +244,13 @@ public class Calibration : MonoBehaviour
 		Debug.Log("Threshold deleted");
 	}
 
-	void CountDown()
+	IEnumerator CountDown()
 	{
 		while (time < 3.0f)
 		{
 			timer.text = (3 - Time.deltaTime).ToString();
 			Circle.fillAmount = (3 - time) / 3;
+			yield return null;
 		}
 	}
 }
