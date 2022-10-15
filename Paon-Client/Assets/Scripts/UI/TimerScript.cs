@@ -12,7 +12,7 @@ namespace Paon.NUI
 
         private GameObject client;
 
-        private float time = 0.0f;
+        public float time = 0.0f;
 
         public bool counting = false;
 

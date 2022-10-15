@@ -36,13 +36,24 @@ namespace Paon.NInput
         {
             if (Input.GetKeyDown(KeyCode.Escape) && pause == false)
             {
-                BM.GetComponent<BorderingTimerScript>().Timer.CountStop();
+                Debug.Log("Paused");
+                if (BM)
+                {
+                    BM.GetComponent<BorderingTimerScript>().Timer.CountStop();
+                }
                 PauseMenu.SetActive(true);
                 pause = true;
             }
             else if (Input.GetKeyDown(KeyCode.Escape) && pause == true)
             {
-                BM.GetComponent<BorderingTimerScript>().Timer.CountStart();
+                Debug.Log("Unpaused");
+                if (
+                    BM &&
+                    BM.GetComponent<BorderingTimerScript>().Timer.time != 0
+                )
+                {
+                    BM.GetComponent<BorderingTimerScript>().Timer.CountStart();
+                }
                 PauseMenu.SetActive(false);
                 pause = false;
             }
