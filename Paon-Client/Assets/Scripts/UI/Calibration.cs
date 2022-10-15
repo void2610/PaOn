@@ -107,7 +107,7 @@ public class Calibration : MonoBehaviour
 				case Phase.HandEstimation:
 					Debug.Log("Phase2");
 					if (!isRunning)
-						message.text = splitText[++textIndex];
+						message.text = splitText[1];
 					if (!isRunning && leftScore > 0.7f && rightScore > 0.7f)
 					{
 						isRunning = true;
@@ -137,7 +137,7 @@ public class Calibration : MonoBehaviour
 
 	IEnumerator DecideCloseThreshold()
 	{
-		message.text = splitText[++textIndex];
+		message.text = splitText[2];
 		timer.text = "3";
 		yield return new WaitForSeconds(1);
 		timer.text = "2";
@@ -177,7 +177,7 @@ public class Calibration : MonoBehaviour
 
 	IEnumerator DecideWalkThreshold()
 	{
-		message.text = splitText[++textIndex];
+		message.text = splitText[3];
 		timer.text = "3";
 		yield return new WaitForSeconds(1);
 		timer.text = "2";
@@ -210,7 +210,7 @@ public class Calibration : MonoBehaviour
 		timer.text = "";
 
 		//left leg
-		message.text = splitText[++textIndex];
+		message.text = splitText[4];
 		i = 0;
 		while (time >= 3.0)
 		{
