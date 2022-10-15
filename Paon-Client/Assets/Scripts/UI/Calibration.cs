@@ -107,7 +107,7 @@ public class Calibration : MonoBehaviour
 				case Phase.HandEstimation:
 					Debug.Log("Phase2");
 					if (!isRunning)
-						message.text = splitText[1];
+						message.text = splitText[++textIndex];
 					if (!isRunning && leftScore > 0.7f && rightScore > 0.7f)
 					{
 						isRunning = true;
@@ -125,7 +125,7 @@ public class Calibration : MonoBehaviour
 					return;
 
 				default:
-					message.text = splitText[4];
+					message.text = splitText[splitText.Length - 1];
 					end = true;
 					Debug.Log("Calibration end");
 					return;
@@ -137,7 +137,8 @@ public class Calibration : MonoBehaviour
 
 	IEnumerator DecideCloseThreshold()
 	{
-		message.text = splitText[3];
+		message.text = splitText[++textIndex];
+		timer.text = "3";
 		yield return new WaitForSeconds(1);
 		timer.text = "2";
 		yield return new WaitForSeconds(1);
@@ -145,7 +146,7 @@ public class Calibration : MonoBehaviour
 		yield return new WaitForSeconds(1);
 		timer.text = "";
 
-		message.text = splitText[2];
+
 		float[] buffer = new float[200];
 		float delta, result;
 		bool go = false;
@@ -176,7 +177,8 @@ public class Calibration : MonoBehaviour
 
 	IEnumerator DecideWalkThreshold()
 	{
-		message.text = splitText[3];
+		message.text = splitText[++textIndex];
+		timer.text = "3";
 		yield return new WaitForSeconds(1);
 		timer.text = "2";
 		yield return new WaitForSeconds(1);
@@ -187,16 +189,19 @@ public class Calibration : MonoBehaviour
 		float[] buffer = new float[200];
 		float delta, result, tmp;
 		//right leg
+		int i = 0;
 		while (time >= 3.0)
 		{
 			delta = mo.GetDelta();
 			buffer[i] = delta;
 			yield return null;
+			i++;
 		}
 		tmp = buffer.Average();
 		Array.Clear(buffer, 0, buffer.Length);
 
-		message.text = splitText[3];
+		message.text = splitText[++textIndex];
+		timer.text = "3";
 		yield return new WaitForSeconds(1);
 		timer.text = "2";
 		yield return new WaitForSeconds(1);
@@ -205,12 +210,14 @@ public class Calibration : MonoBehaviour
 		timer.text = "";
 
 		//left leg
-		message.text = splitText[4];
+		message.text = splitText[++textIndex];
+		i = 0;
 		while (time >= 3.0)
 		{
 			delta = mo.GetDelta();
 			buffer[i] = delta;
 			yield return null;
+			i++;
 		}
 		result = buffer.Average();
 		result = (tmp + result) / 2;

@@ -54,26 +54,24 @@ namespace Paon.NPlayer
 
 			if (canMove)
 			{
-				if (isDebugEnabled)
+				if (inputProvider.GetInput() == "up")
 				{
-					if (inputProvider.GetInput() == "up")
-					{
-						hand.transform.Translate(Vector3.left * 0.01f);
-					}
-					else if (inputProvider.GetInput() == "down")
-					{
-						hand.transform.Translate(Vector3.right * 0.01f);
-					}
-					else if (inputProvider.GetInput() == "left")
-					{
-						hand.transform.Translate(Vector3.up * 0.01f);
-					}
-					else if (inputProvider.GetInput() == "right")
-					{
-						hand.transform.Translate(Vector3.down * 0.01f);
-					}
+					hand.transform.Translate(Vector3.left * 0.01f);
 				}
-				else
+				else if (inputProvider.GetInput() == "down")
+				{
+					hand.transform.Translate(Vector3.right * 0.01f);
+				}
+				else if (inputProvider.GetInput() == "left")
+				{
+					hand.transform.Translate(Vector3.up * 0.01f);
+				}
+				else if (inputProvider.GetInput() == "right")
+				{
+					hand.transform.Translate(Vector3.down * 0.01f);
+				}
+
+				if (!isDebugEnabled)
 				{
 					if (isCalib)
 					{

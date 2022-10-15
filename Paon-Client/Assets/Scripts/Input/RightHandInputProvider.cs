@@ -89,31 +89,30 @@ namespace Paon.NInput
 
 			hold = gk.rightIsClosed;
 
-			if (Input.GetKey(KeyCode.Return)) isDebugEnabled = !isDebugEnabled;
-
-			if (Input.GetKey(KeyCode.I))
-			{
-				key = "up";
-			}
-			else if (Input.GetKey(KeyCode.J))
-			{
-				key = "left";
-			}
-			else if (Input.GetKey(KeyCode.K))
-			{
-				key = "down";
-			}
-			else if (Input.GetKey(KeyCode.L))
-			{
-				key = "right";
-			}
-			else
-			{
-				key = "none";
-			}
-
+			if (Input.GetKeyDown(KeyCode.Return)) isDebugEnabled = !isDebugEnabled;
 			if (isDebugEnabled)
 			{
+				if (Input.GetKey(KeyCode.I))
+				{
+					key = "up";
+				}
+				else if (Input.GetKey(KeyCode.J))
+				{
+					key = "left";
+				}
+				else if (Input.GetKey(KeyCode.K))
+				{
+					key = "down";
+				}
+				else if (Input.GetKey(KeyCode.L))
+				{
+					key = "right";
+				}
+				else
+				{
+					key = "none";
+				}
+
 				if (Input.GetKey(KeyCode.U))
 				{
 					hold = 1;
@@ -123,8 +122,11 @@ namespace Paon.NInput
 					hold = 0;
 				}
 			}
-			if (wrist != previous)
-				previous = wrist;
+			else
+			{
+				if (wrist != previous)
+					previous = wrist;
+			}
 		}
 	}
 }

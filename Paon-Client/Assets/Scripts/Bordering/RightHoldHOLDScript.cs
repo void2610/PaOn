@@ -37,6 +37,7 @@ namespace Paon.NBordering
 		[SerializeField]
 		private OpenCommorose oc;
 		public bool isRunning = false;
+		public bool isDebugEnabled = false;
 
 		void Start()
 		{
@@ -59,6 +60,7 @@ namespace Paon.NBordering
 
 		void Update()
 		{
+			if (Input.GetKeyDown(KeyCode.Return)) isDebugEnabled = !isDebugEnabled;
 			Vector3 pos = rmip.GetPosition();
 
 			//掴んでいるかどうか
@@ -94,7 +96,8 @@ namespace Paon.NBordering
 						}
 
 						//手の位置を戻す
-						Hand.transform.localPosition = new Vector3(2f, 0, 3.4f);
+						if (!isDebugEnabled)
+							Hand.transform.localPosition = new Vector3(2f, 0, 3.4f);
 					}
 				}
 				oh.UnHold();

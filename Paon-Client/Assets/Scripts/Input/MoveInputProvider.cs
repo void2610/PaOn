@@ -84,9 +84,6 @@ namespace Paon.NInput
 
 		void Update()
 		{
-			vertices = _visualizer.GetPoseVertices();
-			previous = gk.pose;
-
 			if (Input.GetKeyDown(KeyCode.Return)) isDebugEnabled = !isDebugEnabled;
 
 			if (isDebugEnabled)
@@ -116,79 +113,87 @@ namespace Paon.NInput
 					key = "none";
 				}
 			}
-
-			if (pose != null && previous[16].score > 0.7f && previous[15].score > 0.7f)
+			else
 			{
-				Vector2 healCenter = Vector2.Lerp(pose[15].coords, pose[16].coords, 0.5f);
-				Vector2 hipCenter = Vector2.Lerp(pose[11].coords, pose[12].coords, 0.5f);
-
-				//right
-				def1 = pose[16].coords.y - pose[0].coords.y;
-
-				//left
-				def2 = pose[15].coords.y - pose[0].coords.y;
-
-				// Debug.Log("delta1: " + Math.Abs(def1 - predef1));
-				// Debug.Log("delta2: " + Math.Abs(def2 - predef2));
-
-				//heel to toe
-				Rleg = Mathf.Abs(vertices[30].x - vertices[32].x);
-				Lleg = Mathf.Abs(vertices[29].x - vertices[31].x);
-
-				if (Rleg > 0.05)
+				vertices = _visualizer.GetPoseVertices();
+				previous = gk.pose;
+				if (pose != null && previous[16].score > 0.7f && previous[15].score > 0.7f)
 				{
-					key = "right";
-				}
-				else if (Lleg > 0.05)
-				{
-					key = "left";
-				}
-				else
-				{
-					key = "none";
-				}
+					Vector2 healCenter = Vector2.Lerp(pose[15].coords, pose[16].coords, 0.5f);
+					Vector2 hipCenter = Vector2.Lerp(pose[11].coords, pose[12].coords, 0.5f);
+
+					//right
+					def1 = pose[16].coords.y - pose[0].coords.y;
+
+					//left
+					def2 = pose[15].coords.y - pose[0].coords.y;
+
+					// Debug.Log("delta1: " + Math.Abs(def1 - predef1));
+					// Debug.Log("delta2: " + Math.Abs(def2 - predef2));
+
+					//heel to toe
+					Rleg = Mathf.Abs(vertices[30].x - vertices[32].x);
+					Lleg = Mathf.Abs(vertices[29].x - vertices[31].x);
+
+					if (Rleg > 0.05)
+					{
+						key = "right";
+					}
+					else if (Lleg > 0.05)
+					{
+						key = "left";
+					}
+					else
+					{
+						key = "none";
+					}
 
 
-				float current = Mathf.Abs(pose[16].coords.y - pose[15].coords.y);
+					float current = Mathf.Abs(pose[16].coords.y - pose[15].coords.y);
 
-				// delta = Mathf.Abs(prevForward - current);
-				delta = Mathf.Abs(current);
-				if (delta > forwardThreshold && !isWalking)
-				{
-					isWalking = true;
+					// delta = Mathf.Abs(prevForward - current);
+					delta = Mathf.Abs(current);
+					if (delta > forwardThreshold && !isWalking)
+					{
+						isWalking = true;
+					}
+
+					if (isWalking && crouch == 0)
+					{
+						key = "up";
+						StartCoroutine(nameof(JudgeMove));
+					}
+
+					predef1 = def1;
+					predef2 = def2;
+					// prevForward = current;
 				}
-
-				if (isWalking && crouch == 0)
-				{
-					key = "up";
-					StartCoroutine(nameof(JudgeMove));
-				}
-
-				predef1 = def1;
-				predef2 = def2;
-				// prevForward = current;
 			}
 		}
 
 		void LateUpdate()
 		{
-			pose = gk.pose;
-			if (pose != null && previous[16].score > 0.7f && previous[15].score > 0.7f)
+			if (!isDebugEnabled)
 			{
-				Vector2 healCenter = Vector2.Lerp(pose[15].coords, pose[16].coords, 0.5f);
-				Vector2 hipCenter = Vector2.Lerp(pose[11].coords, pose[12].coords, 0.5f);
+				pose = gk.pose;
+				if (pose != null && previous[16].score > 0.7f && previous[15].score > 0.7f)
+				{
+					Vector2 healCenter = Vector2.Lerp(pose[15].coords, pose[16].coords, 0.5f);
+					Vector2 hipCenter = Vector2.Lerp(pose[11].coords, pose[12].coords, 0.5f);
 
-				float legLength = Vector2.Distance(healCenter, hipCenter);
-				if (legLength < 50)
-				{
-					crouch = 1;
-					Debug.Log("crouched: " + crouch);
-				}
-				else
-				{
-					crouch = 0;
+					float legLength = Vector2.Distance(healCenter, hipCenter);
+					if (legLength < 50)
+					{
+						crouch = 1;
+						Debug.Log("crouched: " + crouch);
+					}
+					else
+					{
+						crouch = 0;
+					}
 				}
 			}
+
 		}
 
 		public float GetDelta()
