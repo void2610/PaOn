@@ -63,6 +63,9 @@ public class Calibration : MonoBehaviour
 
 	private float time = 0.0f;
 	private float interval = 1.0f;
+
+	Coroutine current;
+	Coroutine counting;
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -111,7 +114,8 @@ public class Calibration : MonoBehaviour
 					if (!isRunning && leftScore > 0.7f && rightScore > 0.7f)
 					{
 						isRunning = true;
-						StartCoroutine(nameof(DecideCloseThreshold));
+						if (current == null)
+							current = StartCoroutine(nameof(DecideCloseThreshold));
 					}
 					return;
 
@@ -120,7 +124,8 @@ public class Calibration : MonoBehaviour
 					if (!isRunning)
 					{
 						isRunning = true;
-						StartCoroutine(nameof(DecideWalkThreshold));
+						if (currentPosition == null)
+							current = StartCoroutine(nameof(DecideWalkThreshold));
 					}
 					return;
 
@@ -139,7 +144,8 @@ public class Calibration : MonoBehaviour
 	{
 		time = 0;
 		message.text = splitText[2];
-		StartCoroutine(nameof(CountDown));
+		if (counting == null)
+			counting = StartCoroutine(nameof(CountDown));
 
 		float[] buffer = new float[200];
 		float delta, result;
@@ -166,13 +172,15 @@ public class Calibration : MonoBehaviour
 			isRunning = false;
 			state = Phase.Positioning;
 			Lamps[1].color = green;
+			current = null;
 		}
 	}
 
 	IEnumerator DecideWalkThreshold()
 	{
 		message.text = splitText[3];
-		StartCoroutine(nameof(CountDown));
+		if (counting == null)
+			counting = StartCoroutine(nameof(CountDown));
 
 		float[] buffer = new float[200];
 		float delta, result, tmp;
@@ -192,8 +200,8 @@ public class Calibration : MonoBehaviour
 		Array.Clear(buffer, 0, buffer.Length);
 
 		message.text = splitText[4];
-		StartCoroutine(nameof(CountDown));
-
+		if (counting == null)
+			counting = StartCoroutine(nameof(CountDown));
 		//left leg
 		i = 0;
 		time = 0.0f;
@@ -252,5 +260,6 @@ public class Calibration : MonoBehaviour
 			Circle.fillAmount = (3 - time) / 3;
 			yield return null;
 		}
+		counting = null;
 	}
 }
