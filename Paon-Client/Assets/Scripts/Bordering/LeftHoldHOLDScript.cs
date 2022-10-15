@@ -95,7 +95,7 @@ namespace Paon.NBordering
 						}
 
 						//手の位置を戻す
-						// Hand.transform.localPosition = new Vector3(-2f, 0, 3.4f);
+						Hand.transform.localPosition = new Vector3(-2f, 0, 3.4f);
 					}
 				}
 				oh.UnHold();
