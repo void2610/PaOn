@@ -89,7 +89,7 @@ namespace Paon.NInput
 
 			hold = gk.rightIsClosed;
 
-			if (Input.GetKey(KeyCode.Return)) isDebugEnabled = !isDebugEnabled;
+			if (Input.GetKeyDown(KeyCode.Return)) isDebugEnabled = !isDebugEnabled;
 			if (isDebugEnabled)
 			{
 				if (Input.GetKey(KeyCode.I))
