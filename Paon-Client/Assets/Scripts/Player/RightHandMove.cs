@@ -31,7 +31,7 @@ namespace Paon.NPlayer
 		private bool crouch = false;
 
 		public bool isCalib = false;
-		private bool isDebugEnabled = false;
+		public bool isDebugEnabled = false;
 		private DebugManager debugger;
 		async void Start()
 		{
