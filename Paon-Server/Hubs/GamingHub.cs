@@ -118,7 +118,7 @@ namespace Paon.NNetwork.Hubs
             Broadcast(room).OnGoal(name, time);
         }
 
-        public async Task FlagAsync(int Mode)
+        public async Task FlagAsync(int Mode, DateTime nowTime, string PlayerName)
         {
             Console.WriteLine("Mode:" + Mode);
 
@@ -128,12 +128,22 @@ namespace Paon.NNetwork.Hubs
 
             if (Mode == 1)
             {
+                TimeSpan sp = new TimeSpan(0, 0, 0, 3);
+                if (self.Exiter != PlayerName)
+                {
+                    if (self.OutTime + sp > nowTime)
+                    {
+                        Broadcast(room).niceGiveTurn(self.Exiter);
+                    }
+                }
                 self.Flag = true;
             }
             else
             if (Mode == 2)
             {
                 self.Flag = false;
+                self.OutTime = nowTime;
+                self.Exiter = PlayerName;
             }
 
             for (int i = 0; i < Flags.Length; i++)
