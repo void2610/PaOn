@@ -19,7 +19,7 @@ namespace Paon.NInput
 
 		private bool isDebugEnabled = false;
 
-		DebugManager debugger;
+		private DebugManager debugger;
 
 		int hold = 0;
 
@@ -93,6 +93,7 @@ namespace Paon.NInput
 
 			hold = gk.rightIsClosed;
 
+			isDebugEnabled = debugger.isDebugEnabled;
 			if (isDebugEnabled)
 			{
 				if (Input.GetKey(KeyCode.I))
