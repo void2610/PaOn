@@ -139,17 +139,7 @@ public class Calibration : MonoBehaviour
 	{
 		time = 0;
 		message.text = splitText[2];
-		timer.text = "3";
-		yield return new WaitForSeconds(1);
-		timer.text = "2";
-		Circle.fillAmount = 1 - time;
-		yield return new WaitForSeconds(1);
-		timer.text = "1";
-		Circle.fillAmount = 1 - time;
-		yield return new WaitForSeconds(1);
-		timer.text = "";
-		Circle.fillAmount = 1 - time;
-
+		CountDown();
 
 		float[] buffer = new float[200];
 		float delta, result;
@@ -182,11 +172,7 @@ public class Calibration : MonoBehaviour
 	IEnumerator DecideWalkThreshold()
 	{
 		message.text = splitText[3];
-		while (time < 3.0)
-		{
-			timer.text = 3 - Time.deltaTime;
-			Circle.fillAmount = (3 - time) / 3;
-		}
+		CountDown();
 
 		float[] buffer = new float[200];
 		float delta, result, tmp;
@@ -206,11 +192,7 @@ public class Calibration : MonoBehaviour
 		Array.Clear(buffer, 0, buffer.Length);
 
 		message.text = splitText[4];
-		while (time < 3.0)
-		{
-			timer.text = 3 - Time.deltaTime;
-			Circle.fillAmount = (3 - time) / 3;
-		}
+		CountDown();
 
 		//left leg
 		i = 0;
@@ -267,7 +249,7 @@ public class Calibration : MonoBehaviour
 		time = 0;
 		while (time < 3)
 		{
-			timer.text = 3 - Time.deltaTime;
+			timer.text = (3 - Time.deltaTime).ToString();
 			Circle.fillAmount = (3 - time) / 3;
 		}
 	}
