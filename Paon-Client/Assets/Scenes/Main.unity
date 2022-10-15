@@ -7653,7 +7653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 458cf7845cff9d847b7e4dbca20faf7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDebugEnabled: 0
+  isDebugEnabled: 1
 --- !u!1001 &684150020
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14110,6 +14110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5316b25ade7287b4cae3dead245e7950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  time: 0
   counting: 0
   display: 0
 --- !u!1001 &1305178410
@@ -23584,6 +23585,9 @@ MonoBehaviour:
   threshhold: 70
   isBordering: 0
   Open: 0
+  leftHand: {fileID: 0}
+  rightHand: {fileID: 0}
+  isDebugEnabled: 0
 --- !u!114 &1045148832636091915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23598,6 +23602,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canMove: 1
   isCalib: 0
+  isDebugEnabled: 0
 --- !u!65 &1045148832636091924
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23764,6 +23769,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canMove: 1
   isCalib: 0
+  isDebugEnabled: 0
 --- !u!1001 &1386090518339289555
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26595,7 +26601,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c1dce430ce9ee244baa73cafb68f59b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdThreshold: 0.1
 --- !u!4 &8314665997813290586
 Transform:
   m_ObjectHideFlags: 0
