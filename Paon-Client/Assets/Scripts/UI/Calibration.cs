@@ -142,7 +142,7 @@ public class Calibration : MonoBehaviour
 			}
 			else i--;
 			yield return null;
-			if (i == 29) go = true;
+			if (i == 149) go = true;
 		}
 		if (go)
 		{
