@@ -85,7 +85,6 @@ namespace Paon.NInput
 
 		void Update()
 		{
-			isDebugEnabled = debugger.isDebugEnabled;
 			if (gk.rightWrist.score > 0.7f)
 			{
 				wrist = gk.rightWrist;
