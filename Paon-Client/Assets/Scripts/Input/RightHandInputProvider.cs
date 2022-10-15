@@ -17,7 +17,9 @@ namespace Paon.NInput
 
 		string key = "";
 
-		public bool isDebugEnabled = false;
+		private bool isDebugEnabled = false;
+
+		DebugManager debugger;
 
 		int hold = 0;
 
@@ -78,10 +80,12 @@ namespace Paon.NInput
 		{
 			GK = GameObject.Find("GetKeypoints");
 			gk = GK.GetComponent<GetKeypoints>();
+			debugger = GameObject.Find("DebugManager").GetComponent<DebugManager>();
 		}
 
 		void Update()
 		{
+			isDebugEnabled = debugger.isDebugEnabled;
 			if (gk.rightWrist.score > 0.7f)
 			{
 				wrist = gk.rightWrist;
@@ -89,7 +93,6 @@ namespace Paon.NInput
 
 			hold = gk.rightIsClosed;
 
-			if (Input.GetKeyDown(KeyCode.Return)) isDebugEnabled = !isDebugEnabled;
 			if (isDebugEnabled)
 			{
 				if (Input.GetKey(KeyCode.I))

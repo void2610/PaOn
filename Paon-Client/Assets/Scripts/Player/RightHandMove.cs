@@ -31,20 +31,19 @@ namespace Paon.NPlayer
 		private bool crouch = false;
 
 		public bool isCalib = false;
-
 		public bool isDebugEnabled = false;
-
+		private DebugManager debugger;
 		async void Start()
 		{
 			hand = this.gameObject;
 			inputProvider = GameObject.Find("RightHandInputProvider").GetComponent<RightHandInputProvider>();
 			mp = GameObject.Find("MoveInputProvider").GetComponent<MoveInputProvider>();
+			debugger = GameObject.Find("DebugManager").GetComponent<DebugManager>();
 		}
 
 		async void FixedUpdate()
 		{
-			if (Input.GetKeyDown(KeyCode.Return)) isDebugEnabled = !isDebugEnabled;
-
+			isDebugEnabled = debugger.isDebugEnabled;
 			coords = inputProvider.GetPosition();
 			delta = inputProvider.GetDelta();
 

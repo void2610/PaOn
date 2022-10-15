@@ -20,7 +20,8 @@ namespace Paon.NInput
 		private Vector3 finger;
 		string key = "";
 
-		public bool isDebugEnabled = false;
+		private bool isDebugEnabled = false;
+		private DebugManager debugger;
 
 		int hold = 0;
 
@@ -82,6 +83,7 @@ namespace Paon.NInput
 		{
 			GK = GameObject.Find("GetKeypoints");
 			gk = GK.GetComponent<GetKeypoints>();
+			debugger = GameObject.Find("DebugManager").GetComponent<DebugManager>();
 		}
 
 		void Update()
@@ -96,8 +98,7 @@ namespace Paon.NInput
 			hold = gk.leftIsClosed;
 			// Debug.Log("left: " + hold);
 
-			if (Input.GetKeyDown(KeyCode.Return)) isDebugEnabled = !isDebugEnabled;
-
+			isDebugEnabled = debugger.isDebugEnabled;
 			if (isDebugEnabled)
 			{
 				if (Input.GetKey(KeyCode.W))
