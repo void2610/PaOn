@@ -182,17 +182,11 @@ public class Calibration : MonoBehaviour
 	IEnumerator DecideWalkThreshold()
 	{
 		message.text = splitText[3];
-		timer.text = "3";
-		Circle.fillAmount = 1 - time;
-		yield return new WaitForSeconds(1);
-		timer.text = "2";
-		Circle.fillAmount = 1 - time;
-		yield return new WaitForSeconds(1);
-		timer.text = "1";
-		Circle.fillAmount = 1 - time;
-		yield return new WaitForSeconds(1);
-		timer.text = "";
-		Circle.fillAmount = 1 - time;
+		while (time < 3.0)
+		{
+			timer.text = 3 - Time.deltaTime;
+			Circle.fillAmount = (3 - time) / 3;
+		}
 
 		float[] buffer = new float[200];
 		float delta, result, tmp;
@@ -201,6 +195,7 @@ public class Calibration : MonoBehaviour
 		time = 0.0f;
 		while (time < 3.0)
 		{
+			timer.text = 3 - Time.deltaTime;
 			Circle.fillAmount = (3 - time) / 3;
 			delta = mo.GetDelta();
 			buffer[i] = delta;
@@ -210,24 +205,19 @@ public class Calibration : MonoBehaviour
 		tmp = buffer.Average();
 		Array.Clear(buffer, 0, buffer.Length);
 
-		message.text = splitText[++textIndex];
-		timer.text = "3";
-		Circle.fillAmount = 1 - time;
-		yield return new WaitForSeconds(1);
-		timer.text = "2";
-		Circle.fillAmount = 1 - time;
-		yield return new WaitForSeconds(1);
-		timer.text = "1";
-		Circle.fillAmount = 1 - time;
-		yield return new WaitForSeconds(1);
-		timer.text = "";
+		message.text = splitText[4];
+		while (time < 3.0)
+		{
+			timer.text = 3 - Time.deltaTime;
+			Circle.fillAmount = (3 - time) / 3;
+		}
 
 		//left leg
-		message.text = splitText[4];
 		i = 0;
 		time = 0.0f;
 		while (time < 3.0)
 		{
+			timer.text = 3 - Time.deltaTime;
 			Circle.fillAmount = (3 - time) / 3;
 			delta = mo.GetDelta();
 			buffer[i] = delta;
@@ -270,5 +260,15 @@ public class Calibration : MonoBehaviour
 		PlayerPrefs.DeleteKey("CloseThreshold");
 		PlayerPrefs.DeleteKey("WalkThreshold");
 		Debug.Log("Threshold deleted");
+	}
+
+	void CountDown()
+	{
+		time = 0;
+		while (time < 3)
+		{
+			timer.text = 3 - Time.deltaTime;
+			Circle.fillAmount = (3 - time) / 3;
+		}
 	}
 }
