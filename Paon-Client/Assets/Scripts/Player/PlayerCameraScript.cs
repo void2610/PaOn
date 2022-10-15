@@ -10,6 +10,8 @@ namespace Paon.NPlayer
     {
         private GameObject mip;
 
+        private GameObject Player;
+
         private BorderingGoalScript goal;
 
         private BorderingStartScript start;
@@ -38,6 +40,7 @@ namespace Paon.NPlayer
                         .Find("BorderingStart")
                         .GetComponent<BorderingStartScript>();
             }
+            Player = GameObject.Find("PlayerBody");
         }
 
         void Update()
@@ -83,39 +86,49 @@ namespace Paon.NPlayer
                 PlayerPrefs.GetString("Room", "none") == "Bordering2"
             )
             {
-                if (stat == 0)
+                if (Player.GetComponent<PlayerMove>()._Player.playingBordering)
                 {
-                    if (y < 1.5f)
+                    if (stat == 0)
                     {
-                        rot =
-                            new Vector3(-15 * y,
-                                this.gameObject.transform.eulerAngles.y,
-                                this.gameObject.transform.eulerAngles.z);
+                        if (y < 1.5f)
+                        {
+                            rot =
+                                new Vector3(-15 * y,
+                                    this.gameObject.transform.eulerAngles.y,
+                                    this.gameObject.transform.eulerAngles.z);
+                        }
+                        else
+                        {
+                            rot =
+                                new Vector3(-22.5f,
+                                    this.gameObject.transform.eulerAngles.y,
+                                    this.gameObject.transform.eulerAngles.z);
+                        }
                     }
-                    else
+                    else if (stat == 1)
                     {
-                        rot =
-                            new Vector3(-22.5f,
-                                this.gameObject.transform.eulerAngles.y,
-                                this.gameObject.transform.eulerAngles.z);
+                        if (y > 1.5f)
+                        {
+                            rot =
+                                new Vector3(22.5f,
+                                    this.gameObject.transform.eulerAngles.y,
+                                    this.gameObject.transform.eulerAngles.z);
+                        }
+                        else
+                        {
+                            rot =
+                                new Vector3(15 * y,
+                                    this.gameObject.transform.eulerAngles.y,
+                                    this.gameObject.transform.eulerAngles.z);
+                        }
                     }
                 }
-                else if (stat == 1)
+                else
                 {
-                    if (y > 1.5f)
-                    {
-                        rot =
-                            new Vector3(22.5f,
-                                this.gameObject.transform.eulerAngles.y,
-                                this.gameObject.transform.eulerAngles.z);
-                    }
-                    else
-                    {
-                        rot =
-                            new Vector3(15 * y,
-                                this.gameObject.transform.eulerAngles.y,
-                                this.gameObject.transform.eulerAngles.z);
-                    }
+                    rot =
+                        new Vector3(0,
+                            this.gameObject.transform.eulerAngles.y,
+                            this.gameObject.transform.eulerAngles.z);
                 }
             }
             this.gameObject.transform.eulerAngles = rot;

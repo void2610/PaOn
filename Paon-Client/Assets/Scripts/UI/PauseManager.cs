@@ -52,7 +52,10 @@ namespace Paon.NInput
                     BM.GetComponent<BorderingTimerScript>().Timer.time != 0
                 )
                 {
-                    BM.GetComponent<BorderingTimerScript>().Timer.CountStart();
+                    BM
+                        .GetComponent<BorderingTimerScript>()
+                        .Timer
+                        .CountReStart();
                 }
                 PauseMenu.SetActive(false);
                 pause = false;

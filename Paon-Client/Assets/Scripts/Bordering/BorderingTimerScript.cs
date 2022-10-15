@@ -24,7 +24,6 @@ namespace Paon.NBordering
                 {
                     if (!Timer.counting)
                     {
-                        Timer.CountReset();
                         Timer.CountStart();
                     }
                 }
