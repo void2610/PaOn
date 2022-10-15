@@ -56,6 +56,8 @@ namespace Paon.NInput
 
 		public float distance = 999;
 
+		Vector3[] leftTemp, rightTemp;
+
 		void Start()
 		{
 			_PoseEstimator = PoseEstimator.GetComponent<PoseEstimator>();
@@ -78,8 +80,8 @@ namespace Paon.NInput
 			leftWrist = pose[9];
 			rightWrist = pose[10];
 
-			Vector3[] leftTemp = _handVisualizer.GetLeftVert();
-			Vector3[] rightTemp = _handVisualizer.GetRightVert();
+			leftTemp = _handVisualizer.GetLeftVert();
+			rightTemp = _handVisualizer.GetRightVert();
 
 			leftScore = leftTemp[21].x;
 			rightScore = rightTemp[21].x;
