@@ -21,18 +21,24 @@ public class OpenCommorose : MonoBehaviour
 	public bool isBordering = false;
 	public bool Open = false;
 
+	public GameObject leftHand, rightHand;
+	public bool isDebugEnabled = false;
+	private DebugManager debugger;
 	bool check = false;
 
 	float delta = 0;
 
 	void Start()
 	{
-
+		debugger = GameObject.Find("DebugManager").GetComponent<DebugManager>();
+		leftHand = GameObject.Find("LeftHand");
+		rightHand = GameObject.Find("RightHand");
 	}
 
 	void Update()
 	{
-		if (!isBordering)
+		isDebugEnabled = debugger.isDebugEnabled;
+		if (!isBordering && !isDebugEnabled)
 		{
 			left = gk.leftWrist;
 			right = gk.rightWrist;
@@ -41,6 +47,12 @@ public class OpenCommorose : MonoBehaviour
 			if (check) StartCoroutine(nameof(CommoRose));
 		}
 
+		if (isDebugEnabled)
+		{
+			delta = Mathf.Abs(leftHand.transform.localPosition.y - rightHand.transform.localPosition.y);
+			if (delta >= 1.5f && check) check = true;
+			if (check) StartCoroutine(nameof(CommoRose));
+		}
 	}
 
 	private IEnumerator CommoRose()
