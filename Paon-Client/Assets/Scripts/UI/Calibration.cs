@@ -144,8 +144,7 @@ public class Calibration : MonoBehaviour
 	{
 		time = 0;
 		message.text = splitText[2];
-		if (counting == null)
-			counting = StartCoroutine(nameof(CountDown));
+		yield return CountDown();
 
 		float[] buffer = new float[200];
 		float delta, result;
@@ -179,8 +178,7 @@ public class Calibration : MonoBehaviour
 	IEnumerator DecideWalkThreshold()
 	{
 		message.text = splitText[3];
-		if (counting == null)
-			counting = StartCoroutine(nameof(CountDown));
+		yield return CountDown();
 
 		float[] buffer = new float[200];
 		float delta, result, tmp;
@@ -200,8 +198,8 @@ public class Calibration : MonoBehaviour
 		Array.Clear(buffer, 0, buffer.Length);
 
 		message.text = splitText[4];
-		if (counting == null)
-			counting = StartCoroutine(nameof(CountDown));
+		yield return CountDown();
+
 		//left leg
 		i = 0;
 		time = 0.0f;
