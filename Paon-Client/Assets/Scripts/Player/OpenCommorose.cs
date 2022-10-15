@@ -49,7 +49,7 @@ public class OpenCommorose : MonoBehaviour
 
 		if (isDebugEnabled)
 		{
-			delta = Mathf.Abs(leftHand.transform.localPosition.y - rightHand.transform.localPosition.y);
+			delta = Mathf.Abs(leftHand.transform.localPosition.y) + Mathf.Abs(rightHand.transform.localPosition.y);
 			if (delta >= 1.5f && check) check = true;
 			if (check) StartCoroutine(nameof(CommoRose));
 		}
