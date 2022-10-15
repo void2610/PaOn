@@ -63,6 +63,9 @@ public class Calibration : MonoBehaviour
 
 	private float time = 0.0f;
 	private float interval = 1.0f;
+
+	Coroutine current;
+	Coroutine counting;
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -111,7 +114,8 @@ public class Calibration : MonoBehaviour
 					if (!isRunning && leftScore > 0.7f && rightScore > 0.7f)
 					{
 						isRunning = true;
-						StartCoroutine(nameof(DecideCloseThreshold));
+						if (current == null)
+							current = StartCoroutine(nameof(DecideCloseThreshold));
 					}
 					return;
 
@@ -120,7 +124,8 @@ public class Calibration : MonoBehaviour
 					if (!isRunning)
 					{
 						isRunning = true;
-						StartCoroutine(nameof(DecideWalkThreshold));
+						if (current == null)
+							current = StartCoroutine(nameof(DecideWalkThreshold));
 					}
 					return;
 
@@ -139,17 +144,7 @@ public class Calibration : MonoBehaviour
 	{
 		time = 0;
 		message.text = splitText[2];
-		timer.text = "3";
-		yield return new WaitForSeconds(1);
-		timer.text = "2";
-		Circle.fillAmount = 1 - time;
-		yield return new WaitForSeconds(1);
-		timer.text = "1";
-		Circle.fillAmount = 1 - time;
-		yield return new WaitForSeconds(1);
-		timer.text = "";
-		Circle.fillAmount = 1 - time;
-
+		yield return CountDown();
 
 		float[] buffer = new float[200];
 		float delta, result;
@@ -176,23 +171,14 @@ public class Calibration : MonoBehaviour
 			isRunning = false;
 			state = Phase.Positioning;
 			Lamps[1].color = green;
+			current = null;
 		}
 	}
 
 	IEnumerator DecideWalkThreshold()
 	{
 		message.text = splitText[3];
-		timer.text = "3";
-		Circle.fillAmount = 1 - time;
-		yield return new WaitForSeconds(1);
-		timer.text = "2";
-		Circle.fillAmount = 1 - time;
-		yield return new WaitForSeconds(1);
-		timer.text = "1";
-		Circle.fillAmount = 1 - time;
-		yield return new WaitForSeconds(1);
-		timer.text = "";
-		Circle.fillAmount = 1 - time;
+		yield return CountDown();
 
 		float[] buffer = new float[200];
 		float delta, result, tmp;
@@ -201,6 +187,7 @@ public class Calibration : MonoBehaviour
 		time = 0.0f;
 		while (time < 3.0)
 		{
+			timer.text = (3 - Time.deltaTime).ToString();
 			Circle.fillAmount = (3 - time) / 3;
 			delta = mo.GetDelta();
 			buffer[i] = delta;
@@ -210,24 +197,15 @@ public class Calibration : MonoBehaviour
 		tmp = buffer.Average();
 		Array.Clear(buffer, 0, buffer.Length);
 
-		message.text = splitText[++textIndex];
-		timer.text = "3";
-		Circle.fillAmount = 1 - time;
-		yield return new WaitForSeconds(1);
-		timer.text = "2";
-		Circle.fillAmount = 1 - time;
-		yield return new WaitForSeconds(1);
-		timer.text = "1";
-		Circle.fillAmount = 1 - time;
-		yield return new WaitForSeconds(1);
-		timer.text = "";
+		message.text = splitText[4];
+		yield return CountDown();
 
 		//left leg
-		message.text = splitText[4];
 		i = 0;
 		time = 0.0f;
 		while (time < 3.0)
 		{
+			timer.text = (3 - Time.deltaTime).ToString();
 			Circle.fillAmount = (3 - time) / 3;
 			delta = mo.GetDelta();
 			buffer[i] = delta;
@@ -270,5 +248,17 @@ public class Calibration : MonoBehaviour
 		PlayerPrefs.DeleteKey("CloseThreshold");
 		PlayerPrefs.DeleteKey("WalkThreshold");
 		Debug.Log("Threshold deleted");
+	}
+
+	IEnumerator CountDown()
+	{
+		time = 0;
+		while (time < 3.0f)
+		{
+			timer.text = (3 - time).ToString();
+			Circle.fillAmount = (3 - time) / 3;
+			yield return null;
+		}
+		counting = null;
 	}
 }
