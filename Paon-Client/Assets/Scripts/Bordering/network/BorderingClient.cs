@@ -89,8 +89,9 @@ namespace Paon.NNetwork
 		public void CheckBorder()
 		{
 			int Mode = 0;
+			nowTime = DateTime.Now;
 
-			client.FlagAsync(Mode);
+			client.FlagAsync(Mode, nowTime, PlayerPrefs.GetString("Name", "NULLTYAN"));
 		}
 
 		public void StartBorder()

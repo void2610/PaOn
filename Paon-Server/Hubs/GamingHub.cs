@@ -129,6 +129,7 @@ namespace Paon.NNetwork.Hubs
             if (Mode == 1)
             {
                 TimeSpan sp = new TimeSpan(0, 0, 0, 3);
+
                 if (self.Exiter != PlayerName)
                 {
                     if (self.OutTime + sp > nowTime)
