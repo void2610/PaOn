@@ -137,14 +137,18 @@ public class Calibration : MonoBehaviour
 
 	IEnumerator DecideCloseThreshold()
 	{
+		time = 0;
 		message.text = splitText[2];
 		timer.text = "3";
 		yield return new WaitForSeconds(1);
 		timer.text = "2";
+		Circle.fillAmount = 1 - time;
 		yield return new WaitForSeconds(1);
 		timer.text = "1";
+		Circle.fillAmount = 1 - time;
 		yield return new WaitForSeconds(1);
 		timer.text = "";
+		Circle.fillAmount = 1 - time;
 
 
 		float[] buffer = new float[200];
@@ -179,12 +183,16 @@ public class Calibration : MonoBehaviour
 	{
 		message.text = splitText[3];
 		timer.text = "3";
+		Circle.fillAmount = 1 - time;
 		yield return new WaitForSeconds(1);
 		timer.text = "2";
+		Circle.fillAmount = 1 - time;
 		yield return new WaitForSeconds(1);
 		timer.text = "1";
+		Circle.fillAmount = 1 - time;
 		yield return new WaitForSeconds(1);
 		timer.text = "";
+		Circle.fillAmount = 1 - time;
 
 		float[] buffer = new float[200];
 		float delta, result, tmp;
@@ -193,7 +201,7 @@ public class Calibration : MonoBehaviour
 		time = 0.0f;
 		while (time < 3.0)
 		{
-			Circle.fillAmount -= (3 - time) / 3;
+			Circle.fillAmount = (3 - time) / 3;
 			delta = mo.GetDelta();
 			buffer[i] = delta;
 			yield return null;
@@ -204,10 +212,13 @@ public class Calibration : MonoBehaviour
 
 		message.text = splitText[++textIndex];
 		timer.text = "3";
+		Circle.fillAmount = 1 - time;
 		yield return new WaitForSeconds(1);
 		timer.text = "2";
+		Circle.fillAmount = 1 - time;
 		yield return new WaitForSeconds(1);
 		timer.text = "1";
+		Circle.fillAmount = 1 - time;
 		yield return new WaitForSeconds(1);
 		timer.text = "";
 
@@ -217,7 +228,7 @@ public class Calibration : MonoBehaviour
 		time = 0.0f;
 		while (time < 3.0)
 		{
-			Circle.fillAmount -= (3 - time) / 3;
+			Circle.fillAmount = (3 - time) / 3;
 			delta = mo.GetDelta();
 			buffer[i] = delta;
 			yield return null;
