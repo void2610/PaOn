@@ -36,5 +36,6 @@ namespace Paon.NNetwork.Shared.Hubs
         Task FlagAsync(int Mode, DateTime nowTime, string PlayerName);
         Task GiveChecker(string ItemName, string PlayerName, DateTime UnHoldTime);
         Task TakeChecker(string ItemName, string PlayerName, DateTime UnHoldTime);
+        Task ResetGiveTurn();
     }
 }

@@ -345,9 +345,13 @@ namespace Paon.NNetwork
 		
 		void IGamingHubReceiver.niceGiveTurn(string PlayerName)
         {
+			Debug.Log("Come,GiveTurn");
+
 			if (PlayerName == PlayerPrefs.GetString("Name", "NULLTYAN"))
 			{
 				PlayerPrefs.SetInt("GiveTurn", PlayerPrefs.GetInt("GiveTurn", 0) + 1);
+
+				client.ResetGiveTurn();
 			}
 		}
 	}

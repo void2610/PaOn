@@ -66,7 +66,7 @@ namespace Paon.NNetwork
 
         public void SendFaceID(int FaceID)
         {
-            client.FaceAsync (FaceID);
+            client.FaceAsync(FaceID);
         }
 
         //アイテムを話した時、あげたものかの確認

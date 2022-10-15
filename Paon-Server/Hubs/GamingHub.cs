@@ -27,7 +27,7 @@ namespace Paon.NNetwork.Hubs
         // ルームに入室しているユーザ全員（自分も含む）の情報を保持して扱うための変数
         IInMemoryStorage<Player> storage;
         IInMemoryStorage<Item> memory;
-        //IInMemoryStorage<Counter> Count;
+        IInMemoryStorage<string> Exiter;
 
         // 指定したルームに入室するための関数
         // 入室するルーム名及び、ユーザ自身の情報(ユーザ名,位置(Vector3),回転(Quaternion)) を引数に取る
@@ -120,31 +120,48 @@ namespace Paon.NNetwork.Hubs
 
         public async Task FlagAsync(int Mode, DateTime nowTime, string PlayerName)
         {
-            Console.WriteLine("Mode:" + Mode);
+            //Console.WriteLine("Mode:" + Mode);
 
             int Count = 0;
 
             Flags = storage.AllValues.ToArray();
 
+            //ボルダリング開始
             if (Mode == 1)
             {
                 TimeSpan sp = new TimeSpan(0, 0, 0, 3);
 
-                if (self.Exiter != PlayerName)
+                Console.WriteLine(Exiter);
+                Console.WriteLine(PlayerName);
+
+                for (int i = 0; i < Flags.Length; i++)
                 {
-                    if (self.OutTime + sp > nowTime)
+                    if (Flags[i].Exiter != null)
                     {
-                        Broadcast(room).niceGiveTurn(self.Exiter);
+                        if (Flags[i].Exiter != PlayerName)
+                        {
+                            if (Flags[i].OutTime + sp > nowTime)
+                            {
+                                Console.WriteLine("入室" + self.OutTime);
+
+                                Broadcast(room).niceGiveTurn(Flags[i].Exiter);
+                            }
+                        }
                     }
                 }
+
+
                 self.Flag = true;
             }
+            //譲ったとき
             else
             if (Mode == 2)
             {
                 self.Flag = false;
                 self.OutTime = nowTime;
                 self.Exiter = PlayerName;
+
+                Console.WriteLine("交代" + self.Exiter);
             }
 
             for (int i = 0; i < Flags.Length; i++)
@@ -156,7 +173,7 @@ namespace Paon.NNetwork.Hubs
             }
 
             //Console.WriteLine(self.Flag);
-            Console.WriteLine("Count:" + Count);
+            //Console.WriteLine("Count:" + Count);
 
             Broadcast(room).BorderCount(Count);
         }
@@ -183,6 +200,11 @@ namespace Paon.NNetwork.Hubs
             }
 
             mono.Presenter = null;
+        }
+
+        public async Task ResetGiveTurn()
+        {
+            self.Exiter = null;
         }
     }
 }
