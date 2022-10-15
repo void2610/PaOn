@@ -146,17 +146,18 @@ public class Calibration : MonoBehaviour
 		message.text = splitText[2];
 		yield return CountDown();
 
-		float[] buffer = new float[200];
-		float delta, result;
+		float[] buffer = new float[400];
+		float leftDelta, rightDelta, result;
 		bool go = false;
 		while (leftScore < 0.7f && rightScore < 0.7f) yield return null;
 		for (int i = 0; i < 150; i++)
 		{
 			if (leftScore > 0.7f && rightScore > 0.7f)
 			{
-				delta = gk.GetDistance();
-				Debug.Log("closeDelta: " + delta);
-				buffer[i] = delta;
+				leftDelta = gk.GetLeftDistance();
+				rightDelta = gk.GetRightDistance();
+				buffer[i] = leftDelta;
+				buffer[i + 1] = rightDelta;
 			}
 			else i--;
 			yield return null;
