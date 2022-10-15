@@ -22,13 +22,17 @@ namespace Paon.NUI
 
         public void CountStart()
         {
-            time = 0.0f;
             counting = true;
         }
 
         public void CountStop()
         {
             counting = false;
+        }
+
+        public void CountReset()
+        {
+            time = 0.0f;
         }
 
         void Start()

@@ -31,6 +31,8 @@ namespace Paon.NPlayer
 
 		public bool isCalib = false;
 
+		public bool isDebugEnabled = false;
+
 		private bool crouch = false;
 
 		async void Start()
@@ -43,6 +45,7 @@ namespace Paon.NPlayer
 
 		async void FixedUpdate()
 		{
+			if (Input.GetKeyDown(KeyCode.Return)) isDebugEnabled = !isDebugEnabled;
 			coords = inputProvider.GetPosition();
 			delta = inputProvider.GetDelta();
 			if (mp.crouch == 1) { crouch = true; }
@@ -51,36 +54,41 @@ namespace Paon.NPlayer
 
 			if (canMove)
 			{
-				if (inputProvider.GetInput() == "up")
+				if (isDebugEnabled)
 				{
-					hand.transform.Translate(Vector3.left * 0.01f);
-				}
-				else if (inputProvider.GetInput() == "down")
-				{
-					hand.transform.Translate(Vector3.right * 0.01f);
-				}
-				else if (inputProvider.GetInput() == "left")
-				{
-					hand.transform.Translate(Vector3.up * 0.01f);
-				}
-				else if (inputProvider.GetInput() == "right")
-				{
-					hand.transform.Translate(Vector3.down * 0.01f);
-				}
-
-				if (isCalib)
-				{
-					hand.transform.localPosition = new Vector3(coords.x / 70 - 2, -coords.y / 70 + 1, hand.transform.localPosition.z);
-				}
-				else if (crouch)
-				{
-					hand.transform.localPosition = new Vector3(-coords.x / 40 + 4, -coords.y / 30 + 3, hand.transform.localPosition.z);
-					hand.transform.eulerAngles = new Vector3(-25, hand.transform.eulerAngles.y, hand.transform.eulerAngles.z);
+					if (inputProvider.GetInput() == "up")
+					{
+						hand.transform.Translate(Vector3.left * 0.01f);
+					}
+					else if (inputProvider.GetInput() == "down")
+					{
+						hand.transform.Translate(Vector3.right * 0.01f);
+					}
+					else if (inputProvider.GetInput() == "left")
+					{
+						hand.transform.Translate(Vector3.up * 0.01f);
+					}
+					else if (inputProvider.GetInput() == "right")
+					{
+						hand.transform.Translate(Vector3.down * 0.01f);
+					}
 				}
 				else
 				{
-					hand.transform.localPosition = new Vector3(-coords.x / 40 + 4, -coords.y / 30 + 2.5f, hand.transform.localPosition.z);
-					hand.transform.eulerAngles = new Vector3(0, hand.transform.eulerAngles.y, hand.transform.eulerAngles.z);
+					if (isCalib)
+					{
+						hand.transform.localPosition = new Vector3(coords.x / 70 - 2, -coords.y / 70 + 1, hand.transform.localPosition.z);
+					}
+					else if (crouch)
+					{
+						hand.transform.localPosition = new Vector3(-coords.x / 40 + 4, -coords.y / 30 + 3, hand.transform.localPosition.z);
+						hand.transform.eulerAngles = new Vector3(-25, hand.transform.eulerAngles.y, hand.transform.eulerAngles.z);
+					}
+					else
+					{
+						hand.transform.localPosition = new Vector3(-coords.x / 40 + 4, -coords.y / 30 + 2.5f, hand.transform.localPosition.z);
+						hand.transform.eulerAngles = new Vector3(0, hand.transform.eulerAngles.y, hand.transform.eulerAngles.z);
+					}
 				}
 			}
 		}

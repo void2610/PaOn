@@ -87,7 +87,7 @@ namespace Paon.NInput
 			vertices = _visualizer.GetPoseVertices();
 			previous = gk.pose;
 
-			if (Input.GetKey(KeyCode.Return)) isDebugEnabled = !isDebugEnabled;
+			if (Input.GetKeyDown(KeyCode.Return)) isDebugEnabled = !isDebugEnabled;
 
 			if (isDebugEnabled)
 			{

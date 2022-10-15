@@ -551,7 +551,7 @@ MonoBehaviour:
     type: 3}
   workerType: 32768
   estimationType: 0
-  maxPoses: 10
+  maxPoses: 20
   scoreThreshold: 0.25
   nmsRadius: 100
   pointScale: 10

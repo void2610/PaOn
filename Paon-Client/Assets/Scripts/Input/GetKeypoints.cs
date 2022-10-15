@@ -99,8 +99,8 @@ namespace Paon.NInput
 			if (rightScore > 0.7f)
 				// rightQueue.Enqueue(CloseOrOpen(rightTemp, LeftOrRight.right));
 				rightQueue.Enqueue(rightCloseOrOpen(rightTemp));
-			if (leftQueue.Count >= 10) leftIsClosed = mode(leftQueue);
-			if (rightQueue.Count >= 10) rightIsClosed = mode(rightQueue);
+			if (leftQueue.Count >= 15) leftIsClosed = mode(leftQueue);
+			if (rightQueue.Count >= 15) rightIsClosed = mode(rightQueue);
 		}
 
 		private int CloseOrOpen(Vector3[] finger, LeftOrRight type)

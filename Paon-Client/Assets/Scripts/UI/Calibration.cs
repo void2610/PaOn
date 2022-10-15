@@ -170,7 +170,7 @@ public class Calibration : MonoBehaviour
 			yield return null;
 		}
 		result = buffer.Average();
-		result += result * 0.3f;
+		result += result * 0.15f;
 		mo.forwardThreshold = result;
 		PlayerPrefs.SetFloat("WalkThreshold", result);
 		Debug.Log("WalkThreshold is determined");
@@ -181,11 +181,13 @@ public class Calibration : MonoBehaviour
 
 	IEnumerator DecideRotateThreshold()
 	{
+		yield return new WaitForSeconds(3);
 		float[] buffer = new float[60];
 		float delta, result;
 		for (int i = 0; i < 30; i++)
 		{
 			delta = mo.GetDelta();
+			buffer[i] = delta;
 			yield return null;
 		}
 	}
