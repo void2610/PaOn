@@ -107,7 +107,7 @@ public class Calibration : MonoBehaviour
 				case Phase.HandEstimation:
 					Debug.Log("Phase2");
 					if (!isRunning)
-						message.text = splitText[1];
+						message.text = splitText[++textIndex];
 					if (!isRunning && leftScore > 0.7f && rightScore > 0.7f)
 					{
 						isRunning = true;
@@ -125,7 +125,7 @@ public class Calibration : MonoBehaviour
 					return;
 
 				default:
-					message.text = splitText[4];
+					message.text = splitText[splitText.Length - 1];
 					end = true;
 					Debug.Log("Calibration end");
 					return;
