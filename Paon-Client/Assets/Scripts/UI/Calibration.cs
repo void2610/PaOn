@@ -138,12 +138,14 @@ public class Calibration : MonoBehaviour
 	IEnumerator DecideCloseThreshold()
 	{
 		message.text = splitText[++textIndex];
+		timer.text = "3";
 		yield return new WaitForSeconds(1);
 		timer.text = "2";
 		yield return new WaitForSeconds(1);
 		timer.text = "1";
 		yield return new WaitForSeconds(1);
 		timer.text = "";
+
 
 		float[] buffer = new float[200];
 		float delta, result;
@@ -176,6 +178,7 @@ public class Calibration : MonoBehaviour
 	IEnumerator DecideWalkThreshold()
 	{
 		message.text = splitText[++textIndex];
+		timer.text = "3";
 		yield return new WaitForSeconds(1);
 		timer.text = "2";
 		yield return new WaitForSeconds(1);
@@ -198,6 +201,7 @@ public class Calibration : MonoBehaviour
 		Array.Clear(buffer, 0, buffer.Length);
 
 		message.text = splitText[++textIndex];
+		timer.text = "3";
 		yield return new WaitForSeconds(1);
 		timer.text = "2";
 		yield return new WaitForSeconds(1);
