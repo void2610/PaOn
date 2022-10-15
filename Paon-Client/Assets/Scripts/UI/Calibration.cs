@@ -31,7 +31,7 @@ public class Calibration : MonoBehaviour
 	[SerializeField]
 	private Visualizer _visualizer;
 
-	private GameObject Circle;
+	private Image Circle;
 
 	[SerializeField]
 	GetKeypoints gk;
@@ -71,7 +71,7 @@ public class Calibration : MonoBehaviour
 		loadText = (Resources.Load("CalibrationResources/CalibrationMessage", typeof(TextAsset)) as TextAsset).text;
 		splitText = loadText.Split(char.Parse("\n"));
 		timer = GameObject.Find("TimerText").GetComponent<Text>();
-		Circle = GameObject.Find("Circle");
+		Circle = GameObject.Find("Circle").GetComponent<Image>();
 	}
 
 	// Update is called once per frame
@@ -190,8 +190,10 @@ public class Calibration : MonoBehaviour
 		float delta, result, tmp;
 		//right leg
 		int i = 0;
-		while (time >= 3.0)
+		time = 0.0f;
+		while (time < 3.0)
 		{
+			Circle.fillAmount -= (3 - time) / 3;
 			delta = mo.GetDelta();
 			buffer[i] = delta;
 			yield return null;
@@ -212,8 +214,10 @@ public class Calibration : MonoBehaviour
 		//left leg
 		message.text = splitText[4];
 		i = 0;
-		while (time >= 3.0)
+		time = 0.0f;
+		while (time < 3.0)
 		{
+			Circle.fillAmount -= (3 - time) / 3;
 			delta = mo.GetDelta();
 			buffer[i] = delta;
 			yield return null;
