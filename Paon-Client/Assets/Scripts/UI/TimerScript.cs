@@ -31,6 +31,11 @@ namespace Paon.NUI
             counting = false;
         }
 
+        public void CountReset()
+        {
+            time = 0.0f;
+        }
+
         void Start()
         {
             GoalText = GameObject.Find("GoalText");
