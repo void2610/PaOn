@@ -22,7 +22,6 @@ namespace Paon.NUI
 
         public void CountStart()
         {
-            time = 0.0f;
             counting = true;
         }
 
