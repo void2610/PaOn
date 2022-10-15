@@ -6461,7 +6461,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 456738, guid: dd407b8b12f4ae245b5d40058a3d72d8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.8420486
+      value: -6.794
       objectReference: {fileID: 0}
     - target: {fileID: 456738, guid: dd407b8b12f4ae245b5d40058a3d72d8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -27367,16 +27367,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Estimation
-      objectReference: {fileID: 0}
-    - target: {fileID: 7165138912578484446, guid: 472b9191cc902bb4d9b461dfa070ebf2,
-        type: 3}
-      propertyPath: maxPoses
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 7165138912578484446, guid: 472b9191cc902bb4d9b461dfa070ebf2,
-        type: 3}
-      propertyPath: estimationType
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 472b9191cc902bb4d9b461dfa070ebf2, type: 3}
