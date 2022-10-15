@@ -138,11 +138,11 @@ namespace Paon.NInput
 					Debug.Log("Rleg: " + Rleg);
 					Debug.Log("Lleg: " + Lleg);
 
-					if (Rleg > 0.05)
+					if (Rleg > 0.07f)
 					{
 						key = "right";
 					}
-					else if (Lleg > 0.05)
+					else if (Lleg > 0.07f)
 					{
 						key = "left";
 					}
