@@ -124,7 +124,7 @@ public class Calibration : MonoBehaviour
 					if (!isRunning)
 					{
 						isRunning = true;
-						if (currentPosition == null)
+						if (current == null)
 							current = StartCoroutine(nameof(DecideWalkThreshold));
 					}
 					return;
