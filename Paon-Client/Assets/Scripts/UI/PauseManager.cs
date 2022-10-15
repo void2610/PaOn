@@ -1,42 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
+using Paon.NBordering;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PauseManager : MonoBehaviour
+namespace Paon.NInput
 {
-    private GameObject PauseMenu;
-
-    private bool pause = false;
-
-    public void returnButton()
+    public class PauseManager : MonoBehaviour
     {
-        PauseMenu.SetActive(false);
-        pause = false;
-    }
+        private GameObject PauseMenu;
 
-    public void quitButton()
-    {
-        SceneManager.LoadScene("MainMenu");
-    }
+        private GameObject BM;
 
-    void Start()
-    {
-        PauseMenu = GameObject.Find("PauseMenu");
-        PauseMenu.SetActive(false);
-    }
+        private bool pause = false;
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape) && pause == false)
-        {
-            PauseMenu.SetActive(true);
-            pause = true;
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape) && pause == true)
+        public void returnButton()
         {
             PauseMenu.SetActive(false);
             pause = false;
+        }
+
+        public void quitButton()
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+
+        void Start()
+        {
+            BM = GameObject.Find("BorderingManager");
+            PauseMenu = GameObject.Find("PauseMenu");
+            PauseMenu.SetActive(false);
+        }
+
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape) && pause == false)
+            {
+                BM.GetComponent<BorderingTimerScript>().Timer.CountStop();
+                PauseMenu.SetActive(true);
+                pause = true;
+            }
+            else if (Input.GetKeyDown(KeyCode.Escape) && pause == true)
+            {
+                BM.GetComponent<BorderingTimerScript>().Timer.CountStart();
+                PauseMenu.SetActive(false);
+                pause = false;
+            }
         }
     }
 }

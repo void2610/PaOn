@@ -51,6 +51,7 @@ namespace Paon.NNetwork
 		// StreamingHub サーバと通信を行うためのクライアント生成
 		private GamingHubClient client = new GamingHubClient();
 
+		private DateTime nowTime;
 
 		async Task Awake()
 		{
@@ -95,15 +96,17 @@ namespace Paon.NNetwork
 		public void StartBorder()
 		{
 			int Mode = 1;
+			nowTime = DateTime.Now;
 
-			client.FlagAsync(Mode);
+			client.FlagAsync(Mode, nowTime, PlayerPrefs.GetString("Name", "NULLTYAN"));
 		}
 
 		public void OutBorder()
 		{
 			int Mode = 2;
+			nowTime = DateTime.Now;
 
-			client.FlagAsync(Mode);
+			client.FlagAsync(Mode, nowTime, PlayerPrefs.GetString("Name", "NULLTYAN"));
 		}
 
 		public static GameObject MakeDolls(Player player)

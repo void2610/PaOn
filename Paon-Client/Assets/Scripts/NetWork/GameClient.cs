@@ -69,16 +69,19 @@ namespace Paon.NNetwork
             client.FaceAsync (FaceID);
         }
 
+        //アイテムを話した時、あげたものかの確認
         public void Givecheck(GameObject present, DateTime UnHoldTime)
         {
             client.GiveChecker(present.name, PlayerPrefs.GetString("Name", "NULLTYAN"), UnHoldTime);
         }
 
+        //アイテムを持った時、貰ったものかの確認
         public void TakeCheck(GameObject present, DateTime UnHoldTime)
         {
             client.TakeChecker(present.name, PlayerPrefs.GetString("Name", "NULLTYAN"), UnHoldTime);
         }
 
+        //他のプレイヤーを生成
         public static GameObject MakeDolls(Player player)
         {
             GameObject doll =
