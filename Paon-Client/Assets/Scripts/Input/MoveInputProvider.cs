@@ -133,14 +133,16 @@ namespace Paon.NInput
 					// Debug.Log("delta2: " + Math.Abs(def2 - predef2));
 
 					//heel to toe
-					Rleg = Mathf.Abs(vertices[30].x - vertices[32].x);
-					Lleg = Mathf.Abs(vertices[29].x - vertices[31].x);
+					Rleg = Mathf.Abs(Mathf.Abs(vertices[30].x) - Mathf.Abs(vertices[32].x));
+					Lleg = Mathf.Abs(Mathf.Abs(vertices[29].x) - Mathf.Abs(vertices[31].x));
+					Debug.Log("Rleg: " + Rleg);
+					Debug.Log("Lleg: " + Lleg);
 
-					if (Rleg > 0.05)
+					if (Rleg > 0.07f)
 					{
 						key = "right";
 					}
-					else if (Lleg > 0.05)
+					else if (Lleg > 0.07f)
 					{
 						key = "left";
 					}
