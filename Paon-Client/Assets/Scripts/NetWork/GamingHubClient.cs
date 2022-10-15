@@ -124,9 +124,9 @@ namespace Paon.NNetwork
 			return client.TimeAsync(name, time);
 		}
 
-        public Task FlagAsync(int Mode, DateTime nowTime, string PlayerName)
+        public Task FlagAsync(int Mode, DateTime nowTime)
         {
-            return client.FlagAsync(Mode, nowTime, PlayerName);
+            return client.FlagAsync(Mode, nowTime);
         }
 
 		public int OffLineCheck()

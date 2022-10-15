@@ -117,7 +117,7 @@ namespace Paon.NNetwork.Hubs
             Broadcast(room).OnGoal(name, time);
         }
 
-        public async Task FlagAsync(int Mode, DateTime nowTime, string PlayerName)
+        public async Task FlagAsync(int Mode, DateTime nowTime)
         {
             //Console.WriteLine("Mode:" + Mode);
 
@@ -134,19 +134,19 @@ namespace Paon.NNetwork.Hubs
 
                 for (int i = 0; i < Flags.Length; i++)
                 {
-                    Console.WriteLine(Flags[i].Exiter);
+                    Console.WriteLine(Flags[i].Name);
 
                     if (Flags[i].Check == true)
                     {
-                        if (Flags[i].Exiter != PlayerName)
+                        if (Flags[i].Name != self.Name)
                         {
                             Console.WriteLine("譲った人の判定まで○");
 
                             if (Flags[i].OutTime + sp > nowTime)
                             {
-                                Console.WriteLine("入室" + self.OutTime);
+                                Console.WriteLine("入室" + Flags[i].OutTime);
 
-                                Broadcast(room).niceGiveTurn(Flags[i].Exiter);
+                                Broadcast(room).niceGiveTurn(Flags[i].Name);
                             }
                         }
                     }
@@ -160,10 +160,9 @@ namespace Paon.NNetwork.Hubs
             {
                 self.Flag = false;
                 self.OutTime = nowTime;
-                self.Exiter = PlayerName;
                 self.Check = true;
 
-                Console.WriteLine("交代" + self.Exiter);
+                Console.WriteLine("交代" + self.Name);
             }
 
             for (int i = 0; i < Flags.Length; i++)
@@ -206,7 +205,6 @@ namespace Paon.NNetwork.Hubs
 
         public async Task ResetGiveTurn()
         {
-            self.Exiter = null;
             self.Check = false;
         }
     }

@@ -91,7 +91,7 @@ namespace Paon.NNetwork
 			int Mode = 0;
 			nowTime = DateTime.Now;
 
-			client.FlagAsync(Mode, nowTime, PlayerPrefs.GetString("Name", "NULLTYAN"));
+			client.FlagAsync(Mode, nowTime);
 		}
 
 		public void StartBorder()
@@ -99,7 +99,7 @@ namespace Paon.NNetwork
 			int Mode = 1;
 			nowTime = DateTime.Now;
 
-			client.FlagAsync(Mode, nowTime, PlayerPrefs.GetString("Name", "NULLTYAN"));
+			client.FlagAsync(Mode, nowTime);
 		}
 
 		public void OutBorder()
@@ -107,7 +107,7 @@ namespace Paon.NNetwork
 			int Mode = 2;
 			nowTime = DateTime.Now;
 
-			client.FlagAsync(Mode, nowTime, PlayerPrefs.GetString("Name", "NULLTYAN"));
+			client.FlagAsync(Mode, nowTime);
 		}
 
 		public static GameObject MakeDolls(Player player)
