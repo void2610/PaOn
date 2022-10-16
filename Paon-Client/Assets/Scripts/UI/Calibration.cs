@@ -147,17 +147,19 @@ public class Calibration : MonoBehaviour
 		yield return CountDown();
 
 		float[] buffer = new float[400];
-		float leftDelta, rightDelta, result;
+		float leftDelta, rightDelta, result, delta;
 		bool go = false;
 		while (leftScore < 0.7f && rightScore < 0.7f) yield return null;
 		for (int i = 0; i < 150; i++)
 		{
 			if (leftScore > 0.7f && rightScore > 0.7f)
 			{
-				leftDelta = gk.GetLeftDistance();
-				rightDelta = gk.GetRightDistance();
-				buffer[i] = leftDelta;
-				buffer[i + 1] = rightDelta;
+				// leftDelta = gk.GetLeftDistance();
+				// rightDelta = gk.GetRightDistance();
+				// buffer[i] = leftDelta;
+				// buffer[i + 1] = rightDelta;
+				delta = gk.distance;
+				buffer[i] = delta;
 			}
 			else i--;
 			yield return null;

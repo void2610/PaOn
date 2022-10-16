@@ -171,6 +171,11 @@ namespace Paon.NInput
 			return distance = Vector3.Distance(leftTemp[0], leftTemp[12]);
 		}
 
+		public float GetDistance()
+		{
+			return distance;
+		}
+
 		public float GetScore(LeftOrRight handedness)
 		{
 			if (handedness == LeftOrRight.left) return leftScore;
