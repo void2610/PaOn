@@ -166,7 +166,7 @@ public class Calibration : MonoBehaviour
 		if (go)
 		{
 			result = buffer.Average();
-			result += result * 0.5f;
+			result += result * 0.3f;
 			gk.closeThreshold = result;
 			PlayerPrefs.SetFloat("CloseThreshold", result);
 			Debug.Log("CloseThreshold is determined");
