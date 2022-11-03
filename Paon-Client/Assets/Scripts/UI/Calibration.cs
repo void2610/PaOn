@@ -140,6 +140,19 @@ public class Calibration : MonoBehaviour
 
 	}
 
+	IEnumerator MaskingArea()
+	{
+		time = 0;
+		yield return CountDown();
+
+		while (pose[9].score < minConfidence && pose[10].score < minConfidence
+				&& pose[15].score < minConfidence && pose[16].score < minConfidence)
+			yield return null;
+
+		Vector3[] pos = { pose[9].coords, pose[10].coords };
+
+	}
+
 	IEnumerator DecideCloseThreshold()
 	{
 		time = 0;
