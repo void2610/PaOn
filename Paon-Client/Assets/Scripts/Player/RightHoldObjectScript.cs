@@ -1,9 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using Paon.NNetwork;
 using Paon.NInput;
+using Paon.NNetwork;
 using UnityEngine;
-using System;
 
 //handの子オブジェクトのHandTriggerにアタッチする
 namespace Paon.NPlayer
@@ -62,7 +62,7 @@ namespace Paon.NPlayer
                 {
                     UnHoldTime = DateTime.Now;
 
-                    oh.HoldObject (NearObject);
+                    oh.HoldObject(NearObject);
                     if (oh.NowHoldObject.tag == "HoldableTag")
                     {
                         DefoRotation = NearObject.transform.eulerAngles;
