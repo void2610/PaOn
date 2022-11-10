@@ -67,6 +67,7 @@ public class Calibration : MonoBehaviour
 
     Coroutine current;
     Coroutine counting;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -161,9 +162,10 @@ public class Calibration : MonoBehaviour
             yield return null;
 
         Vector3[] pos = { pose[9].coords, pose[10].coords, pose[15].coords, pose[16].coords };
-        PlayerPrefsUtils.SetObject<Vector3[]>("AreaTh", pos);
-        var result = PlayerPrefsUtils.GetObject<Vector3[]>("AreaTh");
-        Debug.Log("result : " + string.Join(", ", result.Select(n => n.ToString())));
+        PlayerPrefs.SetString("AreaTh", JsonHelper.ToJson(pos));
+        // var json = PlayerPrefs.GetString("AreaTh", "None");
+        // var result = JsonHelper.FromJson<Vector3>(json);
+        // Debug.Log("result : " + string.Join(", ", result.Select(n => n.ToString())));
         state = Phase.PoseEstimation;
     }
 
@@ -278,6 +280,7 @@ public class Calibration : MonoBehaviour
     {
         PlayerPrefs.DeleteKey("CloseThreshold");
         PlayerPrefs.DeleteKey("WalkThreshold");
+        PlayerPrefs.DeleteKey("AreaTh");
         Debug.Log("Threshold deleted");
     }
 
