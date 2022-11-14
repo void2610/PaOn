@@ -135,8 +135,8 @@ namespace Paon.NInput
 					//heel to toe
 					Rleg = Mathf.Abs(Mathf.Abs(vertices[30].x) - Mathf.Abs(vertices[32].x));
 					Lleg = Mathf.Abs(Mathf.Abs(vertices[29].x) - Mathf.Abs(vertices[31].x));
-					Debug.Log("Rleg: " + Rleg);
-					Debug.Log("Lleg: " + Lleg);
+					// Debug.Log("Rleg: " + Rleg);
+					// Debug.Log("Lleg: " + Lleg);
 
 					if (Rleg > 0.07f)
 					{
