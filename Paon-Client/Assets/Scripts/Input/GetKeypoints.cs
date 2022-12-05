@@ -58,12 +58,25 @@ namespace Paon.NInput
 
 		Vector3[] leftTemp, rightTemp;
 
+		public Vector3[] areaThreshold;
+
+		public enum thType
+		{
+			leftHand,
+			rightHand,
+			leftLeg,
+			rightLeg
+		};
+
 		void Start()
 		{
 			_PoseEstimator = PoseEstimator.GetComponent<PoseEstimator>();
 			_handVisualizer = HandEstimatior.GetComponent<Visualizer>();
-
+			string str = " ";
 			if (PlayerPrefs.HasKey("CloseThreshold")) closeThreshold = PlayerPrefs.GetFloat("CloseThreshold");
+			if (PlayerPrefs.HasKey("AreaTh")) str = PlayerPrefs.GetString("AreaTh");
+			// Debug.Log("AreaTh: " + string.Join(", ", areaThreshold.Select(x => x.ToString)));
+			Debug.Log(str);
 		}
 
 		void Update()
@@ -74,7 +87,7 @@ namespace Paon.NInput
 			{
 				pose[cnt] = new Keypoint(key.position.x, key.position.y, 0, key.score);
 				// Debug.Log("pose[" + cnt + "]: " + pose[cnt].coords);
-				cnt++;
+				// Debug.Log("pose[" + cnt + "]: " + pose[cnt].coords);
 			}
 
 			leftWrist = pose[9];
@@ -85,23 +98,23 @@ namespace Paon.NInput
 
 			leftScore = leftTemp[21].x;
 			rightScore = rightTemp[21].x;
+			// Debug.Log("leftScore : " +
 			// Debug.Log("leftScore : " + leftScore);
 			// Debug.Log("rightScore : " + rightScore);
-
 			leftWrist.coords.z = leftTemp[0].z;
 			rightWrist.coords.z = rightTemp[0].z;
+
 
 			// leftIsClosed = leftCloseOrOpen(leftTemp);
 			// rightIsClosed = rightCloseOrOpen(rightTemp);
 			// Debug.Log("Left: " + leftIsClosed);
 			// Debug.Log("Right: " + rightIsClosed);
-			if (leftScore > 0.7f)
-				// leftQueue.Enqueue(CloseOrOpen(leftTemp, LeftOrRight.left));
-				leftQueue.Enqueue(leftCloseOrOpen(leftTemp));
+			// leftQueue.Enqueue
+			// leftQueue.Enqueue(CloseOrOpen(leftTemp, LeftOrRight.left));
 			if (rightScore > 0.7f)
+				// rightQueue.Enqueue
 				// rightQueue.Enqueue(CloseOrOpen(rightTemp, LeftOrRight.right));
-				rightQueue.Enqueue(rightCloseOrOpen(rightTemp));
-			if (leftQueue.Count >= 15) leftIsClosed = mode(leftQueue);
+				if (leftQueue.Count >= 15) leftIsClosed = mode(leftQueue);
 			if (rightQueue.Count >= 15) rightIsClosed = mode(rightQueue);
 		}
 
