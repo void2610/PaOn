@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using ExtraMethods;
 using MediaPipe.Holistic;
 using UnityEngine;
 
@@ -95,6 +96,13 @@ namespace Paon.NInput
 
 			leftTemp = _handVisualizer.GetLeftVert();
 			rightTemp = _handVisualizer.GetRightVert();
+
+			for (int i = 0; i < leftTemp.Length; i++)
+			{
+				leftTemp[i] = new Vector3(leftTemp[i].x.map(0, 1, -1, -10),
+				leftTemp[i].y.map(0, 1, -1, 3), leftTemp[i].z.map(0, 1, -1, 1));
+			}
+
 
 			leftScore = leftTemp[21].x;
 			rightScore = rightTemp[21].x;
