@@ -15,6 +15,9 @@ namespace Paon.NInput
 		[SerializeField]
 		private GameObject PoseEstimator;
 
+		[SerializeField]
+		private GameObject Estimator;
+
 		private PoseEstimator _PoseEstimator;
 
 		private Utils.Keypoint[] poseKeypoints;
@@ -73,6 +76,7 @@ namespace Paon.NInput
 		{
 			_PoseEstimator = PoseEstimator.GetComponent<PoseEstimator>();
 			_handVisualizer = HandEstimatior.GetComponent<Visualizer>();
+			_visualizer = Estimatior.GameComponent<Visualizer>();
 			string str = " ";
 			if (PlayerPrefs.HasKey("CloseThreshold")) closeThreshold = PlayerPrefs.GetFloat("CloseThreshold");
 			if (PlayerPrefs.HasKey("AreaTh")) str = PlayerPrefs.GetString("AreaTh");
@@ -82,14 +86,16 @@ namespace Paon.NInput
 
 		void Update()
 		{
-			poseKeypoints = _PoseEstimator.GetKeypoints();
-			int cnt = 0;
-			foreach (Utils.Keypoint key in poseKeypoints)
-			{
-				pose[cnt] = new Keypoint(key.position.x, key.position.y, 0, key.score);
-				// Debug.Log("pose[" + cnt + "]: " + pose[cnt].coords);
-				// Debug.Log("pose[" + cnt + "]: " + pose[cnt].coords);
-			}
+			// poseKeypoints = _PoseEstimator.GetKeypoints();
+			// int cnt = 0;
+			// foreach (Utils.Keypoint key in poseKeypoints)
+			// {
+			// 	pose[cnt] = new Keypoint(key.position.x, key.position.y, 0, key.score);
+			// 	// Debug.Log("pose[" + cnt + "]: " + pose[cnt].coords);
+			// 	// Debug.Log("pose[" + cnt + "]: " + pose[cnt].coords);
+			// }
+
+			pose = _visualizer.GetPoseVertices();
 
 			leftWrist = pose[9];
 			rightWrist = pose[10];
@@ -97,21 +103,23 @@ namespace Paon.NInput
 			leftTemp = _handVisualizer.GetLeftVert();
 			rightTemp = _handVisualizer.GetRightVert();
 
-			for (int i = 0; i < leftTemp.Length; i++)
+			for (int i = 0; i < leftTemp.Length - 1; i++)
 			{
 				leftTemp[i] = new Vector3(leftTemp[i].x.map(0, 1, -1, -10),
-				leftTemp[i].y.map(0, 1, -1, 3), leftTemp[i].z.map(0, 1, -1, 1));
+				leftTemp[i].y.map(0, 1, -1, 3), leftTemp[i].z);
+			}
+
+			for (int i = 0; i < rightTemp.Length - 1; i++)
+			{
+				rightTemp[i] = new Vector3(rightTemp[i].x.map(0, 1, -1, -10),
+				rightTemp[i].y.map(0, 1, -1, 3), rightTemp[i].z);
 			}
 
 
 			leftScore = leftTemp[21].x;
 			rightScore = rightTemp[21].x;
-			// Debug.Log("leftScore : " +
 			// Debug.Log("leftScore : " + leftScore);
 			// Debug.Log("rightScore : " + rightScore);
-			leftWrist.coords.z = leftTemp[0].z;
-			rightWrist.coords.z = rightTemp[0].z;
-
 
 			// leftIsClosed = leftCloseOrOpen(leftTemp);
 			// rightIsClosed = rightCloseOrOpen(rightTemp);
@@ -192,9 +200,9 @@ namespace Paon.NInput
 			return distance = Vector3.Distance(leftTemp[0], leftTemp[12]);
 		}
 
-		public float GetDistance()
+		public float GetDistance(Vector3 wrist, Vector3 top)
 		{
-			return distance;
+			return distance = Vector3(wrist, top);
 		}
 
 		public float GetScore(LeftOrRight handedness)
