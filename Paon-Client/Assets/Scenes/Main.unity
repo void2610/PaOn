@@ -14112,7 +14112,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   time: 0
   counting: 0
-  display: 0
 --- !u!1001 &1305178410
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27413,6 +27412,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Estimation
+      objectReference: {fileID: 0}
+    - target: {fileID: 7165138912578484446, guid: 472b9191cc902bb4d9b461dfa070ebf2,
+        type: 3}
+      propertyPath: estimationType
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 472b9191cc902bb4d9b461dfa070ebf2, type: 3}

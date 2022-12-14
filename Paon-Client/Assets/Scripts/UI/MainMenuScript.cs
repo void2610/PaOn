@@ -55,6 +55,11 @@ namespace Paon.NUI
 
         private InputField Input;
 
+        private GameObject Th;
+
+        private InputField ThInput;
+
+
         [SerializeField]
         private Material Skin;
 
@@ -116,6 +121,12 @@ namespace Paon.NUI
         {
             GetComponent<AudioSource>().PlayOneShot(SE);
             PlayerPrefs.SetString("Name", Input.text);
+            PlayerPrefs.Save();
+        }
+
+        public void ApplyTh(){
+            GetComponent<AudioSource>().PlayOneShot(SE);
+            PlayerPrefs.SetFloat("CloseThreshold", float.Parse(ThInput.text));
             PlayerPrefs.Save();
         }
 
@@ -182,9 +193,12 @@ namespace Paon.NUI
             Bordering = GameObject.Find("Bordering");
             Back = GameObject.Find("Back");
             Name = GameObject.Find("Name");
+            Th = GameObject.Find("Th");
             NamePlate = GameObject.Find("NamePlate");
             Input = Name.GetComponent<InputField>();
+            ThInput = Th.GetComponent<InputField>();
             Input.text = PlayerPrefs.GetString("Name", "プレイヤー");
+            ThInput.text = PlayerPrefs.GetFloat("CloseThreshold", 0.0f).ToString();
             Color = GameObject.Find("Color");
             NServer1 = GameObject.Find("NServer1");
             NServer2 = GameObject.Find("NServer2");
@@ -218,6 +232,7 @@ namespace Paon.NUI
                 Color.SetActive(false);
                 Volume.SetActive(false);
                 Calibration.SetActive(false);
+                Th.SetActive(false);
 
                 NServer1.SetActive(false);
                 NServer2.SetActive(false);
@@ -246,6 +261,7 @@ namespace Paon.NUI
                 Color.SetActive(false);
                 Volume.SetActive(false);
                 Calibration.SetActive(false);
+                Th.SetActive(false);
 
                 NServer1.SetActive(false);
                 NServer2.SetActive(false);
@@ -276,6 +292,7 @@ namespace Paon.NUI
                 Color.SetActive(true);
                 Volume.SetActive(true);
                 Calibration.SetActive(true);
+                Th.SetActive(true);
 
                 NServer1.SetActive(false);
                 NServer2.SetActive(false);
@@ -304,6 +321,7 @@ namespace Paon.NUI
                 Color.SetActive(false);
                 Volume.SetActive(false);
                 Calibration.SetActive(false);
+                Th.SetActive(false);
 
                 NServer1.SetActive(false);
                 NServer2.SetActive(false);
@@ -341,6 +359,7 @@ namespace Paon.NUI
                 Color.SetActive(false);
                 Volume.SetActive(false);
                 Calibration.SetActive(false);
+                Th.SetActive(false);
 
                 NServer1.SetActive(true);
                 NServer2.SetActive(true);
@@ -369,6 +388,7 @@ namespace Paon.NUI
                 Color.SetActive(false);
                 Volume.SetActive(false);
                 Calibration.SetActive(false);
+                Th.SetActive(false);
 
                 NServer1.SetActive(false);
                 NServer2.SetActive(false);

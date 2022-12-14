@@ -290,6 +290,12 @@ PrefabInstance:
       propertyPath: estimationType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8823757632181810756, guid: 472b9191cc902bb4d9b461dfa070ebf2,
+        type: 3}
+      propertyPath: holisticResource
+      value: 
+      objectReference: {fileID: 11400000, guid: 3d7456c7320edba4caea63df7db64fb7,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 472b9191cc902bb4d9b461dfa070ebf2, type: 3}
 --- !u!1 &304120360

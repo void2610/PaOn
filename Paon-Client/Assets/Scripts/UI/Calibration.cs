@@ -159,6 +159,7 @@ public class Calibration : MonoBehaviour
 				// buffer[i] = leftDelta;
 				// buffer[i + 1] = rightDelta;
 				delta = gk.distance;
+				Debug.Log("delta: " +delta);
 				buffer[i] = delta;
 			}
 			else i--;
@@ -171,7 +172,7 @@ public class Calibration : MonoBehaviour
 			result += result * 0.3f;
 			gk.closeThreshold = result;
 			PlayerPrefs.SetFloat("CloseThreshold", result);
-			Debug.Log("CloseThreshold is determined");
+			Debug.Log("CloseThreshold is determined: "+result);
 			isRunning = false;
 			state = Phase.Positioning;
 			Lamps[1].color = green;
@@ -217,11 +218,11 @@ public class Calibration : MonoBehaviour
 			i++;
 		}
 		result = buffer.Average();
-		result = (tmp + result) / 2;
+		// result = (tmp + result) / 2;
 		result += result * 0.15f;
 		mo.forwardThreshold = result;
 		PlayerPrefs.SetFloat("WalkThreshold", result);
-		Debug.Log("WalkThreshold is determined");
+		Debug.Log("WalkThreshold is determined: "+result);
 		isRunning = false;
 		state = Phase.End;
 		Lamps[2].color = green;
