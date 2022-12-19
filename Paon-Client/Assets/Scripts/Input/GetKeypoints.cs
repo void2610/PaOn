@@ -10,7 +10,7 @@ namespace Paon.NInput
 	public class GetKeypoints : MonoBehaviour
 	{
 		[SerializeField]
-		private GameObject HandEstimatior;
+		private GameObject HandEstimator;
 
 		[SerializeField]
 		private GameObject PoseEstimator;
@@ -23,6 +23,8 @@ namespace Paon.NInput
 		private Utils.Keypoint[] poseKeypoints;
 
 		private Visualizer _handVisualizer;
+
+		private Visualizer _visualizer;
 
 		public enum LeftOrRight
 		{
@@ -43,6 +45,8 @@ namespace Paon.NInput
 		}
 
 		public Keypoint[] pose = new Keypoint[25];
+
+		public Vector3[] keypoints = new Vector3[25];
 
 		public Keypoint leftWrist = new Keypoint(0, 0, 0, 0);
 
@@ -75,8 +79,8 @@ namespace Paon.NInput
 		void Start()
 		{
 			_PoseEstimator = PoseEstimator.GetComponent<PoseEstimator>();
-			_handVisualizer = HandEstimatior.GetComponent<Visualizer>();
-			_visualizer = Estimatior.GameComponent<Visualizer>();
+			_handVisualizer = HandEstimator.GetComponent<Visualizer>();
+			_visualizer = Estimator.GetComponent<Visualizer>();
 			string str = " ";
 			if (PlayerPrefs.HasKey("CloseThreshold")) closeThreshold = PlayerPrefs.GetFloat("CloseThreshold");
 			if (PlayerPrefs.HasKey("AreaTh")) str = PlayerPrefs.GetString("AreaTh");
@@ -95,7 +99,7 @@ namespace Paon.NInput
 			// 	// Debug.Log("pose[" + cnt + "]: " + pose[cnt].coords);
 			// }
 
-			pose = _visualizer.GetPoseVertices();
+			keypoints = _visualizer.GetPoseVertices();
 
 			leftWrist = pose[9];
 			rightWrist = pose[10];
@@ -202,7 +206,7 @@ namespace Paon.NInput
 
 		public float GetDistance(Vector3 wrist, Vector3 top)
 		{
-			return distance = Vector3(wrist, top);
+			return distance = Vector3.Distance(wrist, top);
 		}
 
 		public float GetScore(LeftOrRight handedness)
