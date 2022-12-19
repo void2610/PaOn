@@ -4,19 +4,16 @@ using UnityEngine;
 namespace Dsystem{
     public class Denger : MonoBehaviour
     {
-        public string name;
-        public string description;
+        public string name = "No Name";
+        public string description = "No description";
 
         private AlertManageScript ams;
 
         private float sTime;
-        private float coolDown;
+        private float coolDown = 10.0f;
         private bool canActivate = true;
         public virtual void Start(){
             ams = GameObject.Find("AlertManager").GetComponent<AlertManageScript>();
-            name = "No Name";
-            description = "No description";
-            coolDown = 10.0f;
         }
 
         public virtual void Update(){
