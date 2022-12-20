@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace Dsystem
 {
-  public class Denger : MonoBehaviour
+  public class Taboo : MonoBehaviour
   {
     public string name = "No Name";
 

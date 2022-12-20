@@ -1096,10 +1096,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 62653248}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6cc11e8e6f23ff4c9d13a296cd14256, type: 3}
+  m_Script: {fileID: 11500000, guid: 28ad10d93d526413497cdad15ff7b500, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   name: No Name
+  key: No Key
   description: No description
 --- !u!1001 &65067018
 PrefabInstance:

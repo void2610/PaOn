@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace Dsystem
 {
-  public class Denger_Road : Denger
+  public class Taboo_Road : Taboo
   {
     public override void Start()
     {
       base.Start();
-      key = "Denger_Road";
+      key = "Taboo_Road";
       name = "どうろにでるな";
       description = "しぬぞ";
     }
